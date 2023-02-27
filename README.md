@@ -1,3 +1,5 @@
+您可以此项目为模板创建新的博客页面，也可阅读下面的文档访问原作者的仓库进行fork.
+
 # Centrarium [![Circle CI](https://circleci.com/gh/bencentra/centrarium/tree/master.svg?style=svg)](https://circleci.com/gh/bencentra/centrarium/tree/master)
 
 A simple yet classy theme for your Jekyll website or blog. Customizable to fit your style or brand.
