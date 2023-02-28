@@ -22,7 +22,7 @@ cover: "/assets/header_image.jpg"
 logo: "/assets/logo.png"
 
 # Build settings
-markdown: kramdown
+markdown: rdiscount
 paginate: 10
 paginate_path: "/page:num/"
 highlighter: rouge
