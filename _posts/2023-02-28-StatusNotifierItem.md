@@ -1,12 +1,13 @@
 ---
 layout: post
-title:  "freedesktop-StatusNotifierItem(状态通知规范)"
+title:  "StatusNotifierItem(状态通知规范)"
 date:   2023-02-28
 author: ssk-wh
 categories: freedesktop
 ---
 
-## StatusNotifierItem
+<strong>目录</strong>
+{:toc} 
 
 ## 原文链接
 
@@ -16,7 +17,7 @@ https://www.freedesktop.org/wiki/Specifications/StatusNotifierItem/
 
 ## 介绍
 
-该规范定义了视觉项目的管理，通常是用于向用户报告应用程序状态或提供对该应用程序执行的常见操作的快速访问的图标。 它旨在补充但与 Freedesktop 的桌面通知规范没有直接关系，旨在替代 Freedesktop 系统托盘规范，更加面向模型视图，为工作空间提供更多自由，在图形方面更贴近它的视觉风格语言。
+该规范定义了视觉项目的管理，通常是用于向用户报告应用程序状态或提供对该应用程序执行的常见操作的快速访问的图标。 它旨在补充但与 freedesktop 的桌面通知规范没有直接关系，旨在替代 freedesktop 系统托盘规范，更加面向模型视图，为工作空间提供更多自由，在图形方面更贴近它的视觉风格语言。
 
 
 
@@ -197,7 +198,7 @@ STRING org.freedesktop.StatusNotifierItem.AttentionMovieName ();
 
 
 
-项目还可以指定与 RequestingAttention 状态关联的动画。这应该是一个被 Freedesktop 兼容的图标名称或完整路径。可视化可以自行决定在此属性和 AttentionIconPixmap 之间进行选择（或两者都不使用）。
+项目还可以指定与 RequestingAttention 状态关联的动画。这应该是一个被 freedesktop 兼容的图标名称或完整路径。可视化可以自行决定在此属性和 AttentionIconPixmap 之间进行选择（或两者都不使用）。
 
 
 
@@ -435,7 +436,7 @@ BOOL org.freedesktop.StatusNotifierWatcher.StatusNotifierHostRegistered ();
 
 
 
-已注册新的 StatusNotifierHost，StatusNotifierItem 实例知道它们可以使用此协议而不是 Freedesktop 系统托盘协议。
+已注册新的 StatusNotifierHost，StatusNotifierItem 实例知道它们可以使用此协议而不是 freedesktop 系统托盘协议。
 
 
 
