@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="baidu-site-verification" content="codeva-B5VF6cnPFZ">
+    <meta name="google-site-verification" content="ZM2PcJqi_Mss_ogkZm-u_PsCxziOZ2GrmVUUAMtkewI">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            基于lightdm开发轻量版greeter |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/my_logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#82077e","logo":"/images/my_logo.svg","favicon":"/images/my_logo.svg","avatar":"/images/my_avatar.svg","font_size":null,"font_family":"STKaiti","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Deeds, not words. || Well begun is half done.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["R&D"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/my_logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">基于lightdm开发轻量版greeter</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/my_avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ssk-wh</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-04-10 16:09:19</span>
+        <span class="mobile">2023-04-10 16:09</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2024-03-18 01:35:39</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/lightdm/">lightdm</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/greeter/">greeter</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h1 id="lightdm是什么"><a href="#lightdm是什么" class="headerlink" title="lightdm是什么"></a>lightdm是什么</h1><p>lightdm&#x2F;LightDM，全称”Light Display Manager”。是 linux 操作系统中的一种轻量级显示管理器，用于显示登录屏幕并处理用户登录。它可以适用于 gnome、kde、xfce  和l xde 等不同的桌面环境，并且相对于其他登录管理器来说，占用的系统资源较少，启动速度也较快。</p>
+<p>常见的登录管理器包括：</p>
+<p>GDM (GNOME Display Manager)<br>SDDM (Simple Desktop Display Manager)<br>LightDM<br>XDM (X Display Manager)<br>KDM (KDE Display Manager)</p>
+<p>还有其他一些较少使用的登录管理器，如SLiM和Entrance等。</p>
+<h1 id="greeter是什么"><a href="#greeter是什么" class="headerlink" title="greeter是什么"></a>greeter是什么</h1><p>greeter 是 LightDM 登录管理器的用户界面。它提供了一个简单而美观的图形化界面，用户可以使用该界面登录到他们的系统。</p>
+<p>业界常见的 greeter 包括：</p>
+<table>
+<thead>
+<tr>
+<th>greeter名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>unity greeter</td>
+<td>这是 ubuntu使用的默认greeter，具有现代化的外观和感觉。它支持用户切换、自定义背景和语言。</td>
+</tr>
+<tr>
+<td>lightdm webkit2 greeter</td>
+<td>这个greeter使用webkit2引擎，支持html5和css3，提供了更灵活的自定义选项。</td>
+</tr>
+<tr>
+<td>slick greeter</td>
+<td>这个greeter具有紧凑的设计和简单的配置。它支持用户切换、自定义背景和语言。</td>
+</tr>
+<tr>
+<td>gtk+ greeter</td>
+<td>这个greeter采用gtk +工具包，支持多种语言和主题。</td>
+</tr>
+<tr>
+<td>lxde greeter</td>
+<td>这个greeter轻量级、快速，并具有直观的用户界面。它支持自定义主题、多个用户和面孔浏览功能。</td>
+</tr>
+<tr>
+<td>pantheon greeter</td>
+<td>这个greeter是 elementary os 的默认greeter，具有干净的设计和响应式布局。它支持用户切换、自定义背景和语言。</td>
+</tr>
+</tbody></table>
+<p>这只是其中的一些示例，还有其他许多基于 LightDM 的可用 greeter 。</p>
+<h1 id="开发库"><a href="#开发库" class="headerlink" title="开发库"></a>开发库</h1><p>liblightdm-qt5-3-dev 是一个用于与lightdm显示管理器交互的qt应用程序开发包。它包含了 lightdm qt 库的头文件和静态库。开发人员可以使用该软件包创建自定义登录界面或在他们的应用程序中添加其他lightdm功能。</p>
+<p>安装开发包<br><code>sudo apt install liblightdm-qt5-3-dev</code></p>
+<p>在此软件包中，提供了以下四个类，这些类足以为您的greeter应用程序提供支持</p>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>greeter.h</td>
+<td>提供认证、回填密码、错误提示、语言设置、会话同步等功能</td>
+</tr>
+<tr>
+<td>power.h</td>
+<td>判断是否支持待机、休眠、关机、重启等操作以及待机、休眠、关机、重启接口</td>
+</tr>
+<tr>
+<td>sessionsmodel.h</td>
+<td>继承自QAbstractListModel，封装了所有的会话列表，数据一般源自&#x2F;usr&#x2F;share&#x2F;xsessions目录中的配置文件</td>
+</tr>
+<tr>
+<td>usersmodel.h</td>
+<td>继承自QAbstractListModel，封装了所有的用户信息</td>
+</tr>
+</tbody></table>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;greeter.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QApplication&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QLineEdit&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QVBoxLayout&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QPushButton&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QListView&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QComboBox&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QDebug&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QLightDM/Greeter&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QLightDM/SessionsModel&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QLightDM/UsersModel&gt;</span></span></span><br><span class="line"></span><br><span class="line">Greeter::<span class="built_in">Greeter</span>(QWidget *parent)</span><br><span class="line">    : <span class="built_in">QWidget</span>(parent)</span><br><span class="line">    , <span class="built_in">m_layout</span>(<span class="keyword">new</span> <span class="built_in">QVBoxLayout</span>(<span class="keyword">this</span>))</span><br><span class="line">    , <span class="built_in">passwordEdit</span>(<span class="keyword">new</span> <span class="built_in">QLineEdit</span>(<span class="keyword">this</span>))</span><br><span class="line">    , <span class="built_in">m_userList</span>(<span class="keyword">new</span> <span class="built_in">QListView</span>(<span class="keyword">this</span>))</span><br><span class="line">    , <span class="built_in">m_sessionCbx</span>(<span class="keyword">new</span> <span class="built_in">QComboBox</span>(<span class="keyword">this</span>))</span><br><span class="line">    , <span class="built_in">m_loginBtn</span>(<span class="keyword">new</span> <span class="built_in">QPushButton</span>(<span class="string">&quot;Login&quot;</span>, <span class="keyword">this</span>))</span><br><span class="line">    , <span class="built_in">m_greeter</span>(<span class="keyword">new</span> QLightDM::<span class="built_in">Greeter</span>(<span class="keyword">this</span>))</span><br><span class="line">&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> QT_DEBUG</span></span><br><span class="line">    <span class="keyword">if</span> (!m_greeter-&gt;<span class="built_in">connectSync</span>()) &#123;</span><br><span class="line">        <span class="built_in">qWarning</span>() &lt;&lt; <span class="string">&quot;connect sync failed&quot;</span>;</span><br><span class="line">        <span class="built_in">close</span>();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">initUI</span>();</span><br><span class="line">    <span class="built_in">initConnections</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Greeter::initUI</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    m_layout-&gt;<span class="built_in">addWidget</span>(m_userList);</span><br><span class="line">    m_layout-&gt;<span class="built_in">addWidget</span>(passwordEdit);</span><br><span class="line">    m_layout-&gt;<span class="built_in">addWidget</span>(m_sessionCbx);</span><br><span class="line">    m_layout-&gt;<span class="built_in">addWidget</span>(m_loginBtn);</span><br><span class="line"></span><br><span class="line">    m_userList-&gt;<span class="built_in">setModel</span>(<span class="keyword">new</span> QLightDM::<span class="built_in">UsersModel</span>(<span class="keyword">this</span>));</span><br><span class="line">    m_userList-&gt;<span class="built_in">setCurrentIndex</span>(<span class="built_in">QModelIndex</span>());</span><br><span class="line">    m_sessionCbx-&gt;<span class="built_in">setModel</span>(<span class="keyword">new</span> QLightDM::<span class="built_in">SessionsModel</span>(<span class="keyword">this</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Greeter::initConnections</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">connect</span>(m_loginBtn, &amp;QPushButton::clicked, <span class="keyword">this</span>, &amp;Greeter::onLogin);</span><br><span class="line">    <span class="built_in">connect</span>(m_greeter, &amp;QLightDM::Greeter::authenticationComplete, <span class="keyword">this</span>, &amp;Greeter::onAuthenticationComplete);</span><br><span class="line">    <span class="built_in">connect</span>(m_greeter, &amp;QLightDM::Greeter::showPrompt, <span class="keyword">this</span>, &amp;Greeter::onShowPrompt);</span><br><span class="line">    <span class="built_in">connect</span>(m_greeter, &amp;QLightDM::Greeter::showMessage, <span class="keyword">this</span>, &amp;Greeter::onShowMessage);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Greeter::onLogin</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// cancel authentication</span></span><br><span class="line">    <span class="keyword">if</span> (m_greeter-&gt;<span class="built_in">inAuthentication</span>()) &#123;</span><br><span class="line">        m_greeter-&gt;<span class="built_in">cancelAuthentication</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// start authentication</span></span><br><span class="line">    QModelIndex currentIndex = m_userList-&gt;<span class="built_in">currentIndex</span>();</span><br><span class="line">    <span class="keyword">if</span> (currentIndex.<span class="built_in">isValid</span>() &amp;&amp; !m_greeter-&gt;<span class="built_in">inAuthentication</span>()) &#123;</span><br><span class="line">        m_greeter-&gt;<span class="built_in">authenticate</span>(currentIndex.<span class="built_in">data</span>(QLightDM::UsersModel::NameRole).<span class="built_in">toString</span>());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">qWarning</span>() &lt;&lt; <span class="string">&quot;user list index is invalid or greeter is in authentication&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Greeter::onAuthenticationComplete</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (m_greeter-&gt;<span class="built_in">isAuthenticated</span>()) &#123;</span><br><span class="line">        <span class="type">int</span> index = m_sessionCbx-&gt;<span class="built_in">currentIndex</span>();</span><br><span class="line">        m_greeter-&gt;<span class="built_in">startSessionSync</span>(m_sessionCbx-&gt;<span class="built_in">itemData</span>(index, QLightDM::SessionsModel::IdRole).<span class="built_in">toString</span>());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        passwordEdit-&gt;<span class="built_in">setPlaceholderText</span>(<span class="string">&quot;Incorrect password, please try again&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Greeter::onShowPrompt</span><span class="params">(<span class="type">const</span> QString &amp;text, <span class="type">int</span> type)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">qDebug</span>() &lt;&lt; text &lt;&lt; <span class="built_in">static_cast</span>&lt;QLightDM::Greeter::PromptType&gt;(type);</span><br><span class="line">    m_greeter-&gt;<span class="built_in">respond</span>(passwordEdit-&gt;<span class="built_in">text</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Greeter::onShowMessage</span><span class="params">(QString text, <span class="type">int</span> type)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">qDebug</span>() &lt;&lt; text &lt;&lt; <span class="built_in">static_cast</span>&lt;QLightDM::Greeter::MessageType&gt;(type);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="/2023/04c447ae7/2.png"
+                     
+                ></p>
+<p><code>Greeter</code>类实现了一个简单的登录界面，该界面包括以下几个要素：</p>
+<p>账户列表：在该列表中列出了所有可用的用户账户，用户可以通过选中所需账户来进入其对应账户的登录页面。<br>密码输入框：在该输入框中，用户需要输入与所选账户对应的密码信息才能完成登录操作。<br>下拉列表：该下拉列表提供多个会话文件的选择，这些会话文件定义了一些桌面设置和应用程序的配置等信息，用户可以从中选择自己喜欢的会话选项。<br>登录按钮：当用户输入正确的密码并选择所需的会话后，可以点击此按钮以完成整个登录过程。</p>
+<p>为用户提供了一个简易的登录界面，使得用户可以方便地完成登录操作，并在多个会话配置中选择最适合自己的会话选项。</p>
+<p><strong>示例程序</strong></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/ssk-wh/ssk-wh.github.io/raw/master/source/files/lighter-greeter.zip" >完整demo<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="如何验证"><a href="#如何验证" class="headerlink" title="如何验证"></a>如何验证</h1><blockquote>
+<p><span style="color:red">在您操作之前，请确保您拥有相关的领域知识，在碰到意外时能及时保存您的数据资产，否则请止步。</span></p>
+</blockquote>
+<p>在 <code>/usr/share/xgreeters</code> 目录中创建 lighter-greeter.desktop ,内容如下：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Desktop Entry]</span></span><br><span class="line"><span class="attr">Name</span>=Lighter Greeter</span><br><span class="line"><span class="attr">Comment</span>=Lighter Greeter</span><br><span class="line"><span class="attr">Exec</span>=[修改为上面的demo编译出的二进制文件的具体路径]</span><br><span class="line"><span class="attr">Type</span>=Application</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>修改lightdm的配置文件，让 lightdm 在启动时拉起自定义的 greeter 启动文件</p>
+<p><code>sudo vim /etc/lightdm/lightdm.conf</code></p>
+<p>在<code>[Seat:*]</code>组中的修改以下两行信息(如果不存在需要手动添加)</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">greeter-session</span>=lighter-greeter</span><br><span class="line"><span class="attr">user-session</span>=deepin</span><br></pre></td></tr></table></figure>
+
+
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="/2023/04c447ae7/1.png"
+                     
+                ></p>
+<p>保存退出重启电脑即可。</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p><a class="link"   target="_blank" rel="noopener" href="https://launchpad.net/lightdm" >Light Display Manager<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/LightDM" >LightDM<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/surlykke/qt-lightdm-greeter" >qt-lightdm-greeter<i class="fas fa-external-link-alt"></i></a></p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/lightdm/">#lightdm</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/greeter/">#greeter</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2023/049f87bd8f.html"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">文章模板</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/04196.html"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">通过live系统重置密码</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#lightdm%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">lightdm是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#greeter%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">greeter是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E5%BA%93"><span class="nav-text">开发库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-text">示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81"><span class="nav-text">如何验证</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2024
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ssk-wh</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+            <div class="deploy-info info-item">
+                
+                    This site is provided with deployment services by <span class="tooltip" data-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

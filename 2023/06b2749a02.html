@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="baidu-site-verification" content="codeva-B5VF6cnPFZ">
+    <meta name="google-site-verification" content="ZM2PcJqi_Mss_ogkZm-u_PsCxziOZ2GrmVUUAMtkewI">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            C++编程规范-101条规则准则与最佳实践 |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/my_logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#82077e","logo":"/images/my_logo.svg","favicon":"/images/my_logo.svg","avatar":"/images/my_avatar.svg","font_size":null,"font_family":"STKaiti","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Deeds, not words. || Well begun is half done.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["R&D"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/my_logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">C++编程规范-101条规则准则与最佳实践</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/my_avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ssk-wh</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-06-27 14:16:38</span>
+        <span class="mobile">2023-06-27 14:16</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2024-03-18 01:35:39</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/C/">C++</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.5k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h1 id="C-编程规范-101条规则准则与最佳实践"><a href="#C-编程规范-101条规则准则与最佳实践" class="headerlink" title="C++编程规范-101条规则准则与最佳实践"></a>C++编程规范-101条规则准则与最佳实践</h1><table>
+<thead>
+<tr>
+<th>章</th>
+<th>节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>组织和策略问题</strong></td>
+<td>0.不要拘泥于小节</td>
+</tr>
+<tr>
+<td></td>
+<td>1.在高警告级别干净利落地进行编译</td>
+</tr>
+<tr>
+<td></td>
+<td>2.使用自动构建系统</td>
+</tr>
+<tr>
+<td></td>
+<td>3. 使用版本控制系统</td>
+</tr>
+<tr>
+<td></td>
+<td>4. 在代码审查上投入</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>设计风格</strong></td>
+<td>5. 一个实体应该只有一个紧凑的职责</td>
+</tr>
+<tr>
+<td></td>
+<td>6. 正确、简单和清晰第一</td>
+</tr>
+<tr>
+<td></td>
+<td>7. 编程中应知道何时和如何考虑可伸缩性</td>
+</tr>
+<tr>
+<td></td>
+<td>8. 不要进行不成熟的优化</td>
+</tr>
+<tr>
+<td></td>
+<td>9. 不要进行不成熟的劣化</td>
+</tr>
+<tr>
+<td></td>
+<td>10. 尽量减少全局和共享数据</td>
+</tr>
+<tr>
+<td></td>
+<td>11. 隐藏信息</td>
+</tr>
+<tr>
+<td></td>
+<td>12. 懂得何时和如何进行并发性编程</td>
+</tr>
+<tr>
+<td></td>
+<td>13. 确保资源为对象所拥有。使用显式的RAII和智能指针</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>编程风格</strong></td>
+<td>14. 宁要编译时和连接时错误，也不要运行时错误</td>
+</tr>
+<tr>
+<td></td>
+<td>15. 积极使用const</td>
+</tr>
+<tr>
+<td></td>
+<td>16. 避免使用宏</td>
+</tr>
+<tr>
+<td></td>
+<td>17. 避免使用”魔数”</td>
+</tr>
+<tr>
+<td></td>
+<td>18. 尽可能局部地声明变量</td>
+</tr>
+<tr>
+<td></td>
+<td>19. 总是初始化变量</td>
+</tr>
+<tr>
+<td></td>
+<td>20. 避免函数过长，避免嵌套过深</td>
+</tr>
+<tr>
+<td></td>
+<td>21. 避免跨编译单元的初始化依赖</td>
+</tr>
+<tr>
+<td></td>
+<td>22. 尽量减少定义性依赖。避免循环依赖</td>
+</tr>
+<tr>
+<td></td>
+<td>23. 头文件应该自给自足</td>
+</tr>
+<tr>
+<td></td>
+<td>24. 总是编写内部#include保护符，绝不要编写外部#include保护符</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>函数与操作符</strong></td>
+<td>25. 正确地选择通过值，(只能)指针或者引用传递参数</td>
+</tr>
+<tr>
+<td></td>
+<td>26. 保护重载操作符的自然语义</td>
+</tr>
+<tr>
+<td></td>
+<td>27. 优先使用算术操作符和赋值操作符的标准形式</td>
+</tr>
+<tr>
+<td></td>
+<td>28. 优先使用++和–的标准形式。优先调用前缀形式</td>
+</tr>
+<tr>
+<td></td>
+<td>29. 考虑重载以避免隐含类型转换</td>
+</tr>
+<tr>
+<td></td>
+<td>30. 避免重载&amp;&amp;，||或，(逗号)</td>
+</tr>
+<tr>
+<td></td>
+<td>31. 不要编写依赖于函数参数求值顺序的代码</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>类的设计和继承</strong></td>
+<td>32. 弄清所要编写的是哪种类</td>
+</tr>
+<tr>
+<td></td>
+<td>33. 用小类代替巨类</td>
+</tr>
+<tr>
+<td></td>
+<td>34. 用组合代替继承</td>
+</tr>
+<tr>
+<td></td>
+<td>35. 避免从并非必要设计成基类的类中继承</td>
+</tr>
+<tr>
+<td></td>
+<td>36. 优先提供抽象接口</td>
+</tr>
+<tr>
+<td></td>
+<td>37. 公用继承即可替换性。继承，不是为了重用，而是为了被重用</td>
+</tr>
+<tr>
+<td></td>
+<td>38. 实施安全的改写</td>
+</tr>
+<tr>
+<td></td>
+<td>39. 考虑将虚拟函数声明成非公用的，将公用函数声明为非虚拟的</td>
+</tr>
+<tr>
+<td></td>
+<td>40. 要避免提供隐式转换</td>
+</tr>
+<tr>
+<td></td>
+<td>41. 将数据成员设为私有的，无行为的聚集(C语言形式的struct)除外</td>
+</tr>
+<tr>
+<td></td>
+<td>42. 不要公开内部数据</td>
+</tr>
+<tr>
+<td></td>
+<td>43. 明智地使用Pimpl</td>
+</tr>
+<tr>
+<td></td>
+<td>44. 优先编写非成员非友元函数</td>
+</tr>
+<tr>
+<td></td>
+<td>45. 总是一起提供new和delete</td>
+</tr>
+<tr>
+<td></td>
+<td>46. 如果提供类专门的new，应该提供所有的标准形式(普通，就地和不抛出)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>构造、析构和复制</strong></td>
+<td>47. 以同样的顺序定义和初始化成员变量</td>
+</tr>
+<tr>
+<td></td>
+<td>48. 在构造函数中使用初始化代替赋值</td>
+</tr>
+<tr>
+<td></td>
+<td>49. 避免在构造函数和析构函数中调用虚拟函数</td>
+</tr>
+<tr>
+<td></td>
+<td>50. 将基类析构函数设为公共且虚拟的，或者保护且非虚拟的</td>
+</tr>
+<tr>
+<td></td>
+<td>51. 析构函数、释放和交换绝对不能失败</td>
+</tr>
+<tr>
+<td></td>
+<td>52. 一致地进行赋值和销毁</td>
+</tr>
+<tr>
+<td></td>
+<td>53. 显式地弃用或者禁止复制</td>
+</tr>
+<tr>
+<td></td>
+<td>54. 避免切片。在基类中考虑用克隆代替复制</td>
+</tr>
+<tr>
+<td></td>
+<td>55. 使用赋值的标准形式</td>
+</tr>
+<tr>
+<td></td>
+<td>56. 只要可行，就提供不会失败的swap(而且要正确地提供)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>命名空间与模块</strong></td>
+<td>57. 将类型及其非成员函数接口置于同一名字空间中</td>
+</tr>
+<tr>
+<td></td>
+<td>58. 应该将类型和函数分别置于不同的名字空间中，除非有意想让它们一起工作</td>
+</tr>
+<tr>
+<td></td>
+<td>59. 不要在头文件中或者#include之前编写名字空间using</td>
+</tr>
+<tr>
+<td></td>
+<td>60. 要避免在不同的模块中分配和释放内存</td>
+</tr>
+<tr>
+<td></td>
+<td>61. 不要在头文件定义具有链接的实体</td>
+</tr>
+<tr>
+<td></td>
+<td>62. 不要允许异常跨越边界传播</td>
+</tr>
+<tr>
+<td></td>
+<td>63. 在模块的接口中使用具有良好可移植性的类型</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>模板和泛型</strong></td>
+<td>64. 理智地结合静态多态性和动态多态性</td>
+</tr>
+<tr>
+<td></td>
+<td>65. 有意地进行显式自定义</td>
+</tr>
+<tr>
+<td></td>
+<td>66. 不要特化函数模板</td>
+</tr>
+<tr>
+<td></td>
+<td>67. 不要无意地编写不通用的代码</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>错误处理与异常</strong></td>
+<td>68. 广泛地使用断言记录内部假设和不变式</td>
+</tr>
+<tr>
+<td></td>
+<td>69. 建立合理的错误处理策略，并严格遵守</td>
+</tr>
+<tr>
+<td></td>
+<td>70. 区别错误和非错误</td>
+</tr>
+<tr>
+<td></td>
+<td>71. 设计和编写错误安全代码</td>
+</tr>
+<tr>
+<td></td>
+<td>72. 优先使用异常报告错误</td>
+</tr>
+<tr>
+<td></td>
+<td>73. 通过值抛出，通过引用捕获</td>
+</tr>
+<tr>
+<td></td>
+<td>74. 正确地报告、处理和转换错误</td>
+</tr>
+<tr>
+<td></td>
+<td>75. 避免使用异常规范</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>容器</strong></td>
+<td>76. 默认时使用vector。否则，选择其他合适的容器</td>
+</tr>
+<tr>
+<td></td>
+<td>77. 同vector和string代替数组</td>
+</tr>
+<tr>
+<td></td>
+<td>78. 使用vector(和string::c_str())与非C++ API交换数据</td>
+</tr>
+<tr>
+<td></td>
+<td>79. 在容器中只存储值和智能指针</td>
+</tr>
+<tr>
+<td></td>
+<td>80. 用push_back代替其他扩展序列的方式</td>
+</tr>
+<tr>
+<td></td>
+<td>81. 多用范围操作，少用单元素操作</td>
+</tr>
+<tr>
+<td></td>
+<td>82. 使用公认的惯用法真正地压缩容量，真正地删除元素</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>算法</strong></td>
+<td>83. 使用带检查的STL实现</td>
+</tr>
+<tr>
+<td></td>
+<td>84. 用算法调用代替手工编写的循环</td>
+</tr>
+<tr>
+<td></td>
+<td>85. 使用正确的STL查找算法</td>
+</tr>
+<tr>
+<td></td>
+<td>86. 使用正确的STL排序算法</td>
+</tr>
+<tr>
+<td></td>
+<td>87. 使谓词称为纯函数</td>
+</tr>
+<tr>
+<td></td>
+<td>88. 算法和比较器的参数应多用函数对象少用函数</td>
+</tr>
+<tr>
+<td></td>
+<td>89. 正确编写函数对象</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>类型安全</strong></td>
+<td>90. 避免使用类型分支，多使用多态</td>
+</tr>
+<tr>
+<td></td>
+<td>91. 依赖类型，而非其表示方式</td>
+</tr>
+<tr>
+<td></td>
+<td>92. 避免使用reinterpret_cast</td>
+</tr>
+<tr>
+<td></td>
+<td>93. 避免对指针使用static_cast</td>
+</tr>
+<tr>
+<td></td>
+<td>94. 避免强制转换const</td>
+</tr>
+<tr>
+<td></td>
+<td>95. 不要使用C风格的强制转换</td>
+</tr>
+<tr>
+<td></td>
+<td>96. 不要对非POD进行memcpy操作和memcmp操作</td>
+</tr>
+<tr>
+<td></td>
+<td>97. 不要使用联合重新解释表示方式</td>
+</tr>
+<tr>
+<td></td>
+<td>98. 不要使用可变长参数(…)</td>
+</tr>
+<tr>
+<td></td>
+<td>99. 不要使用失效对象。不要使用不安全函数</td>
+</tr>
+<tr>
+<td></td>
+<td>100. 不要多态地处理数组</td>
+</tr>
+</tbody></table>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%BC%96%E7%A8%8B/">#编程</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2023/0682a7d966.html"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">union的使用</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/06c308e936.html"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">调试Qt源码</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83-101%E6%9D%A1%E8%A7%84%E5%88%99%E5%87%86%E5%88%99%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-text">C++编程规范-101条规则准则与最佳实践</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2024
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ssk-wh</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+            <div class="deploy-info info-item">
+                
+                    This site is provided with deployment services by <span class="tooltip" data-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

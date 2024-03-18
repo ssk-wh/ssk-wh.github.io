@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="baidu-site-verification" content="codeva-B5VF6cnPFZ">
+    <meta name="google-site-verification" content="ZM2PcJqi_Mss_ogkZm-u_PsCxziOZ2GrmVUUAMtkewI">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            journalctl-查看日志 |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/my_logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#82077e","logo":"/images/my_logo.svg","favicon":"/images/my_logo.svg","avatar":"/images/my_avatar.svg","font_size":null,"font_family":"STKaiti","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Deeds, not words. || Well begun is half done.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["R&D"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/my_logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">journalctl-查看日志</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/my_avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ssk-wh</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-04-24 16:30:23</span>
+        <span class="mobile">2023-04-24 16:30</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2024-03-18 01:35:39</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%91%BD%E4%BB%A4/">命令</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/journalctl/">journalctl</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.7k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <p>Systemd服务目前在较为流行的发行版中均统一管理了所有服务的启动日志,用户可以只用journalctl一个命令,查看到全部的日志信息。</p>
+<span id="more"></span>
+
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><p><code>journalctl [OPTIONS...] [MATCHES...]</code></p>
+<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>用于查询由 systemd- journald服务写入的的日志内容。</p>
+<p>如果不带参数调用,它将会从最早的日志开始,显示日志的全部内容</p>
+<p>如果传递了一个或多个匹配参数,则会相应地过滤输出。 匹配的格式为“FIELD&#x3D;VALUE”,例如 “_SYSTEMD_UNIT&#x3D;httpd.service”。 如果指定了多个匹配项来匹配不同的字段,则日志条目将被两者过滤,即结果输出将仅显示匹配所有此类指定匹配项的条目。 如果两个匹配项适用于同一个字段,那么它们将自动匹配为替代项,即结果输出将显示与同一字段的任何指定匹配项匹配的条目。 最后,字符“+”可能在命令行中作为其他术语之间的单独单词出现。 这会导致之前和之后的所有匹配项组合成析取(即逻辑或)。</p>
+<h1 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h1><p>journalctl 的功能比较强大,可选的参数有很多,其中最常见的选项如下表：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>-f, –follow</strong></td>
+<td>仅显示最近的日志条目,并在打印新增加的日志</td>
+</tr>
+<tr>
+<td>-n, –lines&#x3D;</td>
+<td>显示最近的日志事件并限制显示的事件数。 如果使用 –follow,则隐含此选项。 该参数是一个正整数或“全部”以禁用行限制。 如果没有给出参数,默认值为 10。</td>
+</tr>
+<tr>
+<td><strong>-r, –reverse</strong></td>
+<td>反转输出,最新的日志在最上方输出。</td>
+</tr>
+<tr>
+<td>-o, –output&#x3D;</td>
+<td>更改日志输出模式(short,short-full,short-iso,short-iso-precise,short-precise,short-monotonic,short-unix,verbose,export,json,json-pretty,json-sse,json-seq,cat,with-unit)</td>
+</tr>
+<tr>
+<td>–list-boots</td>
+<td>显示有关已记录引导的简洁信息</td>
+</tr>
+<tr>
+<td><strong>-k, –dmesg</strong></td>
+<td>仅显示内核消息。 这等同于 -b 选项并添加匹配项“_TRANSPORT&#x3D;kernel”</td>
+</tr>
+<tr>
+<td><strong>-b, –boot[&#x3D;ID]</strong></td>
+<td>显示当前启动或指定启动的日志</td>
+</tr>
+<tr>
+<td><code>-u, --unit=UNIT|PATTERN</code></td>
+<td>显示指定 systemd 单元 UNIT（例如服务单元）或与 PATTERN 匹配的任何单元的消息。 如果指定了模式，则将在日志中找到的单元名称列表与指定模式进行比较，并使用所有匹配项。 对于每个单元名称，为来自该单元的消息（“_SYSTEMD_UNIT&#x3D;UNIT”）添加一个匹配项，同时为来自 systemd 的消息和有关指定单元的核心转储的消息添加其他匹配项。<br>这个参数可以被指定很多次。</td>
+</tr>
+<tr>
+<td>–user-unit&#x3D;</td>
+<td>显示指定用户会话单元的消息。 这将为来自单元的消息（“_SYSTEMD_USER_UNIT&#x3D;”和“_UID&#x3D;”）添加匹配项</td>
+</tr>
+<tr>
+<td><strong>-S, –since&#x3D;, -U, –until&#x3D;</strong></td>
+<td>分别开始显示指定日期或晚于指定日期或指定日期或早于指定日期的条目。 日期规范应采用“2012-10-30 18:17:16”格式。 如果省略时间部分，则假定为“00:00:00”。 如果仅省略秒部分，则假定为“:00”。 如果省略日期部分，则假定为当前日期。 或者，也可以时刻使用字符串“yesterday”、“today”、“tomorrow”，它们分别指的是当天前一天、当天或当天后一天的00:00:00。 “now”是指当前时间。 最后，可以指定相对时间，前缀为“-”或“+”，分别表示当前时间之前或之后的时间。</td>
+</tr>
+<tr>
+<td><strong>–system, –user</strong></td>
+<td>显示来自系统服务和内核的消息（使用 –system）。 显示来自当前用户服务的消息（使用 –user）。 如果两者均未指定，则显示用户可以看到的所有消息。</td>
+</tr>
+<tr>
+<td>–sync</td>
+<td>要求日志守护进程将所有尚未写入的日志数据写入支持文件系统并同步所有日志。 在同步操作完成之前，此调用不会返回。 此命令保证在其调用之前写入的任何日志消息在其返回时安全地存储在磁盘上。</td>
+</tr>
+<tr>
+<td>–flush</td>
+<td>如果启用了持久存储，则要求日志守护进程将存储在 &#x2F;run&#x2F;log&#x2F;journal 中的所有日志数据刷新到 &#x2F;var&#x2F;log&#x2F;journal 中。 在操作完成之前，此调用不会返回。 请注意，此调用是幂等的：数据仅在系统运行时从 &#x2F;run&#x2F;log&#x2F;journal 刷新到 &#x2F;var&#x2F;log&#x2F;journal 一次，如果这已经发生，则此命令会干净地退出而不执行任何操作。 此命令有效地保证所有数据在返回时都刷新到 &#x2F;var&#x2F;log&#x2F;journal。</td>
+</tr>
+<tr>
+<td>–rotate</td>
+<td>要求日志守护程序滚动日志文件。 在旋转操作完成之前，此调用不会返回。 日志文件滚动的效果是，所有当前活动的日志文件都被标记为已归档并重命名，以便将来永远不会写入它们。 然后在它们的位置创建新的（空的）日志文件。 此操作可以与 –vacuum-size&#x3D;、–vacuum-time&#x3D; 和 –vacuum-file&#x3D; 组合成一个命令。</td>
+</tr>
+</tbody></table>
+<h1 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h1><p>成功返回0； 否则,返回一个非零失败代码</p>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>没有参数,所有收集的日志都显示为未过滤:</p>
+<p><code>journalctl</code></p>
+<p>指定一个匹配项后,将显示具有与表达式匹配的字段的所有日志：</p>
+<p><code>journalctl _SYSTEMD_UNIT=avahi-daemon.service</code></p>
+<p><code>journalctl _SYSTEMD_CGROUP=/user.slice/user-42.slice/session-c1.scope</code></p>
+<p>如果匹配了两个不同的字段,则只显示同时匹配两个表达式的条目：</p>
+<p><code>journalctl _SYSTEMD_UNIT=avahi-daemon.service _PID=28097</code></p>
+<p>如果两个匹配项引用同一个字段,则显示与任一表达式匹配的所有条目：</p>
+<p><code>journalctl _SYSTEMD_UNIT=avahi-daemon.service _SYSTEMD_UNIT=dbus.service</code></p>
+<p>如果使用分隔符“+”,则两个表达式可以组合成逻辑或。 以下将显示来自 PID 为 28097 的 Avahi 服务进程的所有消息以及来自 D-Bus 服务(来自其任何进程)的所有消息：</p>
+<p><code>journalctl _SYSTEMD_UNIT=avahi-daemon.service _PID=28097 + _SYSTEMD_UNIT=dbus.service</code></p>
+<p>要显示一个单元发出的所有字段以及关于该单元的所有字段,应使用选项 -u&#x2F;–unit&#x3D;。 <strong>journalctl -u name</strong> 扩展为类似于以下的复杂过滤器：</p>
+<p><code>_SYSTEMD_UNIT=name.service </code></p>
+<p><code>+ UNIT=name.service _PID=1</code></p>
+<p><code>+ OBJECT_SYSTEMD_UNIT=name.service _UID=0</code></p>
+<p><code>+ COREDUMP_UNIT=name.service _UID=0 MESSAGE_ID=fc2e22bc6ee647b6b90729ab34a250b1</code></p>
+<p>显示 D-Bus 可执行文件生成的所有日志：</p>
+<p><code>journalctl /usr/bin/dbus-daemon</code></p>
+<p>显示上次启动的所有内核日志：</p>
+<p><code>journalctl -k -b -1</code></p>
+<p>显示来自系统服务 apache.service 的实时日志显示：</p>
+<p><code> journalctl -f -u apache</code></p>
+<p>显示本次启动后的所有日志：</p>
+<p><code>journalctl -b</code></p>
+<p>显示上一次次启动后的所有日志：</p>
+<p><code>journalctl -b -1</code></p>
+<p>搜索从特定日期和时间之后的日志：</p>
+<p><code>journalctl --since &quot;2023-11-03 12:00:00&quot;</code></p>
+<p>搜索从相对时间之后的日志（例如，过去的1小时）：</p>
+<p><code>journalctl --since &quot;1 hour ago&quot;</code></p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%91%BD%E4%BB%A4/">#命令</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/journalctl/">#journalctl</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2023/0489b0afa0.html"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">Desktop Application Autostart Specification(桌面应用程序自动启动规范)</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/04a5477427.html"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">iptables命令详解</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="nav-text">语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0"><span class="nav-text">描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%89%E9%A1%B9"><span class="nav-text">选项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-text">示例</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2024
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ssk-wh</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+            <div class="deploy-info info-item">
+                
+                    This site is provided with deployment services by <span class="tooltip" data-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

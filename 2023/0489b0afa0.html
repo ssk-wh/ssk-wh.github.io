@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="baidu-site-verification" content="codeva-B5VF6cnPFZ">
+    <meta name="google-site-verification" content="ZM2PcJqi_Mss_ogkZm-u_PsCxziOZ2GrmVUUAMtkewI">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            Desktop Application Autostart Specification(桌面应用程序自动启动规范) |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/my_logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#82077e","logo":"/images/my_logo.svg","favicon":"/images/my_logo.svg","avatar":"/images/my_avatar.svg","font_size":null,"font_family":"STKaiti","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Deeds, not words. || Well begun is half done.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["R&D"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/my_logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Desktop Application Autostart Specification(桌面应用程序自动启动规范)</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/my_avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ssk-wh</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-04-24 21:56:15</span>
+        <span class="mobile">2023-04-24 21:56</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2024-03-18 01:35:39</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Freedesktop/">Freedesktop</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/AutoStart/">AutoStart</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%A0%87%E5%87%86/">标准</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.5k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <p>原文链接： <a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/autostart-spec/autostart-spec-0.5.html" >https://specifications.freedesktop.org/autostart-spec/autostart-spec-0.5.html<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>该文档(草稿)定义了一种在桌面环境启动期间和安装可移动介质后自动启动应用程序的方法。</p>
+<p>本规范中的一些文件位置是根据 <a class="link"   target="_blank" rel="noopener" href="http://standards.freedesktop.org/basedir-spec/" >“桌面基本目录规范”<i class="fas fa-external-link-alt"></i></a>指定的。</p>
+<span id="more"></span>
+
+<h1 id="启动期间自动启动应用程序"><a href="#启动期间自动启动应用程序" class="headerlink" title="启动期间自动启动应用程序"></a>启动期间自动启动应用程序</h1><p>通过将应用程序的 .desktop 文件放置在自动启动目录之一中，应用程序将在用户登录后在用户桌面环境启动期间自动启动。</p>
+<h2 id="自动启动目录"><a href="#自动启动目录" class="headerlink" title="自动启动目录"></a>自动启动目录</h2><p>自动启动目录是 $XDG_CONFIG_DIRS&#x2F;autostart，根据 <a class="link"   target="_blank" rel="noopener" href="http://standards.freedesktop.org/basedir-spec/" >“桌面基本目录规范”<i class="fas fa-external-link-alt"></i></a>中的 <a class="link"   target="_blank" rel="noopener" href="http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html#referencing" >“引用此规范”<i class="fas fa-external-link-alt"></i></a>部分定义。</p>
+<p>如果相同的文件名位于多个自动启动目录下，则应仅使用最重要(优先级最高)目录下的文件。</p>
+<p>示例：如果未设置 $XDG_CONFIG_HOME，则用户主目录中的自动启动目录为 ~&#x2F;.config&#x2F;autostart&#x2F;</p>
+<p>示例：如果未设置 $XDG_CONFIG_DIRS，则系统范围的自动启动目录为 &#x2F;etc&#x2F;xdg&#x2F;autostart&#x2F;</p>
+<p>示例：如果未设置 $XDG_CONFIG_HOME 和 $XDG_CONFIG_DIRS，并且存在 &#x2F;etc&#x2F;xdg&#x2F;autostart&#x2F;foo.desktop 和 ~&#x2F;.config&#x2F;autostart&#x2F;foo.desktop 这两个文件，则只有文件 ~&#x2F;.config&#x2F;autostart&#x2F;foo。 desktop 将被使用，因为 ~&#x2F;.config&#x2F;autostart&#x2F; 比 &#x2F;etc&#x2F;xdg&#x2F;autostart&#x2F; 目录优先级更高</p>
+<h2 id="应用程序-desktop-文件"><a href="#应用程序-desktop-文件" class="headerlink" title="应用程序 .desktop 文件"></a>应用程序 .desktop 文件</h2><p>应用程序 .desktop 文件必须具有<a class="link"   target="_blank" rel="noopener" href="http://standards.freedesktop.org/desktop-entry-spec/" >“桌面条目规范”<i class="fas fa-external-link-alt"></i></a> 中定义的格式。所有键都应按定义解释，但有以下例外情况，以考虑到自动启动目录中的 .desktop 文件未显示在菜单中。</p>
+<h2 id="Hidden-Key"><a href="#Hidden-Key" class="headerlink" title="Hidden Key"></a>Hidden Key</h2><p>当 .desktop 文件的 Hidden 键设置为 true 时，<strong>必须忽略</strong> .desktop 文件。当多个目录中存在多个同名的 .desktop 文件时，则必须仅考虑最重要的(优先级最高的) .desktop 文件中的Hidden值：如果将其设置为 true，则<strong>必须忽略</strong>其他目录中所有同名的 .desktop 文件。</p>
+<h2 id="OnlyShowIn-and-NotShowIn-Keys"><a href="#OnlyShowIn-and-NotShowIn-Keys" class="headerlink" title="OnlyShowIn and NotShowIn Keys"></a>OnlyShowIn and NotShowIn Keys</h2><p>OnlyShowIn 条目可能包含一个字符串列表，用于标识<strong>必须自动启动</strong>此应用程序的桌面环境，所有其他桌面环境<strong>不得自动启动</strong>此应用程序。</p>
+<p>NotShowIn 条目可能包含一个字符串列表，用于标识<strong>不得自动启动</strong>此应用程序的桌面环境，所有其他桌面环境<strong>必须自动启动</strong>此应用程序。</p>
+<p>这些键中只有一个（OnlyShowIn 或 NotShowIn）可能出现在单个 .desktop 文件中。</p>
+<h2 id="TryExec-Key"><a href="#TryExec-Key" class="headerlink" title="TryExec Key"></a>TryExec Key</h2><p>如果 TryExec 的值与已安装的可执行程序不匹配，则<strong>不得自动启动</strong>具有非空 TryExec 字段的 .desktop 文件。TryExec 字段的值可以是绝对路径或不带任何路径组件的可执行文件的名称。如果指定的可执行文件的名称没有任何路径组件，则搜索 $PATH 环境以查找匹配的可执行程序。</p>
+<h2 id="实施说明"><a href="#实施说明" class="headerlink" title="实施说明"></a>实施说明</h2><p>如果应用程序通过在系统范围的自动启动目录中安装 .desktop 文件来自动启动，则个人用户可以通过在其个人自动启动目录中（优先级更高）放置一个同名的 .desktop 文件来禁用该应用程序的自动启动，该目录中 . desktop 文件需要包含 Hidden&#x3D;true。</p>
+<h1 id="安装后自动启动应用程序"><a href="#安装后自动启动应用程序" class="headerlink" title="安装后自动启动应用程序"></a>安装后自动启动应用程序</h1><p>当桌面环境安装新介质时，该介质可能包含一份建议启动应用程序的自动启动文件或建议打开位于介质上的特定文件的自动打开文件。</p>
+<h2 id="自动启动文件"><a href="#自动启动文件" class="headerlink" title="自动启动文件"></a>自动启动文件</h2><p>安装新媒体时，应按优先顺序检查媒体的根目录中是否有以下自动启动文件：.autorun、autorun、autorun.sh 仅应考虑存在的第一个文件。</p>
+<p>桌面环境可以根据用户、系统管理员或供应商设置的策略完全忽略自动启动文件。</p>
+<p>桌面环境必须在自动启动应用程序之前提示用户进行确认。</p>
+<p>当检测到自动启动文件并且用户已确认其执行时，必须将当前工作目录 (CWD) 设置为介质的根目录来执行自动启动文件。</p>
+<h2 id="自动打开文件"><a href="#自动打开文件" class="headerlink" title="自动打开文件"></a>自动打开文件</h2><p>当安装了新媒体并且 </p>
+<p>a) 媒体不包含自动启动文件</p>
+<p>或 </p>
+<p>b) 忽略自动启动文件的策略生效时，</p>
+<p>应按优先顺序检查媒体的根目录中是否有以下自动打开文件：.autoopen , autoopen。只应考虑存在的第一个文件。</p>
+<p>桌面环境可以根据用户、系统管理员或供应商设置的策略完全忽略 Autoopen 文件。</p>
+<p>Autoopen 文件<strong>必须</strong>包含指向介质上包含的不可执行文件的单个相对路径。如果文件包含换行符或回车符，则<strong>必须</strong>忽略换行符或回车符本身以及后面的所有字符。</p>
+<p>相对路径<strong>不得包含</strong>引用父目录 (..&#x2F;) 的路径组件</p>
+<p>相对路径<strong>不得指向</strong>可执行文件。</p>
+<p>桌面环境<strong>必须验证</strong>相对路径指向实际位于媒体上的文件，考虑到任何符号或其他链接，并且必须忽略指向媒体本身之外的文件位置的任何相对路径。</p>
+<p>如果相对路径指向可执行文件，则桌面环境<strong>不得执行</strong>该文件。</p>
+<p>桌面环境<strong>必须</strong>在打开文件之前<strong>提示</strong>用户进行确认。</p>
+<p>当检测到 Autoopen 文件并且用户确认应该打开 Autoopen 文件中指示的文件时，<strong>必须</strong>在用户通常首选的应用程序中(默认应用程序)打开 Autoopen 文件中指示的文件，<strong>除非</strong>用户另有指示。</p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/AutoStart/">#AutoStart</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%A0%87%E5%87%86/">#标准</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2023/048c94961b.html"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">XDG Base Directory Specification(XDG 基本目录规范)</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/04c817baa.html"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">journalctl-查看日志</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E6%9C%9F%E9%97%B4%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="nav-text">启动期间自动启动应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8%E7%9B%AE%E5%BD%95"><span class="nav-text">自动启动目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F-desktop-%E6%96%87%E4%BB%B6"><span class="nav-text">应用程序 .desktop 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hidden-Key"><span class="nav-text">Hidden Key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OnlyShowIn-and-NotShowIn-Keys"><span class="nav-text">OnlyShowIn and NotShowIn Keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TryExec-Key"><span class="nav-text">TryExec Key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%96%BD%E8%AF%B4%E6%98%8E"><span class="nav-text">实施说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%90%8E%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="nav-text">安装后自动启动应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6"><span class="nav-text">自动启动文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6"><span class="nav-text">自动打开文件</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2024
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ssk-wh</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+            <div class="deploy-info info-item">
+                
+                    This site is provided with deployment services by <span class="tooltip" data-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

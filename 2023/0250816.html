@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="baidu-site-verification" content="codeva-B5VF6cnPFZ">
+    <meta name="google-site-verification" content="ZM2PcJqi_Mss_ogkZm-u_PsCxziOZ2GrmVUUAMtkewI">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            StatusNotifierItem(状态通知标准) |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/my_logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#82077e","logo":"/images/my_logo.svg","favicon":"/images/my_logo.svg","avatar":"/images/my_avatar.svg","font_size":null,"font_family":"STKaiti","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Deeds, not words. || Well begun is half done.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["R&D"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/my_logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">StatusNotifierItem(状态通知标准)</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/my_avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ssk-wh</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-02-28 00:00:00</span>
+        <span class="mobile">2023-02-28 00:00</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2024-03-18 01:35:39</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Freedesktop/">Freedesktop</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%A0%87%E5%87%86/">标准</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.3k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>12 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h2 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接"></a>原文链接</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.freedesktop.org/wiki/Specifications/StatusNotifierItem/" >https://www.freedesktop.org/wiki/Specifications/StatusNotifierItem/<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>该规范定义了视觉项目的管理，通常是用于向用户报告应用程序状态或提供对该应用程序执行的常见操作的快速访问的图标。 它旨在补充但与 freedesktop 的桌面通知规范没有直接关系，旨在替代 freedesktop 系统托盘规范，更加面向模型视图，为工作空间提供更多自由，在图形方面更贴近它的视觉风格语言。</p>
+<p>此规范未定义通知项的方面，这完全是特定于实现(状态通知)的。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="/2023/0250816/image.png"
+                      alt="image.png"
+                ></p>
+<h3 id="示例用例将包括："><a href="#示例用例将包括：" class="headerlink" title="示例用例将包括："></a>示例用例将包括：</h3><p>混音器音量控制。</p>
+<p>电池指示器。</p>
+<p>即时通讯在线状态。</p>
+<p>通用应用程序信息和操作，如媒体播放器控件。</p>
+<h2 id="基本设计"><a href="#基本设计" class="headerlink" title="基本设计"></a>基本设计</h2><p>Status Notifier Item系统依赖于通过D-BUS的进程间通信，由三部分组成：</p>
+<p>StatusNotifierItem:  每个想要使用系统状态通知机制的应用程序都应将自己的 StatusNotifierItem 注册到会话总线。</p>
+<p>StatusNotifierWatcher: 用于跟踪 StatusNotifierItem 的每个活动实例的服务，StatusNotifierHost 使用它来获取所有状态通知实例的列表。它还会在添加和删除状态通知实例时发出通知。</p>
+<p>StatusNotifierHost: 想要实现 StatusNotifierItem 实例可视化的应用程序必须在会话总线中注册一个 StatusNotifierHost。</p>
+<h2 id="StatusNotifierItem"><a href="#StatusNotifierItem" class="headerlink" title="StatusNotifierItem"></a>StatusNotifierItem</h2><p>每个应用程序都可以通过在会话总线上注册服务 org.freedesktop.StatusNotifierItem-PID-ID 来注册任意数量的 Status Notifier Items，其中 PID 是应用程序的进程 ID，ID 是通过同一个应用程序注册的不同实例之间的任意数字的唯一标识符。</p>
+<p>一旦创建了 StatusNotifierItem 的新实例，应用程序必须将唯一的实例名称注册到 StatusNotifierWatcher，见 StatusNotifierWatcher 章节。</p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><h4 id="Category"><a href="#Category" class="headerlink" title="Category"></a>Category</h4><p>STRING org.freedesktop.StatusNotifierItem.Category ();</p>
+<p>描述此项目的类别。</p>
+<p>Category 属性的允许值为：</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ApplicationStatus</td>
+<td>该项目描述了通用应用程序的状态，例如媒体播放器的当前状态。在无法知道项目类别的情况下，例如当项目被另一个不兼容或模拟的系统代理时，ApplicationStatus 可以用作合理的默认fallack。</td>
+</tr>
+<tr>
+<td>Communications</td>
+<td>该项目描述了面向通信的应用程序的状态，例如即时消息程序或电子邮件客户端。</td>
+</tr>
+<tr>
+<td>SystemServices</td>
+<td>该项目描述了系统的服务，用户没有将其视为独立的应用程序，例如磁盘索引服务活动的指示器。</td>
+</tr>
+<tr>
+<td>Hardware</td>
+<td>该项目描述了特定硬件的状态和控制，例如电池充电指示器或声卡音量控制。</td>
+</tr>
+</tbody></table>
+<h4 id="Id"><a href="#Id" class="headerlink" title="Id"></a>Id</h4><p>STRING org.freedesktop.StatusNotifierItem.Id ();</p>
+<p>对于这个应用程序来说,它应该是一个唯一的并且在会话之间保持一致的名称，例如应用程序名称本身。</p>
+<h4 id="Title"><a href="#Title" class="headerlink" title="Title"></a>Title</h4><p>STRING org.freedesktop.StatusNotifierItem.Title ();</p>
+<p>它是描述应用程序的名称，它可以比 Id 更具描述性。</p>
+<h4 id="Status"><a href="#Status" class="headerlink" title="Status"></a>Status</h4><p>STRING org.freedesktop.StatusNotifierItem.Status ();</p>
+<p>描述此项或相关应用程序的状态。</p>
+<p>Status 属性的允许值为：</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Passive</td>
+<td>该项目不会向用户传达重要信息，它可以被视为“空闲”状态，并且可视化图形可能会选择隐藏它。</td>
+</tr>
+<tr>
+<td>Active</td>
+<td>该项目处于活动状态，更重要的是该项目将以某种方式显示给用户。</td>
+</tr>
+<tr>
+<td>NeedsAttention</td>
+<td>该项目携带对用户来说非常重要的信息，例如电池电量即将耗尽，并希望激励用户直接干预。可视化应该以某种方式强调(例如图标闪烁)具有 NeedsAttention 状态的项目。</td>
+</tr>
+</tbody></table>
+<h4 id="WindowId"><a href="#WindowId" class="headerlink" title="WindowId"></a>WindowId</h4><p>UINT32 org.freedesktop.StatusNotifierItem.WindowId ();</p>
+<p>它是窗口的依赖于窗口系统的标识符，应用程序可以通过此属性选择其窗口之一可用，或者如果它不感兴趣则设置为 0。</p>
+<h4 id="IconName"><a href="#IconName" class="headerlink" title="IconName"></a>IconName</h4><p>STRING org.freedesktop.StatusNotifierItem.IconName ();</p>
+<p>StatusNotifierItem 可以带有一个图标，可视化可以使用该图标来标识项目。</p>
+<p>一个图标可以通过其符合 Freedesktop 的图标名称来标识，由该属性携带，或者由图标数据本身，也可由属性 IconPixmap 携带。如果两者都可用，可视化更喜欢图标名称而不是图标像素图（FIXME：目前不是很明确：如果找不到图标名称的话，是否可以将像素图用作fallback？）</p>
+<h4 id="IconPixmap"><a href="#IconPixmap" class="headerlink" title="IconPixmap"></a>IconPixmap</h4><p>ARRAY(INT, INT, ARRAY BYTE) org.freedesktop.StatusNotifierItem.IconPixmap ();</p>
+<p>携带图标的 ARGB32 二进制表示，本规范中使用的图标数据格式在<strong>图标</strong>章节中进行描述</p>
+<h4 id="OverlayIconName"><a href="#OverlayIconName" class="headerlink" title="OverlayIconName"></a>OverlayIconName</h4><p>STRING org.freedesktop.StatusNotifierItem.OverlayIconName ();</p>
+<p>被Freedesktop 兼容的图标名称。这可以被可视化用来指示额外的状态信息，例如作为主图标的叠加。</p>
+<h4 id="OverlayIconPixmap"><a href="#OverlayIconPixmap" class="headerlink" title="OverlayIconPixmap"></a>OverlayIconPixmap</h4><p>ARRAY(INT, INT, ARRAY BYTE) org.freedesktop.StatusNotifierItem.OverlayIconPixmap ();</p>
+<p>上一段中描述的叠加图标的 ARGB32 二进制的表示。</p>
+<h4 id="AttentionIconName"><a href="#AttentionIconName" class="headerlink" title="AttentionIconName"></a>AttentionIconName</h4><p>STRING org.freedesktop.StatusNotifierItem.AttentionIconName ();</p>
+<p>图标的 Freedesktop 兼容名称。可视化可以使用它来指示该项目处于 RequestingAttention 状态。</p>
+<h4 id="AttentionIconPixmap"><a href="#AttentionIconPixmap" class="headerlink" title="AttentionIconPixmap"></a>AttentionIconPixmap</h4><p>ARRAY(INT, INT, ARRAY BYTE) org.freedesktop.StatusNotifierItem.AttentionIconPixmap ();</p>
+<p>上一段中描述的请求注意图标的 ARGB32 二进制表示。</p>
+<h4 id="AttentionMovieName"><a href="#AttentionMovieName" class="headerlink" title="AttentionMovieName"></a>AttentionMovieName</h4><p>STRING org.freedesktop.StatusNotifierItem.AttentionMovieName ();</p>
+<p>项目还可以指定与 RequestingAttention 状态关联的动画。这应该是一个被 freedesktop 兼容的图标名称或完整路径。可视化可以自行决定在此属性和 AttentionIconPixmap 之间进行选择（或两者都不使用）。</p>
+<h4 id="ToolTip"><a href="#ToolTip" class="headerlink" title="ToolTip"></a>ToolTip</h4><p>(STRING, ARRAY(INT, INT, ARRAY BYTE), STRING, STRING) org.freedesktop.StatusNotifierItem.ToolTip ();</p>
+<p>描述与此项目关联的额外信息的数据结构，可以通过工具提示（或任何其他可视化认为合适的方式）进行可视化。参数的意义分别是：</p>
+<p>STRING: 图标名称(被freedesktop兼容的)</p>
+<p>ARRAY(INT, INT, ARRAY BYTE): 图标数据</p>
+<p>STRING: 提示的标题</p>
+<p>STRING: 此工具提示的描述性文本。它还可以包含 HTML 标记语言的子集，有关允许的标记列表，请参阅节<strong>标记</strong>。</p>
+<h4 id="ItemIsMenu"><a href="#ItemIsMenu" class="headerlink" title="ItemIsMenu"></a>ItemIsMenu</h4><p>BOOL: 该项目仅支持上下文菜单，可视化应该更喜欢显示菜单或发送 ContextMenu() 而不是 Activate()</p>
+<h4 id="Menu"><a href="#Menu" class="headerlink" title="Menu"></a>Menu</h4><p>OBJECT PATH: 应该实现 com.canonical.dbusmenu 接口的对象的 DBus 路径</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><h4 id="ContextMenu"><a href="#ContextMenu" class="headerlink" title="ContextMenu"></a>ContextMenu</h4><p>VOID org.freedesktop.StatusNotifierItem.ContextMenu (INT x, INT y);</p>
+<p>要求状态通知器项目显示上下文菜单，这通常是用户输入的结果，例如鼠标右键单击项目的图形表示。</p>
+<p>x 和 y 参数是在当前屏幕的被点击的坐标，被用来提示菜单应该在何处显示。</p>
+<h4 id="Activate"><a href="#Activate" class="headerlink" title="Activate"></a>Activate</h4><p>VOID org.freedesktop.StatusNotifierItem.Activate (INT x, INT y);</p>
+<p>要求激活状态通知器项目，这通常是用户输入的结果，例如鼠标左键单击项目的图形表示。应用程序将执行任何被认为适当的任务作为激活请求。</p>
+<p>x 和 y 参数是在当前屏幕的被点击的坐标，被认为对显示最终窗口（如果有）会有帮助。</p>
+<h4 id="SecondaryActivate"><a href="#SecondaryActivate" class="headerlink" title="SecondaryActivate"></a>SecondaryActivate</h4><p>VOID org.freedesktop.StatusNotifierItem.SecondaryActivate (INT x, INT y);</p>
+<p>与 Activate 相比，被认为是次要且次要的激活形式。这通常是用户输入的结果，例如在项目的图形表示上单击鼠标中键。应用程序将执行任何被认为适当的任务作为激活请求。</p>
+<p>x 和 y 参数是在当前屏幕的被点击的坐标，被认为对显示最终窗口（如果有）会有帮助。</p>
+<h4 id="Scroll"><a href="#Scroll" class="headerlink" title="Scroll"></a>Scroll</h4><p>VOID org.freedesktop.StatusNotifierItem.Scroll (INT delta, STRING orientation);</p>
+<p>用户要求滚动操作。这是由输入引起的，例如鼠标滚轮在项目的图形表示上。</p>
+<p>delta参数代表滚动量，orientation参数代表滚动请求的水平或垂直方向，其合法值为horizontal和vertical。</p>
+<h3 id="信号"><a href="#信号" class="headerlink" title="信号"></a>信号</h3><h4 id="NewTitle"><a href="#NewTitle" class="headerlink" title="NewTitle"></a>NewTitle</h4><p>VOID org.freedesktop.StatusNotifierItem.NewTitle ();</p>
+<p>该项目有一个新标题：图形表示应立即更新此值。</p>
+<h4 id="NewIcon"><a href="#NewIcon" class="headerlink" title="NewIcon"></a>NewIcon</h4><p>VOID org.freedesktop.StatusNotifierItem.NewIcon ();</p>
+<p>该项目有一个新图标：图形表示应立即更新此值。</p>
+<h4 id="NewAttentionIcon"><a href="#NewAttentionIcon" class="headerlink" title="NewAttentionIcon"></a>NewAttentionIcon</h4><p>VOID org.freedesktop.StatusNotifierItem.NewAttentionIcon ();</p>
+<p>该项目有一个新的关注图标：图形表示应立即更新此值。</p>
+<h4 id="NewOverlayIcon"><a href="#NewOverlayIcon" class="headerlink" title="NewOverlayIcon"></a>NewOverlayIcon</h4><p>VOID org.freedesktop.StatusNotifierItem.NewOverlayIcon ();</p>
+<p>该项目有一个新的叠加图标：图形表示应立即更新此值。</p>
+<h4 id="NewToolTip"><a href="#NewToolTip" class="headerlink" title="NewToolTip"></a>NewToolTip</h4><p>VOID org.freedesktop.StatusNotifierItem.NewToolTip ();</p>
+<p>该项目有一个新的提示信息：图形表示应立即更新此值。</p>
+<h4 id="NewStatus"><a href="#NewStatus" class="headerlink" title="NewStatus"></a>NewStatus</h4><p>VOID org.freedesktop.StatusNotifierItem.NewStatus (STRING status);</p>
+<p>该项目有一个新的状态：图形表示应立即更新此值。</p>
+<h2 id="StatusNotifierWatcher"><a href="#StatusNotifierWatcher" class="headerlink" title="StatusNotifierWatcher"></a>StatusNotifierWatcher</h2><p>任意时间都将有且只有一个 org.freedesktop.StatusNotifierWatcher 服务实例在会话中被注册。 此服务用于跟踪 StatusNotifierItem 实例，枚举它们并在注册新实例或取消注册旧的实例时发出通知。</p>
+<p>它还用于跟踪 org.freedesktop.StatusNotifierHost 实例，以便有一种简单的方法来了解是否至少有一个服务被注册用于StatusNotifierItem的可视化工作(即显示这些状态通知图标)。</p>
+<h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h3><h4 id="RegisterStatusNotifierItem"><a href="#RegisterStatusNotifierItem" class="headerlink" title="RegisterStatusNotifierItem"></a>RegisterStatusNotifierItem</h4><p>VOID org.freedesktop.StatusNotifierWatcher.RegisterStatusNotifierItem (STRING service);</p>
+<p>将 StatusNotifierItem 以其在会话总线上的全名形式注册到 StatusNotifierWatcher 中，例如 org.freedesktop.StatusNotifierItem-4077-1。 StatusNotifierItem 实例必须注册到观察者(Watcher服务)，以便被观察者和 StatusNotifierHost 实例注意到。 如果注册的 StatusNotifierItem 离开会话总线，StatusNotifierWatcher 应该自动注意到它并将其从注册服务列表中删除。</p>
+<h4 id="RegisterStatusNotifierHost"><a href="#RegisterStatusNotifierHost" class="headerlink" title="RegisterStatusNotifierHost"></a>RegisterStatusNotifierHost</h4><p>VOID org.freedesktop.StatusNotifierWatcher.RegisterStatusNotifierHost (STRING service);</p>
+<p>将 StatusNotifierHost 注册到 StatusNotifierWatcher 中，以其在会话总线上的全名形式，例如 org.freedesktop.StatusNotifierHost-4005。 每个打算显示 StatusNotifierItem 内容的 NotficationHost 实例都应该使用此方法注册到 StatusNotifierWatcher。 当每个 StatusNotifierHost 消失时，StatusNotifierWatcher 应该自动通知。</p>
+<h3 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h3><h4 id="RegisteredStatusNotifierItems"><a href="#RegisteredStatusNotifierItems" class="headerlink" title="RegisteredStatusNotifierItems"></a>RegisteredStatusNotifierItems</h4><p>ARRAY(STRING) org.freedesktop.StatusNotifierWatcher.RegisteredStatusNotifierItems ();</p>
+<p>包含 StatusNotifierItem 的所有已注册实例的列表。数组的所有元素都应对应于方法调用时会话总线上实际运行的服务。</p>
+<h4 id="IsStatusNotifierHostRegistered"><a href="#IsStatusNotifierHostRegistered" class="headerlink" title="IsStatusNotifierHostRegistered"></a>IsStatusNotifierHostRegistered</h4><p>BOOL org.freedesktop.StatusNotifierWatcher.IsStatusNotifierHostRegistered ();</p>
+<p>如果至少有一个 StatusNotifierHost 已向名为 RegisterStatusNotifierHost 的部分注册并且当前正在运行，则为真。如果没有注册和运行 StatusNotifierHost，则所有 StatusNotifierItem 实例都应使用 Freedesktop 系统托盘规范作为替代实现。</p>
+<h4 id="ProtocolVersion"><a href="#ProtocolVersion" class="headerlink" title="ProtocolVersion"></a>ProtocolVersion</h4><p>INT org.freedesktop.StatusNotifierWatcher.ProtocolVersion ();</p>
+<p>StatusNotifierWatcher 实例实现的协议版本。</p>
+<h3 id="信号-1"><a href="#信号-1" class="headerlink" title="信号"></a>信号</h3><h4 id="StatusNotifierItemRegistered"><a href="#StatusNotifierItemRegistered" class="headerlink" title="StatusNotifierItemRegistered"></a>StatusNotifierItemRegistered</h4><p>BOOL org.freedesktop.StatusNotifierWatcher.StatusNotifierItemRegistered (STRING service);</p>
+<p>一个新的 StatusNotifierItem服务被注册了，信号的参数是实例的会话总线名称。 StatusNotifierHost 实现应该监听此信号以了解他们何时应该更新状态通知信息。</p>
+<h4 id="StatusNotifierItemUnregistered"><a href="#StatusNotifierItemUnregistered" class="headerlink" title="StatusNotifierItemUnregistered"></a>StatusNotifierItemUnregistered</h4><p>BOOL org.freedesktop.StatusNotifierWatcher.StatusNotifierItemUnregistered (STRING service);</p>
+<p>同上面的信号，当一个已经注册的StatusNotifierItem服务取消注册时发出。</p>
+<h4 id="StatusNotifierHostRegistered"><a href="#StatusNotifierHostRegistered" class="headerlink" title="StatusNotifierHostRegistered"></a>StatusNotifierHostRegistered</h4><p>BOOL org.freedesktop.StatusNotifierWatcher.StatusNotifierHostRegistered ();</p>
+<p>已注册新的 StatusNotifierHost，StatusNotifierItem 实例知道它们可以使用此协议而不是 freedesktop 系统托盘协议。</p>
+<h2 id="StatusNotifierHost"><a href="#StatusNotifierHost" class="headerlink" title="StatusNotifierHost"></a>StatusNotifierHost</h2><p>StatusNotifierHost 是对应的应用程序中的一个对象，该对象负责注册的 StatusNotifierItem 实例的实际图形显示。</p>
+<p>此服务的实例在 Dbus 会话总线上注册，名称为 org.freedesktop.StatusNotifierHost-id，其中 id 是唯一标识符，它使名称在总线上保持唯一，例如应用程序的进程 ID。如果同一进程注册了多个 StatusNotifierHost，则为另一种类型的标识符。</p>
+<p>StatusNotifierHost 实例不需要任何特定的属性、方法或信号注册到总线。重要的是服务在总线上的存在，以通知 StatusNotifierWatcher当前有一个应用程序在负责 StatusNotifierItem 在图形层面的显示。</p>
+<h2 id="标记"><a href="#标记" class="headerlink" title="标记"></a>标记</h2><p>工具提示的子文本可能包含标记。标记是基于 XML 的，由 XHTML 的一小部分组成。</p>
+<p>StatusNotifierHost 可视化应支持以下标签。虽然它是可选的，但它是推荐的。不支持这些标签的 StatusNotifierHost 应该将它们过滤掉。</p>
+<table>
+<thead>
+<tr>
+<th>tags</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;b&gt; ... &lt;/b&gt;</code></td>
+<td>加粗</td>
+</tr>
+<tr>
+<td><code>&lt;i&gt; ... &lt;/i&gt;</code></td>
+<td>斜体</td>
+</tr>
+<tr>
+<td><code>&lt;u&gt; ... &lt;/u&gt;</code></td>
+<td>下划线</td>
+</tr>
+<tr>
+<td><code>&lt;a href=&quot;...&quot;&gt; ... &lt;/a&gt;</code></td>
+<td>超链接</td>
+</tr>
+</tbody></table>
+<p>图像可以与绝对路径名一起用作图像源。 alt 标签是强制性的。</p>
+<p>本规范不需要完整的 HTML 实现，并且通知永远不应利用上面未列出的标签。 由于工具提示不能替代复杂的对话框，因此不需要高级布局，并且实际上可能会由于内存使用和屏幕空间而限制该系统可以运行的数量。 此类示例包括 PDA、某些手机和内存不足的慢速 PC 或掌上电脑。</p>
+<h2 id="图标"><a href="#图标" class="headerlink" title="图标"></a>图标</h2><p>所有图标都可以通过其数据的特定序列化在总线上传输，能够表示同一图像的多种分辨率或相同尺寸图像的简短瞄准。</p>
+<p>图标在签名为 a(iiay) 的原始图像数据结构数组中传输，每个图标分别描述宽度、高度和图像数据。数据以 ARGB32 格式表示，并采用网络字节顺序，以便于小端和大端机器之间的网络通信。</p>
+<p>出于同样的原因，使用 XSLT 或 CSS 样式表的完整 XML 或 XHTML 实现不是本规范的一部分。必须以更复杂的形式呈现的信息应该使用特定于应用程序的对话框、Web 浏览器或其他一些显示机制。</p>
+<p>上面指定的标签标记内容的方式允许它们在某些实现中被剥离而不影响实际内容。</p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%A0%87%E5%87%86/">#标准</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2023/038289.html"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">精确定位进程启动时间</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/0247906.html"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Qt-动画思维导图</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E6%96%87%E9%93%BE%E6%8E%A5"><span class="nav-text">原文链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E7%94%A8%E4%BE%8B%E5%B0%86%E5%8C%85%E6%8B%AC%EF%BC%9A"><span class="nav-text">示例用例将包括：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1"><span class="nav-text">基本设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StatusNotifierItem"><span class="nav-text">StatusNotifierItem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7"><span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Category"><span class="nav-text">Category</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Id"><span class="nav-text">Id</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Title"><span class="nav-text">Title</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Status"><span class="nav-text">Status</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WindowId"><span class="nav-text">WindowId</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IconName"><span class="nav-text">IconName</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IconPixmap"><span class="nav-text">IconPixmap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OverlayIconName"><span class="nav-text">OverlayIconName</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OverlayIconPixmap"><span class="nav-text">OverlayIconPixmap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AttentionIconName"><span class="nav-text">AttentionIconName</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AttentionIconPixmap"><span class="nav-text">AttentionIconPixmap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AttentionMovieName"><span class="nav-text">AttentionMovieName</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ToolTip"><span class="nav-text">ToolTip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ItemIsMenu"><span class="nav-text">ItemIsMenu</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Menu"><span class="nav-text">Menu</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ContextMenu"><span class="nav-text">ContextMenu</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Activate"><span class="nav-text">Activate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SecondaryActivate"><span class="nav-text">SecondaryActivate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scroll"><span class="nav-text">Scroll</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7"><span class="nav-text">信号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NewTitle"><span class="nav-text">NewTitle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NewIcon"><span class="nav-text">NewIcon</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NewAttentionIcon"><span class="nav-text">NewAttentionIcon</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NewOverlayIcon"><span class="nav-text">NewOverlayIcon</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NewToolTip"><span class="nav-text">NewToolTip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NewStatus"><span class="nav-text">NewStatus</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StatusNotifierWatcher"><span class="nav-text">StatusNotifierWatcher</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-1"><span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RegisterStatusNotifierItem"><span class="nav-text">RegisterStatusNotifierItem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RegisterStatusNotifierHost"><span class="nav-text">RegisterStatusNotifierHost</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7-1"><span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RegisteredStatusNotifierItems"><span class="nav-text">RegisteredStatusNotifierItems</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IsStatusNotifierHostRegistered"><span class="nav-text">IsStatusNotifierHostRegistered</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ProtocolVersion"><span class="nav-text">ProtocolVersion</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7-1"><span class="nav-text">信号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#StatusNotifierItemRegistered"><span class="nav-text">StatusNotifierItemRegistered</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#StatusNotifierItemUnregistered"><span class="nav-text">StatusNotifierItemUnregistered</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#StatusNotifierHostRegistered"><span class="nav-text">StatusNotifierHostRegistered</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StatusNotifierHost"><span class="nav-text">StatusNotifierHost</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0"><span class="nav-text">标记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E6%A0%87"><span class="nav-text">图标</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2024
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ssk-wh</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+            <div class="deploy-info info-item">
+                
+                    This site is provided with deployment services by <span class="tooltip" data-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
