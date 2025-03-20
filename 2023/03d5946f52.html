@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            软件设计模式-结构型 |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#29392c","title":"Ssk-wh's Blog","author":"ssk-wh","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","tools":"/tools","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":true,"links":{"github":"https://github.com/ssk-wh","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"juchengshi@gmail.com"}},"scroll":{"progress_bar":false,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":false,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":3},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":true,"provider":"github","url":"https://github.com/"},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"伙计们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://xpoet.cn/images/avatar.png"},{"name":"Guo Le's Blog","link":"https://guole.fun/","description":"生命是独立是自由是爱与和平","avatar":"https://guole.fun/img/gl.jpg"},{"name":"酷小呵","link":"https://www.kuhehe.top/","description":"爱分享的酷小呵","avatar":"https://q1.qlogo.cn/g?b=qq&nk=3111349763&s=100"}],"tools":[{"category":"AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"name":"Copilot","link":"https://copilot.microsoft.com/","description":"微软家的AI助手","image":"/images/tools/copilot.svg"},{"name":"Kimi","link":"https://kimi.moonshot.cn/","description":"支持识别文件或网址的小众AI网站","image":"/images/tools/kimi.png"},{"name":"文心一言","link":"https://yiyan.baidu.com/","description":"百度旗下的AI助手","image":"/images/tools/wxyy.png"},{"name":"通义千问","link":"https://tongyi.aliyun.com/qianwen/","description":"阿里旗下","image":"/images/tools/tyqw.Default"},{"name":"讯飞星火","link":"https://xinghuo.xfyun.cn/","description":"讯飞旗下","image":"/images/tools/xfxh.svg"},{"category":"技术"},{"name":"Hexo","link":"https://hexo.io/","description":"快速、简洁且高效的博客框架","image":"https://upload.wikimedia.org/wikipedia/commons/b/b9/Hexo_blog_logo.svg"},{"name":"稀土掘金","link":"https://juejin.cn/","description":"开发者社区","image":"/images/tools/xtjj.Default"},{"category":"笔记"},{"name":"语雀","link":"https://www.yuque.com/","description":"在线记录笔记","image":"/images/tools/yuque.svg"},{"category":"图片"},{"name":"undraw","link":"https://undraw.co/illustrations","description":"免费的矢量素材下载网站","image":"https://raw.githubusercontent.com/ssk-wh/ssk-wh.github.io/master/images/undraw_shopping_bags_8l6g.svg"},{"name":"carbon","link":"https://carbon.now.sh/","description":"将代码生成图片","image":null},{"category":"作图网站"},{"name":"Draw.io","link":"https://draw.io/","description":"在线绘图网站，支持同步保存至github","image":null},{"name":"ProcessOn","link":"https://www.processon.com/","description":"在线绘图网站，画软件流程图经常用到","image":null},{"category":"博客管理"},{"name":"LeanCloud","link":"https://console.leancloud.app/apps/D0eDuK0h6X11p0z7FxTgY1CX-MdYXbMMI/storage/data/Comment","description":"评论管理","image":"https://gravatar.tapglb.com/avatar/afa8e9b8057e1877138d43f1dfdd8510?s=200&d=retro"}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                TOOLS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                ABOUT
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                            TOOLS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            ABOUT
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        软件设计模式-结构型
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">ssk-wh</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2023-03-27 23:42:39</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Mon Apr 17 2023 03:46:49 GMT+0000">2023-04-17 03:46:49</span>
+                </span>
+            
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>6k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>23 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>结构型设计模式关注如何将对象和类组合成更大的结构，以实现更高级别的功能。</p>
+<span id="more"></span>
+
+<p>以下是几种常见的结构型设计模式：</p>
+<p>适配器模式(Adapter Pattern)：将一个类的接口转换为另一个客户端所期望的接口格式。<br>桥接模式(Bridge Pattern)：将抽象部分与它的实现部分分离，使它们能够独立地变化。<br>组合模式(Composite Pattern)：将对象组合成树形结构以表示“部分-整体”的层次结构，使得客户端可以统一对待单个对象和组合对象。<br>装饰器模式(Decorator Pattern)：动态地给一个对象添加额外的职责，同时不改变其原有的结构。<br>外观模式(Facade Pattern)：为子系统中的一组接口提供一个一致的界面，以简化子系统的使用。<br>享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度的对象。<br>代理模式(Proxy Pattern)：为其他对象提供一种代理以控制这个对象的访问。</p>
+<h1 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h1><p>适配器模式（Adapter Pattern）是一种结构型设计模式，它的作用是将一个类的接口转换为另一个类的接口，以满足客户端对接口的需求。适配器模式通常用于系统接口的升级和改造，或者将一个现有的类用于另一个新的系统中。</p>
+<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><p>适配器模式可以分为两种类型：类适配器和对象适配器。类适配器通过多重继承实现，将适配器类继承自需要适配的类和目标接口，从而实现对目标接口的适配。对象适配器则通过组合实现，将适配器类组合一个需要适配的类的实例和目标接口的实例，从而实现对目标接口的适配。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>适配器模式的主要优点包括：</p>
+<p>适配器模式可以让原本不兼容的接口进行合作，从而提高系统的灵活性和可扩展性。<br>适配器模式可以降低系统的耦合度，使得代码更易于维护和重构。<br>适配器模式可以重用现有的类，从而减少开发时间和成本。</p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>适配器模式的主要缺点包括：</p>
+<p>适配器模式增加了系统的复杂度，可能会影响系统的性能和可读性。<br>适配器模式可能需要开发新的适配器类，从而增加开发成本。</p>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>在实际应用中，适配器模式可以应用于很多场景，比如：</p>
+<p>将一个旧的类库适配为一个新的应用程序接口。<br>将一个第三方组件的接口适配为自己的系统接口。<br>将一个对象的接口适配为另一个对象的接口，以便它们可以一起工作。<br>将一个不同版本的接口适配为当前版本的接口，以便它们可以向后兼容。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>假设我们有一个 PrintInterface 接口，里面定义了一个 print 方法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PrintInterface</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们有两个不同的类 PrintA 和 PrintB，它们分别实现了 PrintInterface 接口：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PrintA</span> : <span class="keyword">public</span> PrintInterface &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;PrintA is printing&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PrintB</span> : <span class="keyword">public</span> PrintInterface &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;PrintB is printing&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后，我们有一个 PrintAdapter 类，它实现了 PrintInterface 接口，并包含了一个 PrintA 对象的指针：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PrintAdapter</span> : <span class="keyword">public</span> PrintInterface &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">PrintAdapter</span>(PrintA* printA) : <span class="built_in">printA_</span>(printA) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        printA_-&gt;<span class="built_in">printA</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    PrintA* printA_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注意到 PrintAdapter 类的 print 方法实际上调用了 PrintA 类的 printA 方法。这里 PrintAdapter 类就扮演了适配器的角色，将 PrintA 类的接口适配成了 PrintInterface 接口。</p>
+<p>下面我们可以看到如何使用适配器模式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 使用 PrintA 类的对象进行打印</span></span><br><span class="line">    PrintA* printA = <span class="keyword">new</span> <span class="built_in">PrintA</span>();</span><br><span class="line">    printA-&gt;<span class="built_in">print</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用适配器，将 PrintA 类的对象适配成 PrintInterface 接口进行打印</span></span><br><span class="line">    PrintInterface* adapter = <span class="keyword">new</span> <span class="built_in">PrintAdapter</span>(printA);</span><br><span class="line">    adapter-&gt;<span class="built_in">print</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用 PrintB 类的对象进行打印</span></span><br><span class="line">    PrintB* printB = <span class="keyword">new</span> <span class="built_in">PrintB</span>();</span><br><span class="line">    printB-&gt;<span class="built_in">print</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 直接使用 PrintInterface 接口进行打印</span></span><br><span class="line">    PrintInterface* printInterface = <span class="keyword">new</span> <span class="built_in">PrintB</span>();</span><br><span class="line">    printInterface-&gt;<span class="built_in">print</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输出结果如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PrintA is printing</span><br><span class="line">PrintA is printing</span><br><span class="line">PrintB is printing</span><br><span class="line">PrintB is printing</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，我们在适配器模式中使用了适配器 PrintAdapter 将 PrintA 类的接口适配成了 PrintInterface 接口，并通过 PrintInterface 接口实现了 PrintA 类的功能。同时，我们还可以直接使用 PrintB 类的对象或者 PrintInterface 接口进行打印。</p>
+<h1 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h1><p>桥接模式是一种结构型设计模式，旨在将一个大类或一组紧密相关的类分解为抽象和实现两个独立的层次结构，并使用一个桥接接口将它们连接起来。桥接模式允许这些层次结构独立变化，从而可以更加灵活地设计代码。</p>
+<p>在桥接模式中，有两个独立变化的维度：抽象和实现。抽象可以是一个类，也可以是一个接口，定义了具体实现需要的方法，而实现则是指具体实现的类或接口。桥接模式通过一个桥接接口来将抽象和实现连接起来。</p>
+<h2 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h2><p>桥接模式的主要优点包括：</p>
+<p>提高了代码的可扩展性和可维护性。<br>允许抽象和实现可以独立扩展，从而避免了类的爆炸式增长。<br>使得代码更加灵活，可以根据不同的需求进行组合。</p>
+<h2 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h2><p>桥接模式的主要缺点包括：</p>
+<p>增加了代码的复杂性，需要额外的抽象层次和桥接接口。<br>对于简单的情况，使用桥接模式可能会增加不必要的复杂性。</p>
+<h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h2><p>假设我们正在设计一个手机品牌和手机软件之间的关系。假设我们有两个手机品牌：华为和小米，并且有两个手机软件：微信和支付宝。我们希望能够让任何一种手机品牌都可以运行这两个软件，而且软件也可以在不同品牌的手机上运行。</p>
+<p>使用桥接模式，我们可以将手机品牌和软件分别抽象为两个类。首先，定义一个手机品牌抽象类，它有一个纯虚函数RunSoftware：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PhoneBrand</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">PhoneBrand</span>() &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">RunSoftware</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然后，我们创建两个具体的手机品牌类，HuaweiPhone和XiaomiPhone，它们都实现了PhoneBrand类：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">HuaweiPhone</span> : <span class="keyword">public</span> PhoneBrand &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">RunSoftware</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Run software on Huawei phone&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">XiaomiPhone</span> : <span class="keyword">public</span> PhoneBrand &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">RunSoftware</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Run software on Xiaomi phone&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>接下来，我们定义一个手机软件抽象类，它也有一个纯虚函数Run：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PhoneSoftware</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">PhoneSoftware</span>() &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">Run</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然后，我们创建两个具体的手机软件类，WeChatSoftware和AlipaySoftware，它们也都实现了PhoneSoftware类：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">WeChatSoftware</span> : <span class="keyword">public</span> PhoneSoftware &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Run WeChat on phone&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AlipaySoftware</span> : <span class="keyword">public</span> PhoneSoftware &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Run Alipay on phone&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>最后，我们创建一个桥接类Phone，它将手机品牌和手机软件连接在一起。它有两个成员变量：一个是指向PhoneBrand对象的指针，一个是指向PhoneSoftware对象的指针。Phone类有一个RunSoftware函数，它通过调用PhoneBrand对象的RunSoftware函数和PhoneSoftware对象的Run函数来运行软件：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Phone</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Phone</span>(PhoneBrand* brand, PhoneSoftware* software)</span><br><span class="line">        : <span class="built_in">brand_</span>(brand), <span class="built_in">software_</span>(software) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">RunSoftware</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        brand_-&gt;<span class="built_in">RunSoftware</span>();</span><br><span class="line">        software_-&gt;<span class="built_in">Run</span>();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    PhoneBrand* brand_;</span><br><span class="line">    PhoneSoftware* software_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们可以创建各种不同品牌和不同软件的手机了。例如，要创建一个运行在华为手机上的微信，可以这样写：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PhoneBrand* huawei = <span class="keyword">new</span> <span class="built_in">HuaweiPhone</span>();</span><br><span class="line">PhoneSoftware* wechat = <span class="keyword">new</span> <span class="built_in">WeChatSoftware</span>();</span><br><span class="line">Phone* phone = <span class="keyword">new</span> <span class="built_in">Phone</span>(huawei, wechat);</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h1><p>组合模式是一种结构型设计模式，它允许你将对象组合成树形结构来表现“整体&#x2F;部分”的层次结构，使得客户端能够使用统一的方式处理单个对象和对象组合。</p>
+<p>组合模式是一种结构型设计模式，它允许你将对象组合成树形结构来表现“整体&#x2F;部分”的层次结构，使得客户端能够使用统一的方式处理单个对象和对象组合。</p>
+<p>在组合模式中，每个组件（component）都是一个对象，可以是叶子节点（leaf）或者组合节点（composite）。叶子节点表示最终的对象，没有子节点；而组合节点可以包含一组子节点，这些子节点可以是叶子节点，也可以是组合节点，这样就形成了一棵树形结构。</p>
+<p>组合模式中的两个关键角色是Component和Composite。Component是一个抽象类，定义了组合对象和叶子对象的公共接口；而Composite是组合节点的具体实现，包含一个子对象的列表，并实现了Component中定义的接口。</p>
+<h2 id="场景-1"><a href="#场景-1" class="headerlink" title="场景"></a>场景</h2><p>组合模式通常在以下情况下使用：</p>
+<p>当你需要表示对象的部分-整体层次结构，并且希望用户能够以统一的方式处理单个对象和对象集合时。</p>
+<p>当你想要忽略对象集合和单个对象之间的差异时，统一使用它们。</p>
+<p>当你希望在不修改现有代码的情况下添加新类型的组件时，使用组合模式特别有用。</p>
+<p>例如，你正在开发一个绘图应用程序，该应用程序需要支持添加不同类型的图形元素（如线条、矩形、圆形、文本等）。这些元素可以分为两个类别：基本元素和复合元素。基本元素表示单个元素，如一条线或一个圆形，而复合元素表示包含其他元素的组合元素，如一个包含多个元素的矩形。</p>
+<p>在这种情况下，你可以使用组合模式来表示这些图形元素，并统一地处理单个元素和组合元素。这样，用户可以以相同的方式绘制单个元素或组合元素。另外，如果你想要添加新类型的图形元素，你只需要添加一个新的子类来实现它即可，不需要修改现有的代码。</p>
+<h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h2><p>下面是一个简单的示例，使用组合模式实现了一个文件系统的树形结</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FileSystemComponent</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">FileSystemComponent</span>() &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">display</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">add</span><span class="params">(FileSystemComponent *component)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">remove</span><span class="params">(FileSystemComponent *component)</span> </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">File</span> : <span class="keyword">public</span> FileSystemComponent &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    string name;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">File</span>(string name) &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">display</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        cout &lt;&lt; name &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Directory</span> : <span class="keyword">public</span> FileSystemComponent &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    string name;</span><br><span class="line">    list&lt;FileSystemComponent*&gt; components;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Directory</span>(string name) &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">display</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        cout &lt;&lt; name &lt;&lt; <span class="string">&quot; (directory)&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> component : components) &#123;</span><br><span class="line">            component-&gt;<span class="built_in">display</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(FileSystemComponent *component)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        components.<span class="built_in">push_back</span>(component);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">remove</span><span class="params">(FileSystemComponent *component)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        components.<span class="built_in">remove</span>(component);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Create some files and directories</span></span><br><span class="line">    File *file1 = <span class="keyword">new</span> <span class="built_in">File</span>(<span class="string">&quot;file1.txt&quot;</span>);</span><br><span class="line">    File *file2 = <span class="keyword">new</span> <span class="built_in">File</span>(<span class="string">&quot;file2.txt&quot;</span>);</span><br><span class="line">    Directory *dir1 = <span class="keyword">new</span> <span class="built_in">Directory</span>(<span class="string">&quot;dir1&quot;</span>);</span><br><span class="line">    Directory *dir2 = <span class="keyword">new</span> <span class="built_in">Directory</span>(<span class="string">&quot;dir2&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Build the tree structure</span></span><br><span class="line">    dir1-&gt;<span class="built_in">add</span>(file1);</span><br><span class="line">    dir2-&gt;<span class="built_in">add</span>(file2);</span><br><span class="line">    dir2-&gt;<span class="built_in">add</span>(dir1);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Display the tree</span></span><br><span class="line">    dir2-&gt;<span class="built_in">display</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Clean up</span></span><br><span class="line">    <span class="keyword">delete</span> dir2;</span><br><span class="line">    <span class="keyword">delete</span> file1;</span><br><span class="line">    <span class="keyword">delete</span> file2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个示例中，FileSystemComponent是组合模式中的Component接口，File和Directory是具体实现的组件。File表示叶子节点，只有一个文件名属性和一个display方法；Directory表示组合节点，包含一个子对象的列表，以及add、remove和display方法。在main函数中，我们创建了一些文件和目录，将它们组合成树形结构，并通过调用根节点的display方法来打印整个文件系统的层次结构。</p>
+<h1 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h1><p>装饰模式是一种结构型设计模式，它允许你在不改变对象接口的前提下，动态地向对象添加行为。这种模式通过创建一个装饰对象来包装原始对象，然后在装饰对象上添加功能来扩展原始对象的行为。</p>
+<p>在装饰模式中，有四个主要角色：</p>
+<p>抽象组件（Component）：定义了被装饰对象的接口，并声明了装饰方法。</p>
+<p>具体组件（ConcreteComponent）：实现了抽象组件的接口，并提供了默认的实现。</p>
+<p>抽象装饰器（Decorator）：继承了抽象组件，并包含了一个抽象组件的引用，以便对其进行装饰。</p>
+<p>具体装饰器（ConcreteDecorator）：继承了抽象装饰器，并实现了其装饰方法，以扩展原始对象的功能。</p>
+<p>使用装饰模式，你可以动态地向对象添加功能，而不需要修改原始对象的代码。这种方式比继承更灵活，因为你可以在运行时动态地添加或删除装饰器，从而影响对象的行为。</p>
+<h2 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h2><p>假设有一个基础类 Shape，它定义了一个抽象方法 draw，用于绘制一个形状。现在我们想要在基础类的基础上，动态地添加一个边框的功能，可以使用装饰模式。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Shape</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">draw</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Rectangle</span> : <span class="keyword">public</span> Shape &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">draw</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Drawing a rectangle.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然后定义一个装饰者类 ShapeDecorator，它也继承自 Shape，但包含一个指向基础组件的指针 component_。装饰者类也实现了 draw 方法，但是在调用 component_-&gt;draw() 之前或之后添加了额外的功能。在这个例子中，我们添加了一个边框。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ShapeDecorator</span> : <span class="keyword">public</span> Shape &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">ShapeDecorator</span>(Shape* component) : <span class="built_in">component_</span>(component) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">draw</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        component_-&gt;<span class="built_in">draw</span>();</span><br><span class="line">        <span class="built_in">drawBorder</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">drawBorder</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    Shape* component_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BorderDecorator</span> : <span class="keyword">public</span> ShapeDecorator &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">BorderDecorator</span>(Shape* component) : <span class="built_in">ShapeDecorator</span>(component) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">drawBorder</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Drawing a border.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们可以使用 Rectangle 类创建一个矩形，并使用 BorderDecorator 类将其装饰，从而添加边框的功能。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Shape* rect = <span class="keyword">new</span> <span class="built_in">Rectangle</span>();</span><br><span class="line">    rect-&gt;<span class="built_in">draw</span>();</span><br><span class="line"></span><br><span class="line">    Shape* rectWithBorder = <span class="keyword">new</span> <span class="built_in">BorderDecorator</span>(<span class="keyword">new</span> <span class="built_in">Rectangle</span>());</span><br><span class="line">    rectWithBorder-&gt;<span class="built_in">draw</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Drawing a rectangle.</span><br><span class="line">Drawing a rectangle.</span><br><span class="line">Drawing a border.</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h1><p>外观模式（Facade Pattern）是一种结构型设计模式，它为复杂系统提供一个简单的接口，隐藏了系统的复杂性，使得客户端可以更加方便地使用系统。</p>
+<p>外观模式可以将一个复杂系统分成多个子系统，然后为每个子系统提供一个简单的接口，使得客户端可以通过这个接口来访问子系统，而无需了解子系统的具体实现。</p>
+<p>外观模式的核心思想是封装，即将复杂的系统封装成一个简单的接口。这种封装可以使得系统更加易于维护和扩展。</p>
+<p>举个例子，假设我们要开发一个游戏，游戏中包含多个子系统，比如音频系统、视频系统、输入系统、游戏逻辑系统等。如果客户端要使用这些子系统，就需要了解这些子系统的接口和实现方式，这样会增加客户端的复杂度。但是如果我们使用外观模式，将所有子系统封装成一个简单的接口，客户端只需要调用这个接口，就可以实现游戏的各种功能，而无需了解子系统的具体实现。</p>
+<p>在实际开发中，外观模式经常用于封装底层库或框架的复杂性，提供简单的接口给客户端使用。</p>
+<h2 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h2><p>下面是一个用 C++ 实现的外观模式的示例，该示例模拟了一个音乐播放器，使用外观模式将不同的子系统（音乐库、播放列表、音量控制器）组合在一起，对外提供简单的接口，方便用户使用。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 子系统1：音乐库 */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MusicLibrary</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">loadMusic</span><span class="params">(std::string musicName)</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Loading music: &quot;</span> &lt;&lt; musicName &lt;&lt; std::endl;</span><br><span class="line">        <span class="comment">// 模拟加载音乐的过程</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 子系统2：播放列表 */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PlayList</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">addMusicToPlayList</span><span class="params">(std::string musicName)</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Adding music to playlist: &quot;</span> &lt;&lt; musicName &lt;&lt; std::endl;</span><br><span class="line">        <span class="comment">// 模拟将音乐添加到播放列表的过程</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 子系统3：音量控制器 */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">VolumeController</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setVolume</span><span class="params">(<span class="type">int</span> volume)</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Setting volume to: &quot;</span> &lt;&lt; volume &lt;&lt; std::endl;</span><br><span class="line">        <span class="comment">// 模拟设置音量的过程</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 外观类：音乐播放器 */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MusicPlayer</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">playMusic</span><span class="params">(std::string musicName)</span> </span>&#123;</span><br><span class="line">        musicLibrary.<span class="built_in">loadMusic</span>(musicName);</span><br><span class="line">        playList.<span class="built_in">addMusicToPlayList</span>(musicName);</span><br><span class="line">        volumeController.<span class="built_in">setVolume</span>(<span class="number">50</span>);</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Now playing: &quot;</span> &lt;&lt; musicName &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    MusicLibrary musicLibrary;</span><br><span class="line">    PlayList playList;</span><br><span class="line">    VolumeController volumeController;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 客户端 */</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    MusicPlayer musicPlayer;</span><br><span class="line">    musicPlayer.<span class="built_in">playMusic</span>(<span class="string">&quot;Yesterday&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在上面的示例中，MusicLibrary、PlayList、VolumeController 三个类分别代表了音乐库、播放列表、音量控制器三个子系统。MusicPlayer 类是外观类，将三个子系统组合在一起，并对外提供简单的 playMusic 接口，方便用户使用。客户端只需要调用 MusicPlayer 的 playMusic 方法，即可完成一系列操作。</p>
+<h1 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h1><p>享元模式是一种结构型设计模式，它通过将对象的状态分为内部状态和外部状态，从而减少应用程序中的对象数量。内部状态是与对象的特定实例无关的状态，而外部状态则取决于对象的特定实例和上下文。</p>
+<p>在享元模式中，共享对象的内部状态，而外部状态则由客户端来维护和传递。这使得应用程序可以减少内存使用和对象创建的数量，从而提高性能和降低内存占用。</p>
+<p>例如，一个文本编辑器可以使用享元模式来共享相同的字体对象。字体的内部状态是字体的名称、字形和大小等，而外部状态则是应用程序中每个字符的位置和颜色。</p>
+<p>在实现享元模式时，可以使用工厂类来维护和管理共享对象池，确保对象的共享和创建的正确性。</p>
+<h2 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h2><p>享元模式的优点包括：</p>
+<p>减少对象的数量，从而减少内存使用和提高性能。<br>可以在运行时动态添加和删除享元对象，从而提高灵活性。<br>通过共享对象的内部状态，可以减少应用程序的复杂性。</p>
+<h2 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h2><p>其缺点包括：</p>
+<p>由于共享对象的内部状态是不可变的，因此无法为不同的应用程序场景创建不同的状态组合。<br>由于共享对象的内部状态是不可变的，因此必须确保对象在创建后不会被修改。</p>
+<h2 id="示例-5"><a href="#示例-5" class="headerlink" title="示例"></a>示例</h2><p>下面是一个简单的 C++ 示例代码，演示如何使用享元模式来实现对网站用户信息的管理。在该示例中，User 是一个用户类，代表网站上的用户。UserFactory 类是一个享元工厂类，它维护了一个内部状态的池子，每个状态都与一个 User 对象相对应。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用户类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">User</span>(<span class="type">const</span> string&amp; name, <span class="type">int</span> age, <span class="type">const</span> string&amp; address) : </span><br><span class="line">        <span class="built_in">name_</span>(name), <span class="built_in">age_</span>(age), <span class="built_in">address_</span>(address) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">const</span> string&amp; <span class="title">GetName</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> name_; &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">GetAge</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> age_; &#125;</span><br><span class="line">    <span class="function"><span class="type">const</span> string&amp; <span class="title">GetAddress</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> address_; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    string name_;</span><br><span class="line">    <span class="type">int</span> age_;</span><br><span class="line">    string address_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 享元工厂类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">UserFactory</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 获取一个用户对象，如果该状态的用户对象不存在，则创建一个新的对象</span></span><br><span class="line">    <span class="function">User* <span class="title">GetUser</span><span class="params">(<span class="type">const</span> string&amp; name, <span class="type">int</span> age, <span class="type">const</span> string&amp; address)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 先在内部状态的池子中查找是否已有对应的状态</span></span><br><span class="line">        <span class="keyword">auto</span> iter = user_pool_.<span class="built_in">find</span>(name);</span><br><span class="line">        <span class="keyword">if</span> (iter != user_pool_.<span class="built_in">end</span>()) &#123;</span><br><span class="line">            <span class="comment">// 如果已有，则返回对应的用户对象</span></span><br><span class="line">            <span class="keyword">return</span> iter-&gt;second;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 如果没有，则创建一个新的用户对象，并将其加入池子中</span></span><br><span class="line">            <span class="keyword">auto</span> user = <span class="keyword">new</span> <span class="built_in">User</span>(name, age, address);</span><br><span class="line">            user_pool_[name] = user;</span><br><span class="line">            <span class="keyword">return</span> user;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    map&lt;string, User*&gt; user_pool_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    UserFactory factory;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取一个名为 &quot;Alice&quot; 的用户对象</span></span><br><span class="line">    <span class="keyword">auto</span> user1 = factory.<span class="built_in">GetUser</span>(<span class="string">&quot;Alice&quot;</span>, <span class="number">25</span>, <span class="string">&quot;Shanghai&quot;</span>);</span><br><span class="line">    cout &lt;&lt; user1-&gt;<span class="built_in">GetName</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; user1-&gt;<span class="built_in">GetAge</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; user1-&gt;<span class="built_in">GetAddress</span>() &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取另一个名为 &quot;Alice&quot; 的用户对象，这时会直接从内部状态池中获取</span></span><br><span class="line">    <span class="keyword">auto</span> user2 = factory.<span class="built_in">GetUser</span>(<span class="string">&quot;Alice&quot;</span>, <span class="number">30</span>, <span class="string">&quot;Beijing&quot;</span>);</span><br><span class="line">    cout &lt;&lt; user2-&gt;<span class="built_in">GetName</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; user2-&gt;<span class="built_in">GetAge</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; user2-&gt;<span class="built_in">GetAddress</span>() &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在该示例中，UserFactory 类维护了一个内部状态的池子，每个状态都与一个 User 对象相对应。当调用 UserFactory::GetUser() 方法获取一个用户对象时，会先在内部状态的池子中查找是否已有对应的状态，如果已有，则返回对应的用户对象；否则，会创建一个新的用户对象，并将其加入池子中，然后返回这个新创建的用户对象。</p>
+<p>在客户端代码中，每次需要获取一个用户对象时，都可以通过 UserFactory 类来获取，而无需直接创建新的 User 对象。这样，就可以有效地减少创建对象的开销，提高程序的性能和效率。</p>
+<h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><p>代理模式是一种结构型设计模式，它允许通过创建代理对象来控制对原始对象的访问。代理对象在客户端和目标对象之间起到中介作用，隐藏了目标对象的复杂性和提供了额外的控制和安全性。</p>
+<p>代理模式通常涉及三个角色：目标对象、代理对象和客户端。目标对象是需要被代理的对象，代理对象控制着对目标对象的访问，并且可以在适当的时候创建、销毁或修改目标对象。客户端通过代理对象来访问目标对象，而不是直接访问目标对象。</p>
+<p>代理模式可以分为静态代理和动态代理。静态代理需要手动编写代理类，而动态代理使用反射技术来在运行时动态地创建代理对象。</p>
+<h2 id="示例-6"><a href="#示例-6" class="headerlink" title="示例"></a>示例</h2><p>下面是一个简单的C++示例代码，展示了静态代理模式的实现，其中目标对象是一个简单的计算器类，代理对象通过计算器类提供的接口对其进行封装。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 目标对象</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Calculator</span>() &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体目标对象</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteCalculator</span> : <span class="keyword">public</span> Calculator &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 代理对象</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CalculatorProxy</span> : <span class="keyword">public</span> Calculator &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">CalculatorProxy</span>(Calculator* calc) : <span class="built_in">m_calc</span>(calc) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 在调用目标对象的方法之前或之后执行其他操作</span></span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Before add operation...&quot;</span> &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> result = m_calc-&gt;<span class="built_in">add</span>(a, b);</span><br><span class="line"></span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;After add operation...&quot;</span> &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Calculator* m_calc;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 创建目标对象</span></span><br><span class="line">    Calculator* calc = <span class="keyword">new</span> <span class="built_in">ConcreteCalculator</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建代理对象并将目标对象传递给它</span></span><br><span class="line">    Calculator* proxy = <span class="keyword">new</span> <span class="built_in">CalculatorProxy</span>(calc);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过代理对象调用目标对象的方法</span></span><br><span class="line">    <span class="type">int</span> result = proxy-&gt;<span class="built_in">add</span>(<span class="number">5</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Result: &quot;</span> &lt;&lt; result &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 释放内存</span></span><br><span class="line">    <span class="keyword">delete</span> proxy;</span><br><span class="line">    <span class="keyword">delete</span> calc;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023/03918.html"
+                                   title="UOS桌面启动流程图"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">UOS桌面启动流程图</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023/035c8e0065.html"
+                                   title="软件设计模式-创建型"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">软件设计模式-创建型</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline-meta.css"/>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          window.KeepCommentPlugin.walineOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+          window.KeepCommentPlugin.walineOptions.el = '#waline-comment'
+          window.KeepCommentPlugin.walineOptions.comment = '.post-comments-count'
+          window.KeepCommentPlugin.walineOptions.serverURL = 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/'
+          window.KeepCommentPlugin.walineOptions.lang = 'en' || 'zh-CN'
+          window.KeepCommentPlugin.walineOptions.reaction = 'true' === 'true'
+        </script>
+
+        
+
+        
+            <script data-pjax
+                    async
+                    type="module"
+            >
+              import { init } from '//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js'
+              window.KeepCommentPlugin.initWaline = () => {
+                if (init) {
+                  init(window.KeepCommentPlugin.walineOptions)
+                  window.KeepCommentPlugin.hideLoading()
+                } else {
+                  setTimeout(() => {
+                    window.KeepCommentPlugin.initWaline()
+                  }, 1000)
+                }
+              }
+
+              if ('true' === 'true') {
+                setTimeout(() => {
+                  window.KeepCommentPlugin.initWaline()
+                }, 1200)
+              } else {
+                window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initWaline)
+              }
+            </script>
+        
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-text">适配器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B"><span class="nav-text">类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF"><span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="nav-text">桥接模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%82%B9-1"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-1"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F"><span class="nav-text">组合模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF-1"><span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-2"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-text">装饰器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-3"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F"><span class="nav-text">外观模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-4"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F"><span class="nav-text">享元模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%82%B9-2"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-2"><span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-5"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="nav-text">代理模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-6"><span class="nav-text">示例</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ssk-wh</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+                <a target="_blank" rel="nofollow" href="https://github.com/">
+            
+            This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span>
+            
+                </a>
+            
+        </div>
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-text">适配器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B"><span class="nav-text">类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF"><span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="nav-text">桥接模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%82%B9-1"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-1"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F"><span class="nav-text">组合模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF-1"><span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-2"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-text">装饰器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-3"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F"><span class="nav-text">外观模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-4"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F"><span class="nav-text">享元模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%82%B9-2"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-2"><span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-5"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="nav-text">代理模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-6"><span class="nav-text">示例</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

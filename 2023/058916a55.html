@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            Icon Theme Specification(图标主题规范) |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#29392c","title":"Ssk-wh's Blog","author":"ssk-wh","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","tools":"/tools","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":true,"links":{"github":"https://github.com/ssk-wh","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"juchengshi@gmail.com"}},"scroll":{"progress_bar":false,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":false,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":3},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":true,"provider":"github","url":"https://github.com/"},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"伙计们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://xpoet.cn/images/avatar.png"},{"name":"Guo Le's Blog","link":"https://guole.fun/","description":"生命是独立是自由是爱与和平","avatar":"https://guole.fun/img/gl.jpg"},{"name":"酷小呵","link":"https://www.kuhehe.top/","description":"爱分享的酷小呵","avatar":"https://q1.qlogo.cn/g?b=qq&nk=3111349763&s=100"}],"tools":[{"category":"AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"name":"Copilot","link":"https://copilot.microsoft.com/","description":"微软家的AI助手","image":"/images/tools/copilot.svg"},{"name":"Kimi","link":"https://kimi.moonshot.cn/","description":"支持识别文件或网址的小众AI网站","image":"/images/tools/kimi.png"},{"name":"文心一言","link":"https://yiyan.baidu.com/","description":"百度旗下的AI助手","image":"/images/tools/wxyy.png"},{"name":"通义千问","link":"https://tongyi.aliyun.com/qianwen/","description":"阿里旗下","image":"/images/tools/tyqw.Default"},{"name":"讯飞星火","link":"https://xinghuo.xfyun.cn/","description":"讯飞旗下","image":"/images/tools/xfxh.svg"},{"category":"技术"},{"name":"Hexo","link":"https://hexo.io/","description":"快速、简洁且高效的博客框架","image":"https://upload.wikimedia.org/wikipedia/commons/b/b9/Hexo_blog_logo.svg"},{"name":"稀土掘金","link":"https://juejin.cn/","description":"开发者社区","image":"/images/tools/xtjj.Default"},{"category":"笔记"},{"name":"语雀","link":"https://www.yuque.com/","description":"在线记录笔记","image":"/images/tools/yuque.svg"},{"category":"图片"},{"name":"undraw","link":"https://undraw.co/illustrations","description":"免费的矢量素材下载网站","image":"https://raw.githubusercontent.com/ssk-wh/ssk-wh.github.io/master/images/undraw_shopping_bags_8l6g.svg"},{"name":"carbon","link":"https://carbon.now.sh/","description":"将代码生成图片","image":null},{"category":"作图网站"},{"name":"Draw.io","link":"https://draw.io/","description":"在线绘图网站，支持同步保存至github","image":null},{"name":"ProcessOn","link":"https://www.processon.com/","description":"在线绘图网站，画软件流程图经常用到","image":null},{"category":"博客管理"},{"name":"LeanCloud","link":"https://console.leancloud.app/apps/D0eDuK0h6X11p0z7FxTgY1CX-MdYXbMMI/storage/data/Comment","description":"评论管理","image":"https://gravatar.tapglb.com/avatar/afa8e9b8057e1877138d43f1dfdd8510?s=200&d=retro"}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                TOOLS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                ABOUT
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                            TOOLS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            ABOUT
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Icon Theme Specification(图标主题规范)
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">ssk-wh</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2023-05-03 21:42:27</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Wed Jul 19 2023 08:43:29 GMT+0000">2023-07-19 08:43:29</span>
+                </span>
+            
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Freedesktop/">Freedesktop</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%A0%87%E5%87%86/">标准</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/XDG/">XDG</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>4.3k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>16 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>原文链接：<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html" >https://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>图标主题是一种使应用程序的图标具有统一外观和感觉的机制。当用户选择一个特定的图标主题时，系统会使用该主题中的图标来渲染所有应用程序的图标。图标主题最初用于桌面文件规范中的图标字段，但在其他场景下也可以发挥作用，例如 mimetype 图标。</p>
+<p>从程序员的角度来看，图标主题只是一种映射机制。给定一组目录和主题名称，它将从图标名称和标称图标大小映射到图标文件名。这样，应用程序可以使用相应的图标文件来显示其图标，而无需直接指定文件路径或图标文件名。</p>
+<span id="more"></span>
+
+
+
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>图标主题：图标主题是一组命令的图标文件，它可以根据图标名和给定大小映射到具体的文件。主题也支持从其他主题继承，从而很好的扩展当前主题的功能。<br>图标文件：图标文件是可以加载并用作图标的图像。支持的图像文件格式为 PNG、XPM 和 SVG。PNG 是比较推荐的位图格式，SVG 用于矢量化图标。由于向后兼容的原因，支持 XPM 格式，不建议新主题使用 XPM 文件。(对 SVG 的支持是可选的。)<br>基础目录：在一组称为基本目录的目录中搜索图标和主题。主题存储在基本目录的子目录中。<br>图标比例：在非常高密度（高 dpi）的屏幕上，通常会缩放 UI 以避免 UI 太小以至于难以看到。为了支持这个图标可以有一个目标比例，描述他们被设计的比例因子。例如，目录大小为 48 但比例为 2x 的图标将是 96x96 像素，但设计为具有与比例为 1x 的 48x48 图标相同的细节级别。这可用于高密度显示器，其中 48x48 图标会太小（或放大后很难看），而普通的 96x96 图标会有很多细节很难看清。</p>
+<h1 id="目录布局"><a href="#目录布局" class="headerlink" title="目录布局"></a>目录布局</h1><p>在一组目录中查找图标和主题。默认情况下，应用程序应<strong>顺序查找</strong>以下目录 </p>
+<blockquote>
+<p>$HOME&#x2F;.icons（为了向后兼容）、<br>$XDG_DATA_DIRS&#x2F;icons<br>&#x2F;usr&#x2F;share&#x2F;pixmaps</p>
+</blockquote>
+<p>应用程序可以进一步将它们自己的图标目录添加到此列表中，用户可以扩展或更改列表（以应用程序&#x2F;桌面的特定方式）。在这些目录中的每一个中，主题都存储为子目录。通过具有相同名称的子目录，主题可以分布在多个基本目录中。这样用户就可以扩展和覆盖系统主题。</p>
+<p>为了让第三方应用程序有地方安装它们的图标，应该<strong>始终存在一个名为“hicolor” [<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html#ftn.idm46015176462592" >1]<i class="fas fa-external-link-alt"></i></a>的主题</strong>。hicolor 主题的数据可从以下网址下载：<a class="link"   target="_blank" rel="noopener" href="http://www.freedesktop.org/software/icon-theme/" >http://www.freedesktop.org/software/icon-theme/<i class="fas fa-external-link-alt"></i></a> 。</p>
+<p>如果<strong>在当前主题中找不到图标，则需要在“hicolor”主题中查找实现</strong>。</p>
+<p>每个主题都存储为基本目录的子目录。尽管主题指定的用户可见名称可能不同，但主题的内部名称始终是子目录的名称。因此，主题名称区分大小写，并且仅限于 ASCII 字符。主题名称也可能不包含逗号或空格。</p>
+<p>在至少一个<strong>主题目录中必须有一个名为 index.theme 的文件来描述主题</strong>。使用按顺序搜索基本目录时找到的第一个 index.theme。该文件描述了主题的一般属性。</p>
+<p>在主题目录中还有一组包含图像文件的子目录。每个目录都包含为特定标称图标大小和比例设计的图标，如 index.theme 文件所述。子目录允许有几层深，例如主题“hicolor”中的子目录“48x48&#x2F;apps”最终将位于 $basedir&#x2F;hicolor&#x2F;48x48&#x2F;apps。</p>
+<p>图像文件必须是以下类型之一：<strong>PNG、XPM 或 SVG</strong>，并且<strong>扩展名必须是“.png”、“.xpm”或“.svg”（小写）</strong>。<strong>对 SVG 文件的支持是可选的</strong>。不支持 SVG 的实现应该忽略任何“.svg”文件。除此之外，可能还有一个附加文件，每个文件都有额外的图标数据。它应该与图像文件具有相同的基本名称，扩展名为“.icon”。例如，如果图标文件名为“mime_source_c.png”，相应的文件将被命名为“mime_source_c.icon”。</p>
+<h1 id="文件格式"><a href="#文件格式" class="headerlink" title="文件格式"></a>文件格式</h1><p>图标主题描述文件和图标数据文件都是 ini 样式的文本文件，如桌面文件规范中所述。他们没有任何编码字段。相反，它们必须始终以 UTF-8 编码存储。</p>
+<p><em>index.theme 文件必须以名为Icon Theme 的</em> 部分开头，其内容根据下表 1 确定。所有列表均以逗号分隔。</p>
+<h2 id="标准-Keys"><a href="#标准-Keys" class="headerlink" title="标准 Keys"></a>标准 Keys</h2><table>
+<thead>
+<tr>
+<th>Key</th>
+<th>描述</th>
+<th>值类型</th>
+<th>是否必需</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Name</td>
+<td>图标主题的简称，例如在主题选择列表中显示</td>
+<td>本地字符串</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>描述主题的较长字符串</td>
+<td>本地字符串</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Inherits</td>
+<td>此主题继承自的主题的名称。如果在当前主题中找不到图标名称，则会在继承的主题中搜索（并在所有继承的主题中递归）。如果没有指定主题，则需要将“hicolor”主题添加到继承树中。<br>实现者(系统发行商或桌面环境维护团队)可以选择在最后指定的主题和 hicolor 主题之间添加其他默认主题。</td>
+<td>字符串</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>Directories</td>
+<td>该主题的子目录列表。对于每个子目录，index.theme 文件中必须有一个部分描述该目录</td>
+<td>字符串</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>ScaledDirectories</td>
+<td>除了目录中的子目录之外，该主题的其他子目录列表。这些目录只能由支持缩放目录的实现读取，并被添加以保持与不支持这些的旧实现的兼容性。</td>
+<td>字符串</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>Hidden</td>
+<td>是否在主题选择用户界面中隐藏主题。这用于用户不应该看到的诸如后备主题之类的东西。</td>
+<td>布尔值</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>应用作此主题外观示例的图标名称。</td>
+<td>字符串</td>
+<td>NO</td>
+</tr>
+</tbody></table>
+<h2 id="目录-Keys"><a href="#目录-Keys" class="headerlink" title="目录  Keys"></a>目录  Keys</h2><p>指定的每个目录都有一个与该目录同名的相应部分。</p>
+<table>
+<thead>
+<tr>
+<th>钥匙</th>
+<th>描述</th>
+<th>值类型</th>
+<th>是否必需</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Size</td>
+<td>此目录中图标的标称（未缩放）大小。</td>
+<td>整数</td>
+<td>是的</td>
+<td></td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>此目录中图标的目标比例。如果不存在则默认为值 1。为了向后兼容，任何比例不是 1 的目录都应该列在 ScaledDirectories 列表中，而不是目录中。</td>
+<td>整数</td>
+<td>不</td>
+<td></td>
+</tr>
+<tr>
+<td>Context</td>
+<td>通常使用图标的上下文。这在<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html#context" >名为“上下文”的部分<i class="fas fa-external-link-alt"></i></a>中有详细讨论。</td>
+<td>细绳</td>
+<td>不</td>
+<td></td>
+</tr>
+<tr>
+<td>Type</td>
+<td>此目录中图标的图标大小类型。有效类型为 Fixed、Scalable 和 Threshold。类型决定使用该部分中的其他键。如果未指定，则默认为阈值。</td>
+<td>细绳</td>
+<td>不</td>
+<td></td>
+</tr>
+<tr>
+<td>MaxSize</td>
+<td>指定此目录中的图标可以缩放到的最大（未缩放）大小。如果不存在，则默认为 Size 的值。</td>
+<td>整数</td>
+<td>不</td>
+<td>可扩展</td>
+</tr>
+<tr>
+<td>MinSize</td>
+<td>指定此目录中的图标可以缩放到的最小（未缩放）大小。如果不存在，则默认为 Size 的值。</td>
+<td>整数</td>
+<td>不</td>
+<td>可扩展</td>
+</tr>
+<tr>
+<td>Threshold</td>
+<td>如果大小最多与所需（未缩放）大小相差这么多，则可以使用此目录中的图标。如果不存在则默认为 2。</td>
+<td>整数</td>
+<td>不</td>
+<td>临界点</td>
+</tr>
+</tbody></table>
+<p>除了这些组之外，您还可以向 index.theme 文件添加额外的组以扩展它。这些扩展名必须以“X-”开头，可用于将桌面特定信息添加到主题文件中。示例组名称是“X-KDE Icon Theme”或“X-Gnome Icon Theme”。</p>
+<h2 id="图标-Keys"><a href="#图标-Keys" class="headerlink" title="图标 Keys"></a>图标 Keys</h2><table>
+<thead>
+<tr>
+<th>Key</th>
+<th>描述</th>
+<th>值类型</th>
+<th>是否必需</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DisplayName</td>
+<td>一个翻译后的 UTF8 字符串，当图标在用户界面中列出时，可以用来代替图标名称。</td>
+<td>本地字符串</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>EmbeddedTextRectangle</td>
+<td>如果存在，它指定显示图标的程序可以嵌入文本的矩形的四个角。这通常由想要在图标中显示文本文件内容预览的文件管理器使用。角由四个值的列表指定：x0、y0、x1、y1。这些值是从图标左上角开始的像素坐标，SVG 文件除外，它们在 1000x1000 坐标空间中指定，该空间缩放到图标的最终渲染大小。</td>
+<td>整数</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>AttachPoints</td>
+<td>以“|”分隔的点列表 可用作标志&#x2F;覆盖物的锚点。这些点是从图标左上角开始的像素坐标，SVG 文件除外，它们在 1000x1000 坐标空间中指定，该空间缩放到图标的最终渲染大小。</td>
+<td>坐标点</td>
+<td>NO</td>
+</tr>
+</tbody></table>
+<p>允许对 filename.icon 文件进行扩展，但键必须以“X-”开头，以避免与此格式的未来标准化扩展冲突。</p>
+<h1 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h1><p>允许<code>Context</code>设计者在概念层面对图标进行分组。它不充当文件系统中的名称空间，因此图标可以具有相同的名称，但允许实现根据它进行分类和排序，例如。</p>
+<p>这些是可用的上下文：</p>
+<ul>
+<li><strong>Actions.</strong> 表示用户启动的操作的图标，例如另存为。</li>
+<li><strong>Devices.</strong> 代表现实世界设备的图标，例如打印机和鼠标。它不适用于字符或块设备等文件系统节点。</li>
+<li><strong>FileSystems.</strong> 作为文件系统的一部分表示的对象的图标。例如，本地网络、“主页”和“桌面”文件夹。</li>
+<li><strong>MimeTypes.</strong> 表示 MIME 类型的图标。</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/058916a55/image-20230504171140092.png"
+                        alt="image-20230504171140092"
+                 ></p>
+<h1 id="图标查找"><a href="#图标查找" class="headerlink" title="图标查找"></a>图标查找</h1><p>图标查找机制有两个全局设置，基本目录列表和当前主题的内部名称。鉴于这些，我们需要指定如何从图标名称、正常尺寸和比例中查找图标文件。</p>
+<p>查找首先在当前主题中完成，然后在当前主题的每个父主题中递归，最后在名为“hicolor”的默认主题中进行（实现可能会在“hicolor”之前添加更多默认主题，但“hicolor”必须是最后一个). 一旦有任何大小的图标与主题匹配，搜索就会停止。即使在继承的主题中可能有尺寸更接近正确图标的图标，我们也不想使用它。当您更改图标大小时（例如放大），这样做可能会导致图标发生不一致的变化。</p>
+<p>主题内的查找分三个阶段完成。首先扫描所有目录以寻找完全匹配的目录，例如图标文件的允许大小与查找的内容相匹配的目录。然后扫描所有目录以查找与名称匹配的图标。如果失败，我们最终会退回到无主题图标。如果我们根本找不到任何图标，则由应用程序选择一个好的后备图标，因为正确的选择取决于上下文。</p>
+<p>在主题中查找图标的确切算法（伪代码）（如果实现者支持 SVG）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">FindIcon(icon, size, scale) &#123;</span><br><span class="line">  filename = FindIconHelper(icon, size, scale, user selected theme);</span><br><span class="line">  if filename != none</span><br><span class="line">    return filename</span><br><span class="line"></span><br><span class="line">  filename = FindIconHelper(icon, size, scale, &quot;hicolor&quot;);</span><br><span class="line">  if filename != none</span><br><span class="line">    return filename</span><br><span class="line"></span><br><span class="line">  return LookupFallbackIcon (icon)</span><br><span class="line">&#125;</span><br><span class="line">FindIconHelper(icon, size, scale, theme) &#123;</span><br><span class="line">  filename = LookupIcon (icon, size, scale, theme)</span><br><span class="line">  if filename != none</span><br><span class="line">    return filename</span><br><span class="line"></span><br><span class="line">  if theme has parents</span><br><span class="line">    parents = theme.parents</span><br><span class="line"></span><br><span class="line">  for parent in parents &#123;</span><br><span class="line">    filename = FindIconHelper (icon, size, scale, parent)</span><br><span class="line">    if filename != none</span><br><span class="line">      return filename</span><br><span class="line">  &#125;</span><br><span class="line">  return none</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用以下辅助函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">LookupIcon (iconname, size, scale, theme) &#123;</span><br><span class="line">  for each subdir in $(theme subdir list) &#123;</span><br><span class="line">    for each directory in $(basename list) &#123;</span><br><span class="line">      for extension in (&quot;png&quot;, &quot;svg&quot;, &quot;xpm&quot;) &#123;</span><br><span class="line">        if DirectoryMatchesSize(subdir, size, scale) &#123;</span><br><span class="line">          filename = directory/$(themename)/subdir/iconname.extension</span><br><span class="line">          if exist filename</span><br><span class="line">	    return filename</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  minimal_size = MAXINT</span><br><span class="line">  for each subdir in $(theme subdir list) &#123;</span><br><span class="line">    for each directory in $(basename list) &#123;</span><br><span class="line">      for extension in (&quot;png&quot;, &quot;svg&quot;, &quot;xpm&quot;) &#123;</span><br><span class="line">        filename = directory/$(themename)/subdir/iconname.extension</span><br><span class="line">        if exist filename and DirectorySizeDistance(subdir, size, scale) &lt; minimal_size &#123;</span><br><span class="line">	   closest_filename = filename</span><br><span class="line">	   minimal_size = DirectorySizeDistance(subdir, size, scale)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  if closest_filename set</span><br><span class="line">     return closest_filename</span><br><span class="line">  return none</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">LookupFallbackIcon (iconname) &#123;</span><br><span class="line">  for each directory in $(basename list) &#123;</span><br><span class="line">    for extension in (&quot;png&quot;, &quot;svg&quot;, &quot;xpm&quot;) &#123;</span><br><span class="line">      if exists directory/iconname.extension</span><br><span class="line">        return directory/iconname.extension</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return none</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DirectoryMatchesSize(subdir, iconsize, iconscale) &#123;</span><br><span class="line">  read Type and size data from subdir</span><br><span class="line">  if Scale != iconscale</span><br><span class="line">     return False;</span><br><span class="line">  if Type is Fixed</span><br><span class="line">    return Size == iconsize</span><br><span class="line">  if Type is Scaled</span><br><span class="line">    return MinSize &lt;= iconsize &lt;= MaxSize</span><br><span class="line">  if Type is Threshold</span><br><span class="line">    return Size - Threshold &lt;= iconsize &lt;= Size + Threshold</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DirectorySizeDistance(subdir, iconsize, iconscale) &#123;</span><br><span class="line">  read Type and size data from subdir</span><br><span class="line">  if Type is Fixed</span><br><span class="line">    return abs(Size*Scale - iconsize*iconscale)</span><br><span class="line">  if Type is Scaled</span><br><span class="line">    if iconsize*iconscale &lt; MinSize*Scale</span><br><span class="line">        return MinSize*Scale - iconsize*iconscale</span><br><span class="line">    if iconsize*iconscale &gt; MaxSize*Scale</span><br><span class="line">        return iconsize*iconscale - MaxSize*Scale</span><br><span class="line">    return 0</span><br><span class="line">  if Type is Threshold</span><br><span class="line">    if iconsize*iconscale &lt; (Size - Threshold)*Scale</span><br><span class="line">        return MinSize*Scale - iconsize*iconscale</span><br><span class="line">    if iconsize*iconsize &gt; (Size + Threshold)*Scale</span><br><span class="line">        return iconsize*iconsize - MaxSize*Scale</span><br><span class="line">    return 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在某些情况下，您并不总是希望退回到继承主题中的图标。例如，有时您会寻找一组图标，在使用继承主题中的图标之前更喜欢其中的任何一个。为了支持此类操作，实现可以包含一个函数，该函数在继承层次结构中查找图标名称列表的第一个.它看起来像这样:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">FindBestIcon(iconList, size, scale) &#123;</span><br><span class="line">  filename = FindBestIconHelper(iconList, size, scale, user selected theme);</span><br><span class="line">  if filename != none</span><br><span class="line">    return filename</span><br><span class="line"></span><br><span class="line">  filename = FindBestIconHelper(iconList, size, scale, &quot;hicolor&quot;);</span><br><span class="line">  if filename != none</span><br><span class="line">    return filename</span><br><span class="line"></span><br><span class="line">  for icon in iconList &#123;</span><br><span class="line">    filename = LookupFallbackIcon (icon)</span><br><span class="line">    if filename != none</span><br><span class="line">      return filename</span><br><span class="line">  &#125;</span><br><span class="line">  return none;</span><br><span class="line">&#125;</span><br><span class="line">FindBestIconHelper(iconList, size, scale, theme) &#123;</span><br><span class="line">  for icon in iconList &#123;</span><br><span class="line">    filename = LookupIcon (icon, size, theme)</span><br><span class="line">    if filename != none</span><br><span class="line">      return filename</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if theme has parents</span><br><span class="line">    parents = theme.parents</span><br><span class="line"></span><br><span class="line">  for parent in parents &#123;</span><br><span class="line">    filename = FindBestIconHelper (iconList, size, scale, parent)</span><br><span class="line">    if filename != none</span><br><span class="line">      return filename</span><br><span class="line">  &#125;</span><br><span class="line">  return none</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这可能非常有用，例如在处理 mimetype 图标时，其中多少都会有一些“特定”版本的图标。</p>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>这是一个示例 index.theme 文件：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Icon Theme]</span></span><br><span class="line"><span class="attr">Name</span>=Birch</span><br><span class="line">Name<span class="section">[sv]</span>=Björk</span><br><span class="line"><span class="attr">Comment</span>=Icon theme with a wooden look</span><br><span class="line">Comment<span class="section">[sv]</span>=Träinspirerat ikontema</span><br><span class="line"><span class="attr">Inherits</span>=wood,default</span><br><span class="line"><span class="attr">Directories</span>=<span class="number">48</span>x48/apps,<span class="number">48</span>x48@<span class="number">2</span>/apps48x48/mimetypes,<span class="number">32</span>x32/apps,<span class="number">32</span>x32@<span class="number">2</span>/apps,scalable/apps,scalable/mimetypes</span><br><span class="line"></span><br><span class="line"><span class="section">[scalable/apps]</span></span><br><span class="line"><span class="attr">Size</span>=<span class="number">48</span></span><br><span class="line"><span class="attr">Type</span>=Scalable</span><br><span class="line"><span class="attr">MinSize</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">MaxSize</span>=<span class="number">256</span></span><br><span class="line"><span class="attr">Context</span>=Applications</span><br><span class="line"></span><br><span class="line"><span class="section">[scalable/mimetypes]</span></span><br><span class="line"><span class="attr">Size</span>=<span class="number">48</span></span><br><span class="line"><span class="attr">Type</span>=Scalable</span><br><span class="line"><span class="attr">MinSize</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">MaxSize</span>=<span class="number">256</span></span><br><span class="line"><span class="attr">Context</span>=MimeTypes</span><br><span class="line"></span><br><span class="line"><span class="section">[32x32/apps]</span></span><br><span class="line"><span class="attr">Size</span>=<span class="number">32</span></span><br><span class="line"><span class="attr">Type</span>=Fixed</span><br><span class="line"><span class="attr">Context</span>=Applications</span><br><span class="line"></span><br><span class="line"><span class="section">[32x32@2/apps]</span></span><br><span class="line"><span class="attr">Size</span>=<span class="number">32</span></span><br><span class="line"><span class="attr">Scale</span>=<span class="number">2</span></span><br><span class="line"><span class="attr">Type</span>=Fixed</span><br><span class="line"><span class="attr">Context</span>=Applications</span><br><span class="line"></span><br><span class="line"><span class="section">[48x48/apps]</span></span><br><span class="line"><span class="attr">Size</span>=<span class="number">48</span></span><br><span class="line"><span class="attr">Type</span>=Fixed</span><br><span class="line"><span class="attr">Context</span>=Applications</span><br><span class="line"></span><br><span class="line"><span class="section">[48x48@2/apps]</span></span><br><span class="line"><span class="attr">Size</span>=<span class="number">48</span></span><br><span class="line"><span class="attr">Scale</span>=<span class="number">2</span></span><br><span class="line"><span class="attr">Type</span>=Fixed</span><br><span class="line"><span class="attr">Context</span>=Applications</span><br><span class="line"></span><br><span class="line"><span class="section">[48x48/mimetypes]</span></span><br><span class="line"><span class="attr">Size</span>=<span class="number">48</span></span><br><span class="line"><span class="attr">Type</span>=Fixed</span><br><span class="line"><span class="attr">Context</span>=MimeTypes</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;usr&#x2F;share&#x2F;icons 目录中相应的目录树可能如下所示：</p>
+<blockquote>
+<p>birch&#x2F;index.theme<br>birch&#x2F;scalable&#x2F;apps&#x2F;mozilla.svg<br>birch&#x2F;scalable&#x2F;mimetypes&#x2F;mime_text_plain.svg<br>birch&#x2F;scalable&#x2F;mimetypes&#x2F;mime_text_plain.icon<br>birch&#x2F;48x48&#x2F;apps&#x2F;mozilla.png<br>birch&#x2F;48x48@2&#x2F;apps&#x2F;mozilla.png<br>birch&#x2F;32x32&#x2F;apps&#x2F;mozilla.png<br>birch&#x2F;32x32@2&#x2F;apps&#x2F;mozilla.png<br>birch&#x2F;48x48&#x2F;mimetypes&#x2F;mime_text_plain.png<br>birch&#x2F;48x48&#x2F;mimetypes&#x2F;mime_text_plain.icon</p>
+</blockquote>
+<p>其中 birch&#x2F;scalable&#x2F;mimetypes&#x2F;mime_text_plain.icon 包含：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Icon Data]</span></span><br><span class="line"><span class="attr">DisplayName</span>=Mime text/plain</span><br><span class="line"><span class="attr">EmbeddedTextRectangle</span>=<span class="number">100</span>,<span class="number">100</span>,<span class="number">900</span>,<span class="number">900</span></span><br><span class="line"><span class="attr">AttachPoints</span>=<span class="number">200</span>,<span class="number">200</span>|<span class="number">800</span>,<span class="number">200</span>|<span class="number">500</span>,<span class="number">500</span>|<span class="number">200</span>,<span class="number">800</span>|<span class="number">800</span>,<span class="number">800</span></span><br></pre></td></tr></table></figure>
+
+<p>birch&#x2F;48x48&#x2F;mimetypes&#x2F;mime_text_plain.icon 包含：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Icon Data]</span></span><br><span class="line"><span class="attr">DisplayName</span>=Mime text/plain</span><br><span class="line"><span class="attr">EmbeddedTextRectangle</span>=<span class="number">8</span>,<span class="number">8</span>,<span class="number">40</span>,<span class="number">40</span></span><br><span class="line"><span class="attr">AttachPoints</span>=<span class="number">20</span>,<span class="number">20</span>|<span class="number">40</span>,<span class="number">40</span>|<span class="number">50</span>,<span class="number">10</span>|<span class="number">10</span>,<span class="number">50</span></span><br></pre></td></tr></table></figure>
+
+<p>在此示例中，由于目录的顺序，“mozilla”的查找将在 SVG 图标之前获取预渲染的 48x48 和 32x32 图标。（Icon Theme 中的 Directories 字段定义了查找的目录顺序）</p>
+<h1 id="安装应用程序图标"><a href="#安装应用程序图标" class="headerlink" title="安装应用程序图标"></a>安装应用程序图标</h1><p>因此，您是应用程序作者，并且想要安装应用程序图标，以便它们在 KDE 和 Gnome 菜单中工作。至少你应该在 hicolor 主题中安装一个 48x48 的图标。这意味着在 $prefix&#x2F;share&#x2F;icons&#x2F;hicolor&#x2F;48x48&#x2F;apps 中安装一个 PNG 文件。您可以选择安装不同大小的图标。例如，在 $prefix&#x2F;share&#x2F;icons&#x2F;hicolor&#x2F;scalable&#x2F;apps 中安装一个 svg 图标意味着大多数桌面将有一个适用于所有尺寸的图标。您甚至可能希望安装外观与其他知名主题相匹配的图标，以便您的应用程序适合某些特定的桌面环境。</p>
+<p>建议安装在 hicolor 主题中的图标看起来是中性的，因为它是一个后备主题，将与一些外观非常不同的主题结合使用。但是，如果您没有任何中性图标，请安装您所拥有的所有的 hicolor 主题图标，以便所有应用程序在所有主题中至少获得一些图标。</p>
+<h1 id="实现说明"><a href="#实现说明" class="headerlink" title="实现说明"></a>实现说明</h1><p>本文档中描述的算法通过始终在目录中查找文件名（unix 术语中的 stat）来工作。一个好的实现应该只读取一次目录，并使用该信息在内存中进行所有查找(例如qt中QIcon的实现)。</p>
+<p>这种缓存可能使用户无法在不重新启动应用程序的情况下添加图标。为了处理这个问题，任何执行缓存的实现都需要在执行缓存查找时查看顶级图标目录的最后修改时间，除非它在不到 5 秒前已经这样做了(意味着超过5秒再次获取图标时，应该重新刷新一遍内存中的信息，从而防止图标文件的更新无法及时获取到)。这意味着任何图标编辑器或主题安装程序只需要更改其更改主题的顶级目录的最后修改时间，就可以确保最终能使用到新图标。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%A0%87%E5%87%86/">标准</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/XDG/">XDG</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023/0555944369.html"
+                                   title="Desktop Entry Specification(桌面入口规范)"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Desktop Entry Specification(桌面入口规范)</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023/048c94961b.html"
+                                   title="XDG Base Directory Specification(XDG 基本目录规范)"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">XDG Base Directory Specification(XDG 基本目录规范)</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline-meta.css"/>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          window.KeepCommentPlugin.walineOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+          window.KeepCommentPlugin.walineOptions.el = '#waline-comment'
+          window.KeepCommentPlugin.walineOptions.comment = '.post-comments-count'
+          window.KeepCommentPlugin.walineOptions.serverURL = 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/'
+          window.KeepCommentPlugin.walineOptions.lang = 'en' || 'zh-CN'
+          window.KeepCommentPlugin.walineOptions.reaction = 'true' === 'true'
+        </script>
+
+        
+
+        
+            <script data-pjax
+                    async
+                    type="module"
+            >
+              import { init } from '//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js'
+              window.KeepCommentPlugin.initWaline = () => {
+                if (init) {
+                  init(window.KeepCommentPlugin.walineOptions)
+                  window.KeepCommentPlugin.hideLoading()
+                } else {
+                  setTimeout(() => {
+                    window.KeepCommentPlugin.initWaline()
+                  }, 1000)
+                }
+              }
+
+              if ('true' === 'true') {
+                setTimeout(() => {
+                  window.KeepCommentPlugin.initWaline()
+                }, 1200)
+              } else {
+                window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initWaline)
+              }
+            </script>
+        
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E5%B8%83%E5%B1%80"><span class="nav-text">目录布局</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-text">文件格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86-Keys"><span class="nav-text">标准 Keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95-Keys"><span class="nav-text">目录  Keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E6%A0%87-Keys"><span class="nav-text">图标 Keys</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Context"><span class="nav-text">Context</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E6%A0%87%E6%9F%A5%E6%89%BE"><span class="nav-text">图标查找</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-text">例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%9B%BE%E6%A0%87"><span class="nav-text">安装应用程序图标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E8%AF%B4%E6%98%8E"><span class="nav-text">实现说明</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ssk-wh</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+                <a target="_blank" rel="nofollow" href="https://github.com/">
+            
+            This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span>
+            
+                </a>
+            
+        </div>
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E5%B8%83%E5%B1%80"><span class="nav-text">目录布局</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-text">文件格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86-Keys"><span class="nav-text">标准 Keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95-Keys"><span class="nav-text">目录  Keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E6%A0%87-Keys"><span class="nav-text">图标 Keys</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Context"><span class="nav-text">Context</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E6%A0%87%E6%9F%A5%E6%89%BE"><span class="nav-text">图标查找</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-text">例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%9B%BE%E6%A0%87"><span class="nav-text">安装应用程序图标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E8%AF%B4%E6%98%8E"><span class="nav-text">实现说明</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

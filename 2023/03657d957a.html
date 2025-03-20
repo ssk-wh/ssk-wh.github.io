@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            软件设计模式-行为型 |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#29392c","title":"Ssk-wh's Blog","author":"ssk-wh","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","tools":"/tools","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":true,"links":{"github":"https://github.com/ssk-wh","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"juchengshi@gmail.com"}},"scroll":{"progress_bar":false,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":false,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":3},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":true,"provider":"github","url":"https://github.com/"},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"伙计们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://xpoet.cn/images/avatar.png"},{"name":"Guo Le's Blog","link":"https://guole.fun/","description":"生命是独立是自由是爱与和平","avatar":"https://guole.fun/img/gl.jpg"},{"name":"酷小呵","link":"https://www.kuhehe.top/","description":"爱分享的酷小呵","avatar":"https://q1.qlogo.cn/g?b=qq&nk=3111349763&s=100"}],"tools":[{"category":"AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"name":"Copilot","link":"https://copilot.microsoft.com/","description":"微软家的AI助手","image":"/images/tools/copilot.svg"},{"name":"Kimi","link":"https://kimi.moonshot.cn/","description":"支持识别文件或网址的小众AI网站","image":"/images/tools/kimi.png"},{"name":"文心一言","link":"https://yiyan.baidu.com/","description":"百度旗下的AI助手","image":"/images/tools/wxyy.png"},{"name":"通义千问","link":"https://tongyi.aliyun.com/qianwen/","description":"阿里旗下","image":"/images/tools/tyqw.Default"},{"name":"讯飞星火","link":"https://xinghuo.xfyun.cn/","description":"讯飞旗下","image":"/images/tools/xfxh.svg"},{"category":"技术"},{"name":"Hexo","link":"https://hexo.io/","description":"快速、简洁且高效的博客框架","image":"https://upload.wikimedia.org/wikipedia/commons/b/b9/Hexo_blog_logo.svg"},{"name":"稀土掘金","link":"https://juejin.cn/","description":"开发者社区","image":"/images/tools/xtjj.Default"},{"category":"笔记"},{"name":"语雀","link":"https://www.yuque.com/","description":"在线记录笔记","image":"/images/tools/yuque.svg"},{"category":"图片"},{"name":"undraw","link":"https://undraw.co/illustrations","description":"免费的矢量素材下载网站","image":"https://raw.githubusercontent.com/ssk-wh/ssk-wh.github.io/master/images/undraw_shopping_bags_8l6g.svg"},{"name":"carbon","link":"https://carbon.now.sh/","description":"将代码生成图片","image":null},{"category":"作图网站"},{"name":"Draw.io","link":"https://draw.io/","description":"在线绘图网站，支持同步保存至github","image":null},{"name":"ProcessOn","link":"https://www.processon.com/","description":"在线绘图网站，画软件流程图经常用到","image":null},{"category":"博客管理"},{"name":"LeanCloud","link":"https://console.leancloud.app/apps/D0eDuK0h6X11p0z7FxTgY1CX-MdYXbMMI/storage/data/Comment","description":"评论管理","image":"https://gravatar.tapglb.com/avatar/afa8e9b8057e1877138d43f1dfdd8510?s=200&d=retro"}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                TOOLS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                ABOUT
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                            TOOLS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            ABOUT
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        软件设计模式-行为型
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">ssk-wh</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2023-03-28 22:34:52</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Mon Apr 17 2023 03:46:49 GMT+0000">2023-04-17 03:46:49</span>
+                </span>
+            
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>8.2k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>34 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>行为型设计模式关注对象之间的通信方式，以及如何在对象之间有效地传递信息。</p>
+<span id="more"></span>
+
+<p>以下是几种常见的行为型设计模式：</p>
+<p>责任链模式(Chain of Responsibility Pattern)：将请求的发送者和接收者解耦，从而使得多个对象都有机会处理这个请求。<br>命令模式(Command Pattern)：将一个请求封装成一个对象，从而使不同的请求可以对客户进行参数化，并支持请求排队、记录日志、撤销操作等功能。<br>解释器模式(Interpreter Pattern)：给定一个语言，定义它的文法表示，并定义一个解释器，用来解释语言中的句子。<br>迭代器模式(Iterator Pattern)：提供一种方法顺序访问一个聚合对象中各个元素，而又不暴露该对象的内部表示。<br>中介者模式(Mediator Pattern)：用一个中介对象来封装一系列的对象交互，从而使各个对象之间的耦合松散，并且可以独立地改变它们之间的交互。<br>备忘录模式(Memento Pattern)：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，以便之后恢复对象的状态。<br>观察者模式(Observer Pattern)：定义对象间一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖它的对象都将得到通知并自动更新。<br>状态模式(State Pattern)：允许一个对象在其内部状态改变时改变它的行为。<br>策略模式(Strategy Pattern)：定义算法族，分别封装起来，让它们之间可以相互替换，此模式让算法的变化独立于使用它的客户端（Context）而独立变化。<br>模板方法模式(Template Method Pattern)：定义一个操作中的算法骨架，将一些步骤延迟到子类中，使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。<br>访问者模式(Visitor pattern)：在访问者模式中，算法被分离出来并在一个称为“访问者”的对象中实现，它可以遍历复杂的数据结构并对其进行操作。</p>
+<h1 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h1><p>责任链模式（Chain of Responsibility Pattern）是一种行为型模式，它可以使多个对象都有机会处理请求，从而避免了请求的发送者和接收者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递请求，直到有一个对象处理它为止。</p>
+<p>在责任链模式中，每个处理者都有一个后继处理者，如果当前处理者不能处理该请求，则将请求转发给下一个处理者，直到找到能够处理请求的处理者为止。因此，责任链模式实现了请求的发送者和接收者之间的解耦，让请求可以在不影响客户端的情况下被多个对象处理。</p>
+<p>在责任链模式中，通常会定义一个抽象的处理者类，其中包含处理请求的方法和后继处理者的引用。具体的处理者类继承自抽象处理者类，实现自己的处理逻辑，同时将未处理的请求转发给后继处理者。</p>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>责任链模式的优点是将请求的发送者和接收者解耦，提高系统的灵活性和可扩展性。缺点是由于请求需要在链中传递，因此可能会影响系统的性能。此外，如果链太长或者构造不合理，可能会导致请求无法被处理。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>以下是一个基于责任链模式的简单示例，实现了一个电商系统的商品优惠活动审批流程。在这个示例中，有三种不同类型的审批人，分别是初审人员、中审人员和高审人员，每个审批人员都可以审批商品优惠活动，但是不同类型的审批人员有不同的审批权限和审批级别。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象审批人员类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Approver</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Approver</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Approver</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">approve</span><span class="params">(<span class="type">int</span> amount)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setNext</span><span class="params">(Approver* next)</span> </span>&#123; next_ = next; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    Approver* next_ = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初审人员</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FirstApprover</span> : <span class="keyword">public</span> Approver &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">FirstApprover</span>() = <span class="keyword">default</span>;</span><br><span class="line">    ~<span class="built_in">FirstApprover</span>() <span class="keyword">override</span> = <span class="keyword">default</span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">approve</span><span class="params">(<span class="type">int</span> amount)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (amount &lt; <span class="number">100</span>) &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;初审通过！&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (next_) &#123;</span><br><span class="line">            next_-&gt;<span class="built_in">approve</span>(amount);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中审人员</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SecondApprover</span> : <span class="keyword">public</span> Approver &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">SecondApprover</span>() = <span class="keyword">default</span>;</span><br><span class="line">    ~<span class="built_in">SecondApprover</span>() <span class="keyword">override</span> = <span class="keyword">default</span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">approve</span><span class="params">(<span class="type">int</span> amount)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (amount &lt; <span class="number">500</span>) &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;中审通过！&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (next_) &#123;</span><br><span class="line">            next_-&gt;<span class="built_in">approve</span>(amount);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 高审人员</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ThirdApprover</span> : <span class="keyword">public</span> Approver &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">ThirdApprover</span>() = <span class="keyword">default</span>;</span><br><span class="line">    ~<span class="built_in">ThirdApprover</span>() <span class="keyword">override</span> = <span class="keyword">default</span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">approve</span><span class="params">(<span class="type">int</span> amount)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (amount &lt; <span class="number">1000</span>) &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;高审通过！&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;审批拒绝！&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    FirstApprover first_approver;</span><br><span class="line">    SecondApprover second_approver;</span><br><span class="line">    ThirdApprover third_approver;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置责任链</span></span><br><span class="line">    first_approver.<span class="built_in">setNext</span>(&amp;second_approver);</span><br><span class="line">    second_approver.<span class="built_in">setNext</span>(&amp;third_approver);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 申请活动</span></span><br><span class="line">    first_approver.<span class="built_in">approve</span>(<span class="number">80</span>); <span class="comment">// 初审通过</span></span><br><span class="line">    first_approver.<span class="built_in">approve</span>(<span class="number">200</span>); <span class="comment">// 中审通过</span></span><br><span class="line">    first_approver.<span class="built_in">approve</span>(<span class="number">800</span>); <span class="comment">// 高审通过</span></span><br><span class="line">    first_approver.<span class="built_in">approve</span>(<span class="number">1500</span>); <span class="comment">// 审批拒绝</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个示例中，抽象审批人员类定义了一个纯虚函数approve()，表示审批操作。具体的审批人员类（初审人员、中审人员、高审人员）都继承自抽象审批人员类，实现了自己的审批逻辑，并通过setNext()函数设置了自己的下一个审批人员，形成了一个责任链。最后，在main()函数中，创建了三个审批人员对象，然后通过setNext()函数设置它们之间的关系，模拟了一次申请审批的流程。</p>
+<h1 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h1><p>命令模式是一种行为设计模式，它将请求或操作封装为一个对象，从而使可以将不同的请求参数化和队列化。命令模式中，发送请求的对象称为发送者，执行请求的对象称为接收者，而将请求对象称为命令。</p>
+<p>命令模式常常用于实现<strong>撤销操作，重做操作，日志记录</strong>等功能。</p>
+<h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h2><p>假设我们有一个简单的文本编辑器，支持撤销和恢复操作。我们可以使用命令模式来实现这个功能。</p>
+<p>首先，定义一个命令接口 Command，其中包含两个方法 execute() 和 undo()，分别用于执行命令和撤销命令。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Command</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Command</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">execute</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">undo</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后，定义具体的命令类。这里我们假设有两种命令：插入文本和删除文本。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">InsertCommand</span> : <span class="keyword">public</span> Command &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">InsertCommand</span>(string&amp; text, <span class="type">int</span> pos, <span class="type">char</span> ch)</span><br><span class="line">        : <span class="built_in">text_</span>(text), <span class="built_in">pos_</span>(pos), <span class="built_in">ch_</span>(ch), <span class="built_in">deleted_</span>(<span class="literal">false</span>) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">execute</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        text_.<span class="built_in">insert</span>(pos_, <span class="number">1</span>, ch_);</span><br><span class="line">        deleted_ = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">undo</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!deleted_) &#123;</span><br><span class="line">            text_.<span class="built_in">erase</span>(pos_, <span class="number">1</span>);</span><br><span class="line">            deleted_ = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    string&amp; text_;</span><br><span class="line">    <span class="type">int</span> pos_;</span><br><span class="line">    <span class="type">char</span> ch_;</span><br><span class="line">    <span class="type">bool</span> deleted_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DeleteCommand</span> : <span class="keyword">public</span> Command &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">DeleteCommand</span>(string&amp; text, <span class="type">int</span> pos)</span><br><span class="line">        : <span class="built_in">text_</span>(text), <span class="built_in">pos_</span>(pos), <span class="built_in">deleted_char_</span>(text_[pos]), <span class="built_in">deleted_</span>(<span class="literal">false</span>) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">execute</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!deleted_) &#123;</span><br><span class="line">            text_.<span class="built_in">erase</span>(pos_, <span class="number">1</span>);</span><br><span class="line">            deleted_ = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">undo</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        text_.<span class="built_in">insert</span>(pos_, <span class="number">1</span>, deleted_char_);</span><br><span class="line">        deleted_ = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    string&amp; text_;</span><br><span class="line">    <span class="type">int</span> pos_;</span><br><span class="line">    <span class="type">char</span> deleted_char_;</span><br><span class="line">    <span class="type">bool</span> deleted_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在文本编辑器中，我们需要有一个命令管理器，用于保存当前的命令和历史命令。每当用户执行一个命令时，该命令将被添加到命令管理器中，当需要撤销命令时，我们可以调用命令管理器中的 undo() 方法。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CommandManager</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">execute</span><span class="params">(Command* cmd)</span> </span>&#123;</span><br><span class="line">        cmd-&gt;<span class="built_in">execute</span>();</span><br><span class="line">        commands_.<span class="built_in">push_back</span>(cmd);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">undo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!commands_.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">auto</span> cmd = commands_.<span class="built_in">back</span>();</span><br><span class="line">            cmd-&gt;<span class="built_in">undo</span>();</span><br><span class="line">            commands_.<span class="built_in">pop_back</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;Command*&gt; commands_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>最后，在主函数中，我们可以使用命令模式来实现文本编辑器的撤销和恢复操作。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    string text = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">    CommandManager cmd_mgr;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 执行一些命令</span></span><br><span class="line">    cmd_mgr.<span class="built_in">execute</span>(<span class="keyword">new</span> <span class="built_in">InsertCommand</span>(text, <span class="number">6</span>, <span class="string">&#x27;,&#x27;</span>));</span><br><span class="line">    cmd_mgr.<span class="built_in">execute</span>(<span class="keyword">new</span> <span class="built_in">InsertCommand</span>(text, <span class="number">7</span>, <span class="string">&#x27; &#x27;</span>));</span><br><span class="line">    cmd_mgr.<span class="built_in">execute</span>(<span class="keyword">new</span> <span class="built_in">InsertCommand</span>(text, <span class="number">8</span>, <span class="string">&#x27;C&#x27;</span>));</span><br><span class="line">    cmd_mgr.<span class="built_in">execute</span>(<span class="keyword">new</span> <span class="built_in">InsertCommand</span>(text, <span class="number">9</span>, <span class="string">&#x27;+&#x27;</span>));</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;After insert: &quot;</span> &lt;&lt; text &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 撤销最后一个命令</span></span><br><span class="line">    cmd_mgr.<span class="built_in">undo</span>();</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;After undo: &quot;</span> &lt;&lt; text &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 再次撤销</span></span><br><span class="line">    cmd_mgr.<span class="built_in">undo</span>();</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;After undo: &quot;</span> &lt;&lt; text &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 执行一些命令</span></span><br><span class="line">    cmd_mgr.<span class="built_in">execute</span>(<span class="keyword">new</span> <span class="built_in">DeleteCommand</span> (text, <span class="number">6</span>));</span><br><span class="line">    cmd_mgr.<span class="built_in">execute</span>(<span class="keyword">new</span> <span class="built_in">DeleteCommand</span> (text, <span class="number">7</span>));</span><br><span class="line">    cmd_mgr.<span class="built_in">execute</span>(<span class="keyword">new</span> <span class="built_in">DeleteCommand</span> (text, <span class="number">8</span>));</span><br><span class="line">    cmd_mgr.<span class="built_in">execute</span>(<span class="keyword">new</span> <span class="built_in">DeleteCommand</span> (text, <span class="number">9</span>));</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;After delete: &quot;</span> &lt;&lt; text &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 撤销最后一个命令</span></span><br><span class="line">    cmd_mgr.<span class="built_in">undo</span>();</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;After undo: &quot;</span> &lt;&lt; text &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 再次撤销</span></span><br><span class="line">    cmd_mgr.<span class="built_in">undo</span>();</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;After undo: &quot;</span> &lt;&lt; text &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h1><p>解释器模式（Interpreter Pattern）是一种行为型设计模式，它定义了一种语言文法，以及一种解释器来解释该语言中的语句，使用户能够定义自己的语言，并能够解释执行。该模式常常用于编译器的实现中，也常常用于实现基于规则的系统，如正则表达式处理等。</p>
+<p>在解释器模式中，通常有两个角色：抽象表达式（Abstract Expression）和具体表达式（Concrete Expression）。抽象表达式定义了解释器的接口，具体表达式则根据具体的语法规则实现该接口。此外，解释器还可以定义一些上下文相关的信息，这些信息对于理解并解释语言中的语句非常重要。</p>
+<h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h2><p>假设有一个字符串类 String，需要实现一个解释器来解析字符串中的数字并求和。例如，字符串 “1+2+3” 应该解析为数字 1、2、3 并求和得到 6。</p>
+<p>首先定义一个抽象解释器类 Interpreter，其中有一个纯虚函数 interpret() 用于解释字符串。然后定义一个具体解释器类 NumberInterpreter，用于解释数字；以及一个具体解释器类 AddInterpreter，用于解释加号。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象解释器类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Interpreter</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Interpreter</span>() &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">int</span> <span class="title">interpret</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数字解释器</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NumberInterpreter</span> : <span class="keyword">public</span> Interpreter &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">NumberInterpreter</span>(<span class="type">int</span> number) : <span class="built_in">number_</span>(number) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">interpret</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> number_;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> number_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加号解释器</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AddInterpreter</span> : <span class="keyword">public</span> Interpreter &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">AddInterpreter</span>(Interpreter* left, Interpreter* right) : <span class="built_in">left_</span>(left), <span class="built_in">right_</span>(right) &#123;&#125;</span><br><span class="line">    ~<span class="built_in">AddInterpreter</span>() &#123;</span><br><span class="line">        <span class="keyword">delete</span> left_;</span><br><span class="line">        <span class="keyword">delete</span> right_;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">interpret</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> left_-&gt;<span class="built_in">interpret</span>() + right_-&gt;<span class="built_in">interpret</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Interpreter* left_;</span><br><span class="line">    Interpreter* right_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解释器环境类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InterpreterContext</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">InterpreterContext</span>(<span class="type">const</span> string&amp; input) : <span class="built_in">input_</span>(input) &#123;&#125;</span><br><span class="line">    ~<span class="built_in">InterpreterContext</span>() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> interpreter : interpreters_) &#123;</span><br><span class="line">            <span class="keyword">delete</span> interpreter;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">evaluate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 将字符串转为解释器对象</span></span><br><span class="line">        <span class="type">int</span> len = input_.<span class="built_in">length</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">isdigit</span>(input_[i])) &#123; <span class="comment">// 如果是数字，则转为 NumberInterpreter 对象</span></span><br><span class="line">                <span class="type">int</span> j = i;</span><br><span class="line">                <span class="keyword">while</span> (j &lt; len &amp;&amp; <span class="built_in">isdigit</span>(input_[j])) ++j;</span><br><span class="line">                string num = input_.<span class="built_in">substr</span>(i, j - i);</span><br><span class="line">                Interpreter* interpreter = <span class="keyword">new</span> <span class="built_in">NumberInterpreter</span>(<span class="built_in">stoi</span>(num));</span><br><span class="line">                interpreters_.<span class="built_in">push_back</span>(interpreter);</span><br><span class="line">                i = j - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (input_[i] == <span class="string">&#x27;+&#x27;</span>) &#123; <span class="comment">// 如果是加号，则转为 AddInterpreter 对象</span></span><br><span class="line">                Interpreter* left = interpreters_.<span class="built_in">back</span>();</span><br><span class="line">                Interpreter* right = <span class="keyword">new</span> <span class="built_in">NumberInterpreter</span>(<span class="built_in">stoi</span>(input_.<span class="built_in">substr</span>(i + <span class="number">1</span>)));</span><br><span class="line">                interpreters_.<span class="built_in">pop_back</span>();</span><br><span class="line">                Interpreter* interpreter = <span class="keyword">new</span> <span class="built_in">AddInterpreter</span>(left, right);</span><br><span class="line">                interpreters_.<span class="built_in">push_back</span>(interpreter);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> interpreters_.<span class="built_in">back</span>()-&gt;<span class="built_in">interpret</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    string input_;</span><br><span class="line">    vector&lt;Interpreter*&gt; interpreters_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">InterpreterContext <span class="title">context</span><span class="params">(<span class="string">&quot;1+2+3&quot;</span>)</span></span>;</span><br><span class="line">    <span class="type">int</span> result = context.<span class="built_in">evaluate</span>();</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Result: &quot;</span> &lt;&lt; result &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这个示例中，解释器模式将字符串解释为一个语法树，然后再通过遍历语法树求得最终结果。由于这里只有加法和数字，所以语法树很简单，只有两个节点。但如果要支持更多的运算符和操作数，语法树会变得更加复杂。</p>
+<h1 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h1><p>迭代器模式（Iterator Pattern）是一种行为型设计模式，它允许客户端遍历容器（如列表、数组等）中的元素，而不需要暴露该容器的内部实现。它通过提供一种统一的接口来遍历不同类型的容器，使得遍历算法可以与特定容器的实现解耦。</p>
+<p>迭代器模式主要包含以下角色：</p>
+<p>迭代器（Iterator）：定义遍历元素所需要的方法，一般来说会有 hasNext() 方法用于判断是否还有元素，next() 方法用于返回当前元素并将指针移动到下一个元素。<br>具体迭代器（ConcreteIterator）：实现迭代器接口，负责遍历具体的容器。<br>容器（Container）：定义返回一个迭代器的方法，例如 iterator() 方法，用于返回一个迭代器对象。<br>具体容器（ConcreteContainer）：实现容器接口，负责存储数据和返回迭代器对象。</p>
+<h2 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 迭代器接口</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Iterator</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Iterator</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">bool</span> <span class="title">hasNext</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">int</span> <span class="title">next</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体迭代器实现</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">VectorIterator</span> : <span class="keyword">public</span> Iterator &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">VectorIterator</span>(std::vector&lt;<span class="type">int</span>&gt;&amp; v) : <span class="built_in">v_</span>(v), <span class="built_in">index_</span>(<span class="number">0</span>) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">hasNext</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> index_ &lt; v_.<span class="built_in">size</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">next</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> v_[index_++];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt;&amp; v_;</span><br><span class="line">    <span class="type">int</span> index_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 容器接口</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Container</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Container</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> Iterator* <span class="title">iterator</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体容器实现</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">VectorContainer</span> : <span class="keyword">public</span> Container &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">VectorContainer</span>(std::vector&lt;<span class="type">int</span>&gt;&amp; v) : <span class="built_in">v_</span>(v) &#123;&#125;</span><br><span class="line">    <span class="function">Iterator* <span class="title">iterator</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">VectorIterator</span>(v_);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt;&amp; v_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 客户端代码</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; v&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">    <span class="function">VectorContainer <span class="title">container</span><span class="params">(v)</span></span>;</span><br><span class="line">    Iterator* iterator = container.<span class="built_in">iterator</span>();</span><br><span class="line">    <span class="keyword">while</span> (iterator-&gt;<span class="built_in">hasNext</span>()) &#123;</span><br><span class="line">        std::cout &lt;&lt; iterator-&gt;<span class="built_in">next</span>() &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">delete</span> iterator;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个示例中，我们首先定义了一个迭代器接口 Iterator，其中 hasNext() 方法用于判断是否还有元素，next() 方法用于返回当前元素并将指针移动到下一个元素。接着，我们实现了一个具体的迭代器 VectorIterator，它基于一个 std::vector<int> 容器实现了 hasNext() 和 next() 方法。</p>
+<p>在实际开发中，迭代器模式被广泛应用于STL中，比如vector、list、map等STL容器都提供了迭代器，通过迭代器可以方便地对容器中的元素进行遍历和操作。此外，迭代器模式也常用于数据库操作中，尤其是在对大型数据集进行查询和遍历时，通过迭代器可以减少内存占用和提高查询效率。</p>
+<h1 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h1><p>中介者模式（Mediator Pattern）是一种行为型设计模式，它可以使对象间的通信通过中介者进行，而不是直接相互引用。这种模式中，中介者对象将负责协调多个对象之间的交互，从而使它们能够相互独立地改变和复用。</p>
+<p>在中介者模式中，存在一个中介者对象，它封装了一系列的对象之间的交互逻辑。当一个对象发生变化时，它会通知中介者对象，然后由中介者对象进行相应的处理和通知其它相关对象。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>中介者模式的优点是将多个对象间的复杂关系和交互逻辑集中到了中介者对象中，从而使得对象间的通信更加简单，同时也提高了代码的可维护性和可扩展性。同时，中介者模式也可以减少对象间的耦合度，使得系统更加灵活和易于扩展。</p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>但是，中介者模式也有一些缺点。首先，由于中介者对象需要了解并处理多个对象间的逻辑关系，因此它往往会变得比较复杂，难以维护。此外，中介者模式也可能导致系统中出现大量的中介者对象，从而使得系统变得更加复杂。</p>
+<h2 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Colleague</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Mediator</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Mediator</span>() &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">SendMessage</span><span class="params">(Colleague* colleague, std::string message)</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Colleague</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Colleague</span>(Mediator* mediator) : <span class="built_in">mediator_</span>(mediator) &#123;&#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Colleague</span>() &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">SendMessage</span><span class="params">(std::string message)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">ReceiveMessage</span><span class="params">(std::string message)</span> </span>= <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    Mediator* mediator_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteColleagueA</span> : <span class="keyword">public</span> Colleague &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">ConcreteColleagueA</span>(Mediator* mediator) : <span class="built_in">Colleague</span>(mediator) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">SendMessage</span><span class="params">(std::string message)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        mediator_-&gt;<span class="built_in">SendMessage</span>(<span class="keyword">this</span>, message);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">ReceiveMessage</span><span class="params">(std::string message)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;ConcreteColleagueA received message: &quot;</span> &lt;&lt; message &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteColleagueB</span> : <span class="keyword">public</span> Colleague &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">ConcreteColleagueB</span>(Mediator* mediator) : <span class="built_in">Colleague</span>(mediator) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">SendMessage</span><span class="params">(std::string message)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        mediator_-&gt;<span class="built_in">SendMessage</span>(<span class="keyword">this</span>, message);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">ReceiveMessage</span><span class="params">(std::string message)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;ConcreteColleagueB received message: &quot;</span> &lt;&lt; message &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteMediator</span> : <span class="keyword">public</span> Mediator &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">AddColleague</span><span class="params">(Colleague* colleague)</span> </span>&#123;</span><br><span class="line">        colleagues_.<span class="built_in">push_back</span>(colleague);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">SendMessage</span><span class="params">(Colleague* colleague, std::string message)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c : colleagues_) &#123;</span><br><span class="line">            <span class="keyword">if</span> (c != colleague) &#123;</span><br><span class="line">                c-&gt;<span class="built_in">ReceiveMessage</span>(message);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::vector&lt;Colleague*&gt; colleagues_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ConcreteMediator mediator;</span><br><span class="line">    <span class="function">ConcreteColleagueA <span class="title">colleagueA</span><span class="params">(&amp;mediator)</span></span>;</span><br><span class="line">    <span class="function">ConcreteColleagueB <span class="title">colleagueB</span><span class="params">(&amp;mediator)</span></span>;</span><br><span class="line"></span><br><span class="line">    mediator.<span class="built_in">AddColleague</span>(&amp;colleagueA);</span><br><span class="line">    mediator.<span class="built_in">AddColleague</span>(&amp;colleagueB);</span><br><span class="line"></span><br><span class="line">    colleagueA.<span class="built_in">SendMessage</span>(<span class="string">&quot;Hello, I&#x27;m Colleague A.&quot;</span>);</span><br><span class="line">    colleagueB.<span class="built_in">SendMessage</span>(<span class="string">&quot;Hi, I&#x27;m Colleague B.&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个示例定义了中介者（Mediator）和同事（Colleague）两个基本抽象类。中介者定义了同事之间的通信接口，同事通过中介者进行通信。具体的同事类（ConcreteColleagueA和ConcreteColleagueB）实现了同事抽象类的接口，通过中介者与其他同事进行通信。具体中介者类（ConcreteMediator）实现了中介者抽象类的接口，负责管理同事对象，协调同事之间的通信。</p>
+<p>在主函数中，我们创建了一个具体中介者对象和两个具体同事对象，将同事对象添加到中介者对象中，并通过同事对象的发送消息接口进行通信。</p>
+<h1 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h1><p>备忘录模式是一种行为型设计模式，它允许在不暴露对象实现细节的情况下捕获并存储对象的内部状态，并在以后将对象恢复到该状态。备忘录模式通常用于需要记录对象状态的情况，例如在撤销操作时，或者在处理事务性操作时需要回滚。</p>
+<p>备忘录模式由三个主要角色组成：原始对象（Originator）、备忘录（Memento）和负责人（Caretaker）。原始对象负责创建备忘录，并从备忘录中恢复其状态。备忘录是原始对象状态的快照。负责人负责管理备忘录，并在必要时将其传递给原始对象。</p>
+<p>备忘录模式的核心思想是将状态的存储和恢复与原始对象分离开来，以保持其封装性。这样可以将对象状态的实现细节隐藏起来，同时还可以更方便地在对象之间共享状态。备忘录模式的一个重要优点是它提供了一种简单且可扩展的方式来支持撤销操作。</p>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>备忘录模式的使用场景通常是在需要记录一个对象的内部状态的变化历史，并且希望能够随时回到之前的某个状态时。比如：</p>
+<p>编辑器软件中的“撤销”和“重做”功能，用户对文本进行修改时，软件可以将每次修改前的状态记录下来，当用户需要撤销或者重做某个操作时，可以将状态恢复到对应的历史状态。</p>
+<p>游戏中的存档和读档功能，游戏可以将当前游戏状态保存到备忘录对象中，当玩家需要恢复到之前的某个状态时，可以通过读取备忘录对象来实现。</p>
+<p>购物网站中的“购物车”功能，用户在选购商品时，可以将每个商品的状态记录下来，当用户需要修改购物车内容时，可以随时回到之前的某个状态。</p>
+<p>总之，备忘录模式适用于需要记录对象状态变化历史、并且需要能够随时回溯到历史状态的场景。</p>
+<h2 id="示例-5"><a href="#示例-5" class="headerlink" title="示例"></a>示例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 备忘录类，用于存储某个状态</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Memento</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Memento</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="built_in">Memento</span>(<span class="type">const</span> std::string&amp; state) : <span class="built_in">state_</span>(state) &#123;&#125;</span><br><span class="line">    ~<span class="built_in">Memento</span>() = <span class="keyword">default</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">std::string <span class="title">getState</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> state_; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::string state_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原始对象类，需要进行备份的对象</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Originator</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Originator</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="built_in">Originator</span>(<span class="type">const</span> std::string&amp; state) : <span class="built_in">state_</span>(state) &#123;&#125;</span><br><span class="line">    ~<span class="built_in">Originator</span>() = <span class="keyword">default</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setState</span><span class="params">(<span class="type">const</span> std::string&amp; state)</span> </span>&#123; state_ = state; &#125;</span><br><span class="line">    <span class="function">std::string <span class="title">getState</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> state_; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建备忘录对象，并保存当前状态</span></span><br><span class="line">    <span class="function">Memento <span class="title">createMemento</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">Memento</span>(state_); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 根据备忘录对象恢复状态</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">restoreMemento</span><span class="params">(<span class="type">const</span> Memento&amp; memento)</span> </span>&#123; state_ = memento.<span class="built_in">getState</span>(); &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::string state_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 管理备忘录的类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Caretaker</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Caretaker</span>() = <span class="keyword">default</span>;</span><br><span class="line">    ~<span class="built_in">Caretaker</span>() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> m : mementos_) &#123;</span><br><span class="line">            <span class="keyword">delete</span> m;</span><br><span class="line">        &#125;</span><br><span class="line">        mementos_.<span class="built_in">clear</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加备忘录对象</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">addMemento</span><span class="params">(Memento* memento)</span> </span>&#123; mementos_.<span class="built_in">push_back</span>(memento); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取指定位置的备忘录对象</span></span><br><span class="line">    <span class="function">Memento* <span class="title">getMemento</span><span class="params">(<span class="type">int</span> index)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt;= mementos_.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> mementos_[index];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::vector&lt;Memento*&gt; mementos_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">Originator <span class="title">originator</span><span class="params">(<span class="string">&quot;Initial state&quot;</span>)</span></span>; <span class="comment">// 创建原始对象</span></span><br><span class="line">    Caretaker caretaker; <span class="comment">// 创建备忘录管理对象</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加备忘录对象</span></span><br><span class="line">    caretaker.<span class="built_in">addMemento</span>(originator.<span class="built_in">createMemento</span>());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 改变原始对象状态</span></span><br><span class="line">    originator.<span class="built_in">setState</span>(<span class="string">&quot;New state&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加备忘录对象</span></span><br><span class="line">    caretaker.<span class="built_in">addMemento</span>(originator.<span class="built_in">createMemento</span>());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 恢复原始对象状态</span></span><br><span class="line">    originator.<span class="built_in">restoreMemento</span>(*caretaker.<span class="built_in">getMemento</span>(<span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; originator.<span class="built_in">getState</span>() &lt;&lt; std::endl; <span class="comment">// 输出 &quot;Initial state&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><p>观察者模式是一种行为型设计模式，它定义了对象之间的一对多依赖关系，使得当一个对象状态发生变化时，所有依赖于它的对象都会得到通知并自动更新。在观察者模式中，被观察的对象通常被称为主题（Subject），而观察者被称为订阅者（Observer）。</p>
+<p>观察者模式的主要优点是实现了松耦合（Loose Coupling）的设计，因为主题和订阅者之间没有直接的依赖关系。这样一来，主题的变化不会影响到订阅者，也不会影响到其他的主题。观察者模式还可以实现动态的发布和订阅机制，因为主题和订阅者可以在运行时动态地注册和取消。</p>
+<h2 id="示例-6"><a href="#示例-6" class="headerlink" title="示例"></a>示例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象观察者</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Observer</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Observer</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">update</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体观察者</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteObserver</span> : <span class="keyword">public</span> Observer &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">ConcreteObserver</span>(<span class="type">const</span> std::string&amp; name) : <span class="built_in">name_</span>(name) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; name_ &lt;&lt; <span class="string">&quot; received the update.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::string name_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象主题</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Subject</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Subject</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">attach</span><span class="params">(Observer* observer)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">detach</span><span class="params">(Observer* observer)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">notify</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体主题</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteSubject</span> : <span class="keyword">public</span> Subject &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">attach</span><span class="params">(Observer* observer)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        observers_.<span class="built_in">push_back</span>(observer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">detach</span><span class="params">(Observer* observer)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        observers_.<span class="built_in">erase</span>(std::<span class="built_in">remove</span>(observers_.<span class="built_in">begin</span>(), observers_.<span class="built_in">end</span>(), observer), observers_.<span class="built_in">end</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">notify</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> observer : observers_) &#123;</span><br><span class="line">            observer-&gt;<span class="built_in">update</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::vector&lt;Observer*&gt; observers_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">ConcreteObserver <span class="title">observer1</span><span class="params">(<span class="string">&quot;Observer 1&quot;</span>)</span></span>;</span><br><span class="line">    <span class="function">ConcreteObserver <span class="title">observer2</span><span class="params">(<span class="string">&quot;Observer 2&quot;</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    ConcreteSubject subject;</span><br><span class="line">    subject.<span class="built_in">attach</span>(&amp;observer1);</span><br><span class="line">    subject.<span class="built_in">attach</span>(&amp;observer2);</span><br><span class="line"></span><br><span class="line">    subject.<span class="built_in">notify</span>();</span><br><span class="line"></span><br><span class="line">    subject.<span class="built_in">detach</span>(&amp;observer1);</span><br><span class="line"></span><br><span class="line">    subject.<span class="built_in">notify</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面的示例中，Subject 定义了一个抽象主题的接口，包括注册、注销和通知观察者的方法；ConcreteSubject 是一个具体的主题，它维护了一个观察者列表，并在状态变化时通知观察者；Observer 定义了一个抽象观察者的接口，包括更新方法；ConcreteObserver 是一个具体的观察者，它在收到主题的通知后会执行自己的更新方法。在 main 函数中，我们创建了两个具体观察者</p>
+<h1 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h1><p>状态模式（State Pattern）是一种行为型设计模式，它允许对象在其内部状态改变时改变它的行为。这种模式把对象的行为包装在不同的状态对象里，每个状态对象都可以根据其内部状态改变而改变它的行为。</p>
+<p>状态模式包含以下角色：</p>
+<p>Context（上下文）：是具有状态的对象，维护一个当前状态对象，并在状态改变时通知状态对象进行相应的处理。<br>State（状态）：定义状态的接口，对于每个状态的具体实现，它有两个职责：处理自身相关的行为，同时处理状态转移。<br>ConcreteState（具体状态）：具体实现State接口的状态类，实现与上下文相关的行为。</p>
+<h2 id="示例-7"><a href="#示例-7" class="headerlink" title="示例"></a>示例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Context</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 状态抽象类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">State</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">State</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">handle</span><span class="params">(Context* context)</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体状态类A</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteStateA</span> : <span class="keyword">public</span> State &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">handle</span><span class="params">(Context* context)</span> <span class="keyword">override</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体状态类B</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteStateB</span> : <span class="keyword">public</span> State &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">handle</span><span class="params">(Context* context)</span> <span class="keyword">override</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上下文类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Context</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Context</span>(State* state) : <span class="built_in">state_</span>(state) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setState</span><span class="params">(State* state)</span> </span>&#123; state_ = state; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">request</span><span class="params">()</span> </span>&#123; state_-&gt;<span class="built_in">handle</span>(<span class="keyword">this</span>); &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    State* state_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ConcreteStateA::handle</span><span class="params">(Context* context)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;ConcreteStateA handles the request.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    context-&gt;<span class="built_in">setState</span>(<span class="keyword">new</span> ConcreteStateB);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ConcreteStateB::handle</span><span class="params">(Context* context)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;ConcreteStateB handles the request.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    context-&gt;<span class="built_in">setState</span>(<span class="keyword">new</span> ConcreteStateA);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    State* stateA = <span class="keyword">new</span> ConcreteStateA;</span><br><span class="line">    State* stateB = <span class="keyword">new</span> ConcreteStateB;</span><br><span class="line">    Context* context = <span class="keyword">new</span> <span class="built_in">Context</span>(stateA);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 状态A处理请求</span></span><br><span class="line">    context-&gt;<span class="built_in">request</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 状态B处理请求</span></span><br><span class="line">    context-&gt;<span class="built_in">request</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> context;</span><br><span class="line">    <span class="keyword">delete</span> stateA;</span><br><span class="line">    <span class="keyword">delete</span> stateB;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个例子中，有两个具体状态类ConcreteStateA和ConcreteStateB，它们实现了State接口，同时定义了它们各自的处理行为和状态转移。Context类作为具有状态的对象，维护了一个State对象，当请求发生时，会将请求交给当前状态对象进行处理，并根据处理结果决定是否需要转移状态。</p>
+<h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><p>策略模式（Strategy Pattern）是一种行为型设计模式，它允许在运行时动态地选择算法的行为，将算法的实现与使用者分离开来。</p>
+<h2 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h2><p>在策略模式中，算法被封装成一系列的策略（Strategy），这些策略可以被外部使用者调用，使用者可以根据具体的场景需要动态地选择不同的策略来完成某种任务，而不需要关心具体的算法实现。</p>
+<p>策略模式的优点在于它将不同的算法封装到不同的策略类中，使得算法的具体实现与客户端代码相互独立，从而更加容易维护和扩展。另外，策略模式还可以使得客户端代码更加灵活地选择不同的算法实现，从而可以根据不同的情况和需求选择最优的算法。</p>
+<h2 id="场景-1"><a href="#场景-1" class="headerlink" title="场景"></a>场景</h2><p>举个例子，假设我们有一个排序器类（Sorter），该类有一个 sort() 函数用于排序。由于排序算法有很多种，我们可以考虑使用策略模式来将排序算法的实现与使用者分离开来。我们可以定义一个 SortStrategy 抽象类作为排序策略的接口，然后派生出不同的子类来实现具体的排序算法，如 QuickSortStrategy、MergeSortStrategy 等等。在 Sorter 类中，我们可以定义一个成员变量 sort_strategy_，用于保存当前的排序策略，然后在 sort() 函数中调用 sort_strategy_ 的 sort() 函数来完成排序操作。在使用该排序器类的时候，用户可以根据自己的需要选择不同的排序策略来完成排序操作。</p>
+<h2 id="示例-8"><a href="#示例-8" class="headerlink" title="示例"></a>示例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 排序策略基类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SortStrategy</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">SortStrategy</span>() &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">sort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 快速排序策略</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">QuickSortStrategy</span> : <span class="keyword">public</span> SortStrategy &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">sort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 实现快速排序算法</span></span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Using quick sort strategy...&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 归并排序策略</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MergeSortStrategy</span> : <span class="keyword">public</span> SortStrategy &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">sort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 实现归并排序算法</span></span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Using merge sort strategy...&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 排序器类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Sorter</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setStrategy</span><span class="params">(SortStrategy* strategy)</span> </span>&#123;</span><br><span class="line">        strategy_ = strategy;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">sort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        strategy_-&gt;<span class="built_in">sort</span>(nums);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    SortStrategy* strategy_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; nums = &#123;<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">5</span>&#125;;</span><br><span class="line"></span><br><span class="line">    Sorter sorter;</span><br><span class="line">    QuickSortStrategy quick_sort;</span><br><span class="line">    MergeSortStrategy merge_sort;</span><br><span class="line"></span><br><span class="line">    sorter.<span class="built_in">setStrategy</span>(&amp;quick_sort);</span><br><span class="line">    sorter.<span class="built_in">sort</span>(nums); <span class="comment">// 使用快速排序策略</span></span><br><span class="line"></span><br><span class="line">    sorter.<span class="built_in">setStrategy</span>(&amp;merge_sort);</span><br><span class="line">    sorter.<span class="built_in">sort</span>(nums); <span class="comment">// 使用归并排序策略</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在上面的示例代码中，我们首先定义了一个 SortStrategy 抽象类作为排序策略的接口，然后派生出 QuickSortStrategy 和 MergeSortStrategy 等子类来实现排序的功能。在具体场景中，根据不同的情况可以切换不同的策略。</p>
+<h1 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h1><p>模板方法模式也叫模板模式，模板模式（Template Pattern）是一种行为型设计模式，它定义了一个操作中的算法框架，将某些步骤延迟到子类中实现，使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</p>
+<p>该模式通常包含一个抽象模板类，它定义了算法的基本结构，以及一些抽象方法，由子类实现；还有具体子类，实现这些抽象方法，以完成算法的特定步骤。</p>
+<p>该模式的优点在于，它使得算法的具体实现与其基本结构分离，使得算法更易于重用和扩展，同时还遵循了开闭原则和单一职责原则。</p>
+<h2 id="示例-9"><a href="#示例-9" class="headerlink" title="示例"></a>示例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 模板类</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AbstractSort</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">sort</span><span class="params">(std::vector&lt;T&gt;&amp; data)</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 模板实现类A</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteSortA</span> : <span class="keyword">public</span> AbstractSort&lt;T&gt; &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">sort</span><span class="params">(std::vector&lt;T&gt;&amp; data)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Using sort A.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> 具体排序算法实现</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 模板实现类B</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteSortB</span> : <span class="keyword">public</span> AbstractSort&lt;T&gt; &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">sort</span><span class="params">(std::vector&lt;T&gt;&amp; data)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Using sort B.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> 具体排序算法实现</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; data&#123;<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">5</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用模板实现类A进行排序</span></span><br><span class="line">    AbstractSort&lt;<span class="type">int</span>&gt;* sortA = <span class="keyword">new</span> <span class="built_in">ConcreteSortA</span>&lt;<span class="type">int</span>&gt;();</span><br><span class="line">    sortA-&gt;<span class="built_in">sort</span>(data);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用模板实现类B进行排序</span></span><br><span class="line">    AbstractSort&lt;<span class="type">int</span>&gt;* sortB = <span class="keyword">new</span> <span class="built_in">ConcreteSortB</span>&lt;<span class="type">int</span>&gt;();</span><br><span class="line">    sortB-&gt;<span class="built_in">sort</span>(data);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> sortA;</span><br><span class="line">    <span class="keyword">delete</span> sortB;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上述代码定义了一个模板类 AbstractSort，并规定了一个模板方法 sort，该方法接受一个 std::vector 类型的参数，并规定了排序算法的大致流程，但不涉及具体实现。</p>
+<p>之后通过继承 AbstractSort 的方式实现了两个不同的排序算法类，即 ConcreteSortA 和 ConcreteSortB，并分别重写了 sort 方法，实现了不同的排序算法。</p>
+<p>在 main 函数中，分别创建了 ConcreteSortA 和 ConcreteSortB 对象，并通过指向 AbstractSort 的指针调用 sort 方法实现了不同的排序算法。</p>
+<h1 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h1><p>访问者模式是一种行为型设计模式，它可以在不修改被访问元素的类的前提下，通过将访问算法从元素中分离出来，使其能够独立地变化。这种模式将数据结构和数据操作分离开来，使得新的操作易于添加到现有系统中。</p>
+<p>在访问者模式中，有两种基本元素：被访问的元素和访问者。被访问的元素通常是一个复杂的数据结构，例如一个对象树或一个列表。访问者是一个可以在各种元素上执行各种操作的对象。被访问的元素需要提供一种接受访问者的方法，以便访问者可以遍历它的子元素，并对它们执行特定的操作。</p>
+<h2 id="示例-10"><a href="#示例-10" class="headerlink" title="示例"></a>示例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ElementA</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ElementB</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Visitor</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Visitor</span>() &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">visit</span><span class="params">(ElementA&amp; a)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">visit</span><span class="params">(ElementB&amp; b)</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Element</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Element</span>() &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">accept</span><span class="params">(Visitor&amp; v)</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ElementA</span> : <span class="keyword">public</span> Element &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">accept</span><span class="params">(Visitor&amp; v)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        v.<span class="built_in">visit</span>(*<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ElementB</span> : <span class="keyword">public</span> Element &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">accept</span><span class="params">(Visitor&amp; v)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        v.<span class="built_in">visit</span>(*<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteVisitor</span> : <span class="keyword">public</span> Visitor &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">visit</span><span class="params">(ElementA&amp; a)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;ConcreteVisitor: visit ElementA&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">visit</span><span class="params">(ElementB&amp; b)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;ConcreteVisitor: visit ElementB&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::vector&lt;Element*&gt; elements&#123;<span class="keyword">new</span> ElementA, <span class="keyword">new</span> ElementB&#125;;</span><br><span class="line">    ConcreteVisitor visitor;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> element : elements) &#123;</span><br><span class="line">        element-&gt;<span class="built_in">accept</span>(visitor);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> element : elements) &#123;</span><br><span class="line">        <span class="keyword">delete</span> element;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个示例中，有两个被访问的元素类：ElementA和ElementB，它们都实现了Element接口，并提供了accept()方法，以便访问者可以访问它们。</p>
+<p>还有一个访问者类ConcreteVisitor，它实现了Visitor接口，并提供了visit()方法来访问元素。</p>
+<p>在main()函数中，我们创建了一个包含ElementA和ElementB对象的向量。我们创建了一个ConcreteVisitor对象，并在for循环中依次遍历向量中的元素，对每个元素调用accept()方法，将访问者传递给它们。这样，元素就可以访问访问者，并让访问者对它们进行操作。</p>
+<p>输出为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ConcreteVisitor: visit ElementA</span><br><span class="line">ConcreteVisitor: visit ElementB</span><br></pre></td></tr></table></figure>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023/0442695.html"
+                                   title="tmux的使用"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">tmux的使用</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023/03918.html"
+                                   title="UOS桌面启动流程图"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">UOS桌面启动流程图</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline-meta.css"/>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          window.KeepCommentPlugin.walineOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+          window.KeepCommentPlugin.walineOptions.el = '#waline-comment'
+          window.KeepCommentPlugin.walineOptions.comment = '.post-comments-count'
+          window.KeepCommentPlugin.walineOptions.serverURL = 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/'
+          window.KeepCommentPlugin.walineOptions.lang = 'en' || 'zh-CN'
+          window.KeepCommentPlugin.walineOptions.reaction = 'true' === 'true'
+        </script>
+
+        
+
+        
+            <script data-pjax
+                    async
+                    type="module"
+            >
+              import { init } from '//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js'
+              window.KeepCommentPlugin.initWaline = () => {
+                if (init) {
+                  init(window.KeepCommentPlugin.walineOptions)
+                  window.KeepCommentPlugin.hideLoading()
+                } else {
+                  setTimeout(() => {
+                    window.KeepCommentPlugin.initWaline()
+                  }, 1000)
+                }
+              }
+
+              if ('true' === 'true') {
+                setTimeout(() => {
+                  window.KeepCommentPlugin.initWaline()
+                }, 1200)
+              } else {
+                window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initWaline)
+              }
+            </script>
+        
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F"><span class="nav-text">责任链模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="nav-text">命令模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-1"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-text">解释器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-2"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-text">迭代器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-3"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-text">中介者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-4"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F"><span class="nav-text">备忘录模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF"><span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-5"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-text">观察者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-6"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F"><span class="nav-text">状态模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-7"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F"><span class="nav-text">策略模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%82%B9-1"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF-1"><span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-8"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="nav-text">模板方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-9"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-text">访问者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-10"><span class="nav-text">示例</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ssk-wh</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+                <a target="_blank" rel="nofollow" href="https://github.com/">
+            
+            This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span>
+            
+                </a>
+            
+        </div>
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F"><span class="nav-text">责任链模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="nav-text">命令模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-1"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-text">解释器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-2"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-text">迭代器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-3"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-text">中介者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-4"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F"><span class="nav-text">备忘录模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF"><span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-5"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-text">观察者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-6"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F"><span class="nav-text">状态模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-7"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F"><span class="nav-text">策略模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%82%B9-1"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF-1"><span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-8"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="nav-text">模板方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-9"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-text">访问者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-10"><span class="nav-text">示例</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

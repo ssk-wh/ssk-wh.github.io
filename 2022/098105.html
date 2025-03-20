@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            PAM模块-pam_script |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#29392c","title":"Ssk-wh's Blog","author":"ssk-wh","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","tools":"/tools","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":true,"links":{"github":"https://github.com/ssk-wh","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"juchengshi@gmail.com"}},"scroll":{"progress_bar":false,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":false,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":3},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":true,"provider":"github","url":"https://github.com/"},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"伙计们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://xpoet.cn/images/avatar.png"},{"name":"Guo Le's Blog","link":"https://guole.fun/","description":"生命是独立是自由是爱与和平","avatar":"https://guole.fun/img/gl.jpg"},{"name":"酷小呵","link":"https://www.kuhehe.top/","description":"爱分享的酷小呵","avatar":"https://q1.qlogo.cn/g?b=qq&nk=3111349763&s=100"}],"tools":[{"category":"AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"name":"Copilot","link":"https://copilot.microsoft.com/","description":"微软家的AI助手","image":"/images/tools/copilot.svg"},{"name":"Kimi","link":"https://kimi.moonshot.cn/","description":"支持识别文件或网址的小众AI网站","image":"/images/tools/kimi.png"},{"name":"文心一言","link":"https://yiyan.baidu.com/","description":"百度旗下的AI助手","image":"/images/tools/wxyy.png"},{"name":"通义千问","link":"https://tongyi.aliyun.com/qianwen/","description":"阿里旗下","image":"/images/tools/tyqw.Default"},{"name":"讯飞星火","link":"https://xinghuo.xfyun.cn/","description":"讯飞旗下","image":"/images/tools/xfxh.svg"},{"category":"技术"},{"name":"Hexo","link":"https://hexo.io/","description":"快速、简洁且高效的博客框架","image":"https://upload.wikimedia.org/wikipedia/commons/b/b9/Hexo_blog_logo.svg"},{"name":"稀土掘金","link":"https://juejin.cn/","description":"开发者社区","image":"/images/tools/xtjj.Default"},{"category":"笔记"},{"name":"语雀","link":"https://www.yuque.com/","description":"在线记录笔记","image":"/images/tools/yuque.svg"},{"category":"图片"},{"name":"undraw","link":"https://undraw.co/illustrations","description":"免费的矢量素材下载网站","image":"https://raw.githubusercontent.com/ssk-wh/ssk-wh.github.io/master/images/undraw_shopping_bags_8l6g.svg"},{"name":"carbon","link":"https://carbon.now.sh/","description":"将代码生成图片","image":null},{"category":"作图网站"},{"name":"Draw.io","link":"https://draw.io/","description":"在线绘图网站，支持同步保存至github","image":null},{"name":"ProcessOn","link":"https://www.processon.com/","description":"在线绘图网站，画软件流程图经常用到","image":null},{"category":"博客管理"},{"name":"LeanCloud","link":"https://console.leancloud.app/apps/D0eDuK0h6X11p0z7FxTgY1CX-MdYXbMMI/storage/data/Comment","description":"评论管理","image":"https://gravatar.tapglb.com/avatar/afa8e9b8057e1877138d43f1dfdd8510?s=200&d=retro"}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                TOOLS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                ABOUT
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                            TOOLS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            ABOUT
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        PAM模块-pam_script
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">ssk-wh</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2022-09-13 00:00:00</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Wed Jul 19 2023 08:43:30 GMT+0000">2023-07-19 08:43:30</span>
+                </span>
+            
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Linux/">Linux</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/PAM/">PAM</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>3.4k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>19 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>先确保您对pam配置已经有了基本的了解，否则应先阅读《<a class="link"   target="_blank" rel="noopener" href="https://www.yuque.com/docs/share/5c4da2a1-02cc-4637-b4d4-e0a10e00d952#" >Linux下PAM模块学习总结<i class="fas fa-external-link-alt"></i></a>》</p>
+<h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1><p>这是一个可以在会话开始和结束时执行脚本的模块。<br>可以通过<code>sudo apt install libpam-script</code>安装此模块，但仍需要您手动修改pam模块的配置才能生效。</p>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>在用户登录和注销时执行一些操作，比如用户 上&#x2F;下线 通知.</p>
+<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2022/098105/image.png"
+                       
+                 ></p>
+<p>如果&#x2F;usr&#x2F;share&#x2F;libpam-script目录下的pam_script_auth、pam_script_acct、pam_script_passwd、pam_script_ses_open、pam_script_ses_close脚本存在的话，它会在合适的时机去调用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root@uos-PC:/usr/share/libpam-script# <span class="built_in">ls</span> -l</span><br><span class="line">总用量 24</span><br><span class="line">-rwxr-xr-x 1 root root 1366 9月  13 13:43 pam_script_acct</span><br><span class="line">-rwxr-xr-x 1 root root 1355 9月  13 13:43 pam_script_auth</span><br><span class="line">drwxr-xr-x 2 root root 4096 8月   9 13:36 pam-script.d</span><br><span class="line">-rwxr-xr-x 1 root root 1367 9月  13 13:43 pam_script_passwd</span><br><span class="line">-rwxr-xr-x 1 root root 1365 9月  13 13:44 pam_script_ses_close</span><br><span class="line">-rwxr-xr-x 1 root root 1444 9月  13 15:08 pam_script_ses_open</span><br></pre></td></tr></table></figure>
+
+<p>您也可以通过dir&#x3D;&#x2F;some&#x2F;path指定脚本的路径，将其作为pam模块配置的参数即可</p>
+<h1 id="认证类型和默认执行的脚本名称"><a href="#认证类型和默认执行的脚本名称" class="headerlink" title="认证类型和默认执行的脚本名称"></a>认证类型和默认执行的脚本名称</h1><table>
+<thead>
+<tr>
+<th>认证类型</th>
+<th>指定脚本名称</th>
+<th>自动触发时机</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>auth</td>
+<td>pam_script_auth</td>
+<td>username&#x2F;password handshake</td>
+</tr>
+<tr>
+<td>account</td>
+<td>pam_script_acct</td>
+<td>non-auth account management</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>pam_script_passwd</td>
+<td>changing a password</td>
+</tr>
+<tr>
+<td>session</td>
+<td>pam_script_ses_open&#x2F;pam_script_ses_close</td>
+<td>actions performed before and after a session</td>
+</tr>
+</tbody></table>
+<p>所有脚本在被pam-script模块执行时都将被传递以下几个环境变量：<br>PAM_USER、PAM_RUSER、PAM_RHOST、PAM_SERVICE、PAM_AUTHTOK、<br>PAM_OLDAUTHTOK、PAM_TTY 和 PAM_TYPE 。<br>（上述环境变量可能因为上下文的关系返回空值)</p>
+<p>对pam配置文件做出以下修改，在会话开始时将会自动查找对应路径下的pam_script_ses_open脚本并执行，在会话结束自动执行pam_script_ses_close脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">root@uos-PC /e/pam.d# <span class="built_in">cat</span> common-session</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># /etc/pam.d/common-session - session-related modules common to all services</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This file is included from other service-specific PAM config files,</span></span><br><span class="line"><span class="comment"># and should contain a list of modules that define tasks to be performed</span></span><br><span class="line"><span class="comment"># at the start and end of sessions of *any* kind (both interactive and</span></span><br><span class="line"><span class="comment"># non-interactive).</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># As of pam 1.0.1-6, this file is managed by pam-auth-update by default.</span></span><br><span class="line"><span class="comment"># To take advantage of this, it is recommended that you configure any</span></span><br><span class="line"><span class="comment"># local modules either before or after the default block, and use</span></span><br><span class="line"><span class="comment"># pam-auth-update to manage selection of other modules.  See</span></span><br><span class="line"><span class="comment"># pam-auth-update(8) for details.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># here are the per-package modules (the &quot;Primary&quot; block)</span></span><br><span class="line">session [default=1]                     pam_permit.so</span><br><span class="line"><span class="comment"># here&#x27;s the fallback if no module succeeds</span></span><br><span class="line">session requisite                       pam_deny.so</span><br><span class="line"><span class="comment"># prime the stack with a positive return value if there isn&#x27;t one already;</span></span><br><span class="line"><span class="comment"># this avoids us returning an error just because nothing sets a success code</span></span><br><span class="line"><span class="comment"># since the modules above will each just jump around</span></span><br><span class="line">session required                        pam_permit.so</span><br><span class="line"><span class="comment"># and here are more per-package modules (the &quot;Additional&quot; block)</span></span><br><span class="line">session required        pam_unix.so </span><br><span class="line">session required    		pam_udcp.so </span><br><span class="line">session optional        pam_systemd.so </span><br><span class="line">session optional        pam_mkhomedir.so <span class="built_in">umask</span>=077</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新增下面一行配置</span></span><br><span class="line">session optional        pam_script.so</span><br><span class="line"><span class="comment"># end of pam-auth-update config</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>您也可以libpam-script包中提供的 README.examples 文件，从而了解更多的信息。</p>
+<p>常见的使用示例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 会话开始后自动执行pam_script_ses_open脚本,结束后自动执行pam_script_ses_close脚本</span></span><br><span class="line">session optional        pam_script.so  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 用户名密码认证时自动执行pam_script_auth脚本</span></span><br><span class="line">auth 		optional        pam_script.so</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改密码时自动执行pam_script_passwd脚本</span></span><br><span class="line">passwd 	optional        pam_script.so</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查帐号属性时自动执行pam_script_acct脚本</span></span><br><span class="line">account	optional        pam_script.so</span><br></pre></td></tr></table></figure>
+
+<h1 id="场景拓展"><a href="#场景拓展" class="headerlink" title="场景拓展"></a>场景拓展</h1><p>1、ssh远程登录时，通过脚本在本地进行交互式提醒，避免被远程侵入<br>2、对session的open和close做记录，并集中时间统一上传，做大数据分析(用户许可的前提下)</p>
+<h1 id="示例脚本"><a href="#示例脚本" class="headerlink" title="示例脚本"></a>示例脚本</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/sh</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># An example pam-script, which can be used as a template for your own</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The accepted list of scripts:</span></span><br><span class="line"><span class="comment">#       pam_script_auth</span></span><br><span class="line"><span class="comment">#       pam_script_acct</span></span><br><span class="line"><span class="comment">#       pam_script_passwd</span></span><br><span class="line"><span class="comment">#       pam_script_ses_open</span></span><br><span class="line"><span class="comment">#       pam_script_ses_close</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The environment variables passed by pam-script onto the script</span></span><br><span class="line"><span class="comment"># (all will exist but some may be null if not applicable):</span></span><br><span class="line"><span class="comment">#       PAM_SERVICE     - the application that&#x27;s invoking the PAM stack</span></span><br><span class="line"><span class="comment">#       PAM_TYPE        - the module-type (e.g. auth,account,session,password)</span></span><br><span class="line"><span class="comment">#       PAM_USER        - the user being authenticated into</span></span><br><span class="line"><span class="comment">#       PAM_RUSER       - the remote user, the user invoking the application</span></span><br><span class="line"><span class="comment">#       PAM_RHOST       - remote host</span></span><br><span class="line"><span class="comment">#       PAM_TTY         - the controlling tty</span></span><br><span class="line"><span class="comment">#       PAM_AUTHTOK     - password in readable text</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># assume a GNU compatible date</span></span><br><span class="line">stamp=`/bin/date +<span class="string">&#x27;%Y%m%d%H%M%S %a&#x27;</span>`</span><br><span class="line"><span class="comment"># get the script name (could be link)</span></span><br><span class="line">script=`<span class="built_in">basename</span> <span class="variable">$0</span>`</span><br><span class="line"><span class="comment">#</span></span><br><span class="line">LOGFILE=/tmp/pam-script.log</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$stamp</span> <span class="variable">$script</span> <span class="variable">$PAM_SERVICE</span> <span class="variable">$PAM_TYPE</span>                              \</span><br><span class="line">        user=<span class="variable">$PAM_USER</span> ruser=<span class="variable">$PAM_RUSER</span> rhost=<span class="variable">$PAM_RHOST</span>                \</span><br><span class="line">        <span class="built_in">tty</span>=<span class="variable">$PAM_TTY</span>                                                    \</span><br><span class="line">        args=[<span class="string">&quot;<span class="variable">$@</span>&quot;</span>]                                                     \</span><br><span class="line">        &gt;&gt; <span class="variable">$LOGFILE</span></span><br><span class="line"><span class="built_in">chmod</span> 666 <span class="variable">$LOGFILE</span> &gt; /dev/null 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line"><span class="comment"># success</span></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
+
+<p>示例脚本输出如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[uos@uos-PC 11:04:40 ~]$ <span class="built_in">cat</span> /tmp/pam-script.log </span><br><span class="line">20220913104655 二 pam_script_ses_open su session user=admin ruser=uos rhost= <span class="built_in">tty</span>=pts/4 args=[]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>1、脚本的权限不能过高，否则会被pam_script拒绝执行(安全问题)，可以考虑将权限设置为755，报错信息可以查阅&#x2F;var&#x2F;log&#x2F;auth.log文件。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">int</span> <span class="title function_">check_path_perms</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">stat</span> <span class="title">fs</span>;</span></span><br><span class="line">    <span class="type">const</span> <span class="type">mode_t</span> ALL_EXEC_MASK = (S_IXUSR|S_IXGRP|S_IXOTH);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">* note: checking security properties like this leaves us with a race</span></span><br><span class="line"><span class="comment">* condition, because the stat()/execve() execution is not atomic.</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* likely candidates for overcoming this would have been fexecve() or</span></span><br><span class="line"><span class="comment">* execveat(). But both suffer from a side effect (at least on</span></span><br><span class="line"><span class="comment">* Linux/glibc implementation) that causes scripts to be called like</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* &quot;bash /proc/self/fd/&lt;num&gt; &lt;argv1&gt; ...&quot;</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* This would break existing scripts that can&#x27;t make out their</span></span><br><span class="line"><span class="comment">* basename/dirname any more to base decisions on them.</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* An explicit environment variable could be added that carries the</span></span><br><span class="line"><span class="comment">* &quot;real&quot; basename but that would complicate things even more.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* test for script existence first */</span></span><br><span class="line">    <span class="keyword">if</span> (stat(path, &amp;fs) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">/* stat failure */</span></span><br><span class="line">        pam_script_syslog(LOG_ERR,<span class="string">&quot;can not stat %s&quot;</span>, path);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((fs.st_mode &amp; ALL_EXEC_MASK) != ALL_EXEC_MASK) &#123;</span><br><span class="line">        <span class="comment">/* script not executable at all levels */</span></span><br><span class="line">        pam_script_syslog(LOG_ALERT,</span><br><span class="line">                          <span class="string">&quot;path %s not fully executable&quot;</span>, path);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ((fs.st_mode &amp; S_IWOTH) != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">/* script is world writeable, probably not a good idea */</span></span><br><span class="line">        pam_script_syslog(LOG_ALERT,</span><br><span class="line">                          <span class="string">&quot;path %s is world-writeable, rejecting for &quot;</span></span><br><span class="line">                          <span class="string">&quot;security reasons&quot;</span>, path);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (fs.st_uid != <span class="number">0</span> || fs.st_gid != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">/* script should be owned by root:root */</span></span><br><span class="line">        pam_script_syslog(LOG_ALERT,</span><br><span class="line">                          <span class="string">&quot;path %s is not owned by root:root, rejecting for security reasons&quot;</span>, path);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="源码赏析"><a href="#源码赏析" class="headerlink" title="源码赏析"></a>源码赏析</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  Written by Jeroen Nijhof &lt;jeroen@jeroennijhof.nl&gt; 2005/03/01</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  This program is free software; you can redistribute it and/or modify</span></span><br><span class="line"><span class="comment"> *  it under the terms of the GNU General Public License as published by</span></span><br><span class="line"><span class="comment"> *  the Free Software Foundation; either version 2 of the License, or</span></span><br><span class="line"><span class="comment"> *  (at your option) any later version.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  This program is distributed in the hope that it will be useful,</span></span><br><span class="line"><span class="comment"> *  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></span><br><span class="line"><span class="comment"> *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></span><br><span class="line"><span class="comment"> *  GNU General Public License for more details.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  You should have received a copy of the GNU General Public License</span></span><br><span class="line"><span class="comment"> *  along with this program - see the file COPYING.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* --- includes --- */</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdarg.h&gt;</span>			<span class="comment">/* varg... */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span>			<span class="comment">/* strcmp,strncpy,... */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span>			<span class="comment">/* stat, fork, wait */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/stat.h&gt;</span>			<span class="comment">/* stat */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span>			<span class="comment">/* wait */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span>			<span class="comment">/* stat, fork, execve, **environ */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span>			<span class="comment">/* calloc, setenv, putenv */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* enable these module-types */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PAM_SM_AUTH</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PAM_SM_ACCOUNT</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PAM_SM_SESSION</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PAM_SM_PASSWORD</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;security/pam_appl.h&gt;</span>		<span class="comment">/* pam_* */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;security/pam_modules.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> HAVE_CONFIG_H</span></span><br><span class="line"><span class="meta">#  <span class="keyword">include</span> <span class="string">&quot;config.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> HAVE_VSYSLOG</span></span><br><span class="line"><span class="meta">#  <span class="keyword">include</span> <span class="string">&lt;syslog.h&gt;</span>			<span class="comment">/* vsyslog */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* --- customize these defines --- */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> PAM_SCRIPT_DIR</span></span><br><span class="line"><span class="meta">#  <span class="keyword">define</span> PAM_SCRIPT_DIR	<span class="string">&quot;/usr/bin&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PAM_SCRIPT_AUTH		<span class="string">&quot;pam_script_auth&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PAM_SCRIPT_ACCT		<span class="string">&quot;pam_script_acct&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PAM_SCRIPT_PASSWD	<span class="string">&quot;pam_script_passwd&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PAM_SCRIPT_SES_OPEN	<span class="string">&quot;pam_script_ses_open&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PAM_SCRIPT_SES_CLOSE	<span class="string">&quot;pam_script_ses_close&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* --- defines --- */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PAM_EXTERN	extern</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BUFSIZE	128</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEFAULT_USER <span class="string">&quot;nobody&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* --- macros --- */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PAM_SCRIPT_SETENV(key)						\</span></span><br><span class="line"><span class="meta">	&#123;<span class="keyword">if</span> (pam_get_item(pamh, key, &amp;envval) == PAM_SUCCESS)		\</span></span><br><span class="line"><span class="meta">		pam_script_setenv(#key, (const char *) envval);		\</span></span><br><span class="line"><span class="meta">	<span class="keyword">else</span>	pam_script_setenv(#key, (const char *) NULL);&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* external variables */</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">char</span> **environ;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="comment">/* convenient function to throw into one of the methods below</span></span><br><span class="line"><span class="comment"> * for setting as a breakpoint for debugging purposes.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">pam_script_xxx</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">	<span class="type">int</span> i = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* internal helper functions */</span></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">pam_script_syslog</span><span class="params">(<span class="type">int</span> priority, <span class="type">const</span> <span class="type">char</span> *format, ...)</span> &#123;</span><br><span class="line">	va_list args;</span><br><span class="line">	va_start(args, format);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> HAVE_VSYSLOG</span></span><br><span class="line">	openlog(PACKAGE, LOG_CONS|LOG_PID, LOG_AUTH);</span><br><span class="line">	vsyslog(priority, format, args);</span><br><span class="line">	closelog();</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">	<span class="built_in">vfprintf</span>(<span class="built_in">stderr</span>, format, args);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">pam_script_setenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *key, <span class="type">const</span> <span class="type">char</span> *value)</span> &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">if</span> HAVE_SETENV</span></span><br><span class="line">	setenv(key, (value?value:<span class="string">&quot;&quot;</span>), <span class="number">1</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">elif</span> HAVE_PUTENV</span></span><br><span class="line">	<span class="type">char</span>	 buffer[BUFSIZE],</span><br><span class="line">		*str;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">snprintf</span>(buffer, BUFSIZE, <span class="string">&quot;%s=%s&quot;</span>, key, value ? value : <span class="string">&quot;&quot;</span>) &gt; BUFSIZE) &#123;</span><br><span class="line">		<span class="comment">// insufficient space</span></span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> ((str = strdup(buffer)) != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		putenv(str);</span><br><span class="line">	&#125; <span class="comment">/* else &#123;</span></span><br><span class="line"><span class="comment">	     untrapped memory error - just do not add to environment</span></span><br><span class="line"><span class="comment">	&#125; */</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#  <span class="keyword">error</span> Can not set the environment</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> <span class="title function_">pam_script_get_user</span><span class="params">(<span class="type">pam_handle_t</span> *pamh, <span class="type">const</span> <span class="type">char</span> **user)</span> &#123;</span><br><span class="line">	<span class="type">int</span> retval;</span><br><span class="line"></span><br><span class="line">	retval = pam_get_user(pamh, user, <span class="literal">NULL</span>);</span><br><span class="line">	<span class="keyword">if</span> (retval != PAM_SUCCESS) &#123;</span><br><span class="line">		pam_script_syslog(LOG_ALERT, <span class="string">&quot;pam_get_user returned error: %s&quot;</span>,</span><br><span class="line">			pam_strerror(pamh,retval));</span><br><span class="line">		<span class="keyword">return</span> retval;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (*user == <span class="literal">NULL</span> || **user == <span class="string">&#x27;\0&#x27;</span>) &#123;</span><br><span class="line">		pam_script_syslog(LOG_ALERT, <span class="string">&quot;username not known&quot;</span>);</span><br><span class="line">		retval = pam_set_item(pamh, PAM_USER,</span><br><span class="line">			(<span class="type">const</span> <span class="type">void</span> *) DEFAULT_USER);</span><br><span class="line">		<span class="keyword">if</span> (retval != PAM_SUCCESS)</span><br><span class="line">		<span class="keyword">return</span> PAM_USER_UNKNOWN;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> retval;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> <span class="title function_">check_path_perms</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path)</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">stat</span> <span class="title">fs</span>;</span></span><br><span class="line">	<span class="type">const</span> <span class="type">mode_t</span> ALL_EXEC_MASK = (S_IXUSR|S_IXGRP|S_IXOTH);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * note: checking security properties like this leaves us with a race</span></span><br><span class="line"><span class="comment">	 * condition, because the stat()/execve() execution is not atomic.</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * likely candidates for overcoming this would have been fexecve() or</span></span><br><span class="line"><span class="comment">	 * execveat(). But both suffer from a side effect (at least on</span></span><br><span class="line"><span class="comment">	 * Linux/glibc implementation) that causes scripts to be called like</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * &quot;bash /proc/self/fd/&lt;num&gt; &lt;argv1&gt; ...&quot;</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * This would break existing scripts that can&#x27;t make out their</span></span><br><span class="line"><span class="comment">	 * basename/dirname any more to base decisions on them.</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * An explicit environment variable could be added that carries the</span></span><br><span class="line"><span class="comment">	 * &quot;real&quot; basename but that would complicate things even more.</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* test for script existence first */</span></span><br><span class="line">	<span class="keyword">if</span> (stat(path, &amp;fs) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="comment">/* stat failure */</span></span><br><span class="line">		pam_script_syslog(LOG_ERR,<span class="string">&quot;can not stat %s&quot;</span>, path);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((fs.st_mode &amp; ALL_EXEC_MASK) != ALL_EXEC_MASK) &#123;</span><br><span class="line">		<span class="comment">/* script not executable at all levels */</span></span><br><span class="line">		pam_script_syslog(LOG_ALERT,</span><br><span class="line">			<span class="string">&quot;path %s not fully executable&quot;</span>, path);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> ((fs.st_mode &amp; S_IWOTH) != <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="comment">/* script is world writeable, probably not a good idea */</span></span><br><span class="line">		pam_script_syslog(LOG_ALERT,</span><br><span class="line">				<span class="string">&quot;path %s is world-writeable, rejecting for &quot;</span></span><br><span class="line">				<span class="string">&quot;security reasons&quot;</span>, path);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (fs.st_uid != <span class="number">0</span> || fs.st_gid != <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="comment">/* script should be owned by root:root */</span></span><br><span class="line">		pam_script_syslog(LOG_ALERT,</span><br><span class="line">				<span class="string">&quot;path %s is not owned by root:root, rejecting for security reasons&quot;</span>, path);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> <span class="title function_">pam_script_exec</span><span class="params">(<span class="type">pam_handle_t</span> *pamh,</span></span><br><span class="line"><span class="params">	<span class="type">const</span> <span class="type">char</span> *type, <span class="type">const</span> <span class="type">char</span> *script, <span class="type">const</span> <span class="type">char</span> *user,</span></span><br><span class="line"><span class="params">	<span class="type">int</span> rv, <span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv)</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="type">int</span>	retval = rv,</span><br><span class="line">		status,</span><br><span class="line">		i;</span><br><span class="line">	<span class="type">char</span>	cmd[BUFSIZE] = &#123; <span class="string">&#x27;\0&#x27;</span> &#125;;</span><br><span class="line">	<span class="type">char</span>	**newargv;</span><br><span class="line">	<span class="type">const</span> <span class="type">void</span> *envval = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="type">pid_t</span>	child_pid = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* check for pam.conf options */</span></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; argc; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">strncmp</span>(argv[i],<span class="string">&quot;onerr=&quot;</span>,<span class="number">6</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">strcmp</span>(argv[i],<span class="string">&quot;onerr=fail&quot;</span>) == <span class="number">0</span>)</span><br><span class="line">				retval = rv;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">strcmp</span>(argv[i],<span class="string">&quot;onerr=success&quot;</span>) == <span class="number">0</span>)</span><br><span class="line">				retval = PAM_SUCCESS;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				pam_script_syslog(LOG_ERR,</span><br><span class="line">					<span class="string">&quot;invalid option: %s&quot;</span>, argv[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">strncmp</span>(argv[i],<span class="string">&quot;dir=&quot;</span>,<span class="number">4</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="type">const</span> <span class="type">char</span> *new_dir = argv[i] + <span class="number">4</span>;</span><br><span class="line">			<span class="type">const</span> <span class="type">int</span> MAX_DIR_LEN = BUFSIZE - <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (*new_dir) &#123; <span class="comment">/* got new scriptdir */</span></span><br><span class="line">				<span class="keyword">if</span> (<span class="built_in">snprintf</span>(cmd, MAX_DIR_LEN, <span class="string">&quot;%s&quot;</span>, new_dir) &gt; MAX_DIR_LEN) &#123;</span><br><span class="line">					pam_script_syslog(LOG_ERR,<span class="string">&quot;script dir %s exceeds maximum supported path length&quot;</span>, new_dir);</span><br><span class="line">					cmd[<span class="number">0</span>] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (cmd[<span class="number">0</span>] == <span class="string">&#x27;\0&#x27;</span>) &#123;</span><br><span class="line">		<span class="built_in">strncpy</span>(cmd, PAM_SCRIPT_DIR, BUFSIZE - <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* strip trailing &#x27;/&#x27; */</span></span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">		<span class="type">size_t</span> curlen = <span class="built_in">strlen</span>(cmd);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (curlen == <span class="number">0</span> || cmd[curlen<span class="number">-1</span>] != <span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		cmd[curlen - <span class="number">1</span>] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* check the base directory permissions */</span></span><br><span class="line">	<span class="keyword">if</span> (check_path_perms(cmd) != <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> retval;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">strcat</span>(cmd,<span class="string">&quot;/&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">strlen</span>(script) &gt; (BUFSIZE - <span class="built_in">strlen</span>(cmd) - <span class="number">1</span>)) &#123;</span><br><span class="line">		pam_script_syslog(LOG_ERR,<span class="string">&quot;script path %s/%s exceeds maximum supported path length&quot;</span>, cmd, script);</span><br><span class="line">		<span class="keyword">return</span> retval;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">strncat</span>(cmd,script,BUFSIZE-<span class="built_in">strlen</span>(cmd)<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* check the script permissions */</span></span><br><span class="line">	<span class="keyword">if</span> (check_path_perms(cmd) != <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> retval;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Execute external program */</span></span><br><span class="line">	<span class="comment">/* fork process */</span></span><br><span class="line">	<span class="keyword">switch</span>(child_pid = fork()) &#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">-1</span>:				<span class="comment">/* fork failure */</span></span><br><span class="line">		pam_script_syslog(LOG_ALERT,</span><br><span class="line">			<span class="string">&quot;script %s fork failure&quot;</span>, cmd);</span><br><span class="line">		<span class="keyword">return</span> retval;</span><br><span class="line">	<span class="keyword">case</span>  <span class="number">0</span>:				<span class="comment">/* child */</span></span><br><span class="line">		<span class="comment">/* Get PAM environment, pass it onto the child&#x27;s environment */</span></span><br><span class="line">		PAM_SCRIPT_SETENV(PAM_SERVICE);</span><br><span class="line">		pam_script_setenv(<span class="string">&quot;PAM_TYPE&quot;</span>, type);</span><br><span class="line">		pam_script_setenv(<span class="string">&quot;PAM_USER&quot;</span>, user);</span><br><span class="line">		PAM_SCRIPT_SETENV(PAM_RUSER);</span><br><span class="line">		PAM_SCRIPT_SETENV(PAM_RHOST);</span><br><span class="line">		PAM_SCRIPT_SETENV(PAM_TTY);</span><br><span class="line">		PAM_SCRIPT_SETENV(PAM_AUTHTOK);</span><br><span class="line">		PAM_SCRIPT_SETENV(PAM_OLDAUTHTOK);</span><br><span class="line"></span><br><span class="line">		<span class="comment">/* construct newargv */</span></span><br><span class="line">		<span class="keyword">if</span> (!(newargv = (<span class="type">char</span> **) <span class="built_in">calloc</span>(<span class="keyword">sizeof</span>(<span class="type">char</span> *), argc+<span class="number">2</span>))) &#123;</span><br><span class="line">			<span class="comment">// for rationale see below</span></span><br><span class="line">			_exit(<span class="number">127</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		newargv[<span class="number">0</span>] = cmd;</span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; argc; i++) &#123;</span><br><span class="line">			newargv[<span class="number">1</span>+i] = (<span class="type">char</span> *) argv[i];</span><br><span class="line">		&#125;</span><br><span class="line">		(<span class="type">void</span>) execve(cmd, newargv, environ);</span><br><span class="line">		<span class="comment">/* shouldn&#x27;t get here, unless an error */</span></span><br><span class="line">		pam_script_syslog(LOG_ALERT,</span><br><span class="line">			<span class="string">&quot;script %s exec failure&quot;</span>, cmd);</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * explicitly exit() here to avoid continuing execution of the</span></span><br><span class="line"><span class="comment">		 * PAM stack in the forked process in an undefined manner.</span></span><br><span class="line"><span class="comment">		 *</span></span><br><span class="line"><span class="comment">		 * 127 is typically the exit code when something fundamentally</span></span><br><span class="line"><span class="comment">		 * went wrong with starting a child process.</span></span><br><span class="line"><span class="comment">		 *</span></span><br><span class="line"><span class="comment">		 * use _exit() instead of exit() to avoid execution of any</span></span><br><span class="line"><span class="comment">		 * cleanup code like atexit() handlers.</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		_exit(<span class="number">127</span>);</span><br><span class="line">		<span class="keyword">return</span> retval;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">default</span>:				<span class="comment">/* parent */</span></span><br><span class="line">		(<span class="type">void</span>) waitpid(child_pid, &amp;status, <span class="number">0</span>);</span><br><span class="line">		<span class="keyword">if</span> (WIFEXITED(status))</span><br><span class="line">			<span class="keyword">return</span> (WEXITSTATUS(status) ? rv : PAM_SUCCESS);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">return</span> retval;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> PAM_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> <span class="title function_">pam_script_converse</span><span class="params">(<span class="type">pam_handle_t</span> *pamh, <span class="type">int</span> argc,</span></span><br><span class="line"><span class="params">	<span class="keyword">struct</span> pam_message **message, <span class="keyword">struct</span> pam_response **response)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> retval;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">pam_conv</span> *<span class="title">conv</span>;</span></span><br><span class="line"></span><br><span class="line">	retval = pam_get_item(pamh, PAM_CONV, (<span class="type">const</span> <span class="type">void</span> **)(<span class="type">void</span> *) &amp;conv);</span><br><span class="line">	<span class="keyword">if</span> (retval == PAM_SUCCESS) &#123;</span><br><span class="line">		retval = conv-&gt;conv(argc, (<span class="type">const</span> <span class="keyword">struct</span> pam_message **) message,</span><br><span class="line">				response, conv-&gt;appdata_ptr);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> retval;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> <span class="title function_">pam_script_set_authtok</span><span class="params">(<span class="type">pam_handle_t</span> *pamh, <span class="type">int</span> flags,</span></span><br><span class="line"><span class="params">	<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">char</span> *prompt, <span class="type">int</span> authtok)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span>	retval;</span><br><span class="line">	<span class="type">char</span>	*password;</span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">pam_message</span> <span class="title">msg</span>[1],*<span class="title">pmsg</span>[1];</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">pam_response</span> *<span class="title">response</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* set up conversation call */</span></span><br><span class="line">	pmsg[<span class="number">0</span>] = &amp;msg[<span class="number">0</span>];</span><br><span class="line">	msg[<span class="number">0</span>].msg_style = PAM_PROMPT_ECHO_OFF;</span><br><span class="line">	msg[<span class="number">0</span>].msg = prompt;</span><br><span class="line">	response = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((retval = pam_script_converse(pamh, <span class="number">1</span>, pmsg, &amp;response)) != PAM_SUCCESS)</span><br><span class="line">		<span class="keyword">return</span> retval;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (response) &#123;</span><br><span class="line">		<span class="keyword">if</span> ((flags &amp; PAM_DISALLOW_NULL_AUTHTOK) &amp;&amp; response[<span class="number">0</span>].resp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">			<span class="built_in">free</span>(response);</span><br><span class="line">			<span class="keyword">return</span> PAM_AUTH_ERR;</span><br><span class="line">		&#125;</span><br><span class="line">		password = response[<span class="number">0</span>].resp;</span><br><span class="line">	  	response[<span class="number">0</span>].resp = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> PAM_CONV_ERR;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">free</span>(response);</span><br><span class="line">	pam_set_item(pamh, authtok, password);</span><br><span class="line">	<span class="keyword">return</span> PAM_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> <span class="title function_">pam_script_senderr</span><span class="params">(<span class="type">pam_handle_t</span> *pamh, <span class="type">int</span> flags,</span></span><br><span class="line"><span class="params">	<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">char</span> *message)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> retval;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">pam_message</span> <span class="title">msg</span>[1],*<span class="title">pmsg</span>[1];</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">pam_response</span> *<span class="title">response</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* set up conversation call */</span></span><br><span class="line">	pmsg[<span class="number">0</span>] = &amp;msg[<span class="number">0</span>];</span><br><span class="line">	msg[<span class="number">0</span>].msg_style = PAM_ERROR_MSG;</span><br><span class="line">	msg[<span class="number">0</span>].msg = message;</span><br><span class="line">	response = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((retval = pam_script_converse(pamh, <span class="number">1</span>, pmsg, &amp;response)) != PAM_SUCCESS)</span><br><span class="line">		<span class="keyword">return</span> retval;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">free</span>(response);</span><br><span class="line">	<span class="keyword">return</span> PAM_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* --- authentication management functions --- */</span></span><br><span class="line"></span><br><span class="line">PAM_EXTERN</span><br><span class="line"><span class="type">int</span> <span class="title function_">pam_sm_authenticate</span><span class="params">(<span class="type">pam_handle_t</span> *pamh, <span class="type">int</span> flags, <span class="type">int</span> argc,</span></span><br><span class="line"><span class="params">			<span class="type">const</span> <span class="type">char</span> **argv)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> retval;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span> *user=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="type">char</span> *password;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((retval = pam_script_get_user(pamh, &amp;user)) != PAM_SUCCESS)</span><br><span class="line">		<span class="keyword">return</span> retval;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* Check if PAM_AUTHTOK is set by early pam modules and</span></span><br><span class="line"><span class="comment">	* if not ask user for password.</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	pam_get_item(pamh, PAM_AUTHTOK, (<span class="type">void</span>*) &amp;password);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!password) &#123;</span><br><span class="line">		retval = pam_script_set_authtok(pamh, flags, argc, argv, <span class="string">&quot;Password: &quot;</span>, PAM_AUTHTOK);</span><br><span class="line">		<span class="keyword">if</span> (retval != PAM_SUCCESS)</span><br><span class="line">			<span class="keyword">return</span> retval;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pam_script_exec(pamh, <span class="string">&quot;auth&quot;</span>, PAM_SCRIPT_AUTH,</span><br><span class="line">		user, PAM_AUTH_ERR, argc, argv);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PAM_EXTERN</span><br><span class="line"><span class="type">int</span> <span class="title function_">pam_sm_setcred</span><span class="params">(<span class="type">pam_handle_t</span> *pamh, <span class="type">int</span> flags, <span class="type">int</span> argc,</span></span><br><span class="line"><span class="params">		   <span class="type">const</span> <span class="type">char</span> **argv)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> PAM_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* --- account management functions --- */</span></span><br><span class="line"></span><br><span class="line">PAM_EXTERN</span><br><span class="line"><span class="type">int</span> <span class="title function_">pam_sm_acct_mgmt</span><span class="params">(<span class="type">pam_handle_t</span> *pamh, <span class="type">int</span> flags, <span class="type">int</span> argc,</span></span><br><span class="line"><span class="params">		     <span class="type">const</span> <span class="type">char</span> **argv)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> retval;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span> *user=<span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((retval = pam_script_get_user(pamh, &amp;user)) != PAM_SUCCESS)</span><br><span class="line">		<span class="keyword">return</span> retval;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pam_script_exec(pamh, <span class="string">&quot;account&quot;</span>, PAM_SCRIPT_ACCT,</span><br><span class="line">		user,PAM_AUTH_ERR,argc,argv);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* --- password management --- */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * instead of memset for clearing memory, hopefully not being optimized out</span></span><br><span class="line"><span class="comment"> * by the compiler</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">safe_clearmem</span><span class="params">(<span class="type">char</span> *mem, <span class="type">size_t</span> size)</span> &#123;</span><br><span class="line">	<span class="type">size_t</span> i;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">		mem[i] = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PAM_EXTERN</span><br><span class="line"><span class="type">int</span> <span class="title function_">pam_sm_chauthtok</span><span class="params">(<span class="type">pam_handle_t</span> *pamh, <span class="type">int</span> flags, <span class="type">int</span> argc,</span></span><br><span class="line"><span class="params">		     <span class="type">const</span> <span class="type">char</span> **argv)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> retval;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span> *user = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="type">char</span> *password = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="type">char</span> new_pass1[BUFSIZE];</span><br><span class="line">        <span class="type">char</span> new_pass2[BUFSIZE];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((retval = pam_script_get_user(pamh, &amp;user)) != PAM_SUCCESS)</span><br><span class="line">		<span class="keyword">return</span> retval;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ( flags &amp; PAM_UPDATE_AUTHTOK ) &#123;</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * Check if PAM_OLDAUTHTOK is set by early pam modules and</span></span><br><span class="line"><span class="comment">		 * if not ask user (not root) for current password.</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		pam_get_item(pamh, PAM_OLDAUTHTOK, (<span class="type">void</span>*) &amp;password);</span><br><span class="line">		<span class="keyword">if</span> (!password &amp;&amp; <span class="built_in">strcmp</span>(user, <span class="string">&quot;root&quot;</span>) != <span class="number">0</span>) &#123;</span><br><span class="line">			retval = pam_script_set_authtok(pamh, flags, argc, argv, <span class="string">&quot;Current password: &quot;</span>, PAM_OLDAUTHTOK);</span><br><span class="line">			<span class="keyword">if</span> (retval != PAM_SUCCESS)</span><br><span class="line">				<span class="keyword">return</span> retval;</span><br><span class="line">			pam_get_item(pamh, PAM_OLDAUTHTOK, (<span class="type">void</span>*) &amp;password);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * Check if PAM_AUTHTOK is set by early pam modules and</span></span><br><span class="line"><span class="comment">		 * if not ask user for the new password.</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		pam_get_item(pamh, PAM_AUTHTOK, (<span class="type">void</span>*) &amp;password);</span><br><span class="line">		<span class="keyword">if</span> (!password) &#123;</span><br><span class="line">			retval = pam_script_set_authtok(pamh, flags, argc, argv, <span class="string">&quot;New password: &quot;</span>, PAM_AUTHTOK);</span><br><span class="line">			<span class="keyword">if</span> (retval != PAM_SUCCESS)</span><br><span class="line">				<span class="keyword">return</span> retval;</span><br><span class="line">			pam_get_item(pamh, PAM_AUTHTOK, (<span class="type">void</span>*) &amp;password);</span><br><span class="line">			<span class="built_in">snprintf</span>(new_pass1, BUFSIZE, <span class="string">&quot;%s&quot;</span>, password);</span><br><span class="line">			password = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">			retval = pam_script_set_authtok(pamh, flags, argc, argv, <span class="string">&quot;New password (again): &quot;</span>, PAM_AUTHTOK);</span><br><span class="line">			<span class="keyword">if</span> (retval != PAM_SUCCESS) &#123;</span><br><span class="line">				safe_clearmem(new_pass1, <span class="keyword">sizeof</span>(new_pass1));</span><br><span class="line">				<span class="keyword">return</span> retval;</span><br><span class="line">			&#125;</span><br><span class="line">			retval = pam_get_item(pamh, PAM_AUTHTOK, (<span class="type">void</span>*) &amp;password);</span><br><span class="line">			<span class="built_in">snprintf</span>(new_pass2, BUFSIZE, <span class="string">&quot;%s&quot;</span>, password);</span><br><span class="line">			password = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">			<span class="comment">/* Check if new passwords are the same */</span></span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">strcmp</span>(new_pass1, new_pass2) != <span class="number">0</span>) &#123;</span><br><span class="line">				retval = pam_script_senderr(pamh, flags, argc, argv,</span><br><span class="line">						<span class="string">&quot;You must enter the same password twice.&quot;</span>);</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span> (retval == PAM_SUCCESS)</span><br><span class="line">					retval = PAM_AUTHTOK_ERR;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			safe_clearmem(new_pass1, <span class="keyword">sizeof</span>(new_pass1));</span><br><span class="line">			safe_clearmem(new_pass2, <span class="keyword">sizeof</span>(new_pass2));</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (retval != PAM_SUCCESS)</span><br><span class="line">				<span class="keyword">return</span> PAM_AUTHTOK_ERR;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> pam_script_exec(pamh, <span class="string">&quot;password&quot;</span>, PAM_SCRIPT_PASSWD,</span><br><span class="line">			user, PAM_AUTHTOK_ERR, argc, argv);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> PAM_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* --- session management --- */</span></span><br><span class="line"></span><br><span class="line">PAM_EXTERN</span><br><span class="line"><span class="type">int</span> <span class="title function_">pam_sm_open_session</span><span class="params">(<span class="type">pam_handle_t</span> *pamh, <span class="type">int</span> flags, <span class="type">int</span> argc,</span></span><br><span class="line"><span class="params">			<span class="type">const</span> <span class="type">char</span> **argv)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> retval;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span> *user = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((retval = pam_script_get_user(pamh, &amp;user)) != PAM_SUCCESS)</span><br><span class="line">		<span class="keyword">return</span> retval;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pam_script_exec(pamh, <span class="string">&quot;session&quot;</span>, PAM_SCRIPT_SES_OPEN,</span><br><span class="line">		user, PAM_SESSION_ERR, argc, argv);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PAM_EXTERN</span><br><span class="line"><span class="type">int</span> <span class="title function_">pam_sm_close_session</span><span class="params">(<span class="type">pam_handle_t</span> *pamh, <span class="type">int</span> flags, <span class="type">int</span> argc,</span></span><br><span class="line"><span class="params">			 <span class="type">const</span> <span class="type">char</span> **argv)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> retval;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span> *user = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((retval = pam_script_get_user(pamh, &amp;user)) != PAM_SUCCESS)</span><br><span class="line">		<span class="keyword">return</span> retval;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pam_script_exec(pamh, <span class="string">&quot;session&quot;</span>, PAM_SCRIPT_SES_CLOSE,</span><br><span class="line">		user, PAM_SESSION_ERR, argc, argv);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* end of module definition */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> PAM_STATIC</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* static module data */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">pam_module</span> _<span class="title">pam_script_modstruct</span> =</span> &#123;</span><br><span class="line">	<span class="string">&quot;pam_script&quot;</span>,</span><br><span class="line">	pam_sm_authenticate,</span><br><span class="line">	pam_sm_setcred,</span><br><span class="line">	pam_sm_acct_mgmt,</span><br><span class="line">	pam_sm_open_session,</span><br><span class="line">	pam_sm_close_session,</span><br><span class="line">	pam_sm_chauthtok</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><blockquote>
+<p>本文资料为以下链接的总结，可能大量借鉴其中内容，仅做分享之用，如有侵权，告知必删。</p>
+</blockquote>
+<p><a class="link"   target="_blank" rel="noopener" href="https://linux.die.net/man/5/pam_script" >pam_script - Linux man page<i class="fas fa-external-link-alt"></i></a>—部分信息已经过时了，以本文内容为准</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/jeroennijhof/pam_script" >https://github.com/jeroennijhof/pam_script<i class="fas fa-external-link-alt"></i></a>—Homepage</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://linux.die.net/man/8/pam_exec" >https://linux.die.net/man/8/pam_exec<i class="fas fa-external-link-alt"></i></a>—pam_exec(当我看完了pam_script，发现了pam_exec,emmm…)</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/PAM/">PAM</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2022/0926779.html"
+                                   title="智能指针-QWeakPointer"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">智能指针-QWeakPointer</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2022/0948202.html"
+                                   title="窗口属性"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">窗口属性</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline-meta.css"/>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          window.KeepCommentPlugin.walineOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+          window.KeepCommentPlugin.walineOptions.el = '#waline-comment'
+          window.KeepCommentPlugin.walineOptions.comment = '.post-comments-count'
+          window.KeepCommentPlugin.walineOptions.serverURL = 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/'
+          window.KeepCommentPlugin.walineOptions.lang = 'en' || 'zh-CN'
+          window.KeepCommentPlugin.walineOptions.reaction = 'true' === 'true'
+        </script>
+
+        
+
+        
+            <script data-pjax
+                    async
+                    type="module"
+            >
+              import { init } from '//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js'
+              window.KeepCommentPlugin.initWaline = () => {
+                if (init) {
+                  init(window.KeepCommentPlugin.walineOptions)
+                  window.KeepCommentPlugin.hideLoading()
+                } else {
+                  setTimeout(() => {
+                    window.KeepCommentPlugin.initWaline()
+                  }, 1000)
+                }
+              }
+
+              if ('true' === 'true') {
+                setTimeout(() => {
+                  window.KeepCommentPlugin.initWaline()
+                }, 1200)
+              } else {
+                window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initWaline)
+              }
+            </script>
+        
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-text">作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0"><span class="nav-text">描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A4%E8%AF%81%E7%B1%BB%E5%9E%8B%E5%92%8C%E9%BB%98%E8%AE%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E8%84%9A%E6%9C%AC%E5%90%8D%E7%A7%B0"><span class="nav-text">认证类型和默认执行的脚本名称</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-text">示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E6%8B%93%E5%B1%95"><span class="nav-text">场景拓展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E8%84%9A%E6%9C%AC"><span class="nav-text">示例脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E8%B5%8F%E6%9E%90"><span class="nav-text">源码赏析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ssk-wh</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+                <a target="_blank" rel="nofollow" href="https://github.com/">
+            
+            This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span>
+            
+                </a>
+            
+        </div>
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-text">作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0"><span class="nav-text">描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A4%E8%AF%81%E7%B1%BB%E5%9E%8B%E5%92%8C%E9%BB%98%E8%AE%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E8%84%9A%E6%9C%AC%E5%90%8D%E7%A7%B0"><span class="nav-text">认证类型和默认执行的脚本名称</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-text">示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E6%8B%93%E5%B1%95"><span class="nav-text">场景拓展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E8%84%9A%E6%9C%AC"><span class="nav-text">示例脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E8%B5%8F%E6%9E%90"><span class="nav-text">源码赏析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

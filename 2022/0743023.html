@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            智能指针-QScopedPointer |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#29392c","title":"Ssk-wh's Blog","author":"ssk-wh","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","tools":"/tools","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":true,"links":{"github":"https://github.com/ssk-wh","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"juchengshi@gmail.com"}},"scroll":{"progress_bar":false,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":false,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":3},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":true,"provider":"github","url":"https://github.com/"},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"伙计们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://xpoet.cn/images/avatar.png"},{"name":"Guo Le's Blog","link":"https://guole.fun/","description":"生命是独立是自由是爱与和平","avatar":"https://guole.fun/img/gl.jpg"},{"name":"酷小呵","link":"https://www.kuhehe.top/","description":"爱分享的酷小呵","avatar":"https://q1.qlogo.cn/g?b=qq&nk=3111349763&s=100"}],"tools":[{"category":"AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"name":"Copilot","link":"https://copilot.microsoft.com/","description":"微软家的AI助手","image":"/images/tools/copilot.svg"},{"name":"Kimi","link":"https://kimi.moonshot.cn/","description":"支持识别文件或网址的小众AI网站","image":"/images/tools/kimi.png"},{"name":"文心一言","link":"https://yiyan.baidu.com/","description":"百度旗下的AI助手","image":"/images/tools/wxyy.png"},{"name":"通义千问","link":"https://tongyi.aliyun.com/qianwen/","description":"阿里旗下","image":"/images/tools/tyqw.Default"},{"name":"讯飞星火","link":"https://xinghuo.xfyun.cn/","description":"讯飞旗下","image":"/images/tools/xfxh.svg"},{"category":"技术"},{"name":"Hexo","link":"https://hexo.io/","description":"快速、简洁且高效的博客框架","image":"https://upload.wikimedia.org/wikipedia/commons/b/b9/Hexo_blog_logo.svg"},{"name":"稀土掘金","link":"https://juejin.cn/","description":"开发者社区","image":"/images/tools/xtjj.Default"},{"category":"笔记"},{"name":"语雀","link":"https://www.yuque.com/","description":"在线记录笔记","image":"/images/tools/yuque.svg"},{"category":"图片"},{"name":"undraw","link":"https://undraw.co/illustrations","description":"免费的矢量素材下载网站","image":"https://raw.githubusercontent.com/ssk-wh/ssk-wh.github.io/master/images/undraw_shopping_bags_8l6g.svg"},{"name":"carbon","link":"https://carbon.now.sh/","description":"将代码生成图片","image":null},{"category":"作图网站"},{"name":"Draw.io","link":"https://draw.io/","description":"在线绘图网站，支持同步保存至github","image":null},{"name":"ProcessOn","link":"https://www.processon.com/","description":"在线绘图网站，画软件流程图经常用到","image":null},{"category":"博客管理"},{"name":"LeanCloud","link":"https://console.leancloud.app/apps/D0eDuK0h6X11p0z7FxTgY1CX-MdYXbMMI/storage/data/Comment","description":"评论管理","image":"https://gravatar.tapglb.com/avatar/afa8e9b8057e1877138d43f1dfdd8510?s=200&d=retro"}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                TOOLS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                ABOUT
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                            TOOLS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            ABOUT
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        智能指针-QScopedPointer
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">ssk-wh</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2022-07-28 00:00:00</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Wed Jul 19 2023 08:43:30 GMT+0000">2023-07-19 08:43:30</span>
+                </span>
+            
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/C/">C++</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Qt/">Qt</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">智能指针</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>2.5k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>13 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h1 id="QScopedPointer"><a href="#QScopedPointer" class="headerlink" title="QScopedPointer"></a>QScopedPointer</h1><p>Scope:范围&#x2F;作用域</p>
+<p>明确两个概念：</p>
+<p>1、智能指针不是指针</p>
+<p>2、智能指针持有实际指针</p>
+<h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1><p>这个指针的作用如名字一般，在作用域内使用的指针.在变量超出作用域范围时自动调用指针类型的析构函数进行销毁.（实际就是<strong>利用栈的特性去管理堆上的内存</strong>）</p>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Cleanup = QScopedPointerDeleter&lt;T&gt; &gt;</span><br><span class="line"><span class="keyword">class</span> QScopedPointer</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">typedef</span> T *QScopedPointer:: *RestrictedBool;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">QScopedPointer</span><span class="params">(T *p = <span class="literal">nullptr</span>)</span> Q_DECL_NOTHROW : d(p)</span></span><br><span class="line"><span class="function">    &#123;</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">...</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">    T *d;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">Q_DISABLE_COPY</span>(QScopedPointer)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>构造时传入T类型的指针p,并通过成员变量d进行保存(还是不由自主地感叹了下模板真好用^_^)</p>
+<p>构造函数比较简单,按照其实现,用法如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QScopedPointer&lt;MyClass&gt; <span class="title">mc</span><span class="params">(<span class="keyword">new</span> MyClass)</span></span>;</span><br><span class="line"><span class="comment">// 和上面的用法相同</span></span><br><span class="line"><span class="function">QScopedPointer&lt;MyClass, QScopedPointerDeleter&gt; <span class="title">mc</span><span class="params">(<span class="keyword">new</span> MyClass)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>模板参数中的Cleanup默认使用的是QScopedPointerDeleter，即默认使用delete对指向的内存进行销毁。详见删除器小节。</p>
+<p>如果仔细一些，会发现构造函数中有如下一行代码，并进行了实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="keyword">typedef</span> T *QScopedPointer:: *RestrictedBool;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> defined(Q_QDOC)</span></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="title">bool</span><span class="params">()</span> <span class="type">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">isNull</span>() ? <span class="literal">nullptr</span> : &amp;QScopedPointer::d;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">    <span class="function"><span class="keyword">operator</span> <span class="title">RestrictedBool</span><span class="params">()</span> <span class="type">const</span> Q_DECL_NOTHROW</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">isNull</span>() ? <span class="literal">nullptr</span> : &amp;QScopedPointer::d;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>这里其实是对隐式转换做了限制，避免用指针做比较时，除了转换成bool类型不能转换其他的类型,例如下面的代码会在编译期就提示你有错误：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QScopedPointer&lt;Foo&gt; <span class="title">foo</span><span class="params">(<span class="literal">nullptr</span>)</span></span>;</span><br><span class="line"><span class="type">int</span> i = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span> (foo &lt; i)</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>以下用法是支持的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QScopedPointer&lt;Foo&gt; <span class="title">foo</span><span class="params">(<span class="literal">nullptr</span>)</span></span>;</span><br><span class="line"><span class="type">int</span> i = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span> (foo)</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<h2 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h2><p>在QScopedPointer超出作用域后，智能指针本身(<strong>分配在栈上</strong>)会自动销毁，触发析构函数。在析构函数中，提供了统一的<code>**清理**</code>函数<strong>Cleanup::cleanup(oldD)</strong>,对oldD(<strong>智能指针指向的内存</strong>)进行销毁.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> ~<span class="built_in">QScopedPointer</span>()</span><br><span class="line">&#123;</span><br><span class="line">    T *oldD = <span class="keyword">this</span>-&gt;d;</span><br><span class="line">    Cleanup::<span class="built_in">cleanup</span>(oldD);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于Cleanup的介绍见下一小节.</p>
+<h2 id="删除器"><a href="#删除器" class="headerlink" title="删除器"></a>删除器</h2><p>QScopedPointer不仅适用于通过new操作符分配的单个内存和一组内存(数组),也可用于通过malloc进行分配的内存。同时，针对QObject的deleteLater特性，也有相关处理。这里要说一下他的Cleanup删除器(非专有名词，只有我这样称呼)的概念。<br>Cleanup用于超出作用域时自动销毁指针指向的内存，针对不同方式分配的内存，提供了不同的销毁方式：</p>
+<table>
+<thead>
+<tr>
+<th><strong>删除器种类</strong></th>
+<th><strong>如何销毁</strong></th>
+<th><strong>销毁内存的分配方式</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QScopedPointerDeleter</td>
+<td>delete</td>
+<td>使用new分配的内存</td>
+</tr>
+<tr>
+<td>QScopedPointerArrayDeleter</td>
+<td>delet[]</td>
+<td>使用new []分配内存</td>
+</tr>
+<tr>
+<td>QScopedPointerPodDeleter</td>
+<td>free</td>
+<td>内存由malloc进行分配</td>
+</tr>
+<tr>
+<td>QScopedPointerObjectDeleteLater</td>
+<td>delateLater</td>
+<td>当你的指针为QObject类型时，并且处于一个QEventLoop中</td>
+</tr>
+</tbody></table>
+<p>你也可以实现自己的删除器，它们需要具有公共静态函数 void cleanup(T *pointer).</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// this QScopedPointer deletes its data using the delete[] operator:</span></span><br><span class="line">QScopedPointer&lt;<span class="type">int</span>, QScopedPointerArrayDeleter&lt;<span class="type">int</span>&gt; &gt; <span class="built_in">arrayPointer</span>(<span class="keyword">new</span> <span class="type">int</span>[<span class="number">42</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// this QScopedPointer frees its data using free():</span></span><br><span class="line"><span class="function">QScopedPointer&lt;<span class="type">int</span>, QScopedPointerPodDeleter&gt; <span class="title">podPointer</span><span class="params">(<span class="keyword">reinterpret_cast</span>&lt;<span class="type">int</span> *&gt;(malloc(<span class="number">42</span>)))</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// this struct calls &quot;myCustomDeallocator&quot; to delete the pointer</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ScopedPointerCustomDeleter</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="keyword">inline</span> <span class="type">void</span> <span class="title">cleanup</span><span class="params">(MyCustomClass *pointer)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">myCustomDeallocator</span>(pointer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// QScopedPointer using a custom deleter:</span></span><br><span class="line"><span class="function">QScopedPointer&lt;MyCustomClass, ScopedPointerCustomDeleter&gt; <span class="title">customPointer</span><span class="params">(<span class="keyword">new</span> MyCustomClass)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="方法一览"><a href="#方法一览" class="headerlink" title="方法一览"></a>方法一览</h2><table>
+<thead>
+<tr>
+<th>原型</th>
+<th>接口说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QScopedPointer(T *p &#x3D; …)</td>
+<td>Constructs this QScopedPointer instance and sets its pointer to p.</td>
+</tr>
+<tr>
+<td>~QScopedPointer()</td>
+<td>Destroys this QScopedPointer object. Delete the object its pointer points to.</td>
+</tr>
+<tr>
+<td>T * data() const</td>
+<td>Returns the value of the pointer referenced by this object. QScopedPointer still owns the object pointed to.</td>
+</tr>
+<tr>
+<td>T * get() const</td>
+<td>Same as data().</td>
+</tr>
+<tr>
+<td>bool isNull() const</td>
+<td>Returns true if this object is holding a pointer that is null.</td>
+</tr>
+<tr>
+<td>void reset(T *other &#x3D; …)</td>
+<td>Deletes the existing object it is pointing to (if any), and sets its pointer to other. QScopedPointer now owns other and will delete it in its destructor. To clear the pointer held without deleting the object it points to (and hence take ownership of the object), use take() instead.</td>
+</tr>
+<tr>
+<td>void swap(QScopedPointer&lt;T, Cleanup&gt; &amp;other)</td>
+<td>Swap this pointer with <em>other</em>.</td>
+</tr>
+<tr>
+<td>T * take()</td>
+<td>Returns the value of the pointer referenced by this object. The pointer of this QScopedPointer object will be reset to null. Callers of this function take ownership of the pointer.</td>
+</tr>
+<tr>
+<td>bool operator bool() const</td>
+<td>Returns true if this object is not null. This function is suitable for use in if-constructs, like:if (scopedPointer) {…} See also isNull().</td>
+</tr>
+<tr>
+<td>bool operator!() const</td>
+<td>Returns true if the pointer referenced by this object is null, otherwise returns false.See also isNull().</td>
+</tr>
+<tr>
+<td>T &amp; operator*() const</td>
+<td>Provides access to the scoped pointer’s object.If the contained pointer is null, behavior is undefined.See also isNull().</td>
+</tr>
+<tr>
+<td>T * operator-&gt;() const</td>
+<td>Provides access to the scoped pointer’s object.If the contained pointer is null, behavior is undefined.See also isNull().</td>
+</tr>
+</tbody></table>
+<h2 id="实际场景"><a href="#实际场景" class="headerlink" title="实际场景"></a>实际场景</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">myFunction</span><span class="params">(<span class="type">bool</span> useSubClass)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">      MyClass *p = useSubClass ? <span class="keyword">new</span> <span class="built_in">MyClass</span>() : <span class="keyword">new</span> MySubClass;</span><br><span class="line">      QIODevice *device = <span class="built_in">handsOverOwnership</span>();</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (m_value &gt; <span class="number">3</span>) &#123;</span><br><span class="line">          <span class="keyword">delete</span> p;</span><br><span class="line">          <span class="keyword">delete</span> device;</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="built_in">process</span>(device);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">catch</span> (...) &#123;</span><br><span class="line">          <span class="keyword">delete</span> p;</span><br><span class="line">          <span class="keyword">delete</span> device;</span><br><span class="line">          <span class="keyword">throw</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">delete</span> p;</span><br><span class="line">      <span class="keyword">delete</span> device;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果使用QScopedPointer,可以极大地较少代码量：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">myFunction</span><span class="params">(<span class="type">bool</span> useSubClass)</span></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">     <span class="comment">// assuming that MyClass has a virtual destructor</span></span><br><span class="line">     <span class="function">QScopedPointer&lt;MyClass&gt; <span class="title">p</span><span class="params">(useSubClass ? <span class="keyword">new</span> MyClass() : <span class="keyword">new</span> MySubClass)</span></span>;</span><br><span class="line">     <span class="function">QScopedPointer&lt;QIODevice&gt; <span class="title">device</span><span class="params">(handsOverOwnership())</span></span>;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> (m_value &gt; <span class="number">3</span>)</span><br><span class="line">         <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">     <span class="built_in">process</span>(device);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>QScopedPointer intentionally has no copy constructor or assignment operator, such that ownership and lifetime is clearly communicated.<br>QScopedPointer故意去除了拷贝构造和赋值构造函数，因此指针不能被传递和复制，这样关于指针的所有权和生命周期就很明确(跟随智能指针的销毁而销毁).</p>
+<p>如果你的指针需要用const限定符去修饰，使用QScopedPointer后也是支持的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> QWidget *<span class="type">const</span> p = <span class="keyword">new</span> <span class="built_in">QWidget</span>();</span><br><span class="line"><span class="comment">// is equivalent to:</span></span><br><span class="line"><span class="function"><span class="type">const</span> QScopedPointer&lt;<span class="type">const</span> QWidget&gt; <span class="title">p</span><span class="params">(<span class="keyword">new</span> QWidget())</span></span>;</span><br><span class="line"></span><br><span class="line">QWidget *<span class="type">const</span> p = <span class="keyword">new</span> <span class="built_in">QWidget</span>();</span><br><span class="line"><span class="comment">// is equivalent to:</span></span><br><span class="line"><span class="function"><span class="type">const</span> QScopedPointer&lt;QWidget&gt; <span class="title">p</span><span class="params">(<span class="keyword">new</span> QWidget())</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> QWidget *p = <span class="keyword">new</span> <span class="built_in">QWidget</span>();</span><br><span class="line"><span class="comment">// is equivalent to:</span></span><br><span class="line"><span class="function">QScopedPointer&lt;<span class="type">const</span> QWidget&gt; <span class="title">p</span><span class="params">(<span class="keyword">new</span> QWidget())</span></span>;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<h2 id="QScopedArrayPointer"><a href="#QScopedArrayPointer" class="headerlink" title="QScopedArrayPointer"></a>QScopedArrayPointer</h2><p>和QScopedPointer不同的是，他的删除器默认是QScopedPointerArrayDeleter，其他都差不多，我们了解即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Cleanup = QScopedPointerArrayDeleter&lt;T&gt; &gt;</span><br><span class="line"><span class="keyword">class</span> QScopedArrayPointer : <span class="keyword">public</span> QScopedPointer&lt;T, Cleanup&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Ptr&gt;</span><br><span class="line">    <span class="keyword">using</span> if_same_type = <span class="keyword">typename</span> std::enable_if&lt;std::is_same&lt;<span class="keyword">typename</span> std::remove_cv&lt;T&gt;::type, Ptr&gt;::value, <span class="type">bool</span>&gt;::type;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="title">QScopedArrayPointer</span><span class="params">()</span> : QScopedPointer&lt;T, Cleanup&gt;(nullptr) &#123;</span>&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> D, if_same_type&lt;D&gt; = <span class="literal">true</span>&gt;</span><br><span class="line">    <span class="keyword">explicit</span> <span class="built_in">QScopedArrayPointer</span>(D *p)</span><br><span class="line">        : <span class="built_in">QScopedPointer</span>&lt;T, Cleanup&gt;(p)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="源码赏析"><a href="#源码赏析" class="headerlink" title="源码赏析"></a>源码赏析</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/****************************************************************************</span></span><br><span class="line"><span class="comment">**</span></span><br><span class="line"><span class="comment">** Copyright (C) 2016 The Qt Company Ltd.</span></span><br><span class="line"><span class="comment">** Contact: https://www.qt.io/licensing/</span></span><br><span class="line"><span class="comment">**</span></span><br><span class="line"><span class="comment">** This file is part of the QtCore module of the Qt Toolkit.</span></span><br><span class="line"><span class="comment">**</span></span><br><span class="line"><span class="comment">** $QT_BEGIN_LICENSE:LGPL$</span></span><br><span class="line"><span class="comment">** Commercial License Usage</span></span><br><span class="line"><span class="comment">** Licensees holding valid commercial Qt licenses may use this file in</span></span><br><span class="line"><span class="comment">** accordance with the commercial license agreement provided with the</span></span><br><span class="line"><span class="comment">** Software or, alternatively, in accordance with the terms contained in</span></span><br><span class="line"><span class="comment">** a written agreement between you and The Qt Company. For licensing terms</span></span><br><span class="line"><span class="comment">** and conditions see https://www.qt.io/terms-conditions. For further</span></span><br><span class="line"><span class="comment">** information use the contact form at https://www.qt.io/contact-us.</span></span><br><span class="line"><span class="comment">**</span></span><br><span class="line"><span class="comment">** GNU Lesser General Public License Usage</span></span><br><span class="line"><span class="comment">** Alternatively, this file may be used under the terms of the GNU Lesser</span></span><br><span class="line"><span class="comment">** General Public License version 3 as published by the Free Software</span></span><br><span class="line"><span class="comment">** Foundation and appearing in the file LICENSE.LGPL3 included in the</span></span><br><span class="line"><span class="comment">** packaging of this file. Please review the following information to</span></span><br><span class="line"><span class="comment">** ensure the GNU Lesser General Public License version 3 requirements</span></span><br><span class="line"><span class="comment">** will be met: https://www.gnu.org/licenses/lgpl-3.0.html.</span></span><br><span class="line"><span class="comment">**</span></span><br><span class="line"><span class="comment">** GNU General Public License Usage</span></span><br><span class="line"><span class="comment">** Alternatively, this file may be used under the terms of the GNU</span></span><br><span class="line"><span class="comment">** General Public License version 2.0 or (at your option) the GNU General</span></span><br><span class="line"><span class="comment">** Public license version 3 or any later version approved by the KDE Free</span></span><br><span class="line"><span class="comment">** Qt Foundation. The licenses are as published by the Free Software</span></span><br><span class="line"><span class="comment">** Foundation and appearing in the file LICENSE.GPL2 and LICENSE.GPL3</span></span><br><span class="line"><span class="comment">** included in the packaging of this file. Please review the following</span></span><br><span class="line"><span class="comment">** information to ensure the GNU General Public License requirements will</span></span><br><span class="line"><span class="comment">** be met: https://www.gnu.org/licenses/gpl-2.0.html and</span></span><br><span class="line"><span class="comment">** https://www.gnu.org/licenses/gpl-3.0.html.</span></span><br><span class="line"><span class="comment">**</span></span><br><span class="line"><span class="comment">** $QT_END_LICENSE$</span></span><br><span class="line"><span class="comment">**</span></span><br><span class="line"><span class="comment">****************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> QSCOPEDPOINTER_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> QSCOPEDPOINTER_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtCore/qglobal.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">QT_BEGIN_NAMESPACE</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">QScopedPointerDeleter</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="type">static</span> <span class="keyword">inline</span> <span class="type">void</span> <span class="title">cleanup</span><span class="params">(T *pointer)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="comment">// Enforce a complete type.</span></span><br><span class="line">            <span class="comment">// If you get a compile error here, read the section on forward declared</span></span><br><span class="line">            <span class="comment">// classes in the QScopedPointer documentation.</span></span><br><span class="line">            <span class="keyword">typedef</span> <span class="type">char</span> IsIncompleteType[ <span class="built_in">sizeof</span>(T) ? <span class="number">1</span> : <span class="number">-1</span> ];</span><br><span class="line">            (<span class="type">void</span>) <span class="built_in">sizeof</span>(IsIncompleteType);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">delete</span> pointer;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">QScopedPointerArrayDeleter</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="keyword">inline</span> <span class="type">void</span> <span class="title">cleanup</span><span class="params">(T *pointer)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// Enforce a complete type.</span></span><br><span class="line">        <span class="comment">// If you get a compile error here, read the section on forward declared</span></span><br><span class="line">        <span class="comment">// classes in the QScopedPointer documentation.</span></span><br><span class="line">        <span class="keyword">typedef</span> <span class="type">char</span> IsIncompleteType[ <span class="built_in">sizeof</span>(T) ? <span class="number">1</span> : <span class="number">-1</span> ];</span><br><span class="line">        (<span class="type">void</span>) <span class="built_in">sizeof</span>(IsIncompleteType);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">delete</span> [] pointer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">QScopedPointerPodDeleter</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="keyword">inline</span> <span class="type">void</span> <span class="title">cleanup</span><span class="params">(<span class="type">void</span> *pointer)</span> </span>&#123; <span class="keyword">if</span> (pointer) <span class="built_in">free</span>(pointer); &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> QT_NO_QOBJECT</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">QScopedPointerObjectDeleteLater</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="keyword">inline</span> <span class="type">void</span> <span class="title">cleanup</span><span class="params">(T *pointer)</span> </span>&#123; <span class="keyword">if</span> (pointer) pointer-&gt;<span class="built_in">deleteLater</span>(); &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">QObject</span>;</span><br><span class="line"><span class="keyword">typedef</span> QScopedPointerObjectDeleteLater&lt;QObject&gt; QScopedPointerDeleteLater;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Cleanup = QScopedPointerDeleter&lt;T&gt; &gt;</span><br><span class="line"><span class="keyword">class</span> QScopedPointer</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">typedef</span> T *QScopedPointer:: *RestrictedBool;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">QScopedPointer</span><span class="params">(T *p = <span class="literal">nullptr</span>)</span> Q_DECL_NOTHROW : d(p)</span></span><br><span class="line"><span class="function">    &#123;</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">inline</span> ~<span class="built_in">QScopedPointer</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        T *oldD = <span class="keyword">this</span>-&gt;d;</span><br><span class="line">        Cleanup::<span class="built_in">cleanup</span>(oldD);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">inline</span> T &amp;<span class="keyword">operator</span>*() <span class="type">const</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">Q_ASSERT</span>(d);</span><br><span class="line">        <span class="keyword">return</span> *d;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    T *<span class="keyword">operator</span>-&gt;() <span class="type">const</span> Q_DECL_NOTHROW</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> d;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>!() <span class="type">const</span> Q_DECL_NOTHROW</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> !d;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">#<span class="keyword">if</span> defined(Q_QDOC)</span></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="title">bool</span><span class="params">()</span> <span class="type">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">isNull</span>() ? <span class="literal">nullptr</span> : &amp;QScopedPointer::d;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">    <span class="function"><span class="keyword">operator</span> <span class="title">RestrictedBool</span><span class="params">()</span> <span class="type">const</span> Q_DECL_NOTHROW</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">isNull</span>() ? <span class="literal">nullptr</span> : &amp;QScopedPointer::d;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">    </span><br><span class="line">    <span class="function">T *<span class="title">data</span><span class="params">()</span> <span class="type">const</span> Q_DECL_NOTHROW</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> d;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function">T *<span class="title">get</span><span class="params">()</span> <span class="type">const</span> Q_DECL_NOTHROW</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> d;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isNull</span><span class="params">()</span> <span class="type">const</span> Q_DECL_NOTHROW</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> !d;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">reset</span><span class="params">(T *other = <span class="literal">nullptr</span>)</span> <span class="title">Q_DECL_NOEXCEPT_EXPR</span><span class="params">(<span class="keyword">noexcept</span>(Cleanup::cleanup(std::declval&lt;T *&gt;())))</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (d == other)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        T *oldD = d;</span><br><span class="line">        d = other;</span><br><span class="line">        Cleanup::<span class="built_in">cleanup</span>(oldD);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function">T *<span class="title">take</span><span class="params">()</span> Q_DECL_NOTHROW</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        T *oldD = d;</span><br><span class="line">        d = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">return</span> oldD;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(QScopedPointer&lt;T, Cleanup&gt; &amp;other)</span> Q_DECL_NOTHROW</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">qSwap</span>(d, other.d);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">typedef</span> T *pointer;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">    T *d;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">Q_DISABLE_COPY</span>(QScopedPointer)</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="keyword">class</span> <span class="title class_">Cleanup</span>&gt;</span><br><span class="line"><span class="keyword">inline</span> <span class="type">bool</span> <span class="keyword">operator</span>==(<span class="type">const</span> QScopedPointer&lt;T, Cleanup&gt; &amp;lhs, <span class="type">const</span> QScopedPointer&lt;T, Cleanup&gt; &amp;rhs) Q_DECL_NOTHROW</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> lhs.<span class="built_in">data</span>() == rhs.<span class="built_in">data</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="keyword">class</span> <span class="title class_">Cleanup</span>&gt;</span><br><span class="line"><span class="keyword">inline</span> <span class="type">bool</span> <span class="keyword">operator</span>!=(<span class="type">const</span> QScopedPointer&lt;T, Cleanup&gt; &amp;lhs, <span class="type">const</span> QScopedPointer&lt;T, Cleanup&gt; &amp;rhs) Q_DECL_NOTHROW</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> lhs.<span class="built_in">data</span>() != rhs.<span class="built_in">data</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="keyword">class</span> <span class="title class_">Cleanup</span>&gt;</span><br><span class="line"><span class="keyword">inline</span> <span class="type">bool</span> <span class="keyword">operator</span>==(<span class="type">const</span> QScopedPointer&lt;T, Cleanup&gt; &amp;lhs, std::<span class="type">nullptr_t</span>) Q_DECL_NOTHROW</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> lhs.<span class="built_in">isNull</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="keyword">class</span> <span class="title class_">Cleanup</span>&gt;</span><br><span class="line"><span class="keyword">inline</span> <span class="type">bool</span> <span class="keyword">operator</span>==(std::<span class="type">nullptr_t</span>, <span class="type">const</span> QScopedPointer&lt;T, Cleanup&gt; &amp;rhs) Q_DECL_NOTHROW</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> rhs.<span class="built_in">isNull</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="keyword">class</span> <span class="title class_">Cleanup</span>&gt;</span><br><span class="line"><span class="keyword">inline</span> <span class="type">bool</span> <span class="keyword">operator</span>!=(<span class="type">const</span> QScopedPointer&lt;T, Cleanup&gt; &amp;lhs, std::<span class="type">nullptr_t</span>) Q_DECL_NOTHROW</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> !lhs.<span class="built_in">isNull</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="keyword">class</span> <span class="title class_">Cleanup</span>&gt;</span><br><span class="line"><span class="keyword">inline</span> <span class="type">bool</span> <span class="keyword">operator</span>!=(std::<span class="type">nullptr_t</span>, <span class="type">const</span> QScopedPointer&lt;T, Cleanup&gt; &amp;rhs) Q_DECL_NOTHROW</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> !rhs.<span class="built_in">isNull</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="keyword">class</span> <span class="title class_">Cleanup</span>&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">swap</span><span class="params">(QScopedPointer&lt;T, Cleanup&gt; &amp;p1, QScopedPointer&lt;T, Cleanup&gt; &amp;p2)</span> Q_DECL_NOTHROW</span></span><br><span class="line"><span class="function"></span>&#123; p<span class="number">1.</span><span class="built_in">swap</span>(p2); &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Cleanup = QScopedPointerArrayDeleter&lt;T&gt; &gt;</span><br><span class="line"><span class="keyword">class</span> QScopedArrayPointer : <span class="keyword">public</span> QScopedPointer&lt;T, Cleanup&gt;</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Ptr&gt;</span><br><span class="line"><span class="keyword">using</span> if_same_type = <span class="keyword">typename</span> std::enable_if&lt;std::is_same&lt;<span class="keyword">typename</span> std::remove_cv&lt;T&gt;::type, Ptr&gt;::value, <span class="type">bool</span>&gt;::type;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="title">QScopedArrayPointer</span><span class="params">()</span> : QScopedPointer&lt;T, Cleanup&gt;(nullptr) &#123;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> D, if_same_type&lt;D&gt; = <span class="literal">true</span>&gt;</span><br><span class="line"><span class="keyword">explicit</span> <span class="built_in">QScopedArrayPointer</span>(D *p)</span><br><span class="line">: <span class="built_in">QScopedPointer</span>&lt;T, Cleanup&gt;(p)</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> T &amp;<span class="keyword">operator</span>[](<span class="type">int</span> i)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>-&gt;d[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="type">const</span> T &amp;<span class="keyword">operator</span>[](<span class="type">int</span> i) <span class="type">const</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>-&gt;d[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(QScopedArrayPointer &amp;other)</span> Q_DECL_NOTHROW <span class="comment">// prevent QScopedPointer &lt;-&gt;QScopedArrayPointer swaps</span></span></span><br><span class="line"><span class="function"></span>&#123; QScopedPointer&lt;T, Cleanup&gt;::<span class="built_in">swap</span>(other); &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="function"><span class="keyword">explicit</span> <span class="keyword">inline</span> <span class="title">QScopedArrayPointer</span><span class="params">(<span class="type">void</span> *)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Enforce the same type.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// If you get a compile error here, make sure you declare</span></span><br><span class="line"><span class="comment">// QScopedArrayPointer with the same template type as you pass to the</span></span><br><span class="line"><span class="comment">// constructor. See also the QScopedPointer documentation.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Storing a scalar array as a pointer to a different type is not</span></span><br><span class="line"><span class="comment">// allowed and results in undefined behavior.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Q_DISABLE_COPY</span>(QScopedArrayPointer)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Cleanup&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">swap</span><span class="params">(QScopedArrayPointer&lt;T, Cleanup&gt; &amp;lhs, QScopedArrayPointer&lt;T, Cleanup&gt; &amp;rhs)</span> Q_DECL_NOTHROW</span></span><br><span class="line"><span class="function"></span>&#123; lhs.<span class="built_in">swap</span>(rhs); &#125;</span><br><span class="line"></span><br><span class="line">QT_END_NAMESPACE</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// QSCOPEDPOINTER_H</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><blockquote>
+<p>本文资料为以下链接的总结，可能大量借鉴其中内容，仅做分享之用，如有侵权，告知必删。</p>
+</blockquote>
+<p><a class="link"   target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qscopedpointer.html" >QScopedPointer Class<i class="fas fa-external-link-alt"></i></a></p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Qt/">Qt</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">智能指针</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2022/0948202.html"
+                                   title="窗口属性"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">窗口属性</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2022/0729301.html"
+                                   title="智能指针简介"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">智能指针简介</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline-meta.css"/>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          window.KeepCommentPlugin.walineOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+          window.KeepCommentPlugin.walineOptions.el = '#waline-comment'
+          window.KeepCommentPlugin.walineOptions.comment = '.post-comments-count'
+          window.KeepCommentPlugin.walineOptions.serverURL = 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/'
+          window.KeepCommentPlugin.walineOptions.lang = 'en' || 'zh-CN'
+          window.KeepCommentPlugin.walineOptions.reaction = 'true' === 'true'
+        </script>
+
+        
+
+        
+            <script data-pjax
+                    async
+                    type="module"
+            >
+              import { init } from '//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js'
+              window.KeepCommentPlugin.initWaline = () => {
+                if (init) {
+                  init(window.KeepCommentPlugin.walineOptions)
+                  window.KeepCommentPlugin.hideLoading()
+                } else {
+                  setTimeout(() => {
+                    window.KeepCommentPlugin.initWaline()
+                  }, 1000)
+                }
+              }
+
+              if ('true' === 'true') {
+                setTimeout(() => {
+                  window.KeepCommentPlugin.initWaline()
+                }, 1200)
+              } else {
+                window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initWaline)
+              }
+            </script>
+        
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#QScopedPointer"><span class="nav-text">QScopedPointer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-text">作用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0"><span class="nav-text">析构函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%99%A8"><span class="nav-text">删除器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E8%A7%88"><span class="nav-text">方法一览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E5%9C%BA%E6%99%AF"><span class="nav-text">实际场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QScopedArrayPointer"><span class="nav-text">QScopedArrayPointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E8%B5%8F%E6%9E%90"><span class="nav-text">源码赏析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ssk-wh</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+                <a target="_blank" rel="nofollow" href="https://github.com/">
+            
+            This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span>
+            
+                </a>
+            
+        </div>
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#QScopedPointer"><span class="nav-text">QScopedPointer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-text">作用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0"><span class="nav-text">析构函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%99%A8"><span class="nav-text">删除器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E8%A7%88"><span class="nav-text">方法一览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E5%9C%BA%E6%99%AF"><span class="nav-text">实际场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QScopedArrayPointer"><span class="nav-text">QScopedArrayPointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E8%B5%8F%E6%9E%90"><span class="nav-text">源码赏析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

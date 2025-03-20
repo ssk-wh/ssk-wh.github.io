@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            Wayland Coding 速记-Staging |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#29392c","title":"Ssk-wh's Blog","author":"ssk-wh","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","tools":"/tools","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":true,"links":{"github":"https://github.com/ssk-wh","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"juchengshi@gmail.com"}},"scroll":{"progress_bar":false,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":false,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":3},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":true,"provider":"github","url":"https://github.com/"},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"伙计们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://xpoet.cn/images/avatar.png"},{"name":"Guo Le's Blog","link":"https://guole.fun/","description":"生命是独立是自由是爱与和平","avatar":"https://guole.fun/img/gl.jpg"},{"name":"酷小呵","link":"https://www.kuhehe.top/","description":"爱分享的酷小呵","avatar":"https://q1.qlogo.cn/g?b=qq&nk=3111349763&s=100"}],"tools":[{"category":"AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"name":"Copilot","link":"https://copilot.microsoft.com/","description":"微软家的AI助手","image":"/images/tools/copilot.svg"},{"name":"Kimi","link":"https://kimi.moonshot.cn/","description":"支持识别文件或网址的小众AI网站","image":"/images/tools/kimi.png"},{"name":"文心一言","link":"https://yiyan.baidu.com/","description":"百度旗下的AI助手","image":"/images/tools/wxyy.png"},{"name":"通义千问","link":"https://tongyi.aliyun.com/qianwen/","description":"阿里旗下","image":"/images/tools/tyqw.Default"},{"name":"讯飞星火","link":"https://xinghuo.xfyun.cn/","description":"讯飞旗下","image":"/images/tools/xfxh.svg"},{"category":"技术"},{"name":"Hexo","link":"https://hexo.io/","description":"快速、简洁且高效的博客框架","image":"https://upload.wikimedia.org/wikipedia/commons/b/b9/Hexo_blog_logo.svg"},{"name":"稀土掘金","link":"https://juejin.cn/","description":"开发者社区","image":"/images/tools/xtjj.Default"},{"category":"笔记"},{"name":"语雀","link":"https://www.yuque.com/","description":"在线记录笔记","image":"/images/tools/yuque.svg"},{"category":"图片"},{"name":"undraw","link":"https://undraw.co/illustrations","description":"免费的矢量素材下载网站","image":"https://raw.githubusercontent.com/ssk-wh/ssk-wh.github.io/master/images/undraw_shopping_bags_8l6g.svg"},{"name":"carbon","link":"https://carbon.now.sh/","description":"将代码生成图片","image":null},{"category":"作图网站"},{"name":"Draw.io","link":"https://draw.io/","description":"在线绘图网站，支持同步保存至github","image":null},{"name":"ProcessOn","link":"https://www.processon.com/","description":"在线绘图网站，画软件流程图经常用到","image":null},{"category":"博客管理"},{"name":"LeanCloud","link":"https://console.leancloud.app/apps/D0eDuK0h6X11p0z7FxTgY1CX-MdYXbMMI/storage/data/Comment","description":"评论管理","image":"https://gravatar.tapglb.com/avatar/afa8e9b8057e1877138d43f1dfdd8510?s=200&d=retro"}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                TOOLS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                ABOUT
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                            TOOLS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            ABOUT
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Wayland Coding 速记-Staging
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">ssk-wh</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-05-28 10:53:07</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Tue May 28 2024 06:11:11 GMT+0000">2024-05-28 06:11:11</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/wayland/">wayland</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>6.3k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>27 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>因工作需要加之个人比较感兴趣的原因，在实现 Wayland 合成器相关协议之途中，随笔记录记录一些相关的基础知识。</p>
+<span id="more"></span>
+
+<p><a name="Tmrp0"></a></p>
+<h2 id="Wayland"><a href="#Wayland" class="headerlink" title="Wayland"></a>Wayland</h2><p>关于 wayland 的总结，个人觉得下面一段话挺好：</p>
+<blockquote>
+<p>WaylandWayland is a replacement for the X11 window system protocol and architecture with the aim to be easier to develop, extend, and maintain.<br /></p>
+<p>WaylandWayland 是 X11 窗口系统协议和架构的替代品，旨在更易于开发、扩展和维护。<br /></p>
+<p>Wayland is the language (protocol) that applications can use to talk to a display server in order to make themselves visible and get input from the user (a person). A Wayland server is called a “compositor”. Applications are Wayland clients.<br /></p>
+<p>Wayland 是应用程序可用来与显示服务器对话的语言（协议），以便使自己可见并获取用户（人）的输入。 Wayland 服务器被称为“合成器”。应用程序是 Wayland 客户端。<br /></p>
+<p>Wayland also refers to a system architecture. It is not just a server-client relationship between a compositor and applications. There is no single common Wayland server like Xorg is for X11, but every graphical environment brings with it one of many compositor implementations. Window management and the end user experience are often tied to the compositor rather than swappable components.<br /></p>
+<p>Wayland 也指一种系统架构。它不仅仅是合成器和应用程序之间的服务器-客户端关系。没有像 Xorg 那样适用于 X11 的单一通用 Wayland 服务器，但每个图形环境都带来了许多合成器实现之一。窗口管理和最终用户体验通常与合成器而不是可交换组件相关。<br /></p>
+<p>A core part of Wayland architecture is libwayland: an inter-process communication library that translates a protocol definition in XML to a C language API. This library does not implement Wayland, it merely encodes and decodes Wayland messages. The actual implementations are in the various compositor and application toolkit projects.<br /></p>
+<p>Wayland 架构的核心部分是 libwayland：一个进程间通信库，它将 XML 中的协议定义转换为 C 语言 API。该库没有实现 Wayland，它只是对 Wayland 消息进行编码和解码。实际的实现是在各种合成器和应用程序工具包项目中。<br /></p>
+<p>Wayland does not restrict where and how it is used. A Wayland compositor could be a standalone display server running on Linux kernel modesetting and evdev input devices or on many other operating systems, or a nested compositor that itself is an X11 or Wayland application (client). Wayland can even be used in application-internal communication as is done in some web browsers.<br /></p>
+<p>Wayland 不限制其使用地点和方式。 Wayland 合成器可以是在 Linux 内核模式设置和 evdev 输入设备或许多其他操作系统上运行的独立显示服务器，也可以是本身就是 X11 或 Wayland 应用程序（客户端）的嵌套合成器。 Wayland 甚至可以用于应用程序内部通信，就像某些 Web 浏览器中所做的那样。<br /></p>
+<p>Part of the Wayland project is also the Weston reference implementation of a Wayland compositor. Weston can run as an X client or under Linux KMS and ships with a few demo clients. The Weston compositor is a minimal and fast compositor and is suitable for many embedded and mobile use cases.</p>
+<p>Wayland 项目的一部分也是 Wayland 合成器的 Weston 参考实现。 Weston 可以作为 X 客户端或在 Linux KMS 下运行，并附带一些演示客户端。 Weston 合成器是一个最小且快速的合成器，适用于许多嵌入式和移动用例。</p>
+</blockquote>
+<p><a name="LJoxs"></a></p>
+<h2 id="开发库"><a href="#开发库" class="headerlink" title="开发库"></a>开发库</h2><p>后续开发内容均基于 libwayland-dev 进行。</p>
+<p><a name="yTd8M"></a></p>
+<h3 id="主要结构体"><a href="#主要结构体" class="headerlink" title="主要结构体"></a>主要结构体</h3><table>
+<thead>
+<tr>
+<th><strong>Struct</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>wl_display</td>
+<td>代表一个 Wayland 显示服务器的连接。它用于管理客户端和服务器之间的通信和事件处理</td>
+<td>struct wl_display *wl_display_create(void);<br />void wl_display_run(struct wl_display *display);<br />struct wl_list *wl_display_get_client_list(struct wl_display *display);</td>
+</tr>
+<tr>
+<td>wl_global</td>
+<td>用于描述全局对象。这些全局对象在 Wayland 显示服务器中注册，可以被客户端发现和使用。<strong>wl_global</strong> 对象通常表示服务器中提供的某些功能或接口，例如 compositor、shell、seat 等</td>
+<td>struct wl_global *wl_global_create(struct wl_display *display, const struct wl_interface *interface, int version, void *data, wl_global_bind_func_t bind);</td>
+</tr>
+<tr>
+<td>wl_event_loop</td>
+<td>用于管理事件循环。在 Wayland 服务器中，事件循环用于处理来自客户端的请求、内部超时事件以及文件描述符上的事件。</td>
+<td>struct wl_event_loop *wl_event_loop_create(void);<br />void wl_event_loop_destroy(struct wl_event_loop *loop);</td>
+</tr>
+<tr>
+<td>wl_event_source</td>
+<td>用于描述一个事件源。在 Wayland 服务器的事件循环中，事件源可以是文件描述符事件、定时器事件或信号事件。</td>
+<td>struct wl_event_source *wl_event_loop_add_fd(struct wl_event_loop *loop, int fd, uint32_t mask, wl_event_loop_fd_func_t func, void *data);</td>
+</tr>
+<tr>
+<td>wl_interface</td>
+<td>用于描述 Wayland 协议中的接口。接口是 Wayland 协议的基本构建块，定义了客户端和服务器之间可以进行的交互。每个接口包括一组方法（requests）和事件（events）。</td>
+<td>struct wl_interface {<br />    const char *name;<br />    int version;<br />    int method_count;<br />    const struct wl_message *methods;<br />    int event_count;<br />    const struct wl_message *events;<br />};</td>
+</tr>
+<tr>
+<td>wl_message</td>
+<td>用于描述接口中的每个方法和事件。</td>
+<td>static const struct wl_message my_interface_events[] &#x3D; { { “something_done”, “s”, NULL }  &#x2F;&#x2F; “s” 表示事件发送一个字符串参数 };</td>
+</tr>
+<tr>
+<td>wl_resource</td>
+<td>用于表示 Wayland 客户端与服务器之间的一个协议对象。它在客户端和服务器之间传递方法调用和事件通知。每个 <strong>wl_resource</strong> 都与一个特定的 <strong>wl_interface</strong>（接口）相关联，表示该接口的一个实例。</td>
+<td>struct wl_resource *wl_resource_create(struct wl_client *client, const struct wl_interface *interface, int version, uint32_t id);<br />void wl_resource_set_implementation(struct wl_resource *resource, const void *implementation, void *data, wl_resource_destroy_func_t destroy);</td>
+</tr>
+<tr>
+<td>wl_surface</td>
+<td>代表了一个可供客户端绘制的表面（Surface）。它是构建用户界面的基本单元，可以是窗口、按钮、文本框等可见的元素。<strong>wl_surface</strong> 通过 Wayland 协议与客户端和服务器进行通信，客户端可以向 <strong>wl_surface</strong> 发送绘图指令，服务器则负责将这些指令转换为屏幕上的图像。</td>
+<td></td>
+</tr>
+<tr>
+<td>wl_output</td>
+<td>Wayland 中用于表示显示器（output）的接口。每个 <strong>wl_output</strong> 对象代表了系统中的一个物理显示设备，比如显示器或投影仪。通过 <strong>wl_output</strong> 接口，客户端程序可以获取有关显示器的信息，如分辨率、缩放因子、物理尺寸、制造商信息等，并接收显示器的事件，如模式更改、连接状态变化等。</td>
+<td>wl_output_add_geometry_listener</td>
+</tr>
+<tr>
+<td>wl_client</td>
+<td>用于表示一个连接到 Wayland 服务器的客户端。它负责管理客户端连接、处理客户端的请求，并向客户端发送事件</td>
+<td>struct wl_client *wl_resource_get_client(struct wl_resource *resource);<br />void wl_client_post_no_memory(struct wl_client *client);<br />void wl_client_post_implementation_error(struct wl_client *client, const char *msg);<br />void wl_client_post_event(struct wl_client *client, uint32_t opcode, …);</td>
+</tr>
+<tr>
+<td>wl_signal</td>
+<td>用于实现发布-订阅模式的信号机制。它允许对象在状态变化时通知感兴趣的侦听器（监听器）。<strong>wl_signal</strong> 是一个简单但功能强大的机制，可以在 Wayland 服务端内部或者在客户端与服务端之间传递事件通知。</td>
+<td>struct wl_signal my_signal;<br />wl_signal_init(&amp;my_signal);<br />void my_signal_handler(struct wl_listener *listener, void *data) {<br />    printf(“Signal received with data: %s\n”, (char *)data);<br />}<br />struct wl_listener my_listener;<br />my_listener.notify &#x3D; my_signal_handler;<br />wl_signal_add(&amp;my_signal, &amp;my_listener);<br />&#x2F;&#x2F; send signal to notify all listener<br />const char *signal_data &#x3D; “Hello, World!”;<br />wl_signal_emit(&amp;my_signal, (void *)signal_data);</td>
+</tr>
+<tr>
+<td>wl_listener</td>
+<td>用于监听 <strong>wl_signal</strong> 发出的信号。每个 <strong>wl_listener</strong> 都包含一个回调函数，当监听的信号发出时，该回调函数会被调用。这种机制使得对象之间的通信变得更加灵活和解耦。</td>
+<td>struct wl_listener {<br />    struct wl_list link;<br />    wl_notify_func_t notify;<br />};<br />struct wl_listener my_listener;<br />my_listener.notify &#x3D; my_signal_handler; &#x2F;&#x2F; 设置回调函数<br />wl_signal_add(&amp;my_signal, &amp;my_listener); &#x2F;&#x2F; 将监听器添加到信号中</td>
+</tr>
+<tr>
+<td>wl_list</td>
+<td>Wayland 核心库中的一个双向链表实现，用于在 Wayland 内部和相关组件中进行列表管理</td>
+<td>struct wl_list {<br />    struct wl_list *prev;<br />    struct wl_list *next;<br />};<br />void wl_list_init(struct wl_list *list);<br />void wl_list_insert(struct wl_list *list, struct wl_list *elm);<br />void wl_list_remove(struct wl_list *elm);<br />wl_list_for_each &amp; wl_list_for_each_safe</td>
+</tr>
+<tr>
+<td>wl_shm_buffer</td>
+<td>Wayland 的共享内存（Shared Memory）缓冲区，用于在客户端和服务器之间共享图像数据。它允许客户端将图像数据写入共享内存，然后将该内存区域作为缓冲区发送到服务器。服务器可以直接访问这个共享内存，从而避免了数据的拷贝，提高了效率</td>
+<td></td>
+</tr>
+<tr>
+<td>wl_shm_pool</td>
+<td>Wayland 提供的一个共享内存池，用于在客户端和服务器之间共享图像数据。<strong>wl_shm_pool</strong> 是通过 Wayland 的 <strong>wl_shm</strong> 接口创建的，它允许客户端从共享内存中分配多个缓冲区。这些缓冲区可以被客户端用来绘制图像，并将其传递给服务器显示。</td>
+<td></td>
+</tr>
+<tr>
+<td>wl_protocol_logger</td>
+<td>用于记录 Wayland 协议的消息。它允许开发者记录客户端和服务器之间交换的协议消息，方便调试和分析 Wayland 协议的使用情况。</td>
+<td>struct wl_protocol_logger {<br />    void (*log)(void *user_data, struct wl_resource *resource,<br />                uint32_t opcode, const struct wl_message *message,<br />                union wl_argument *args);<br />    void *user_data;<br />};<br /><br />struct wl_protocol_logger logger &#x3D; { <br />.log &#x3D; protocol_log, <br />.user_data &#x3D; “Wayland”  &#x2F;&#x2F; 这里可以传递任何用户数据<br /> }; <br />wl_display_add_protocol_logger(display, &amp;logger);</td>
+</tr>
+<tr>
+<td>wl_display_add_destroy_listener</td>
+<td>绑定到一个 wl_listener 结构，通过指定 wl_listener 的.notify成员实现对 display 销毁时的监听<br />用于在 wl_display 对象销毁时注册一个回调函数。这个回调函数会在 wl_display 对象销毁时被调用，以便进行清理或其他必要的操作。</td>
+<td>manager-&gt;display_destroy.notify &#x3D; handle_display_destroy;<br />    wl_display_add_destroy_listener(display, &amp;manager-&gt;display_destroy);</td>
+</tr>
+</tbody></table>
+<p><a name="jKOh5"></a></p>
+<h3 id="主要函数"><a href="#主要函数" class="headerlink" title="主要函数"></a>主要函数</h3><table>
+<thead>
+<tr>
+<th><strong>Function</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>wl_display_add_destroy_listener</td>
+<td>绑定到一个 wl_listener 结构，通过指定 wl_listener 的.notify成员实现对 display 销毁时的监听<br />用于在 wl_display 对象销毁时注册一个回调函数。这个回调函数会在 wl_display 对象销毁时被调用，以便进行清理或其他必要的操作。</td>
+<td>manager-&gt;display_destroy.notify &#x3D; handle_display_destroy;<br />    wl_display_add_destroy_listener(display, &amp;manager-&gt;display_destroy);</td>
+</tr>
+<tr>
+<td>wl_event_loop_add_destroy_listener</td>
+<td>用于向事件循环添加一个监听器，以便在事件循环被销毁时触发回调函数。</td>
+<td>struct wl_listener *wl_event_loop_add_destroy_listener(struct wl_event_loop *loop, wl_listener *listener);</td>
+</tr>
+<tr>
+<td>wl_global_create</td>
+<td>用于创建一个全局对象，并将其注册到 Wayland 显示服务器上。全局对象可以被客户端程序获取并使用，从而实现客户端和服务器之间的通信。</td>
+<td>struct wl_global *wl_global_create(struct wl_display *display,<br />                                   const struct wl_interface *interface,<br />                                   int version,<br />                                   void *data,<br />                                   wl_global_bind_func_t bind);</td>
+</tr>
+<tr>
+<td>wl_global_remove</td>
+<td>类似wl_global_destroy，但并不销毁。通常使用 wl_global_destroy 即可</td>
+<td></td>
+</tr>
+<tr>
+<td>wl_global_destroy</td>
+<td>销毁一个全局对象。</td>
+<td></td>
+</tr>
+<tr>
+<td>wl_resource_set_implementation</td>
+<td>用于将一组回调函数（即接口实现）和用户数据关联到一个 <strong>wl_resource</strong> 对象。每当与该资源相关的客户端请求到达时，Wayland 会调用相应的回调函数，从而实现具体的行为。</td>
+<td>void wl_resource_set_implementation(struct wl_resource *resource,<br /> const void *implementation,<br />void *data,<br /> wl_resource_destroy_func_t destroy);</td>
+</tr>
+<tr>
+<td>wl_resource_set_user_data</td>
+<td>用于将用户自定义的数据与特定的 <strong>wl_resource</strong> 资源关联起来。这使得在处理资源相关的回调时，可以访问和使用这些用户数据。</td>
+<td>void wl_resource_set_user_data(struct wl_resource *resource, void *user_data);</td>
+</tr>
+<tr>
+<td>wl_display_roundtrip</td>
+<td>Wayland 客户端程序中常用的函数之一，用于同步地发送请求并等待服务器对请求的响应。它会阻塞当前线程，直到服务器返回响应或者发生错误。</td>
+<td>int wl_display_roundtrip(struct wl_display *display);</td>
+</tr>
+<tr>
+<td>wl_resource_get_user_data</td>
+<td>用于获取与特定 <strong>wl_resource</strong> 资源关联的用户数据。这个函数通常与 <strong>wl_resource_set_user_data</strong> 一起使用，后者用于将用户数据与资源关联。</td>
+<td>void *wl_resource_get_user_data(struct wl_resource *resource);</td>
+</tr>
+</tbody></table>
+<p><a name="Vw3Mb"></a></p>
+<h3 id="核心文件"><a href="#核心文件" class="headerlink" title="核心文件"></a>核心文件</h3><p>wayland-server-core.h</p>
+<p><a name="ICOD6"></a></p>
+<h2 id="协议分类"><a href="#协议分类" class="headerlink" title="协议分类"></a>协议分类</h2><p>详见: <a class="link"   target="_blank" rel="noopener" href="https://wayland.app/protocols/" >https://wayland.app/protocols/<i class="fas fa-external-link-alt"></i></a><br>:::success<br><em>实际上，wayland 合成器就是一组协议的实现者。</em><br>:::<br>wayland 协议大致分为 core(核心)、stable(稳定)、staging(考虑中，可能会变为稳定)、unstable(不稳定)等，表明其当前状态，出于兼容考虑，合成器的开发应且务必实现 core 和 stable 协议，视情况需要实现部分 unstable 或其它甚至是自定义协议。</p>
+<p><a name="AgOPi"></a></p>
+<h3 id="Core"><a href="#Core" class="headerlink" title="Core"></a>Core</h3><table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Wayland</td>
+<td>Wayland 核心协议，这个文件定义了客户端和服务器之间通信的标准接口，包括各种对象、请求和事件。是使用其他协议的前提。</td>
+</tr>
+</tbody></table>
+<p><a name="mcV5i"></a></p>
+<h3 id="Stable"><a href="#Stable" class="headerlink" title="Stable"></a>Stable</h3><table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Presentation time</td>
+<td>Presentation-Time 协议是为了解决音频与视频同步播放时出现的问题而设计的。它允许客户端在显示器上的特定时间点提交图像，以确保图像在预期时间显示，从而实现音频和视频的同步播放。</td>
+</tr>
+<tr>
+<td>Viewporter</td>
+<td>它旨在支持客户端动态调整输出显示区域（viewport）的大小和位置。这个协议特别适用于需要对输出进行缩放、平移或裁剪的应用场景，比如 VR（虚拟现实）和多显示器环境下的窗口管理器等。</td>
+</tr>
+<tr>
+<td>XDG shell</td>
+<td>定义了一种标准的方式来管理窗口和窗口管理器之间的通信，使得窗口的创建、调整和销毁等操作能够在 Wayland 环境下进行。</td>
+</tr>
+<tr>
+<td>Linux DMA-BUF</td>
+<td>Linux 内核中用于在设备之间共享内存的机制。DMA-BUF 全称是 Direct Memory Access Buffer，它允许不同的设备（如图形处理器、显示器、摄像头等）直接访问内核中的一块共享内存区域，而无需复制数据到每个设备的私有内存中。</td>
+</tr>
+<tr>
+<td>Tablet</td>
+<td>旨在提供对触摸板和手写板等输入设备的更丰富支持。它定义了一组标准接口，使得客户端能够更好地与这些特殊输入设备进行交互，并实现更丰富的用户体验。</td>
+</tr>
+</tbody></table>
+<p><a name="sOLys"></a></p>
+<h3 id="Staging"><a href="#Staging" class="headerlink" title="Staging"></a>Staging</h3><table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>XDG activation</td>
+<td>旨在提供一种标准化的方式来启动和激活桌面应用程序。它定义了一组接口，允许应用程序和桌面环境之间进行通信，以便启动应用程序、切换窗口焦点、和处理用户交互。</td>
+</tr>
+<tr>
+<td>DRM lease</td>
+<td>允许应用程序临时租用图形硬件资源，例如显示器和显卡，从而绕过窗口系统，直接控制这些资源。这在虚拟现实（VR）和增强现实（AR）等需要低延迟和高性能图形渲染的应用中尤为重要。</td>
+</tr>
+<tr>
+<td>DRM synchronization object</td>
+<td>用于在图形渲染过程中协调和同步不同操作和资源的使用。它们在确保图形管线中的各个阶段按正确顺序执行、避免资源竞争和数据不一致方面发挥着关键作用。</td>
+</tr>
+<tr>
+<td>Session lock</td>
+<td>用于保护用户会话安全，防止未授权的访问。当用户暂时离开工作站时，可以锁定会话以确保其正在运行的应用程序和数据不会被其他人查看或篡改。</td>
+</tr>
+<tr>
+<td>Single-pixel buffer</td>
+<td>专门用于优化小图形元素的传输和渲染。它的主要目标是提供一种高效的方式来处理单个像素的图形操作，这对于某些类型的图形应用程序（如光标、点状图形、单色图形元素等）非常重要。</td>
+</tr>
+<tr>
+<td>Content type hint</td>
+<td>允许客户端向合成器（compositor）提供关于表面（surface）内容类型的提示。这些提示有助于合成器优化渲染和处理不同类型的内容，提高显示性能和视觉效果。</td>
+</tr>
+<tr>
+<td>Idle notify</td>
+<td>使客户端能够接收用户空闲状态的通知，从而在用户不活动时执行特定任务。这种机制有助于优化系统资源使用，提高用户体验，特别是在屏幕保护和节能模式等应用场景中。通过合理使用该协议，开发者可以显著提升应用程序的智能化和响应能力。</td>
+</tr>
+<tr>
+<td>Tearing control</td>
+<td>旨在解决屏幕撕裂问题。屏幕撕裂是在显示器刷新过程中，显示的图像部分来自于不同的帧，导致图像出现不连续的现象。这种现象在快速运动的场景中特别明显。Tearing Control 协议通过提供机制让客户端和合成器协作，来减少或消除屏幕撕裂，提高显示效果和用户体验。</td>
+</tr>
+<tr>
+<td>Xwayland shell</td>
+<td>Xwayland 是 Wayland 的一个兼容层，使得 X11 应用程序可以在 Wayland 合成器上运行。Xwayland Shell 协议是一个特定的 Wayland 扩展协议，旨在为运行在 Xwayland 上的 X11 客户端提供更好的窗口管理和集成支持。这个协议使得 Wayland 合成器能够更好地控制和管理这些 X11 窗口，从而提高整体用户体验。</td>
+</tr>
+<tr>
+<td>Fractional scale</td>
+<td>用于支持显示器的分数缩放（Fractional Scaling）。传统的显示器缩放通常只支持整数比例，例如 1x、2x、3x 等，这可能无法完全满足高分辨率显示器上的 UI 缩放需求。Fractional Scale 协议允许用户以分数形式（如 1.25x、1.5x、1.75x 等）调整 UI 的缩放级别，以更好地适应高分辨率显示器和不同的视觉需求。</td>
+</tr>
+<tr>
+<td>Cursor shape</td>
+<td>旨在允许客户端动态地改变鼠标指针的形状。这个协议使得应用程序可以根据需要更改鼠标指针的外观，以提供更好的用户体验和交互反馈。</td>
+</tr>
+<tr>
+<td>Foreign toplevel list</td>
+<td>旨在提供一种机制，让 Wayland 合成器（compositor）可以跟踪和管理来自外部系统的顶层窗口（例如 X11 窗口）。通过这个协议，Wayland 合成器可以更好地集成和管理来自不同窗口系统的窗口，提供更统一的用户体验。</td>
+</tr>
+<tr>
+<td>Security context</td>
+<td>Security Context 协议为 Wayland 提供了一种机制，允许客户端和服务端在通信中传递安全上下文信息，增强通信的安全性。尽管该协议需要客户端和服务端的正确实现，并可能带来一定的性能开销，但它能够有效地保护通信内容的机密性和完整性，并支持基于权限的访问控制，从而提高了 Wayland 通信的安全性。</td>
+</tr>
+<tr>
+<td>Transient seat</td>
+<td>它允许在同一系统上的不同输入设备之间建立父子关系。这种关系对于多屏幕系统或者具有多个输入设备的系统非常有用，它能够确保特定的输入设备（例如触摸板或者鼠标）仅控制特定的屏幕或应用程序。</td>
+</tr>
+<tr>
+<td>XDG toplevel drag</td>
+<td>用于实现在 Wayland 上对窗口进行拖动操作。这个协议允许用户在屏幕上拖动应用程序的顶层窗口，以便更改其位置或将其拖入其他工作区等。XDG Toplevel Drag 协议的实现使得用户能够通过简单的拖动操作来管理和组织窗口，提高了桌面环境的交互性和可用性。</td>
+</tr>
+<tr>
+<td>XDG dialog windows</td>
+<td>旨在为桌面环境提供一种标准化的方式来管理对话框窗口。该协议定义了一组接口和事件，用于创建、显示和管理对话框窗口，并规定了对话框窗口的行为和外观，以提供更一致的用户体验。</td>
+</tr>
+<tr>
+<td>Alpha modifier protocol</td>
+<td>它允许客户端与服务器协商窗口表面（surface）的 Alpha 值，以实现窗口的透明度调整。</td>
+</tr>
+</tbody></table>
+<p>其他协议请查阅：<a class="link"   target="_blank" rel="noopener" href="https://wayland.app/protocols/" >https://wayland.app/protocols/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a name="Z39oa"></a></p>
+<h2 id="自定义协议"><a href="#自定义协议" class="headerlink" title="自定义协议"></a>自定义协议</h2><p>使用 wayland-scanner 命令将协议文件(XML)生成胶水代码，如果是服务端，需设置新协议的实现，客户端直接调用胶水代码的接口即可。<br><a name="RzRTz"></a></p>
+<h3 id="服务端实现"><a href="#服务端实现" class="headerlink" title="服务端实现"></a>服务端实现</h3><p>参考 <a class="link"   target="_blank" rel="noopener" href="https://gitlab.freedesktop.org/wlroots/wlroots/-/tree/0.17?ref_type=heads" >wlroots<i class="fas fa-external-link-alt"></i></a> 项目，不再赘述。<br />附一些之前手写的合成器对 <a class="link"   target="_blank" rel="noopener" href="https://wayland.app/protocols/ext-session-lock-v1" >ext_session_lock_v1<i class="fas fa-external-link-alt"></i></a> 协议支持的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ext-session-lock-server-protocol.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_manager_v1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_event_loop</span> *<span class="title">event_loop</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_global</span> *<span class="title">global</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_list</span> <span class="title">contexts</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_resource</span> *<span class="title">client</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_listener</span> <span class="title">display_destroy</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">wl_signal</span> <span class="title">lock</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">wl_signal</span> <span class="title">destroy</span>;</span></span><br><span class="line">    &#125; events;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_v1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_resource</span> *<span class="title">resource</span>;</span></span><br><span class="line">    <span class="type">uint32_t</span> id;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_list</span> <span class="title">contexts</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">wl_signal</span> <span class="title">get_lock_surface</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">wl_signal</span> <span class="title">unlock_and_destroy</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">wl_signal</span> <span class="title">destroy</span>;</span></span><br><span class="line">    &#125; events;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_surface_v1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_resource</span> *<span class="title">resource</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_resource</span> *<span class="title">surface</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_resource</span> *<span class="title">output</span>;</span></span><br><span class="line">    <span class="type">uint32_t</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">wl_signal</span> <span class="title">ack_configure</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">wl_signal</span> <span class="title">destroy</span>;</span></span><br><span class="line">    &#125; events;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ext_session_lock_v1_destroy</span><span class="params">(<span class="keyword">struct</span> ext_session_lock_v1 *context)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">ext_session_lock_surface_v1_destroy</span><span class="params">(<span class="keyword">struct</span> ext_session_lock_surface_v1 *context)</span>;</span><br><span class="line"><span class="keyword">struct</span> ext_session_lock_manager_v1 *<span class="title function_">ext_session_lock_manager_v1_create</span><span class="params">(<span class="keyword">struct</span> wl_display *display)</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ext_session_lock_manager_impl.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">lock_surface_handle_destroy</span><span class="params">(<span class="keyword">struct</span> wl_client *client, <span class="keyword">struct</span> wl_resource *resource)</span></span><br><span class="line">&#123;</span><br><span class="line">    wl_resource_destroy(resource);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">lock_surface_handle_ack_configure</span><span class="params">([[maybe_unused]] <span class="keyword">struct</span> wl_client *client,</span></span><br><span class="line"><span class="params">                                              <span class="keyword">struct</span> wl_resource *resource,</span></span><br><span class="line"><span class="params">                                              <span class="type">uint32_t</span> serial)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_surface_v1</span> *<span class="title">context</span> =</span></span><br><span class="line">        static_cast&lt;ext_session_lock_surface_v1 *&gt;(wl_resource_get_user_data(resource));</span><br><span class="line">    <span class="keyword">if</span> (!context) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    wl_signal_emit_mutable(&amp;context-&gt;events.ack_configure, context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_surface_v1_interface</span> <span class="title">lock_surface_implementation</span> =</span> &#123;</span><br><span class="line">    .destroy = lock_surface_handle_destroy,</span><br><span class="line">    .ack_configure = lock_surface_handle_ack_configure,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ext_session_lock_surface_v1_destroy</span><span class="params">(<span class="keyword">struct</span> ext_session_lock_surface_v1 *context)</span></span><br><span class="line">&#123;</span><br><span class="line">    wl_signal_emit_mutable(&amp;context-&gt;events.destroy, context);</span><br><span class="line">    <span class="built_in">free</span>(context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ext_session_lock_surface_v1_destroy_func</span><span class="params">(wl_resource *resource)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_surface_v1</span> *<span class="title">context</span> =</span></span><br><span class="line">        static_cast&lt;ext_session_lock_surface_v1 *&gt;(wl_resource_get_user_data(resource));</span><br><span class="line">    <span class="keyword">if</span> (!context) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ext_session_lock_surface_v1_destroy(context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">lock_handle_get_lock_surface</span><span class="params">(<span class="keyword">struct</span> wl_client *client,</span></span><br><span class="line"><span class="params">                                         <span class="keyword">struct</span> wl_resource *lock_resource,</span></span><br><span class="line"><span class="params">                                         <span class="type">uint32_t</span> id,</span></span><br><span class="line"><span class="params">                                         <span class="keyword">struct</span> wl_resource *surface,</span></span><br><span class="line"><span class="params">                                         <span class="keyword">struct</span> wl_resource *output)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_v1</span> *<span class="title">context</span> =</span></span><br><span class="line">        static_cast&lt;ext_session_lock_v1 *&gt;(wl_resource_get_user_data(lock_resource));</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_resource</span> *<span class="title">resource</span> =</span> wl_resource_create(client,</span><br><span class="line">                                                      &amp;ext_session_lock_surface_v1_interface,</span><br><span class="line">                                                      EXT_SESSION_LOCK_V1_DESTROY_SINCE_VERSION,</span><br><span class="line">                                                      id);</span><br><span class="line">    <span class="keyword">if</span> (resource == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        wl_resource_post_no_memory(lock_resource);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_surface_v1</span> *<span class="title">lock_surface</span> =</span></span><br><span class="line">        static_cast&lt;ext_session_lock_surface_v1 *&gt;(<span class="built_in">calloc</span>(<span class="number">1</span>, <span class="keyword">sizeof</span>(*lock_surface)));</span><br><span class="line">    <span class="keyword">if</span> (lock_surface == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        wl_resource_post_no_memory(lock_resource);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    wl_resource_set_implementation(resource,</span><br><span class="line">                                   &amp;lock_surface_implementation,</span><br><span class="line">                                   lock_surface,</span><br><span class="line">                                   ext_session_lock_surface_v1_destroy_func);</span><br><span class="line"></span><br><span class="line">    wl_resource_set_user_data(resource, lock_surface);</span><br><span class="line"></span><br><span class="line">    wl_signal_init(&amp;lock_surface-&gt;events.ack_configure);</span><br><span class="line">    wl_signal_init(&amp;lock_surface-&gt;events.destroy);</span><br><span class="line"></span><br><span class="line">    lock_surface-&gt;resource = resource;</span><br><span class="line">    lock_surface-&gt;surface = surface;</span><br><span class="line">    lock_surface-&gt;output = output;</span><br><span class="line">    lock_surface-&gt;id = id;</span><br><span class="line"></span><br><span class="line">    wl_signal_emit_mutable(&amp;context-&gt;events.get_lock_surface, lock_surface);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">lock_handle_destroy</span><span class="params">([[maybe_unused]] <span class="keyword">struct</span> wl_client *client,</span></span><br><span class="line"><span class="params">                                <span class="keyword">struct</span> wl_resource *resource)</span></span><br><span class="line">&#123;</span><br><span class="line">    wl_resource_destroy(resource);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">lock_handle_unlock_and_destroy</span><span class="params">(<span class="keyword">struct</span> wl_client *client, <span class="keyword">struct</span> wl_resource *resource)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_v1</span> *<span class="title">context</span> =</span></span><br><span class="line">        static_cast&lt;ext_session_lock_v1 *&gt;(wl_resource_get_user_data(resource));</span><br><span class="line">    wl_signal_emit_mutable(&amp;context-&gt;events.unlock_and_destroy, context);</span><br><span class="line">    lock_handle_destroy(client, resource);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_v1_interface</span> <span class="title">lock_implementation</span> =</span> &#123;</span><br><span class="line">    .destroy = lock_handle_destroy,</span><br><span class="line">    .get_lock_surface = lock_handle_get_lock_surface,</span><br><span class="line">    .unlock_and_destroy = lock_handle_unlock_and_destroy,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">manager_handle_destroy</span><span class="params">(<span class="keyword">struct</span> wl_client *client, <span class="keyword">struct</span> wl_resource *resource)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_manager_v1</span> *<span class="title">context</span> =</span></span><br><span class="line">        static_cast&lt;ext_session_lock_manager_v1 *&gt;(wl_resource_get_user_data(resource));</span><br><span class="line">    <span class="keyword">if</span> (!context) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    wl_signal_emit_mutable(&amp;context-&gt;events.destroy, context);</span><br><span class="line">    wl_list_remove(wl_resource_get_link(resource));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ext_session_lock_v1_destroy</span><span class="params">(<span class="keyword">struct</span> ext_session_lock_v1 *context)</span></span><br><span class="line">&#123;</span><br><span class="line">    wl_signal_emit_mutable(&amp;context-&gt;events.destroy, context);</span><br><span class="line">    <span class="built_in">free</span>(context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ext_session_lock_v1_destroy_func</span><span class="params">(wl_resource *resource)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_v1</span> *<span class="title">context</span> =</span></span><br><span class="line">        static_cast&lt;ext_session_lock_v1 *&gt;(wl_resource_get_user_data(resource));</span><br><span class="line">    <span class="keyword">if</span> (!context) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ext_session_lock_v1_destroy(context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">manager_handle_lock</span><span class="params">(<span class="keyword">struct</span> wl_client *client,</span></span><br><span class="line"><span class="params">                                <span class="keyword">struct</span> wl_resource *manager_resource,</span></span><br><span class="line"><span class="params">                                <span class="type">uint32_t</span> id)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_manager_v1</span> *<span class="title">manager</span> =</span></span><br><span class="line">        static_cast&lt;ext_session_lock_manager_v1 *&gt;(wl_resource_get_user_data(manager_resource));</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_resource</span> *<span class="title">resource</span> =</span> wl_resource_create(client,</span><br><span class="line">                                                      &amp;ext_session_lock_v1_interface,</span><br><span class="line">                                                      EXT_SESSION_LOCK_V1_DESTROY_SINCE_VERSION,</span><br><span class="line">                                                      id);</span><br><span class="line">    <span class="keyword">if</span> (resource == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        wl_resource_post_no_memory(manager_resource);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_v1</span> *<span class="title">context</span> =</span></span><br><span class="line">        static_cast&lt;ext_session_lock_v1 *&gt;(<span class="built_in">calloc</span>(<span class="number">1</span>, <span class="keyword">sizeof</span>(*context)));</span><br><span class="line">    <span class="keyword">if</span> (context == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        wl_resource_post_no_memory(manager_resource);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    wl_resource_set_implementation(resource,</span><br><span class="line">                                   &amp;lock_implementation,</span><br><span class="line">                                   context,</span><br><span class="line">                                   ext_session_lock_v1_destroy_func);</span><br><span class="line">    wl_resource_set_user_data(resource, context);</span><br><span class="line"></span><br><span class="line">    wl_signal_init(&amp;context-&gt;events.get_lock_surface);</span><br><span class="line">    wl_signal_init(&amp;context-&gt;events.unlock_and_destroy);</span><br><span class="line">    wl_signal_init(&amp;context-&gt;events.destroy);</span><br><span class="line"></span><br><span class="line">    context-&gt;resource = resource;</span><br><span class="line">    context-&gt;id = id;</span><br><span class="line">    wl_list_init(&amp;context-&gt;contexts);</span><br><span class="line">    wl_list_insert(&amp;manager-&gt;contexts, wl_resource_get_link(resource));</span><br><span class="line"></span><br><span class="line">    wl_signal_emit_mutable(&amp;manager-&gt;events.lock, context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_manager_v1_interface</span> <span class="title">lock_manager_implementation</span> =</span> &#123;</span><br><span class="line">    .destroy = manager_handle_destroy,</span><br><span class="line">    .lock = manager_handle_lock,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">bind_ext_session_lock_manager_v1</span><span class="params">(<span class="keyword">struct</span> wl_client *client,</span></span><br><span class="line"><span class="params">                                             <span class="type">void</span> *data,</span></span><br><span class="line"><span class="params">                                             <span class="type">uint32_t</span> version,</span></span><br><span class="line"><span class="params">                                             <span class="type">uint32_t</span> id)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_manager_v1</span> *<span class="title">manager</span> =</span></span><br><span class="line">        static_cast&lt;<span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_manager_v1</span> *&gt;</span>(data);</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_resource</span> *<span class="title">resource</span> =</span></span><br><span class="line">        wl_resource_create(client, &amp;ext_session_lock_manager_v1_interface, version, id);</span><br><span class="line">    <span class="keyword">if</span> (!resource) &#123;</span><br><span class="line">        wl_client_post_no_memory(client);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    wl_resource_set_implementation(resource, &amp;lock_manager_implementation, manager, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    wl_list_insert(&amp;manager-&gt;contexts, wl_resource_get_link(resource));</span><br><span class="line"></span><br><span class="line">    manager-&gt;client = resource;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">handle_display_destroy</span><span class="params">(<span class="keyword">struct</span> wl_listener *listener, [[maybe_unused]] <span class="type">void</span> *data)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_manager_v1</span> *<span class="title">manager</span> =</span></span><br><span class="line">        wl_container_of(listener, manager, display_destroy);</span><br><span class="line">    wl_signal_emit_mutable(&amp;manager-&gt;events.destroy, manager);</span><br><span class="line">    wl_list_remove(&amp;manager-&gt;display_destroy.link);</span><br><span class="line">    wl_global_destroy(manager-&gt;global);</span><br><span class="line">    <span class="built_in">free</span>(manager);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SESSION_LOCK_MANAGEMENT_V1_VERSION 1</span></span><br><span class="line"></span><br><span class="line">ext_session_lock_manager_v1 *<span class="title function_">ext_session_lock_manager_v1_create</span><span class="params">(wl_display *display)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_manager_v1</span> *<span class="title">manager</span> =</span></span><br><span class="line">        static_cast&lt;<span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_manager_v1</span> *&gt;</span>(<span class="built_in">calloc</span>(<span class="number">1</span>, <span class="keyword">sizeof</span>(*manager)));</span><br><span class="line">    <span class="keyword">if</span> (!manager) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    manager-&gt;event_loop = wl_display_get_event_loop(display);</span><br><span class="line">    manager-&gt;global = wl_global_create(display,</span><br><span class="line">                                       &amp;ext_session_lock_manager_v1_interface,</span><br><span class="line">                                       SESSION_LOCK_MANAGEMENT_V1_VERSION,</span><br><span class="line">                                       manager,</span><br><span class="line">                                       bind_ext_session_lock_manager_v1);</span><br><span class="line">    <span class="keyword">if</span> (!manager-&gt;global) &#123;</span><br><span class="line">        <span class="built_in">free</span>(manager);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    wl_signal_init(&amp;manager-&gt;events.lock);</span><br><span class="line">    wl_signal_init(&amp;manager-&gt;events.destroy);</span><br><span class="line">    wl_list_init(&amp;manager-&gt;contexts);</span><br><span class="line"></span><br><span class="line">    manager-&gt;display_destroy.notify = handle_display_destroy;</span><br><span class="line">    wl_display_add_destroy_listener(display, &amp;manager-&gt;display_destroy);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> manager;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>协议的书写上面大同小异，其他协议均按照类似的代码方式进行了支持，如感兴趣，强烈建议参阅  <a class="link"   target="_blank" rel="noopener" href="https://gitlab.freedesktop.org/wlroots/wlroots/-/tree/0.17?ref_type=heads" >wlroots<i class="fas fa-external-link-alt"></i></a> 、weston、sway、mutter、kwin等项目的源码。<br><a name="Q6MUv"></a></p>
+<h3 id="客户端调用"><a href="#客户端调用" class="headerlink" title="客户端调用"></a>客户端调用</h3><p>以 <a class="link"   target="_blank" rel="noopener" href="https://wayland.app/protocols/ext-session-lock-v1" >ext_session_lock_v1<i class="fas fa-external-link-alt"></i></a> 协议为例，客户端(例如锁屏程序)的实现如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成协议头文件</span></span><br><span class="line">wayland-scanner client-header ext-session-lock-v1.xml client.h</span><br><span class="line"><span class="comment"># 生成协议源文件(通过命令生成的代码，全是胶水代码)</span></span><br><span class="line">wayland-scanner code ext-session-lock-v1.xml client.c</span><br></pre></td></tr></table></figure>
+
+<p>main文件内容如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;wayland-client.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;client.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">example_data</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_display</span> *<span class="title">display</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_registry</span> *<span class="title">registry</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_compositor</span> *<span class="title">compositor</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_surface</span> *<span class="title">surface</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wl_output</span> *<span class="title">output</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_manager_v1</span> *<span class="title">lock_manager</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_v1</span> *<span class="title">lock</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_surface_v1</span> *<span class="title">lock_surface</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">on_locked</span><span class="params">(<span class="type">void</span> *data, <span class="keyword">struct</span> ext_session_lock_v1 *lock)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Session successfully locked.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">on_configure</span><span class="params">(<span class="type">void</span> *data,</span></span><br><span class="line"><span class="params">			  <span class="keyword">struct</span> ext_session_lock_surface_v1 *ext_session_lock_surface_v1,</span></span><br><span class="line"><span class="params">			  <span class="type">uint32_t</span> serial,</span></span><br><span class="line"><span class="params">			  <span class="type">uint32_t</span> width,</span></span><br><span class="line"><span class="params">			  <span class="type">uint32_t</span> height)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Received configure event, send ack_configure back\n&quot;</span>);</span><br><span class="line">    ext_session_lock_surface_v1_ack_configure(ext_session_lock_surface_v1, serial);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_v1_listener</span> <span class="title">lock_listener</span> =</span> &#123;</span><br><span class="line">    on_locked</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">ext_session_lock_surface_v1_listener</span> <span class="title">lock_surface_listener</span> =</span> &#123;</span><br><span class="line">    on_configure</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">registry_handle_global</span><span class="params">(<span class="type">void</span> *data, <span class="keyword">struct</span> wl_registry *registry, <span class="type">uint32_t</span> id,</span></span><br><span class="line"><span class="params">                                   <span class="type">const</span> <span class="type">char</span> *interface, <span class="type">uint32_t</span> version)</span> &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">example_data</span> *<span class="title">example_data</span> =</span> data;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">strcmp</span>(interface, <span class="string">&quot;ext_session_lock_manager_v1&quot;</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">        example_data-&gt;lock_manager = wl_registry_bind(registry, id, &amp;ext_session_lock_manager_v1_interface, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">strcmp</span>(interface, <span class="string">&quot;wl_compositor&quot;</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">        example_data-&gt;compositor = wl_registry_bind(registry, id, &amp;wl_compositor_interface, <span class="number">1</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Got wl_compositor\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">strcmp</span>(interface, <span class="string">&quot;wl_output&quot;</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">        example_data-&gt;output = wl_registry_bind(registry, id, &amp;wl_output_interface, version);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Got wl_output\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">wl_registry_listener</span> <span class="title">registry_listener</span> =</span> &#123;</span><br><span class="line">    registry_handle_global,</span><br><span class="line">    <span class="literal">NULL</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span> &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">example_data</span> <span class="title">data</span>;</span></span><br><span class="line"></span><br><span class="line">    data.lock = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    data.display = wl_display_connect(<span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (!data.display) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Failed to connect to Wayland display.\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Get registry</span></span><br><span class="line">    data.registry = wl_display_get_registry(data.display);</span><br><span class="line">    wl_registry_add_listener(data.registry, &amp;registry_listener, &amp;data);</span><br><span class="line">    wl_display_roundtrip(data.display);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!data.lock_manager || !data.compositor || !data.output) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Required interfaces not available\n&quot;</span>);</span><br><span class="line">        wl_registry_destroy(data.registry);</span><br><span class="line">        wl_display_disconnect(data.display);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Request lock</span></span><br><span class="line">    data.lock = ext_session_lock_manager_v1_lock(data.lock_manager);</span><br><span class="line">    ext_session_lock_v1_add_listener(data.lock, &amp;lock_listener, &amp;data);</span><br><span class="line">    wl_display_roundtrip(data.display);</span><br><span class="line">    <span class="keyword">if</span> (!data.lock) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Required interfaces: lock not available\n&quot;</span>);</span><br><span class="line">        wl_registry_destroy(data.registry);</span><br><span class="line">        wl_display_disconnect(data.display);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Request destroy</span></span><br><span class="line">    <span class="comment">// ext_session_lock_manager_v1_destroy(data.lock);</span></span><br><span class="line">    <span class="comment">// wl_display_roundtrip(data.display);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//     // Wait for events</span></span><br><span class="line">    <span class="comment">// while (wl_display_dispatch(data.display) != -1) &#123;</span></span><br><span class="line">    <span class="comment">//     // Handle events</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">// return 0;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Create surface</span></span><br><span class="line">    data.surface = wl_compositor_create_surface(data.compositor);</span><br><span class="line">    <span class="keyword">if</span> (!data.surface) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Failed to create wl_surface\n&quot;</span>);</span><br><span class="line">        wl_registry_destroy(data.registry);</span><br><span class="line">        wl_display_disconnect(data.display);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Request get_lock_surface</span></span><br><span class="line">    data.lock_surface = ext_session_lock_v1_get_lock_surface(data.lock, data.surface, data.output);</span><br><span class="line">    ext_session_lock_surface_v1_add_listener(data.lock_surface, &amp;lock_surface_listener, &amp;data);</span><br><span class="line">    wl_display_roundtrip(data.display);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Request unlock_and_destroy</span></span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Start Unlock\n&quot;</span>);</span><br><span class="line">    ext_session_lock_v1_unlock_and_destroy(data.lock);</span><br><span class="line">    wl_display_roundtrip(data.display);</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Unlock success\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Wait for events</span></span><br><span class="line">    <span class="keyword">while</span> (wl_display_dispatch(data.display) != <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="comment">// Handle events</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Cleanup</span></span><br><span class="line">    ext_session_lock_manager_v1_destroy(data.lock_manager);</span><br><span class="line">    wl_registry_destroy(data.registry);</span><br><span class="line">    wl_display_disconnect(data.display);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>通过 <code>gcc -o client client.c main.c -lwayland-client</code>编译生成 client 二进制。<br />运行：注意在运行此二进制之前，需要指定其 WAYLAND_DISPLAY环境变量，这是由 Wayland 合成器决定的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> WAYLAND_DISPLAY=wayland-0</span><br><span class="line">./client</span><br></pre></td></tr></table></figure>
+
+<p>至此，我们已经完成了一个简单的客户端调用 Wayland 协议的 demo。在实际开发中，这些调用通常由各种开发库进行了封装。例如，libqtwayland 就是由 Qt 对部分 Wayland 协议的调用进行了封装，从而使得开发者在开发桌面应用时无需直接处理协议调用，只需使用 Qt 中已有的类和接口即可。</p>
+<blockquote>
+<p>&#x2F;&#x2F; By A Way<br>A week 的合成器之旅达到 Ending,以后有时间再继续丰富.</p>
+</blockquote>
+<p><a name="Xir9t"></a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a class="link"   target="_blank" rel="noopener" href="https://wayland.freedesktop.org/" >https://wayland.freedesktop.org/<i class="fas fa-external-link-alt"></i></a><br /><a class="link"   target="_blank" rel="noopener" href="https://wayland.arktoria.org/index.html" >The Wayland Protocol 中文版<i class="fas fa-external-link-alt"></i></a></p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/wayland/">wayland</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2024/05c2403edf.html"
+                                   title="OverlayFS"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">OverlayFS</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2024/05b59ef6f5.html"
+                                   title="Hexo博客本地部署"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Hexo博客本地部署</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline-meta.css"/>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          window.KeepCommentPlugin.walineOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+          window.KeepCommentPlugin.walineOptions.el = '#waline-comment'
+          window.KeepCommentPlugin.walineOptions.comment = '.post-comments-count'
+          window.KeepCommentPlugin.walineOptions.serverURL = 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/'
+          window.KeepCommentPlugin.walineOptions.lang = 'en' || 'zh-CN'
+          window.KeepCommentPlugin.walineOptions.reaction = 'true' === 'true'
+        </script>
+
+        
+
+        
+            <script data-pjax
+                    async
+                    type="module"
+            >
+              import { init } from '//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js'
+              window.KeepCommentPlugin.initWaline = () => {
+                if (init) {
+                  init(window.KeepCommentPlugin.walineOptions)
+                  window.KeepCommentPlugin.hideLoading()
+                } else {
+                  setTimeout(() => {
+                    window.KeepCommentPlugin.initWaline()
+                  }, 1000)
+                }
+              }
+
+              if ('true' === 'true') {
+                setTimeout(() => {
+                  window.KeepCommentPlugin.initWaline()
+                }, 1200)
+              } else {
+                window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initWaline)
+              }
+            </script>
+        
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Wayland"><span class="nav-text">Wayland</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E5%BA%93"><span class="nav-text">开发库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-text">主要结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%87%BD%E6%95%B0"><span class="nav-text">主要函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%96%87%E4%BB%B6"><span class="nav-text">核心文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8F%E8%AE%AE%E5%88%86%E7%B1%BB"><span class="nav-text">协议分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Core"><span class="nav-text">Core</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stable"><span class="nav-text">Stable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Staging"><span class="nav-text">Staging</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8D%8F%E8%AE%AE"><span class="nav-text">自定义协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="nav-text">服务端实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%B0%83%E7%94%A8"><span class="nav-text">客户端调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ssk-wh</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+                <a target="_blank" rel="nofollow" href="https://github.com/">
+            
+            This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span>
+            
+                </a>
+            
+        </div>
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Wayland"><span class="nav-text">Wayland</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E5%BA%93"><span class="nav-text">开发库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-text">主要结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%87%BD%E6%95%B0"><span class="nav-text">主要函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%96%87%E4%BB%B6"><span class="nav-text">核心文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8F%E8%AE%AE%E5%88%86%E7%B1%BB"><span class="nav-text">协议分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Core"><span class="nav-text">Core</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stable"><span class="nav-text">Stable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Staging"><span class="nav-text">Staging</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8D%8F%E8%AE%AE"><span class="nav-text">自定义协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="nav-text">服务端实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%B0%83%E7%94%A8"><span class="nav-text">客户端调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

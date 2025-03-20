@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            系统抑制锁 |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#29392c","title":"Ssk-wh's Blog","author":"ssk-wh","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","tools":"/tools","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":true,"links":{"github":"https://github.com/ssk-wh","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"juchengshi@gmail.com"}},"scroll":{"progress_bar":false,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":false,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":3},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":true,"provider":"github","url":"https://github.com/"},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"伙计们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://xpoet.cn/images/avatar.png"},{"name":"Guo Le's Blog","link":"https://guole.fun/","description":"生命是独立是自由是爱与和平","avatar":"https://guole.fun/img/gl.jpg"},{"name":"酷小呵","link":"https://www.kuhehe.top/","description":"爱分享的酷小呵","avatar":"https://q1.qlogo.cn/g?b=qq&nk=3111349763&s=100"}],"tools":[{"category":"AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"name":"Copilot","link":"https://copilot.microsoft.com/","description":"微软家的AI助手","image":"/images/tools/copilot.svg"},{"name":"Kimi","link":"https://kimi.moonshot.cn/","description":"支持识别文件或网址的小众AI网站","image":"/images/tools/kimi.png"},{"name":"文心一言","link":"https://yiyan.baidu.com/","description":"百度旗下的AI助手","image":"/images/tools/wxyy.png"},{"name":"通义千问","link":"https://tongyi.aliyun.com/qianwen/","description":"阿里旗下","image":"/images/tools/tyqw.Default"},{"name":"讯飞星火","link":"https://xinghuo.xfyun.cn/","description":"讯飞旗下","image":"/images/tools/xfxh.svg"},{"category":"技术"},{"name":"Hexo","link":"https://hexo.io/","description":"快速、简洁且高效的博客框架","image":"https://upload.wikimedia.org/wikipedia/commons/b/b9/Hexo_blog_logo.svg"},{"name":"稀土掘金","link":"https://juejin.cn/","description":"开发者社区","image":"/images/tools/xtjj.Default"},{"category":"笔记"},{"name":"语雀","link":"https://www.yuque.com/","description":"在线记录笔记","image":"/images/tools/yuque.svg"},{"category":"图片"},{"name":"undraw","link":"https://undraw.co/illustrations","description":"免费的矢量素材下载网站","image":"https://raw.githubusercontent.com/ssk-wh/ssk-wh.github.io/master/images/undraw_shopping_bags_8l6g.svg"},{"name":"carbon","link":"https://carbon.now.sh/","description":"将代码生成图片","image":null},{"category":"作图网站"},{"name":"Draw.io","link":"https://draw.io/","description":"在线绘图网站，支持同步保存至github","image":null},{"name":"ProcessOn","link":"https://www.processon.com/","description":"在线绘图网站，画软件流程图经常用到","image":null},{"category":"博客管理"},{"name":"LeanCloud","link":"https://console.leancloud.app/apps/D0eDuK0h6X11p0z7FxTgY1CX-MdYXbMMI/storage/data/Comment","description":"评论管理","image":"https://gravatar.tapglb.com/avatar/afa8e9b8057e1877138d43f1dfdd8510?s=200&d=retro"}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                TOOLS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                ABOUT
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                            TOOLS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            ABOUT
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        系统抑制锁
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">ssk-wh</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2023-02-07 23:10:20</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Mon Apr 17 2023 03:46:49 GMT+0000">2023-04-17 03:46:49</span>
+                </span>
+            
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Linux/">Linux</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/systemd/">systemd</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Freedesktop/">Freedesktop</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>2.7k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>10 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>Systemd的183或更新的版本包含了一个逻辑来阻止系统进入关闭和睡眠状态。由systemd-logind.daemon进行了实现。</p>
+<span id="more"></span>
+
+<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>1.CD 刻录应用程序希望确保系统在刻录过程中不会关闭或挂起</p>
+<p>2.包管理员希望确保在包升级过程中系统不会关闭</p>
+<p>3.办公套件希望在系统挂起之前得到通知，以便将所有数据保存到磁盘，并延迟挂起逻辑，直到所有数据写入</p>
+<p>4.Web 浏览器希望在系统休眠之前得到通知，以便释放其缓存以最小化需要虚拟化的内存量</p>
+<p>5.屏幕锁定工具想要在挂起之前立即调出屏幕锁定，并延迟挂起直到挂起完成。想要使用禁止逻辑的应用程序应通过<a class="link"   target="_blank" rel="noopener" href="http://www.freedesktop.org/wiki/Software/systemd/logind" >登录 D-Bus API<i class="fas fa-external-link-alt"></i></a>获取抑制锁。</p>
+<h1 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h1><p>抑制锁共有7中类型，可以采用其一或者他们的组合：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>sleep</em></td>
+<td>禁止（非特权）用户请求的系统挂起和休眠</td>
+</tr>
+<tr>
+<td><em>shutdown</em></td>
+<td>禁止（非特权）用户请求的高级系统关闭和重启</td>
+</tr>
+<tr>
+<td><em>idle</em></td>
+<td>禁止系统进入空闲模式，可能导致系统自动挂起或关闭，具体取决于配置</td>
+</tr>
+<tr>
+<td><em>handle-power-key</em></td>
+<td>禁止系统电源硬件密钥的低级（即登录内部）处理，允许（可能是非特权的）外部代码来处理事件。</td>
+</tr>
+<tr>
+<td><em>handle-suspend-key</em></td>
+<td>禁止对系统硬件挂起键进行低级处理。</td>
+</tr>
+<tr>
+<td><em>handle-hibernate-key</em></td>
+<td>禁止对系统硬件休眠键进行低级处理。</td>
+</tr>
+<tr>
+<td><em>handle-lid-switch</em></td>
+<td>禁止对 systemd 硬件盖(例如，笔记本合盖开盖)开关进行低级处理。</td>
+</tr>
+</tbody></table>
+<p>支持两种不同的锁模式：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>block</em></td>
+<td>完全禁止操作，直到锁被释放。如果使用这样的锁，操作将失败（但如果用户拥有必要的权限，则仍可能被覆盖）</td>
+</tr>
+<tr>
+<td><em>delay</em></td>
+<td>仅暂时禁止操作，直到释放锁或达到一定时间。 logind.conf(5) 中的 InhibitDelayMaxSec字段可以控制超时时长。 这旨在供需要在系统挂起之前同步执行操作但又不允许无限期地阻止挂起的应用程序使用。 此模式仅适用于睡眠和关机锁。</td>
+</tr>
+</tbody></table>
+<h1 id="DBus"><a href="#DBus" class="headerlink" title="DBus"></a>DBus</h1><p>抑制器锁是通过调用logind Manager对象的 Inhibit() D-Bus方法获取的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ gdbus introspect --system --dest org.freedesktop.login1 --object-path /org/freedesktop/login1</span><br><span class="line">node /org/freedesktop/login1 &#123;</span><br><span class="line">  interface org.freedesktop.login1.Manager &#123;</span><br><span class="line">    methods:</span><br><span class="line">      Inhibit(<span class="keyword">in</span>  s what,</span><br><span class="line">              <span class="keyword">in</span>  s <span class="built_in">who</span>,</span><br><span class="line">              <span class="keyword">in</span>  s why,</span><br><span class="line">              <span class="keyword">in</span>  s mode,</span><br><span class="line">              out h fd);</span><br><span class="line">      ListInhibitors(out a(ssssuu) inhibitors);</span><br><span class="line">      ...</span><br><span class="line">    signals:</span><br><span class="line">      PrepareForShutdown(b active);</span><br><span class="line">      PrepareForSleep(b active);</span><br><span class="line">      ...</span><br><span class="line">    properties:</span><br><span class="line">      <span class="built_in">readonly</span> s BlockInhibited = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">      <span class="built_in">readonly</span> s DelayInhibited = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">      <span class="built_in">readonly</span> t InhibitDelayMaxUSec = 5000000;</span><br><span class="line">      <span class="built_in">readonly</span> b PreparingForShutdown = <span class="literal">false</span>;</span><br><span class="line">      <span class="built_in">readonly</span> b PreparingForSleep = <span class="literal">false</span>;</span><br><span class="line">      ...</span><br><span class="line">  &#125;;</span><br><span class="line">  ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Inhibit"><a href="#Inhibit" class="headerlink" title="Inhibit"></a>Inhibit</h2><p>Inhibit方法是获取锁所需的唯一 API。它需要四个参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>What</em></td>
+<td>冒号分隔的锁类型列表，即shutdown, sleep, idle, handle-power-key, handle-suspend-key, handle-hibernate-key, handle-lid-switch. 例如: “shutdown:idle”</td>
+</tr>
+<tr>
+<td><em>Who</em></td>
+<td>是一个人类可读的描述性字符串，说明谁在拿锁。示例：“包更新程序”</td>
+</tr>
+<tr>
+<td><em>Why</em></td>
+<td>是一个人类可读的描述性字符串，说明为什么要锁定。示例：“包更新正在进行中”</td>
+</tr>
+<tr>
+<td><em>Mode</em></td>
+<td>模式是block或delay中的一个，见上文描述。示例：“block”</td>
+</tr>
+</tbody></table>
+<p>调用Inhibit后会返回一个值，这是一个封装锁的文件描述符。 一旦文件描述符（及其所有副本）关闭，锁就会自动释放。 如果客户端在获取锁时死亡，内核会自动关闭文件描述符，以便自动释放锁。 采用这种方式的延迟锁应该在收到 PrepareForShutdown(true)（见下文）时尽快释放。<br>（当然只有在执行了应用程序首先想要延迟操作的操作之后)。</p>
+<h2 id="ListInhibitors"><a href="#ListInhibitors" class="headerlink" title="ListInhibitors"></a>ListInhibitors</h2><p>ListInhibitors列出所有当前活动的抑制剂锁。它返回一个结构数组，每个结构由上面的 What、Who、Why、Mode 以及请求锁的进程的 PID 和 UID 组成。</p>
+<p>PrepareForShutdown() 和 PrepareForSleep() 信号在请求系统挂起或关闭并即将执行时发出，以及在挂起&#x2F;关闭完成（或失败）之后发出。 这些信号带有一个布尔参数。 如果为 True，则已请求关闭&#x2F;睡眠，并开始准备阶段，如果为 False，则操作已完成（或失败）。 如果为 True，这应该用作应用程序在挂起&#x2F;关闭之前快速执行它们想要执行的操作的指示，然后释放所采取的任何延迟锁定。 如果为 False，则挂起&#x2F;关闭操作结束，无论是成功还是失败（当然，如果关闭请求成功，则永远不会发送此信号）。 带有 False 的信号通常只有在系统从挂起状态恢复后才会被传送，带有 True 的信号也可能是这样，例如当一开始没有延迟锁定时，系统挂起因此没有任何延迟地执行。 带有 False 的信号通常是应用程序请求新延迟锁定的信号，以便同步通知下一个挂起&#x2F;关闭周期。 </p>
+<p>请注意，在不使用延迟锁的情况下观看 PrepareForShutdown(true)?&#x2F;PrepareForSleep(true) 是活泼的，不应该这样做，因为应用程序可能希望在此信号上执行的任何代码在挂起&#x2F;关闭周期之前实际上可能不会完成执行。 </p>
+<p>再次重申：如果您观察 PrepareForSuspend(true)，那么您真的应该先进行延迟锁定。 PrepareForShutdown(false) 可以由希望收到系统恢复事件通知的应用程序订阅。 </p>
+<p>请注意，这将仅针对通过登录完成的挂起&#x2F;恢复周期发送，即通常仅针对高级用户引发的挂起周期，而不是自动的、低级内核引发的暂停周期，这些暂停周期可能存在于某些具有更强大功能的设备上 管理。</p>
+<h2 id="BlockInhibited-DelayInhibited"><a href="#BlockInhibited-DelayInhibited" class="headerlink" title="BlockInhibited &amp; DelayInhibited"></a>BlockInhibited &amp; DelayInhibited</h2><p>BlockInhibited 和 DelayInhibited 属性对当前使用的锁类型进行编码。</p>
+<p>这些字段是以冒号分隔的shutdown, sleep, idle, handle-power-key, handle-suspend-key, handle-hibernate-key, handle-lid-switch 列表。</p>
+<p>该列表基本上是特定模式的所有当前活动锁的 What 字段的联合。</p>
+<h2 id="InhibitDelayMaxUSec"><a href="#InhibitDelayMaxUSec" class="headerlink" title="InhibitDelayMaxUSec"></a>InhibitDelayMaxUSec</h2><p>InhibitDelayMaxUSec 包含在 logind.conf（TODO） 中配置的延迟超时值。</p>
+<h2 id="PreparingForShutdown-PreparingForSleep"><a href="#PreparingForShutdown-PreparingForSleep" class="headerlink" title="PreparingForShutdown &amp; PreparingForSleep"></a>PreparingForShutdown &amp; PreparingForSleep</h2><p>The <strong>PreparingForShutdown</strong> and <strong>PreparingForSleep</strong> boolean properties are true between the two PrepareForShutdown() resp PrepareForSleep() signals that are sent out.<br>需要注意的是，这两个属性的变化并不会触发PropertyChanged信号。</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="Block"><a href="#Block" class="headerlink" title="Block"></a>Block</h2><p>以下是需要阻塞锁的应用程序的基本方案，例如包管理器或 CD 刻录应用程序：</p>
+<p>1.获取锁</p>
+<p>2.做你不想被系统睡眠或关机打断的工作</p>
+<p>3.释放锁</p>
+<p>示例伪代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fd = Inhibit(<span class="string">&quot;shutdown:idle&quot;</span>, <span class="string">&quot;Package Manager&quot;</span>, <span class="string">&quot;Upgrade in progress...&quot;</span>, <span class="string">&quot;block&quot;</span>);</span><br><span class="line"><span class="comment">/* ...</span></span><br><span class="line"><span class="comment">do your work</span></span><br><span class="line"><span class="comment">... */</span></span><br><span class="line">close(fd);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Delay"><a href="#Delay" class="headerlink" title="Delay"></a>Delay</h2><p>以下是需要延迟锁的应用程序（例如 Web 浏览器或办公套件）的基本方案：</p>
+<p>1.当你打开一个文件时，采取延迟锁定</p>
+<p>2.一旦看到 PrepareForSleep(true)，保存数据，然后释放锁</p>
+<p>3.一看到PrepareForSleep(false)，就重新拿delay lock，和之前一样继续。</p>
+<p>示例伪代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> fd = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">takeLock() &#123;</span><br><span class="line">        <span class="keyword">if</span> (fd &gt;= <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        fd = Inhibit(<span class="string">&quot;sleep&quot;</span>, <span class="string">&quot;Word Processor&quot;</span>, <span class="string">&quot;Save any unsaved data in time...&quot;</span>, <span class="string">&quot;delay&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">onDocumentOpen(<span class="type">void</span>) &#123;</span><br><span class="line">        takeLock();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">onPrepareForSleep(<span class="type">bool</span> b) &#123;</span><br><span class="line">        <span class="keyword">if</span> (b) &#123;</span><br><span class="line">                saveData();</span><br><span class="line">                <span class="keyword">if</span> (fd &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                        close(fd);</span><br><span class="line">                        fd = <span class="number">-1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">         &#125; <span class="keyword">else</span></span><br><span class="line">                takeLock();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Key-Handling"><a href="#Key-Handling" class="headerlink" title="Key Handling"></a>Key Handling</h2><p>默认情况下，logind 将处理机器的电源和睡眠键，以及所有状态下的盖子开关。 这可确保此基本系统行为在所有情况下都能正常工作，包括文本控制台和所有图形环境。</p>
+<p>然而，一些 DE 可能想要自己处理这些键，例如为了在执行相关操作之前显示一个漂亮的对话框，或者在某些条件下简单地禁用该操作。</p>
+<p>对于这些情况，可以使用 handle-power-key、handle-suspend-key、handle-hibernate-key 和 handle-lid-switch 类型的抑制器锁。</p>
+<p>获取时，这些锁只是禁用键的低级处理，它们对使用硬件键以外的其他机制执行的系统挂起&#x2F;休眠&#x2F;关机没有影响（例如用户在 shell 中键入“systemctl suspend”）。</p>
+<p>打算自己处理这些密钥的 DE 应该简单地在登录时获取锁，并在注销时释放它们； 或者，在某些情况下仅暂时锁定此锁可能是有意义的（例如，仅在插入第二个显示器时才锁定盖子开关，以支持人们在连接大屏幕时关闭笔记本电脑的常见设置） .</p>
+<p>这些锁需要以“block”模式获取，不支持“delay”。</p>
+<p>如果 DE 想要确保在系统进入挂起状态之前屏幕上显示最终恢复的锁定屏幕，它应该通过挂起延迟抑制块（见上文）来实现。</p>
+<h2 id="Miscellanea"><a href="#Miscellanea" class="headerlink" title="Miscellanea"></a>Miscellanea</h2><p>获取抑制锁是一项特权操作。取决于systemd安装的policy(org.freedesktop.login1.policy)策略中下列action的配置:</p>
+<p><em>org.freedesktop.login1.inhibit-block-shutdown</em></p>
+<p><em>org.freedesktop.login1.inhibit-delay-shutdown</em></p>
+<p><em>org.freedesktop.login1.inhibit-block-sleep</em></p>
+<p> <em>org.freedesktop.login1.inhibit-delay-sleep</em></p>
+<p><em>org.freedesktop.login1.inhibit-block-idle</em></p>
+<p><em>org.freedesktop.login1.inhibit-handle-power-key</em></p>
+<p><em>org.freedesktop.login1.inhibit-handle-suspend-key</em></p>
+<p><em>org.freedesktop.login1.inhibit-handle-hibernate-key</em></p>
+<p><em>org.freedesktop.login1.inhibit-handle-lid-switch</em></p>
+<p>一般来说，应该假设延迟锁比阻塞锁更容易获得，只是因为它们的影响要小得多。请注意，Inhibit() 的策略检查从不交互。<br>抑制器锁不应被滥用。例如，在没有充分理由的情况下使用空闲阻塞锁可能会导致移动设备永远不会自动挂起。这可能对电池非常不利。</p>
+<p>如果应用程序发现锁被拒绝，它不应该认为这是一个错误，没有保护锁的情况下继续其操作即可<br>。<br>systemd-inhibit工具可用于从命令行获取锁或列出活动锁。</p>
+<p>请注意，gnome-session 还提供了一个 inhibitor API，它与 systemd 的非常相似。 在内部，对 gnome-session 接口的锁定将转发给 logind，因此这两个 API 都受支持。 虽然两者都提供相似的功能，但它们在某些方面确实有所不同。 出于显而易见的原因，gnome-session 可以提供登录所缺少的注销锁定和屏幕保护程序避免锁定。 logind 的 API OTOH 除了像 GNOME 一样支持块锁外，还支持延迟锁。 此外，logind 可用于系统组件，并集中所有用户的锁，而不仅仅是特定用户的锁。</p>
+<p>一般来说：如果有疑问，最好坚持使用 GNOME 锁，除非有充分的理由直接使用 logind API。 但是，当要枚举锁时，最好使用 logind API，因为它们还包括系统服务和其他用户获取的锁。</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p><a class="link"   target="_blank" rel="noopener" href="https://www.freedesktop.org/wiki/Software/systemd/inhibit/" >https://www.freedesktop.org/wiki/Software/systemd/inhibit/<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://www.freedesktop.org/wiki/Software/systemd/logind/" >https://www.freedesktop.org/wiki/Software/systemd/logind/<i class="fas fa-external-link-alt"></i></a></p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/systemd/">systemd</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Freedesktop/">Freedesktop</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023/0247906.html"
+                                   title="Qt-动画思维导图"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Qt-动画思维导图</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023/024414.html"
+                                   title="Linux常见命令的使用"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Linux常见命令的使用</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline-meta.css"/>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          window.KeepCommentPlugin.walineOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+          window.KeepCommentPlugin.walineOptions.el = '#waline-comment'
+          window.KeepCommentPlugin.walineOptions.comment = '.post-comments-count'
+          window.KeepCommentPlugin.walineOptions.serverURL = 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/'
+          window.KeepCommentPlugin.walineOptions.lang = 'en' || 'zh-CN'
+          window.KeepCommentPlugin.walineOptions.reaction = 'true' === 'true'
+        </script>
+
+        
+
+        
+            <script data-pjax
+                    async
+                    type="module"
+            >
+              import { init } from '//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js'
+              window.KeepCommentPlugin.initWaline = () => {
+                if (init) {
+                  init(window.KeepCommentPlugin.walineOptions)
+                  window.KeepCommentPlugin.hideLoading()
+                } else {
+                  setTimeout(() => {
+                    window.KeepCommentPlugin.initWaline()
+                  }, 1000)
+                }
+              }
+
+              if ('true' === 'true') {
+                setTimeout(() => {
+                  window.KeepCommentPlugin.initWaline()
+                }, 1200)
+              } else {
+                window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initWaline)
+              }
+            </script>
+        
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF"><span class="nav-text">场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B"><span class="nav-text">类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DBus"><span class="nav-text">DBus</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Inhibit"><span class="nav-text">Inhibit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ListInhibitors"><span class="nav-text">ListInhibitors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BlockInhibited-DelayInhibited"><span class="nav-text">BlockInhibited &amp; DelayInhibited</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#InhibitDelayMaxUSec"><span class="nav-text">InhibitDelayMaxUSec</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PreparingForShutdown-PreparingForSleep"><span class="nav-text">PreparingForShutdown &amp; PreparingForSleep</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Block"><span class="nav-text">Block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delay"><span class="nav-text">Delay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Key-Handling"><span class="nav-text">Key Handling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Miscellanea"><span class="nav-text">Miscellanea</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ssk-wh</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+                <a target="_blank" rel="nofollow" href="https://github.com/">
+            
+            This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span>
+            
+                </a>
+            
+        </div>
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF"><span class="nav-text">场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B"><span class="nav-text">类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DBus"><span class="nav-text">DBus</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Inhibit"><span class="nav-text">Inhibit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ListInhibitors"><span class="nav-text">ListInhibitors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BlockInhibited-DelayInhibited"><span class="nav-text">BlockInhibited &amp; DelayInhibited</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#InhibitDelayMaxUSec"><span class="nav-text">InhibitDelayMaxUSec</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PreparingForShutdown-PreparingForSleep"><span class="nav-text">PreparingForShutdown &amp; PreparingForSleep</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Block"><span class="nav-text">Block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delay"><span class="nav-text">Delay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Key-Handling"><span class="nav-text">Key Handling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Miscellanea"><span class="nav-text">Miscellanea</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

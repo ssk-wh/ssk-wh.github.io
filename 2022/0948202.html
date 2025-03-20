@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            窗口属性 |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#29392c","title":"Ssk-wh's Blog","author":"ssk-wh","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","tools":"/tools","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":true,"links":{"github":"https://github.com/ssk-wh","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"juchengshi@gmail.com"}},"scroll":{"progress_bar":false,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":false,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":3},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":true,"provider":"github","url":"https://github.com/"},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"伙计们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://xpoet.cn/images/avatar.png"},{"name":"Guo Le's Blog","link":"https://guole.fun/","description":"生命是独立是自由是爱与和平","avatar":"https://guole.fun/img/gl.jpg"},{"name":"酷小呵","link":"https://www.kuhehe.top/","description":"爱分享的酷小呵","avatar":"https://q1.qlogo.cn/g?b=qq&nk=3111349763&s=100"}],"tools":[{"category":"AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"name":"Copilot","link":"https://copilot.microsoft.com/","description":"微软家的AI助手","image":"/images/tools/copilot.svg"},{"name":"Kimi","link":"https://kimi.moonshot.cn/","description":"支持识别文件或网址的小众AI网站","image":"/images/tools/kimi.png"},{"name":"文心一言","link":"https://yiyan.baidu.com/","description":"百度旗下的AI助手","image":"/images/tools/wxyy.png"},{"name":"通义千问","link":"https://tongyi.aliyun.com/qianwen/","description":"阿里旗下","image":"/images/tools/tyqw.Default"},{"name":"讯飞星火","link":"https://xinghuo.xfyun.cn/","description":"讯飞旗下","image":"/images/tools/xfxh.svg"},{"category":"技术"},{"name":"Hexo","link":"https://hexo.io/","description":"快速、简洁且高效的博客框架","image":"https://upload.wikimedia.org/wikipedia/commons/b/b9/Hexo_blog_logo.svg"},{"name":"稀土掘金","link":"https://juejin.cn/","description":"开发者社区","image":"/images/tools/xtjj.Default"},{"category":"笔记"},{"name":"语雀","link":"https://www.yuque.com/","description":"在线记录笔记","image":"/images/tools/yuque.svg"},{"category":"图片"},{"name":"undraw","link":"https://undraw.co/illustrations","description":"免费的矢量素材下载网站","image":"https://raw.githubusercontent.com/ssk-wh/ssk-wh.github.io/master/images/undraw_shopping_bags_8l6g.svg"},{"name":"carbon","link":"https://carbon.now.sh/","description":"将代码生成图片","image":null},{"category":"作图网站"},{"name":"Draw.io","link":"https://draw.io/","description":"在线绘图网站，支持同步保存至github","image":null},{"name":"ProcessOn","link":"https://www.processon.com/","description":"在线绘图网站，画软件流程图经常用到","image":null},{"category":"博客管理"},{"name":"LeanCloud","link":"https://console.leancloud.app/apps/D0eDuK0h6X11p0z7FxTgY1CX-MdYXbMMI/storage/data/Comment","description":"评论管理","image":"https://gravatar.tapglb.com/avatar/afa8e9b8057e1877138d43f1dfdd8510?s=200&d=retro"}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                TOOLS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                ABOUT
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                            TOOLS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            ABOUT
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        窗口属性
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">ssk-wh</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2022-09-13 00:00:00</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Mon Apr 17 2023 03:46:49 GMT+0000">2023-04-17 03:46:49</span>
+                </span>
+            
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Linux/">Linux</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/X/">X</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%AA%97%E5%8F%A3%E5%B1%9E%E6%80%A7/">窗口属性</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>5.8k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>21 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h1 id="窗口属性说明"><a href="#窗口属性说明" class="headerlink" title="窗口属性说明"></a>窗口属性说明</h1><p>当你使用 xprop 命令获取一个窗口的属性时，你会在终端中看到很多窗口相关的内容。这些属性分别有着不同的作用.</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2022/0948202/image.png"
+                       
+                 ></p>
+<h3 id="应用窗口属性"><a href="#应用窗口属性" class="headerlink" title="应用窗口属性"></a>应用窗口属性</h3><h4 id="NET-WM-NAME"><a href="#NET-WM-NAME" class="headerlink" title="_NET_WM_NAME"></a>_NET_WM_NAME</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_NAME、UTF8_STRING</span><br></pre></td></tr></table></figure>
+
+<p>客户端应该将其设置为 UTF-8 编码的窗口标题。如果设置，窗口管理器应该优先于 WM_NAME 使用它。</p>
+<h4 id="NET-WM-VISIBLE-NAME"><a href="#NET-WM-VISIBLE-NAME" class="headerlink" title="_NET_WM_VISIBLE_NAME"></a>_NET_WM_VISIBLE_NAME</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_VISIBLE_NAME、UTF8_STRING</span><br></pre></td></tr></table></figure>
+
+<p>如果窗口管理器显示的窗口名称不是 _NET_WM_NAME，则窗口管理器必须将其设置为以 UTF-8 编码显示的标题。</p>
+<p>原理：此属性适用于显示与窗口的 _NET_WM_NAME 或 WM_NAME 不同的标题的窗口管理器（即显示了 xterm &lt;1&gt;、xterm &lt;2&gt;、…，但每个窗口的 _NET_WM_NAME &#x2F; WM_NAME 仍然是 xterm）从而允许寻呼机显示与窗口管理器相同的标题。</p>
+<h4 id="NET-WM-ICON-NAME"><a href="#NET-WM-ICON-NAME" class="headerlink" title="_NET_WM_ICON_NAME"></a>_NET_WM_ICON_NAME</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_ICON_NAME、UTF8_STRING</span><br></pre></td></tr></table></figure>
+
+<p>客户端应该将其设置为 UTF-8 编码的此窗口图标的标题。如果设置，窗口管理器应该优先于 WM_ICON_NAME 使用它。</p>
+<h4 id="NET-WM-VISIBLE-ICON-NAME"><a href="#NET-WM-VISIBLE-ICON-NAME" class="headerlink" title="_NET_WM_VISIBLE_ICON_NAME"></a>_NET_WM_VISIBLE_ICON_NAME</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_VISIBLE_ICON_NAME，UTF8_STRING</span><br></pre></td></tr></table></figure>
+
+<p>如果窗口管理器显示的图标名称不是 _NET_WM_ICON_NAME，则窗口管理器必须将其设置为以 UTF-8 编码显示的标题。</p>
+<h4 id="NET-WM-DESKTOP"><a href="#NET-WM-DESKTOP" class="headerlink" title="_NET_WM_DESKTOP"></a>_NET_WM_DESKTOP</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_DESKTOP desktop, CARDINAL/32</span><br></pre></td></tr></table></figure>
+
+<p>Cardinal 确定窗口所在（或希望所在）的桌面，第一个桌面从 0 开始。客户端可以选择不设置这个属性，在这种情况下，窗口管理器应该按照它的意愿放置它。0xFFFFFFFF 表示该窗口应该出现在所有桌面上。</p>
+<p>每当撤回的窗口请求映射时，窗口管理器都应遵守 _NET_WM_DESKTOP。</p>
+<p>窗口管理器应在窗口退出时移除该属性，但在关闭时应保留该属性，例如响应丢失 WM_Sn 管理器选择的所有权。</p>
+<p>基本原理：在窗口撤销时删除该属性有助于想要重用已撤销窗口的遗留应用程序。关闭时不删除该属性允许下一个窗口管理器将窗口恢复到以前的桌面。</p>
+<p>客户端可以通过向根窗口发送 _NET_WM_DESKTOP 客户端消息来请求更改未撤消窗口的桌面：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_DESKTOP</span><br><span class="line">  window  = the respective client window</span><br><span class="line">  message_type = _NET_WM_DESKTOP</span><br><span class="line">  format = 32</span><br><span class="line">  data.l[0] = new_desktop</span><br><span class="line">  data.l[1] = source indication</span><br><span class="line">  other data.l[] elements = 0</span><br></pre></td></tr></table></figure>
+
+<p>有关<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/wm-spec/1.4/ar01s09.html#sourceindication" >源指示<i class="fas fa-external-link-alt"></i></a>的详细信息，请参阅<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/wm-spec/1.4/ar01s09.html#sourceindication" >“请求中<i class="fas fa-external-link-alt"></i></a>的源指示”一节。窗口管理器必须在所有窗口上更新此属性。</p>
+<h4 id="NET-WM-WINDOW-TYPE"><a href="#NET-WM-WINDOW-TYPE" class="headerlink" title="_NET_WM_WINDOW_TYPE"></a>_NET_WM_WINDOW_TYPE</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_WINDOW_TYPE, ATOM[]/32</span><br></pre></td></tr></table></figure>
+
+<p>这应该在映射到指示窗口功能类型的原子列表之前由客户端设置。窗口管理器应该使用此属性来确定窗口的装饰、堆叠位置和其他行为。客户端应该按优先级顺序指定窗口类型（第一个是最可取的），但必须包括以下列表中的至少一个基本窗口类型原子。这是为了允许扩展类型列表，同时为无法识别扩展的窗口管理器提供默认行为。</p>
+<p>此提示也应该为覆盖重定向窗口设置，以允许合成管理器将一致的装饰应用于菜单、工具提示等。</p>
+<p>基本原理：此提示旨在替换 MOTIF 提示。对 MOTIF 提示的反对意见之一是它们纯粹是对窗户装饰的视觉描述。通过描述窗口的功能，窗口管理器可以对相同类型的窗口应用一致的装饰和行为。可能的行为示例包括将停靠栏&#x2F;面板保持在顶部或仅在另一个窗口具有焦点时才隐藏可固定菜单&#x2F;工具栏（NextStep 样式）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_WINDOW_TYPE_DESKTOP，ATOM </span><br><span class="line">_NET_WM_WINDOW_TYPE_DOCK，ATOM </span><br><span class="line">_NET_WM_WINDOW_TYPE_TOOLBAR，ATOM </span><br><span class="line">_NET_WM_WINDOW_TYPE_MENU，ATOM </span><br><span class="line">_NET_WM_WINDOW_TYPE_UTILITY，ATOM </span><br><span class="line">_NET_WM_WINDOW_TYPE_SPLASH，ATOM </span><br><span class="line">_NET_WM_WINDOW_TYPE_DIALOG，ATOM </span><br><span class="line">_NET_WM_WINDOW_TYPE_DROPDOWN_MENU，ATOM </span><br><span class="line">_NET_WM_WINDOW_TYPE_POPUP_MENU，ATOM </span><br><span class="line">_NET_WM_WINDOW_TYPE_TOOLTIP，ATOM </span><br><span class="line">_NET_WM_WINDOW_TYPE_NOTIFICATION，ATOM </span><br><span class="line">_NET_WM_WINDOW_TYPE_COMBO，ATOM </span><br><span class="line">_NET_WM_WINDOW_TYPE_DND，ATOM </span><br><span class="line">_NET_WM_WINDOW_TYPE_NORMAL，ATOM</span><br></pre></td></tr></table></figure>
+
+<p>_NET_WM_WINDOW_TYPE_DESKTOP 表示桌面功能。这可以包括一个包含与屏幕尺寸相同的桌面图标的单个窗口，允许桌面环境完全控制桌面，而无需代理根窗口点击。</p>
+<p>_NET_WM_WINDOW_TYPE_DOCK 表示停靠或面板功能。通常，窗口管理器会将此类窗口保留在所有其他窗口之上。</p>
+<p>_NET_WM_WINDOW_TYPE_TOOLBAR 和 _NET_WM_WINDOW_TYPE_MENU 分别表示工具栏和可固定菜单窗口（即从主应用程序“撕下”的工具栏和菜单）。这种类型的窗口可以设置 WM_TRANSIENT_FOR 提示，指示主应用程序窗口。请注意，_NET_WM_WINDOW_TYPE_MENU 应设置在撕下的托管窗口上，其中 _NET_WM_WINDOW_TYPE_DROPDOWN_MENU 和 _NET_WM_WINDOW_TYPE_POPUP_MENU 通常用于覆盖重定向窗口。</p>
+<p>_NET_WM_WINDOW_TYPE_UTILITY 表示小的持久实用程序窗口，例如调色板或工具箱。它不同于 TOOLBAR 类型，因为它不对应于从主应用程序中撕下的工具栏。它与 DIALOG 类型不同，因为它不是临时对话框，用户可能会在他们工作时保持打开状态。这种类型的窗口可以设置 WM_TRANSIENT_FOR 提示，指示主应用程序窗口。</p>
+<p>_NET_WM_WINDOW_TYPE_SPLASH 表示该窗口是应用程序启动时显示的启动画面。</p>
+<p>_NET_WM_WINDOW_TYPE_DIALOG 表示这是一个对话窗口。如果未设置 _NET_WM_WINDOW_TYPE，则必须将设置了 WM_TRANSIENT_FOR 的托管窗口视为这种类型。使用 WM_TRANSIENT_FOR 覆盖重定向窗口，但没有 _NET_WM_WINDOW_TYPE 必须被视为 _NET_WM_WINDOW_TYPE_NORMAL。</p>
+<p>_NET_WM_WINDOW_TYPE_DROPDOWN_MENU 表示所讨论的窗口是下拉菜单，即通常在用户单击菜单栏时出现的那种菜单，而不是通常在用户右键单击对象时出现的弹出菜单。此属性通常用于覆盖重定向窗口。</p>
+<p>_NET_WM_WINDOW_TYPE_POPUP_MENU 表示有问题的窗口是一个弹出菜单，即当用户右键单击一个对象时通常会出现的那种菜单，而不是通常在用户单击菜单栏时出现的下拉菜单。此属性通常用于覆盖重定向窗口。</p>
+<p>_NET_WM_WINDOW_TYPE_TOOLTIP 表示有问题的窗口是工具提示，即通常在鼠标光标悬停在对象上一段时间后出现的一小段解释性文本。此属性通常用于覆盖重定向窗口。</p>
+<p>_NET_WM_WINDOW_TYPE_NOTIFICATION 表示通知。通知的一个示例是出现带有信息文本的气泡，例如“您的笔记本电脑电量不足”等。此属性通常用于覆盖重定向窗口。</p>
+<p>_NET_WM_WINDOW_TYPE_COMBO 应该用在组合框弹出的窗口上。一个示例是出现在文本字段下方的窗口，其中包含建议完成的列表。此属性通常用于覆盖重定向窗口。</p>
+<p>_NET_WM_WINDOW_TYPE_DND 表示正在拖动窗口。当有问题的窗口包含一个对象从一个地方拖到另一个地方的表示时，客户应该设置这个提示。一个例子是一个包含从一个文件管理器窗口拖到另一个文件管理器窗口的图标的窗口。此属性通常用于覆盖重定向窗口。</p>
+<p>_NET_WM_WINDOW_TYPE_NORMAL 表示这是一个普通的顶级窗口，无论是托管还是覆盖重定向。必须将既没有 _NET_WM_WINDOW_TYPE 也没有设置 WM_TRANSIENT_FOR 的托管窗口视为这种类型。没有 _NET_WM_WINDOW_TYPE 的覆盖重定向窗口必须被视为这种类型，无论它们是否设置了 WM_TRANSIENT_FOR。</p>
+<h4 id="NET-WM-STATE"><a href="#NET-WM-STATE" class="headerlink" title="_NET_WM_STATE"></a>_NET_WM_STATE</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_STATE, ATOM[]</span><br></pre></td></tr></table></figure>
+
+<p>描述窗口状态的提示列表。列表中存在的原子必须被视为已设置，列表中不存在的原子必须被视为未设置。每当撤回的窗口请求映射时，窗口管理器都应该遵守 _NET_WM_STATE。希望更改窗口状态的客户端必须向根窗口发送 _NET_WM_STATE 客户端消息（见下文）。窗口管理器必须保持此属性更新以反映窗口的当前状态。</p>
+<p>窗口管理器应在窗口退出时删除该属性，但在关闭时应保留该属性，例如响应失去 WM_Sn 管理器选择的所有权。</p>
+<p>基本原理：在窗口撤销时删除该属性有助于想要重用已撤销窗口的遗留应用程序。关闭时不删除该属性允许下一个窗口管理器将窗口恢复到以前的状态。</p>
+<p>可能的原子是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_STATE_MODAL，ATOM </span><br><span class="line">_NET_WM_STATE_STICKY，ATOM </span><br><span class="line">_NET_WM_STATE_MAXIMIZED_VERT，ATOM </span><br><span class="line">_NET_WM_STATE_MAXIMIZED_HORZ，ATOM </span><br><span class="line">_NET_WM_STATE_SHADED，ATOM </span><br><span class="line">_NET_WM_STATE_SKIP_TASKBAR，ATOM </span><br><span class="line">_NET_WM_STATE_SKIP_PAGER，ATOM </span><br><span class="line">_NET_WM_STATE_HIDDEN，ATOM </span><br><span class="line">_NET_WM_STATE_FULLSCREEN，ATOM </span><br><span class="line">_NET_WM_STATE_ABOVE，ATOM </span><br><span class="line">_NET_WM_STATE_BELOW，ATOM </span><br><span class="line">_NET_WM_STATE_DEMANDS_ATTENTION，ATOM</span><br></pre></td></tr></table></figure>
+
+<p>一个实现可以向这个列表添加新的原子。没有扩展的实现必须忽略任何未知原子，有效地将它们从列表中删除。这些扩展原子不能以前缀 _NET 开头。</p>
+<p>_NET_WM_STATE_MODAL 表示这是一个模式对话框。如果 WM_TRANSIENT_FOR 提示设置为另一个顶级窗口，则该对话框是该窗口的模态对话框；如果 WM_TRANSIENT_FOR 未设置或设置为根窗口，则对话框是其窗口组的模态对话框。</p>
+<p>_NET_WM_STATE_STICKY 表示窗口管理器应该保持窗口在屏幕上的位置固定，即使虚拟桌面滚动时也是如此。</p>
+<p><em>NET_WM_STATE_MAXIMIZED</em>{VERT,HORZ} 表示窗口{vertically,horizontally}最大化。</p>
+<p>_NET_WM_STATE_SHADED 表示窗口是阴影的。</p>
+<p>_NET_WM_STATE_SKIP_TASKBAR 指示窗口不应包含在任务栏上。该提示应由应用程序请求，即它表明该窗口本质上从不在任务栏中。如果 _NET_WM_WINDOW_TYPE 已经传达了窗口的确切性质，则应用程序不应设置此提示。</p>
+<p>_NET_WM_STATE_SKIP_PAGER 表示该窗口不应包含在寻呼机中。这个提示应该由应用程序请求，即它表明窗口本质上从不在寻呼机中。如果 _NET_WM_WINDOW_TYPE 已经传达了窗口的确切性质，则应用程序不应设置此提示。</p>
+<p>_NET_WM_STATE_HIDDEN 应由窗口管理器设置，以指示如果窗口的桌面&#x2F;视口处于活动状态且其坐标在屏幕边界内，则该窗口在屏幕上不可见。典型的例子是最小化的窗口应该处于 _NET_WM_STATE_HIDDEN 状态。寻呼机和类似的应用程序应该使用 _NET_WM_STATE_HIDDEN 而不是 WM_STATE 来决定是否以桌面上窗口的微型表示形式显示窗口。</p>
+<p>实现说明：如果应用程序要求切换 _NET_WM_STATE_HIDDEN，则窗口管理器可能应该忽略该请求，因为 _NET_WM_STATE_HIDDEN 是窗口其他方面的函数，例如最小化，而不是独立状态。</p>
+<p>_NET_WM_STATE_FULLSCREEN 表示窗口应该填满整个屏幕并且没有窗口装饰。此外，窗口管理器负责在从全屏切换回普通窗口后恢复原始几何图形。例如，演示程序将使用此提示。</p>
+<p>_NET_WM_STATE_ABOVE 表示窗口应该在大多数窗口的顶部（有关详细信息，请参阅<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/wm-spec/1.4/ar01s09.html#STACKINGORDER" >“堆叠顺序”一节<i class="fas fa-external-link-alt"></i></a>）。</p>
+<p>_NET_WM_STATE_BELOW 表示该窗口应位于大多数窗口下方（有关详细信息，请参阅<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/wm-spec/1.4/ar01s09.html#STACKINGORDER" >“堆叠顺序”部分<i class="fas fa-external-link-alt"></i></a>）。</p>
+<p>_NET_WM_STATE_ABOVE 和 _NET_WM_STATE_BELOW 主要用于用户首选项，不应由应用程序使用，例如用于引起对其对话框的注意（在这种情况下应使用紧急提示，请参阅<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/wm-spec/1.4/ar01s09.html#URGENCY" >名为“紧急”的部分<i class="fas fa-external-link-alt"></i></a>）。</p>
+<p>_NET_WM_STATE_DEMANDS_ATTENTION 表示在窗口内或窗口中发生了某些操作。例如，如果窗口请求激活但窗口管理器拒绝它，则它可能由窗口管理器设置，或者如果应用程序完成了某些工作，则它可以设置它。这种状态可以由客户端和窗口管理器设置。当窗口管理器决定窗口得到所需的关注（通常，它被激活）时，它应该被取消设置。</p>
+<p>要更改映射窗口的状态，客户端必须向根窗口发送 _NET_WM_STATE 客户端消息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">window  = the respective client window</span><br><span class="line">message_type = _NET_WM_STATE</span><br><span class="line">format = 32</span><br><span class="line">data.l[0] = the action, as listed below</span><br><span class="line">data.l[1] = first property to alter</span><br><span class="line">data.l[2] = second property to alter</span><br><span class="line">data.l[3] = source indication</span><br><span class="line">other data.l[] elements = 0</span><br></pre></td></tr></table></figure>
+
+<p>此消息允许同时更改两个属性，特别是允许同时更改水平和垂直最大化。如果仅更改一个属性，则 l[2] 必须设置为零。有关<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/wm-spec/1.4/ar01s09.html#sourceindication" >源指示<i class="fas fa-external-link-alt"></i></a>的详细信息，请参阅<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/wm-spec/1.4/ar01s09.html#sourceindication" >“请求中<i class="fas fa-external-link-alt"></i></a>的源指示”一节。l[0]，动作，必须是以下之一：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_STATE_REMOVE        0    /* remove/unset property */</span><br><span class="line">_NET_WM_STATE_ADD           1    /* add/set property */</span><br><span class="line">_NET_WM_STATE_TOGGLE        2    /* toggle property  */</span><br></pre></td></tr></table></figure>
+
+<p>另请参阅有关<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/wm-spec/1.4/ar01s09.html#URGENCY" >紧急<i class="fas fa-external-link-alt"></i></a>和<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/wm-spec/1.4/ar01s09.html#NORESIZE" >固定大小窗口<i class="fas fa-external-link-alt"></i></a>的实施说明。</p>
+<h4 id="NET-WM-ALLOWED-ACTIONS"><a href="#NET-WM-ALLOWED-ACTIONS" class="headerlink" title="_NET_WM_ALLOWED_ACTIONS"></a>_NET_WM_ALLOWED_ACTIONS</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_ALLOWED_ACTIONS, ATOM[]</span><br></pre></td></tr></table></figure>
+
+<p>指示窗口管理器支持此窗口的用户操作的原子列表。列表中存在的原子表示允许的操作，列表中不存在的原子表示此窗口不支持的操作。窗口管理器必须保持该属性更新以反映当前对窗口“活动”或“敏感”的操作。任务栏、寻呼机和其他工具使用 _NET_WM_ALLOWED_ACTIONS 来决定应向用户提供哪些操作。</p>
+<p>可能的原子是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_ACTION_MOVE，ATOM </span><br><span class="line">_NET_WM_ACTION_RESIZE，ATOM </span><br><span class="line">_NET_WM_ACTION_MINIMIZE，ATOM </span><br><span class="line">_NET_WM_ACTION_SHADE，ATOM </span><br><span class="line">_NET_WM_ACTION_STICK，ATOM </span><br><span class="line">_NET_WM_ACTION_MAXIMIZE_HORZ，ATOM </span><br><span class="line">_NET_WM_ACTION_MAXIMIZE_VERT，ATOM </span><br><span class="line">_NET_WM_ACTION_FULLSCREEN，ATOM </span><br><span class="line">_NET_WM_ACTION_CHANGE_DESKTOP，ATOM </span><br><span class="line">_NET_WM_ACTION_CLOSE，ATOM </span><br><span class="line">_NET_WM_ACTION_ABOVE，ATOM </span><br><span class="line">_NET_WM_ACTION_BELOW，ATOM</span><br></pre></td></tr></table></figure>
+
+<p>一个实现可以向这个列表添加新的原子。没有扩展的实现必须忽略任何未知原子，有效地将它们从列表中删除。这些扩展原子不能以前缀 _NET 开头。</p>
+<p>请注意，此处列出的操作是_窗口管理器_将为此窗口执行的操作。仍然必须通过本规范中概述的正常机制来请求操作。例如，_NET_WM_ACTION_CLOSE 并不意味着客户端可以向该窗口发送 WM_DELETE_WINDOW 消息；这意味着客户端可以使用 _NET_CLOSE_WINDOW 消息来要求窗口管理器这样做。</p>
+<p>窗口管理器在最初管理窗口时应该忽略 _NET_WM_ALLOWED_ACTIONS 的值。这个值可能是以前的具有不同策略的窗口管理器遗留下来的。</p>
+<p>_NET_WM_ACTION_MOVE 表示窗口可以在屏幕上移动。</p>
+<p>_NET_WM_ACTION_RESIZE 表示可以调整窗口大小。（实施说明：窗口管理器可以识别不可调整大小的窗口，因为它在 WM_NORMAL_HINTS 中的最小和最大大小将相同。）</p>
+<p>_NET_WM_ACTION_MINIMIZE 表示窗口可以被图标化。</p>
+<p>_NET_WM_ACTION_SHADE 表示窗口可能有阴影。</p>
+<p>_NET_WM_ACTION_STICK 表示窗口可能会切换其粘性状态（如 _NET_WM_STATE_STICKY）。请注意，此状态与视口有关，而不是桌面。</p>
+<p>_NET_WM_ACTION_MAXIMIZE_HORZ 表示窗口可以水平最大化。</p>
+<p>_NET_WM_ACTION_MAXIMIZE_VERT 表示窗口可以垂直最大化。</p>
+<p>_NET_WM_ACTION_FULLSCREEN 表示窗口可以进入全屏状态。</p>
+<p>_NET_WM_ACTION_CHANGE_DESKTOP 表示窗口可以在桌面之间移动。</p>
+<p>_NET_WM_ACTION_CLOSE 表示窗口可以关闭（即可以发送_NET_CLOSE_WINDOW 消息）。</p>
+<p>_NET_WM_ACTION_ABOVE 表示窗口可以放置在窗口的“above”层（即会响应_NET_WM_STATE_ABOVE 的变化；详见<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/wm-spec/1.4/ar01s09.html#STACKINGORDER" >“堆叠顺序”一节<i class="fas fa-external-link-alt"></i></a>）。</p>
+<p>_NET_WM_ACTION_BELOW 表示窗口可以放置在窗口的“下”层（即将响应 _NET_WM_STATE_BELOW 更改；有关详细信息，另请参阅<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/wm-spec/1.4/ar01s09.html#STACKINGORDER" >“堆叠顺序”部分<i class="fas fa-external-link-alt"></i></a>））。</p>
+<h4 id="NET-WM-STRUT"><a href="#NET-WM-STRUT" class="headerlink" title="_NET_WM_STRUT"></a>_NET_WM_STRUT</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_STRUT, left, right, top, bottom, CARDINAL[4]/32</span><br></pre></td></tr></table></figure>
+
+<p>此属性等效于 _NET_WM_STRUT_PARTIAL 属性，其中所有起始值为 0，所有结束值为逻辑屏幕的高度或宽度。_NET_WM_STRUT_PARTIAL 是在 _NET_WM_STRUT 之后引入的，因此，除了 _NET_WM_STRUT_PARTIAL 之外，客户端还可以设置此属性，以确保与支持旧版本规范的窗口管理器向后兼容。</p>
+<h4 id="NET-WM-STRUT-PARTIAL"><a href="#NET-WM-STRUT-PARTIAL" class="headerlink" title="_NET_WM_STRUT_PARTIAL"></a>_NET_WM_STRUT_PARTIAL</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_STRUT_PARTIAL, left, right, top, bottom, left_start_y, left_end_y,</span><br><span class="line">right_start_y, right_end_y, top_start_x, top_end_x, bottom_start_x,</span><br><span class="line">bottom_end_x,CARDINAL[12]/32</span><br></pre></td></tr></table></figure>
+
+<p>如果窗口要在屏幕边缘保留空间，则该属性必须由客户端设置。该属性包含 4 个基数，指定屏幕每个边框处保留区域的宽度，另外 8 个基数指定与四个支柱中的每一个相对应的开始和结束。值的顺序是左、右、上、下、left_start_y、left_end_y、right_start_y、right_end_y、top_start_x、top_end_x、bottom_start_x、bottom_end_x。所有坐标都是根窗口坐标。客户端可以随时更改此属性，因此如果窗口管理器使用此属性为窗口分配特殊语义，则窗口管理器必须监视属性通知事件。</p>
+<p>如果此属性和 _NET_WM_STRUT 属性都设置，则窗口管理器必须忽略 _NET_WM_STRUT 属性值并使用 _NET_WM_STRUT_PARTIAL 的值。这将确保客户端可以安全地设置这两个属性，而不会放弃新属性的改进语义。</p>
+<p>struts 的目的是在桌面边界保留空间。例如，这对于停靠区域、任务栏或面板非常有用。窗口管理器在限制窗口位置时应该考虑这个保留区域——例如，最大化的窗口不应覆盖该区域。</p>
+<p>与每个支柱相关联的开始和结束值允许保留不跨越整个屏幕宽度或高度的区域。Struts 必须在根窗口坐标中指定，也就是说，它们 _不_相对于任何视口或 Xinerama 监视器的边缘。</p>
+<p>例如，对于出现在屏幕底部的面板样式的客户端，高 50 像素，占据屏幕边缘左侧 200-600 像素的空间，将底部支柱设置为 50，并将 bottom_start_x 设置为 200和bottom_end_x 到600。另一个例子是使用Xinerama 扩展的屏幕面板。假设设置使用两台显示器，一台以 1280x1024 运行，另一台以 1024x768 运行在右侧，两个物理显示器的顶部边缘对齐。如果面板想要用 50 像素高的面板填充较小显示器的整个底部边缘，则应设置底部支柱为 306，bottom_start_x 为 1280，bottom_end_x 为 2303。请注意，支柱是相对于屏幕边缘的，而不是 xinerama 显示器的边缘。</p>
+<p>基本原理：简单的“不要覆盖”提示不足以处理例如自动隐藏面板。</p>
+<p>注意：自动隐藏面板应该将支柱设置为其最小的隐藏尺寸。没有延伸到屏幕边框全长的“角”面板应该只设置一个支柱。</p>
+<h4 id="NET-WM-ICON-GEOMETRY"><a href="#NET-WM-ICON-GEOMETRY" class="headerlink" title="_NET_WM_ICON_GEOMETRY"></a>_NET_WM_ICON_GEOMETRY</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_ICON_GEOMETRY, x, y, width, height, CARDINAL[4]/32</span><br></pre></td></tr></table></figure>
+
+<p>这个可选属性可以由独立的工具设置，比如任务栏或图标框。它指定了可能图标的几何形状，以防窗口被图标化。</p>
+<p>基本原理：这使得窗口管理器可以显示漂亮的动画，例如将窗口变形为其图标。</p>
+<p>Tips:控制中心个性化中设置窗口的最小化效果，就是依赖的这个属性</p>
+<h4 id="NET-WM-ICON"><a href="#NET-WM-ICON" class="headerlink" title="_NET_WM_ICON"></a>_NET_WM_ICON</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_ICON CARDINAL[][2+n]/32</span><br></pre></td></tr></table></figure>
+
+<p>这是客户端可能的图标数组。本规范没有规定这些图标的大小，但个别桌面环境或工具包可能会这样做。窗口管理器可以将这些图标中的任何一个缩放到适当的大小。</p>
+<p>这是一个 32 位封装的 CARDINAL ARGB 数组，高字节为 A，低字节为 B。前两个基数是宽度，高度。数据按行，从左到右，从上到下。</p>
+<h4 id="NET-WM-PID"><a href="#NET-WM-PID" class="headerlink" title="_NET_WM_PID"></a>_NET_WM_PID</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_PID CARDINAL/32</span><br></pre></td></tr></table></figure>
+
+<p>如果设置，此属性必须包含拥有此窗口的客户端的进程 ID。这可以被窗口管理器用来杀死不响应 _NET_WM_PING 协议的窗口。</p>
+<p>如果设置了 _NET_WM_PID，则还必须设置 ICCCM 指定的属性 WM_CLIENT_MACHINE。虽然 ICCCM 仅要求将 WM_CLIENT_MACHINE 设置为 “从运行服务器的机器上看到的形成运行客户端的机器名称的字符串”，但符合此规范要求将 WM_CLIENT_MACHINE 设置为完全限定域名客户的主机。</p>
+<p>另请参阅有关<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/wm-spec/1.4/ar01s09.html#KILLINGWINDOWS" >终止挂起进程<i class="fas fa-external-link-alt"></i></a>的实施说明。</p>
+<h4 id="NET-WM-HANDLED-ICONS"><a href="#NET-WM-HANDLED-ICONS" class="headerlink" title="_NET_WM_HANDLED_ICONS"></a>_NET_WM_HANDLED_ICONS</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_HANDLED_ICONS</span><br></pre></td></tr></table></figure>
+
+<p>该属性可由寻呼机在其自己的顶级窗口之一上设置，以指示窗口管理器不需要为图标化窗口提供图标，例如，如果它是任务栏并为图标化窗口提供按钮。</p>
+<h4 id="NET-WM-USER-TIME"><a href="#NET-WM-USER-TIME" class="headerlink" title="_NET_WM_USER_TIME"></a>_NET_WM_USER_TIME</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_USER_TIME CARDINAL/32</span><br></pre></td></tr></table></figure>
+
+<p>此属性包含此窗口中最后一次用户活动发生的 XServer 时间。</p>
+<p>在映射窗口之前，客户端应在每个新的顶级窗口（或由 _NET_WM_USER_TIME_WINDOW 属性指出的窗口）上将此属性设置为导致窗口出现的用户交互的时间戳。例如，仅处理核心事件的客户端可能会使用最后一个 KeyPress 或 ButtonPress 事件的时间戳。ButtonRelease 和 KeyRelease 事件通常不应被视为用户交互，因为应用程序可能会从全局键绑定接收 KeyRelease 事件，并且通常释放事件的时间戳可能晚于匹配按下事件触发的操作。如果应用程序是通过启动通知启动的，客户端可以从 DESKTOP_STARTUP_ID 环境变量中获取导致其第一个窗口出现的时间戳。如果客户端不知道导致第一个窗口出现的用户交互的时间戳（例如，因为它没有通过启动通知启动），那么它不应为该窗口设置属性。新映射窗口上的特殊值零可用于请求该窗口在映射时最初不被聚焦。</p>
+<p>如果客户端有活动窗口，它也应该在有用户活动时更新窗口上的这个属性。</p>
+<p>基本原理：此属性允许窗口管理器在映射时更改窗口的焦点、堆叠和&#x2F;或放置行为，具体取决于新窗口是由用户操作创建的还是由用户操作激活的“弹出”窗口。计时器或其他一些事件。</p>
+<h4 id="NET-WM-USER-TIME-WINDOW"><a href="#NET-WM-USER-TIME-WINDOW" class="headerlink" title="_NET_WM_USER_TIME_WINDOW"></a>_NET_WM_USER_TIME_WINDOW</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_USER_TIME_WINDOW WINDOW/32</span><br></pre></td></tr></table></figure>
+
+<p>此属性包含客户端在其上设置 _NET_WM_USER_TIME 属性的窗口的 XID。客户端应检查窗口管理器是否支持 _NET_WM_USER_TIME_WINDOW，如果不支持，则回退到在顶层窗口上设置 _NET_WM_USER_TIME 属性。</p>
+<p>原理：在顶层窗口本身存储频繁变化的 _NET_WM_USER_TIME 属性会导致每个对该窗口的任何属性感兴趣的应用程序在每次按键时都被唤醒，这对于使用电池供电的笔记本电脑尤其不利。</p>
+<h4 id="NET-FRAME-EXTENTS"><a href="#NET-FRAME-EXTENTS" class="headerlink" title="_NET_FRAME_EXTENTS"></a>_NET_FRAME_EXTENTS</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NET_FRAME_EXTENTS, left, right, top, bottom, CARDINAL[4]/32</span><br></pre></td></tr></table></figure>
+
+<p>窗口管理器必须将 _NET_FRAME_EXTENTS 设置为窗口框架的范围。left、right、top 和 bottom 是窗口管理器添加的相应边框的宽度。</p>
+<h3 id="实例分析："><a href="#实例分析：" class="headerlink" title="实例分析："></a>实例分析：</h3><p>打开visual studio code.运行xprop命令后点击vscode页面，属性内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">_NET_WM_ICON_GEOMETRY(CARDINAL) = 322, 1040, 41, 41   #应用图标在桌面上的位置，一般由任务栏或者图标框设置</span><br><span class="line">_VARIABLE_REFRESH(CARDINAL) = 1 						#TODO</span><br><span class="line">_NET_WM_ALLOWED_ACTIONS(ATOM) = _NET_WM_ACTION_MOVE, _NET_WM_ACTION_RESIZE, _NET_WM_ACTION_MINIMIZE, _NET_WM_ACTION_SHADE, _NET_WM_ACTION_MAXIMIZE_VERT, _NET_WM_ACTION_MAXIMIZE_HORZ, _NET_WM_ACTION_FULLSCREEN, _NET_WM_ACTION_CHANGE_DESKTOP, _NET_WM_ACTION_CLOSE 									# 窗口支持的操作</span><br><span class="line">_KDE_NET_WM_FRAME_STRUT(CARDINAL) = 0, 0, 40, 0 # TODO</span><br><span class="line">_NET_FRAME_EXTENTS(CARDINAL) = 0, 0, 40, 0 				# 窗管为应用添加的边框，一般都是顶部减去标题栏所占的高度</span><br><span class="line">_NET_WM_DESKTOP(CARDINAL) = 0 							# 用于区分窗口当前在哪个工作区显示</span><br><span class="line">WM_STATE(WM_STATE): # TODO</span><br><span class="line">                window state: Normal</span><br><span class="line">                icon window: 0x0</span><br><span class="line">_NET_WM_STATE(ATOM) = _NET_WM_STATE_MAXIMIZED_VERT, _NET_WM_STATE_MAXIMIZED_HORZ # 表示当前窗口水平和垂直方向都已最大化</span><br><span class="line">_NET_WM_USER_TIME(CARDINAL) = 16531347 					# 此应用的最后一次鼠标点击发生在开机后的第16531347毫秒时</span><br><span class="line">WM_NORMAL_HINTS(WM_SIZE_HINTS): 						# 告诉窗管应用的位置以及大小</span><br><span class="line">                program specified location: 0, 40</span><br><span class="line">                program specified minimum size: 400 by 270</span><br><span class="line">                program specified maximum size: 2147483647 by 2147483647</span><br><span class="line">_NET_WM_ICON(CARDINAL) = 								# 窗口的图标数组，一般会有不同的大小</span><br><span class="line">WM_NAME(UTF8_STRING) = &quot;init.go - dde-daemon - Visual Studio Code&quot; 				# 窗口标题，比_NET_WM_NAME优先级低</span><br><span class="line">_NET_WM_NAME(UTF8_STRING) = &quot;init.go - dde-daemon - Visual Studio Code&quot; 		# 窗口标题，比_WM_NAME优先级高</span><br><span class="line">_MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x2, 0x0, 0x1, 0x0, 0x0						# TODO</span><br><span class="line">XdndAware(ATOM) = BITMAP</span><br><span class="line">_NET_WM_BYPASS_COMPOSITOR(CARDINAL) = 2</span><br><span class="line">WM_WINDOW_ROLE(STRING) = &quot;browser-window&quot;</span><br><span class="line">WM_CLASS(STRING) = &quot;code&quot;, &quot;Code&quot;						# 窗管可利用此属性通过X资源系统去查找程序的设置和首选项，不过目前没看出怎么使用的</span><br><span class="line">_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL	# 窗口类型为普通的顶级窗口</span><br><span class="line">_NET_WM_PID(CARDINAL) = 8313							# 此窗口对应进程的ID</span><br><span class="line">WM_CLIENT_MACHINE(STRING) = &quot;fpc-PC&quot;					# 一般为对应的主机名</span><br><span class="line">WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING, _NET_WM_SYNC_REQUEST		# _NET_WM_PING允许窗管检查无法正常关闭窗口是何种原因；_NET_WM_SYNC_REQUEST允许客户端和窗管之间同步重绘的操作</span><br><span class="line">_KDE_NET_WM_USER_CREATION_TIME(CARDINAL) = 2118513		# 窗口被创建出来的时间，开机后的第2118513毫秒时创建</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><p><strong><a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/wm-spec/1.4/ar01s05.html" >Application Window Properties<i class="fas fa-external-link-alt"></i></a></strong></p>
+<p><a target="_blank" rel="noopener" href="https://specifications.freedesktop.org/wm-spec/1.4/ar01s06.html"><strong>Window Manager Protocols</strong></a></p>
+<p><strong><a class="link"   target="_blank" rel="noopener" href="https://metacpan.org/pod/X11::Protocol::WM" >X11::Protocol::WM<i class="fas fa-external-link-alt"></i></a></strong></p>
+<p><strong><a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/wm-spec/wm-spec-latest.html" >Extended Window Manager Hints<i class="fas fa-external-link-alt"></i></a></strong></p>
+<p><strong><a class="link"   target="_blank" rel="noopener" href="https://www.x.org/releases/X11R7.6/doc/xorg-docs/specs/ICCCM/icccm.html" >Inter-Client Communication Conventions Manual<i class="fas fa-external-link-alt"></i></a></strong></p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/X/">X</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%AA%97%E5%8F%A3%E5%B1%9E%E6%80%A7/">窗口属性</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2022/098105.html"
+                                   title="PAM模块-pam_script"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">PAM模块-pam_script</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2022/0743023.html"
+                                   title="智能指针-QScopedPointer"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">智能指针-QScopedPointer</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline-meta.css"/>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          window.KeepCommentPlugin.walineOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+          window.KeepCommentPlugin.walineOptions.el = '#waline-comment'
+          window.KeepCommentPlugin.walineOptions.comment = '.post-comments-count'
+          window.KeepCommentPlugin.walineOptions.serverURL = 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/'
+          window.KeepCommentPlugin.walineOptions.lang = 'en' || 'zh-CN'
+          window.KeepCommentPlugin.walineOptions.reaction = 'true' === 'true'
+        </script>
+
+        
+
+        
+            <script data-pjax
+                    async
+                    type="module"
+            >
+              import { init } from '//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js'
+              window.KeepCommentPlugin.initWaline = () => {
+                if (init) {
+                  init(window.KeepCommentPlugin.walineOptions)
+                  window.KeepCommentPlugin.hideLoading()
+                } else {
+                  setTimeout(() => {
+                    window.KeepCommentPlugin.initWaline()
+                  }, 1000)
+                }
+              }
+
+              if ('true' === 'true') {
+                setTimeout(() => {
+                  window.KeepCommentPlugin.initWaline()
+                }, 1200)
+              } else {
+                window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initWaline)
+              }
+            </script>
+        
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3%E5%B1%9E%E6%80%A7%E8%AF%B4%E6%98%8E"><span class="nav-text">窗口属性说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E7%AA%97%E5%8F%A3%E5%B1%9E%E6%80%A7"><span class="nav-text">应用窗口属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-NAME"><span class="nav-text">_NET_WM_NAME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-VISIBLE-NAME"><span class="nav-text">_NET_WM_VISIBLE_NAME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-ICON-NAME"><span class="nav-text">_NET_WM_ICON_NAME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-VISIBLE-ICON-NAME"><span class="nav-text">_NET_WM_VISIBLE_ICON_NAME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-DESKTOP"><span class="nav-text">_NET_WM_DESKTOP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-WINDOW-TYPE"><span class="nav-text">_NET_WM_WINDOW_TYPE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-STATE"><span class="nav-text">_NET_WM_STATE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-ALLOWED-ACTIONS"><span class="nav-text">_NET_WM_ALLOWED_ACTIONS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-STRUT"><span class="nav-text">_NET_WM_STRUT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-STRUT-PARTIAL"><span class="nav-text">_NET_WM_STRUT_PARTIAL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-ICON-GEOMETRY"><span class="nav-text">_NET_WM_ICON_GEOMETRY</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-ICON"><span class="nav-text">_NET_WM_ICON</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-PID"><span class="nav-text">_NET_WM_PID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-HANDLED-ICONS"><span class="nav-text">_NET_WM_HANDLED_ICONS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-USER-TIME"><span class="nav-text">_NET_WM_USER_TIME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-USER-TIME-WINDOW"><span class="nav-text">_NET_WM_USER_TIME_WINDOW</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-FRAME-EXTENTS"><span class="nav-text">_NET_FRAME_EXTENTS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-text">实例分析：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%EF%BC%9A"><span class="nav-text">参考资料：</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ssk-wh</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+                <a target="_blank" rel="nofollow" href="https://github.com/">
+            
+            This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span>
+            
+                </a>
+            
+        </div>
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3%E5%B1%9E%E6%80%A7%E8%AF%B4%E6%98%8E"><span class="nav-text">窗口属性说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E7%AA%97%E5%8F%A3%E5%B1%9E%E6%80%A7"><span class="nav-text">应用窗口属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-NAME"><span class="nav-text">_NET_WM_NAME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-VISIBLE-NAME"><span class="nav-text">_NET_WM_VISIBLE_NAME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-ICON-NAME"><span class="nav-text">_NET_WM_ICON_NAME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-VISIBLE-ICON-NAME"><span class="nav-text">_NET_WM_VISIBLE_ICON_NAME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-DESKTOP"><span class="nav-text">_NET_WM_DESKTOP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-WINDOW-TYPE"><span class="nav-text">_NET_WM_WINDOW_TYPE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-STATE"><span class="nav-text">_NET_WM_STATE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-ALLOWED-ACTIONS"><span class="nav-text">_NET_WM_ALLOWED_ACTIONS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-STRUT"><span class="nav-text">_NET_WM_STRUT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-STRUT-PARTIAL"><span class="nav-text">_NET_WM_STRUT_PARTIAL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-ICON-GEOMETRY"><span class="nav-text">_NET_WM_ICON_GEOMETRY</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-ICON"><span class="nav-text">_NET_WM_ICON</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-PID"><span class="nav-text">_NET_WM_PID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-HANDLED-ICONS"><span class="nav-text">_NET_WM_HANDLED_ICONS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-USER-TIME"><span class="nav-text">_NET_WM_USER_TIME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-WM-USER-TIME-WINDOW"><span class="nav-text">_NET_WM_USER_TIME_WINDOW</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-FRAME-EXTENTS"><span class="nav-text">_NET_FRAME_EXTENTS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-text">实例分析：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%EF%BC%9A"><span class="nav-text">参考资料：</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            智能指针-QWeakPointer |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#29392c","title":"Ssk-wh's Blog","author":"ssk-wh","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","tools":"/tools","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":true,"links":{"github":"https://github.com/ssk-wh","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"juchengshi@gmail.com"}},"scroll":{"progress_bar":false,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":false,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":3},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":true,"provider":"github","url":"https://github.com/"},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"伙计们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://xpoet.cn/images/avatar.png"},{"name":"Guo Le's Blog","link":"https://guole.fun/","description":"生命是独立是自由是爱与和平","avatar":"https://guole.fun/img/gl.jpg"},{"name":"酷小呵","link":"https://www.kuhehe.top/","description":"爱分享的酷小呵","avatar":"https://q1.qlogo.cn/g?b=qq&nk=3111349763&s=100"}],"tools":[{"category":"AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"name":"Copilot","link":"https://copilot.microsoft.com/","description":"微软家的AI助手","image":"/images/tools/copilot.svg"},{"name":"Kimi","link":"https://kimi.moonshot.cn/","description":"支持识别文件或网址的小众AI网站","image":"/images/tools/kimi.png"},{"name":"文心一言","link":"https://yiyan.baidu.com/","description":"百度旗下的AI助手","image":"/images/tools/wxyy.png"},{"name":"通义千问","link":"https://tongyi.aliyun.com/qianwen/","description":"阿里旗下","image":"/images/tools/tyqw.Default"},{"name":"讯飞星火","link":"https://xinghuo.xfyun.cn/","description":"讯飞旗下","image":"/images/tools/xfxh.svg"},{"category":"技术"},{"name":"Hexo","link":"https://hexo.io/","description":"快速、简洁且高效的博客框架","image":"https://upload.wikimedia.org/wikipedia/commons/b/b9/Hexo_blog_logo.svg"},{"name":"稀土掘金","link":"https://juejin.cn/","description":"开发者社区","image":"/images/tools/xtjj.Default"},{"category":"笔记"},{"name":"语雀","link":"https://www.yuque.com/","description":"在线记录笔记","image":"/images/tools/yuque.svg"},{"category":"图片"},{"name":"undraw","link":"https://undraw.co/illustrations","description":"免费的矢量素材下载网站","image":"https://raw.githubusercontent.com/ssk-wh/ssk-wh.github.io/master/images/undraw_shopping_bags_8l6g.svg"},{"name":"carbon","link":"https://carbon.now.sh/","description":"将代码生成图片","image":null},{"category":"作图网站"},{"name":"Draw.io","link":"https://draw.io/","description":"在线绘图网站，支持同步保存至github","image":null},{"name":"ProcessOn","link":"https://www.processon.com/","description":"在线绘图网站，画软件流程图经常用到","image":null},{"category":"博客管理"},{"name":"LeanCloud","link":"https://console.leancloud.app/apps/D0eDuK0h6X11p0z7FxTgY1CX-MdYXbMMI/storage/data/Comment","description":"评论管理","image":"https://gravatar.tapglb.com/avatar/afa8e9b8057e1877138d43f1dfdd8510?s=200&d=retro"}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                TOOLS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                ABOUT
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                            TOOLS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            ABOUT
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        智能指针-QWeakPointer
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">ssk-wh</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2022-09-14 00:00:00</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Wed Jul 19 2023 08:43:30 GMT+0000">2023-07-19 08:43:30</span>
+                </span>
+            
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/C/">C++</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Qt/">Qt</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">智能指针</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>2.7k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>13 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h1 id="QWeakPointer"><a href="#QWeakPointer" class="headerlink" title="QWeakPointer"></a>QWeakPointer</h1><p>先介绍QWeakPointer，是因为QPointer和QSharedPointer的实现都依赖于QWeakPointer</p>
+<span id="more"></span>
+
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p><strong>1、为QPointer和QSharedPointer提供了弱引用计数的功能.</strong><br><strong>2、解除循环引用</strong></p>
+<p>QWeakPointer 类持有对共享指针的弱引用。<br>QWeakPointer 是对 C++ 中指针的自动弱引用。<strong>它不能用于直接取消引用指针，但可以用于验证指针是否已在另一个上下文中被删除</strong>。<br>QWeakPointer 对象<strong>只能通过 QSharedPointer 的赋值来创建</strong>(因为没有重载operator*和-&gt;)。<br>需要注意的是，QWeakPointer 没有提供自动转换操作符来防止错误发生。即使 QWeakPointer 跟踪一个指针，它本身也不应该被认为是一个指针，因为它不能保证指向的对象保持有效。<br>因此，要访问 QWeakPointer 正在跟踪的指针，您必须首先将其提升为 QSharedPointer 并验证结果对象是否为空。 QSharedPointer 保证对象不被删除，所以如果你得到一个非空对象，你可以使用指针。有关示例，请参见 QWeakPointer::toStrongRef()。<br>QWeakPointer 还提供了 QWeakPointer::data() 方法，该方法返回跟踪的指针而不确保它保持有效。如果您可以通过外部方式保证对象不会被删除（或者如果您只需要指针值）那你就可以使用它。友情提示：使用 toStrongRef() 创建 QSharedPointer 的成本较高。</p>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>观察QWeakPointer的构造函数部分，处于public部分的构造函数有如下几个，可以看出都是不允许带参构造或者参数并不是我们期望的指针类型.(所以，QWeakPointer从设计上就不是直接提供给我们使用的)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无参构造</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="title">QWeakPointer</span><span class="params">()</span> Q_DECL_NOTHROW : d(nullptr), value(nullptr) &#123;</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 拷贝构造,弱引用计数+1</span></span><br><span class="line"><span class="built_in">QWeakPointer</span>(<span class="type">const</span> QWeakPointer &amp;other) Q_DECL_NOTHROW : <span class="built_in">d</span>(other.d), <span class="built_in">value</span>(other.value)</span><br><span class="line">    &#123; <span class="keyword">if</span> (d) d-&gt;weakref.<span class="built_in">ref</span>(); &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 拷贝构造,弱引用计数+1</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="title">QWeakPointer</span><span class="params">(<span class="type">const</span> QSharedPointer&lt;T&gt; &amp;o)</span> : d(o.d), value(o.data())</span></span><br><span class="line"><span class="function">    &#123;</span> <span class="keyword">if</span> (d) d-&gt;weakref.<span class="built_in">ref</span>();&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="title">QWeakPointer</span><span class="params">(<span class="type">const</span> QWeakPointer&lt;X&gt; &amp;o)</span> : d(nullptr), value(nullptr)</span></span><br><span class="line"><span class="function">    &#123;</span> *<span class="keyword">this</span> = o; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="title">QWeakPointer</span><span class="params">(<span class="type">const</span> QSharedPointer&lt;X&gt; &amp;o)</span> : d(nullptr), value(nullptr)</span></span><br><span class="line"><span class="function">    &#123;</span> *<span class="keyword">this</span> = o; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>唯一的可用的构造函数处于private部分，好处是这里添加了两个友元类型QPointer和QSharedPointer，关于友元我们应该不用多做介绍(我是你的朋友，你的就是我的，但你不是我的朋友，所以我的还是我的^_^)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> defined(Q_NO_TEMPLATE_FRIENDS)</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt; <span class="keyword">friend</span> <span class="keyword">class</span> <span class="title class_">QSharedPointer</span>;</span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt; <span class="keyword">friend</span> <span class="keyword">class</span> <span class="title class_">QPointer</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> QWeakPointer &amp;<span class="title">assign</span><span class="params">(X *ptr)</span></span></span><br><span class="line"><span class="function">    </span>&#123; <span class="keyword">return</span> *<span class="keyword">this</span> = <span class="built_in">QWeakPointer</span>&lt;X&gt;(ptr, <span class="literal">true</span>); &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> QT_NO_QOBJECT</span></span><br><span class="line">    <span class="comment">// 私有构造函数</span></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="title">QWeakPointer</span><span class="params">(X *ptr, <span class="type">bool</span>)</span> : d(ptr ? Data::getAndRef(ptr) : nullptr), value(ptr)</span></span><br><span class="line"><span class="function">    &#123;</span> &#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">internalSet</span><span class="params">(Data *o, T *actual)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (d == o) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (o)</span><br><span class="line">            o-&gt;weakref.<span class="built_in">ref</span>();</span><br><span class="line">        <span class="keyword">if</span> (d &amp;&amp; !d-&gt;weakref.<span class="built_in">deref</span>())</span><br><span class="line">            <span class="keyword">delete</span> d;</span><br><span class="line">        d = o;</span><br><span class="line">        value = actual;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 唯二的成员变量</span></span><br><span class="line">    Data *d;</span><br><span class="line">    T *value;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>QWeakPointer的数据成员只有两个，分别用于在私有构造函数中，ptr为模板参数类型的指针，d&#x3D;ptr ? Data::getAndRef(ptr) : nullptr;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> QtSharedPointer::ExternalRefCountData Data;</span><br></pre></td></tr></table></figure>
+
+<p>看下ExternalRefCountData的定义，从名字大概看出来这是一个关于引用计数的结构，用于保存引用计数相关的数据。<br>注意下这里的weakref和strongref都是QBasicAtomicInt类型的，关于<strong>QAtom系列</strong>的几个类，有时间会单独列一章。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">struct</span> <span class="title class_">ExternalRefCountData</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*DestroyerFn)</span><span class="params">(ExternalRefCountData *)</span></span>;</span><br><span class="line">        QBasicAtomicInt weakref;</span><br><span class="line">        QBasicAtomicInt strongref;</span><br><span class="line">        DestroyerFn destroyer;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="title">ExternalRefCountData</span><span class="params">(DestroyerFn d)</span></span></span><br><span class="line"><span class="function">            : destroyer(d)</span></span><br><span class="line"><span class="function">        &#123;</span></span><br><span class="line">            strongref.<span class="built_in">store</span>(<span class="number">1</span>);</span><br><span class="line">            weakref.<span class="built_in">store</span>(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="title">ExternalRefCountData</span><span class="params">(Qt::Initialization)</span> </span>&#123; &#125;</span><br><span class="line">        ~<span class="built_in">ExternalRefCountData</span>() &#123; <span class="built_in">Q_ASSERT</span>(!weakref.<span class="built_in">load</span>()); <span class="built_in">Q_ASSERT</span>(strongref.<span class="built_in">load</span>() &lt;= <span class="number">0</span>); &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123; <span class="built_in">destroyer</span>(<span class="keyword">this</span>); &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> QT_NO_QOBJECT</span></span><br><span class="line">        <span class="function">Q_CORE_EXPORT <span class="type">static</span> ExternalRefCountData *<span class="title">getAndRef</span><span class="params">(<span class="type">const</span> QObject *)</span></span>;</span><br><span class="line">        <span class="function">Q_CORE_EXPORT <span class="type">void</span> <span class="title">setQObjectShared</span><span class="params">(<span class="type">const</span> QObject *, <span class="type">bool</span> enable)</span></span>;</span><br><span class="line">        <span class="function">Q_CORE_EXPORT <span class="type">void</span> <span class="title">checkQObjectShared</span><span class="params">(<span class="type">const</span> QObject *)</span></span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">checkQObjectShared</span><span class="params">(...)</span> </span>&#123; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">setQObjectShared</span><span class="params">(...)</span> </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="keyword">operator</span> <span class="title">delete</span><span class="params">(<span class="type">void</span> *ptr)</span> </span>&#123; ::<span class="function"><span class="keyword">operator</span> <span class="title">delete</span><span class="params">(ptr)</span></span>; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="keyword">operator</span> <span class="title">delete</span><span class="params">(<span class="type">void</span> *, <span class="type">void</span> *)</span> </span>&#123; &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>QWeakPointer的带参构造函数是私有的，引用计数结构体使用getAndRef方法获取，value保存ptr。getAndRef只接受QObject*作为参数，因此就限制了QWeakPointer私有构造时，传入的指针类型必须为QObject.<br>从下面的代码我们不难发现QObjectPrivate中保存了一个ExternalRefCountData的指针，此指针存在时，引用计数+1。不存在时，创建一个新的指针，并赋值引用计数(强引用为-1,弱引用为2,这个数字回头再说)后，返回此指针。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">QtSharedPointer::ExternalRefCountData *QtSharedPointer::ExternalRefCountData::<span class="built_in">getAndRef</span>(<span class="type">const</span> QObject *obj)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">Q_ASSERT</span>(obj);</span><br><span class="line">    QObjectPrivate *d = QObjectPrivate::<span class="built_in">get</span>(<span class="built_in">const_cast</span>&lt;QObject *&gt;(obj));</span><br><span class="line">    <span class="built_in">Q_ASSERT_X</span>(!d-&gt;wasDeleted, <span class="string">&quot;QWeakPointer&quot;</span>, <span class="string">&quot;Detected QWeakPointer creation in a QObject being deleted&quot;</span>);</span><br><span class="line"></span><br><span class="line">    ExternalRefCountData *that = d-&gt;sharedRefcount.<span class="built_in">load</span>();</span><br><span class="line">    <span class="keyword">if</span> (that) &#123;</span><br><span class="line">        that-&gt;weakref.<span class="built_in">ref</span>();</span><br><span class="line">        <span class="keyword">return</span> that;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// we can create the refcount data because it doesn&#x27;t exist</span></span><br><span class="line">    ExternalRefCountData *x = <span class="keyword">new</span> <span class="built_in">ExternalRefCountData</span>(Qt::Uninitialized);</span><br><span class="line">    x-&gt;strongref.<span class="built_in">store</span>(<span class="number">-1</span>);</span><br><span class="line">    x-&gt;weakref.<span class="built_in">store</span>(<span class="number">2</span>);  <span class="comment">// the QWeakPointer that called us plus the QObject itself</span></span><br><span class="line">    <span class="keyword">if</span> (!d-&gt;sharedRefcount.<span class="built_in">testAndSetRelease</span>(<span class="number">0</span>, x)) &#123;</span><br><span class="line">        <span class="comment">// ~ExternalRefCountData has a Q_ASSERT, so we use this trick to</span></span><br><span class="line">        <span class="comment">// only execute this if Q_ASSERTs are enabled</span></span><br><span class="line">        <span class="built_in">Q_ASSERT</span>((x-&gt;weakref.<span class="built_in">store</span>(<span class="number">0</span>), <span class="literal">true</span>));</span><br><span class="line">        <span class="keyword">delete</span> x;</span><br><span class="line">        x = d-&gt;sharedRefcount.<span class="built_in">loadAcquire</span>();</span><br><span class="line">        x-&gt;weakref.<span class="built_in">ref</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个时候我们看一下QObject析构时候的处理，强引用计数置0，弱引用计数-1，如果减为0则delete掉ExternalRefCountData</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">QObject::~<span class="built_in">QObject</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">Q_D</span>(QObject);</span><br><span class="line">    d-&gt;wasDeleted = <span class="literal">true</span>;</span><br><span class="line">    d-&gt;blockSig = <span class="number">0</span>; <span class="comment">// unblock signals so we always emit destroyed()</span></span><br><span class="line"></span><br><span class="line">    QtSharedPointer::ExternalRefCountData *sharedRefcount = d-&gt;sharedRefcount.<span class="built_in">load</span>();</span><br><span class="line">    <span class="keyword">if</span> (sharedRefcount) &#123;</span><br><span class="line">        <span class="keyword">if</span> (sharedRefcount-&gt;strongref.<span class="built_in">load</span>() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">qWarning</span>(<span class="string">&quot;QObject: shared QObject was deleted directly. The program is malformed and may crash.&quot;</span>);</span><br><span class="line">            <span class="comment">// but continue deleting, it&#x27;s too late to stop anyway</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// indicate to all QWeakPointers that this QObject has now been deleted</span></span><br><span class="line">        sharedRefcount-&gt;strongref.<span class="built_in">store</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> (!sharedRefcount-&gt;weakref.<span class="built_in">deref</span>())</span><br><span class="line">            <span class="keyword">delete</span> sharedRefcount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h2><p>弱引用计数-1，如果减为0则delete掉d ，但是不会delete掉value</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> ~<span class="built_in">QWeakPointer</span>() &#123; <span class="keyword">if</span> (d &amp;&amp; !d-&gt;weakref.<span class="built_in">deref</span>()) <span class="keyword">delete</span> d; &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="解除循环引用"><a href="#解除循环引用" class="headerlink" title="解除循环引用"></a>解除循环引用</h2><p>下面的例子，按照我们对智能指针的理解，在运行后Parent和Children指针均应被释放，但实际结果会告诉我们并没有</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QApplication&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QScopedPointer&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QDebug&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Children</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Parent</span>() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ~<span class="built_in">Parent</span>() &#123;</span><br><span class="line">        <span class="built_in">qDebug</span>() &lt;&lt; __FUNCTION__ ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    QSharedPointer&lt;Children&gt; ptr;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Children</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Children</span>() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">Children</span>() &#123;</span><br><span class="line">        <span class="built_in">qDebug</span>() &lt;&lt; __FUNCTION__ ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    QSharedPointer&lt;Parent&gt; ptr;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 模拟一个作用域</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function">QSharedPointer&lt;Parent&gt; <span class="title">p</span><span class="params">(<span class="keyword">new</span> Parent())</span></span>;</span><br><span class="line">        <span class="function">QSharedPointer&lt;Children&gt; <span class="title">c</span><span class="params">(<span class="keyword">new</span> Children())</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(p &amp;&amp; c)&#123;</span><br><span class="line">            p-&gt;ptr = c;</span><br><span class="line">            c-&gt;ptr = p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 出了作用域，此时指针内容销毁，猜想一下输出内容是什么</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> a.<span class="built_in">exec</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>对上面的代码稍作改动，将Parent和Children中的成员变量指针改成QWeakPointer，此时Parent和Children均被析构</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QApplication&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QScopedPointer&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QDebug&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Children</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Parent</span>() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ~<span class="built_in">Parent</span>() &#123;</span><br><span class="line">        <span class="built_in">qDebug</span>() &lt;&lt; __FUNCTION__ ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里将QSharedPointer改为QWeakPointer</span></span><br><span class="line">    QWeakPointer&lt;Children&gt; ptr;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Children</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Children</span>() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">Children</span>() &#123;</span><br><span class="line">        <span class="built_in">qDebug</span>() &lt;&lt; __FUNCTION__ ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里将QSharedPointer改为QWeakPointer</span></span><br><span class="line">    QWeakPointer&lt;Parent&gt; ptr;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 模拟一个作用域</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function">QSharedPointer&lt;Parent&gt; <span class="title">p</span><span class="params">(<span class="keyword">new</span> Parent())</span></span>;</span><br><span class="line">        <span class="function">QSharedPointer&lt;Children&gt; <span class="title">c</span><span class="params">(<span class="keyword">new</span> Children())</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(p &amp;&amp; c)&#123;</span><br><span class="line">            p-&gt;ptr = c;</span><br><span class="line">            c-&gt;ptr = p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 再猜测一下输出内容</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> a.<span class="built_in">exec</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>两个对象互相使用一个 QSharedPointer成员变量指向对方（你中有我，我中有你）。由于QSharedPointer是一个强引用的计数型指针，只有当引用数为0时，就会自动删除指针释放内存，但是如果循环引用，就会导致QSharedPointer指针的引用永远都不能为0，这时候就会导致内存无法释放。<br>所以QWeakPointer诞生了，它就是为了打破这种循环的。并且，在需要的时候变成QSharedPointer，在其他时候不干扰QSharedPointer的引用计数。它没有重载 * 和 -&gt; 运算符，因此不可以直接通过 QWeakPointer 访问对象，典型的用法是通过 lock() 成员函数来获得 QSharedPointer，进而使用对象。</p>
+<h2 id="源码赏析"><a href="#源码赏析" class="headerlink" title="源码赏析"></a>源码赏析</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">QWeakPointer</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">typedef</span> T *QWeakPointer:: *RestrictedBool;</span><br><span class="line">    <span class="keyword">typedef</span> QtSharedPointer::ExternalRefCountData Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">typedef</span> T element_type;</span><br><span class="line">    <span class="keyword">typedef</span> T value_type;</span><br><span class="line">    <span class="keyword">typedef</span> value_type *pointer;</span><br><span class="line">    <span class="keyword">typedef</span> <span class="type">const</span> value_type *const_pointer;</span><br><span class="line">    <span class="keyword">typedef</span> value_type &amp;reference;</span><br><span class="line">    <span class="keyword">typedef</span> <span class="type">const</span> value_type &amp;const_reference;</span><br><span class="line">    <span class="keyword">typedef</span> qptrdiff difference_type;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isNull</span><span class="params">()</span> <span class="type">const</span> Q_DECL_NOTHROW </span>&#123; <span class="keyword">return</span> d == <span class="literal">nullptr</span> || d-&gt;strongref.<span class="built_in">load</span>() == <span class="number">0</span> || value == <span class="literal">nullptr</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">operator</span> <span class="title">RestrictedBool</span><span class="params">()</span> <span class="type">const</span> Q_DECL_NOTHROW </span>&#123; <span class="keyword">return</span> <span class="built_in">isNull</span>() ? <span class="literal">nullptr</span> : &amp;QWeakPointer::value; &#125;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span> !() <span class="type">const</span> Q_DECL_NOTHROW &#123; <span class="keyword">return</span> <span class="built_in">isNull</span>(); &#125;</span><br><span class="line">    <span class="function">T *<span class="title">data</span><span class="params">()</span> <span class="type">const</span> Q_DECL_NOTHROW </span>&#123; <span class="keyword">return</span> d == <span class="literal">nullptr</span> || d-&gt;strongref.<span class="built_in">load</span>() == <span class="number">0</span> ? <span class="literal">nullptr</span> : value; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="title">QWeakPointer</span><span class="params">()</span> Q_DECL_NOTHROW : d(nullptr), value(nullptr) &#123;</span> &#125;</span><br><span class="line">    <span class="keyword">inline</span> ~<span class="built_in">QWeakPointer</span>() &#123; <span class="keyword">if</span> (d &amp;&amp; !d-&gt;weakref.<span class="built_in">deref</span>()) <span class="keyword">delete</span> d; &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> QT_NO_QOBJECT</span></span><br><span class="line">    <span class="comment">// special constructor that is enabled only if X derives from QObject</span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> QT_DEPRECATED_SINCE(5, 0)</span></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line">    <span class="function">QT_DEPRECATED <span class="keyword">inline</span> <span class="title">QWeakPointer</span><span class="params">(X *ptr)</span> : d(ptr ? Data::getAndRef(ptr) : nullptr), value(ptr)</span></span><br><span class="line"><span class="function">    &#123;</span> &#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> QT_DEPRECATED_SINCE(5, 0)</span></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line">    QT_DEPRECATED <span class="keyword">inline</span> QWeakPointer &amp;<span class="keyword">operator</span>=(X *ptr)</span><br><span class="line">    &#123; <span class="keyword">return</span> *<span class="keyword">this</span> = <span class="built_in">QWeakPointer</span>(ptr); &#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">QWeakPointer</span>(<span class="type">const</span> QWeakPointer &amp;other) Q_DECL_NOTHROW : <span class="built_in">d</span>(other.d), <span class="built_in">value</span>(other.value)</span><br><span class="line">    &#123; <span class="keyword">if</span> (d) d-&gt;weakref.<span class="built_in">ref</span>(); &#125;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> Q_COMPILER_RVALUE_REFS</span></span><br><span class="line">    <span class="built_in">QWeakPointer</span>(QWeakPointer &amp;&amp;other) Q_DECL_NOTHROW</span><br><span class="line">        : <span class="built_in">d</span>(other.d), <span class="built_in">value</span>(other.value)</span><br><span class="line">    &#123;</span><br><span class="line">        other.d = <span class="literal">nullptr</span>;</span><br><span class="line">        other.value = <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    QWeakPointer &amp;<span class="keyword">operator</span>=(QWeakPointer &amp;&amp;other) Q_DECL_NOTHROW</span><br><span class="line">    &#123; QWeakPointer <span class="built_in">moved</span>(std::<span class="built_in">move</span>(other)); <span class="built_in">swap</span>(moved); <span class="keyword">return</span> *<span class="keyword">this</span>; &#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">    QWeakPointer &amp;<span class="keyword">operator</span>=(<span class="type">const</span> QWeakPointer &amp;other) Q_DECL_NOTHROW</span><br><span class="line">    &#123;</span><br><span class="line">        QWeakPointer <span class="built_in">copy</span>(other);</span><br><span class="line">        <span class="built_in">swap</span>(copy);</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(QWeakPointer &amp;other)</span> Q_DECL_NOTHROW</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">qSwap</span>(<span class="keyword">this</span>-&gt;d, other.d);</span><br><span class="line">        <span class="built_in">qSwap</span>(<span class="keyword">this</span>-&gt;value, other.value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="title">QWeakPointer</span><span class="params">(<span class="type">const</span> QSharedPointer&lt;T&gt; &amp;o)</span> : d(o.d), value(o.data())</span></span><br><span class="line"><span class="function">    &#123;</span> <span class="keyword">if</span> (d) d-&gt;weakref.<span class="built_in">ref</span>();&#125;</span><br><span class="line">    <span class="keyword">inline</span> QWeakPointer &amp;<span class="keyword">operator</span>=(<span class="type">const</span> QSharedPointer&lt;T&gt; &amp;o)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">internalSet</span>(o.d, o.value);</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="title">QWeakPointer</span><span class="params">(<span class="type">const</span> QWeakPointer&lt;X&gt; &amp;o)</span> : d(nullptr), value(nullptr)</span></span><br><span class="line"><span class="function">    &#123;</span> *<span class="keyword">this</span> = o; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line">    <span class="keyword">inline</span> QWeakPointer &amp;<span class="keyword">operator</span>=(<span class="type">const</span> QWeakPointer&lt;X&gt; &amp;o)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// conversion between X and T could require access to the virtual table</span></span><br><span class="line">        <span class="comment">// so force the operation to go through QSharedPointer</span></span><br><span class="line">        *<span class="keyword">this</span> = o.<span class="built_in">toStrongRef</span>();</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>==(<span class="type">const</span> QWeakPointer&lt;X&gt; &amp;o) <span class="type">const</span> Q_DECL_NOTHROW</span><br><span class="line">    &#123; <span class="keyword">return</span> d == o.d &amp;&amp; value == <span class="built_in">static_cast</span>&lt;<span class="type">const</span> T *&gt;(o.value); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>!=(<span class="type">const</span> QWeakPointer&lt;X&gt; &amp;o) <span class="type">const</span> Q_DECL_NOTHROW</span><br><span class="line">    &#123; <span class="keyword">return</span> !(*<span class="keyword">this</span> == o); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="title">QWeakPointer</span><span class="params">(<span class="type">const</span> QSharedPointer&lt;X&gt; &amp;o)</span> : d(nullptr), value(nullptr)</span></span><br><span class="line"><span class="function">    &#123;</span> *<span class="keyword">this</span> = o; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line">    <span class="keyword">inline</span> QWeakPointer &amp;<span class="keyword">operator</span>=(<span class="type">const</span> QSharedPointer&lt;X&gt; &amp;o)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">QSHAREDPOINTER_VERIFY_AUTO_CAST</span>(T, X); <span class="comment">// if you get an error in this line, the cast is invalid</span></span><br><span class="line">        <span class="built_in">internalSet</span>(o.d, o.<span class="built_in">data</span>());</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>==(<span class="type">const</span> QSharedPointer&lt;X&gt; &amp;o) <span class="type">const</span> Q_DECL_NOTHROW</span><br><span class="line">    &#123; <span class="keyword">return</span> d == o.d; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>!=(<span class="type">const</span> QSharedPointer&lt;X&gt; &amp;o) <span class="type">const</span> Q_DECL_NOTHROW</span><br><span class="line">    &#123; <span class="keyword">return</span> !(*<span class="keyword">this</span> == o); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123; *<span class="keyword">this</span> = <span class="built_in">QWeakPointer</span>(); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> QSharedPointer&lt;T&gt; <span class="title">toStrongRef</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">QSharedPointer</span>&lt;T&gt;(*<span class="keyword">this</span>); &#125;</span><br><span class="line">    <span class="comment">// std::weak_ptr compatibility:</span></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> QSharedPointer&lt;T&gt; <span class="title">lock</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">toStrongRef</span>(); &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> defined(QWEAKPOINTER_ENABLE_ARROW)</span></span><br><span class="line">    <span class="keyword">inline</span> T *<span class="keyword">operator</span>-&gt;() <span class="type">const</span> &#123; <span class="keyword">return</span> <span class="built_in">data</span>(); &#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> defined(Q_NO_TEMPLATE_FRIENDS)</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt; <span class="keyword">friend</span> <span class="keyword">class</span> <span class="title class_">QSharedPointer</span>;</span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt; <span class="keyword">friend</span> <span class="keyword">class</span> <span class="title class_">QPointer</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> QWeakPointer &amp;<span class="title">assign</span><span class="params">(X *ptr)</span></span></span><br><span class="line"><span class="function">    </span>&#123; <span class="keyword">return</span> *<span class="keyword">this</span> = <span class="built_in">QWeakPointer</span>&lt;X&gt;(ptr, <span class="literal">true</span>); &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> QT_NO_QOBJECT</span></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">X</span>&gt;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="title">QWeakPointer</span><span class="params">(X *ptr, <span class="type">bool</span>)</span> : d(ptr ? Data::getAndRef(ptr) : nullptr), value(ptr)</span></span><br><span class="line"><span class="function">    &#123;</span> &#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">internalSet</span><span class="params">(Data *o, T *actual)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (d == o) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (o)</span><br><span class="line">            o-&gt;weakref.<span class="built_in">ref</span>();</span><br><span class="line">        <span class="keyword">if</span> (d &amp;&amp; !d-&gt;weakref.<span class="built_in">deref</span>())</span><br><span class="line">            <span class="keyword">delete</span> d;</span><br><span class="line">        d = o;</span><br><span class="line">        value = actual;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Data *d;</span><br><span class="line">    T *value;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><blockquote>
+<p>本文资料为以下链接的总结，可能大量借鉴其中内容，仅做分享之用，如有侵权，告知必删。</p>
+</blockquote>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/GG_SiMiDa/article/details/78667416" >Qt–智能指针<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/luoyayun361/article/details/90286005" >Qt智能指针–QWeakPointer<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qweakpointer.html" >QWeakPointer Class<i class="fas fa-external-link-alt"></i></a></p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Qt/">Qt</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">智能指针</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2022/1056575.html"
+                                   title="智能指针-QPointer"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">智能指针-QPointer</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2022/098105.html"
+                                   title="PAM模块-pam_script"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">PAM模块-pam_script</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline-meta.css"/>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          window.KeepCommentPlugin.walineOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+          window.KeepCommentPlugin.walineOptions.el = '#waline-comment'
+          window.KeepCommentPlugin.walineOptions.comment = '.post-comments-count'
+          window.KeepCommentPlugin.walineOptions.serverURL = 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/'
+          window.KeepCommentPlugin.walineOptions.lang = 'en' || 'zh-CN'
+          window.KeepCommentPlugin.walineOptions.reaction = 'true' === 'true'
+        </script>
+
+        
+
+        
+            <script data-pjax
+                    async
+                    type="module"
+            >
+              import { init } from '//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js'
+              window.KeepCommentPlugin.initWaline = () => {
+                if (init) {
+                  init(window.KeepCommentPlugin.walineOptions)
+                  window.KeepCommentPlugin.hideLoading()
+                } else {
+                  setTimeout(() => {
+                    window.KeepCommentPlugin.initWaline()
+                  }, 1000)
+                }
+              }
+
+              if ('true' === 'true') {
+                setTimeout(() => {
+                  window.KeepCommentPlugin.initWaline()
+                }, 1200)
+              } else {
+                window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initWaline)
+              }
+            </script>
+        
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#QWeakPointer"><span class="nav-text">QWeakPointer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-text">作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0"><span class="nav-text">析构函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%99%A4%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8"><span class="nav-text">解除循环引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E8%B5%8F%E6%9E%90"><span class="nav-text">源码赏析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ssk-wh</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+                <a target="_blank" rel="nofollow" href="https://github.com/">
+            
+            This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span>
+            
+                </a>
+            
+        </div>
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#QWeakPointer"><span class="nav-text">QWeakPointer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-text">作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0"><span class="nav-text">析构函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%99%A4%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8"><span class="nav-text">解除循环引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E8%B5%8F%E6%9E%90"><span class="nav-text">源码赏析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

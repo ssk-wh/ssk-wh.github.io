@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            Desktop Entry Specification(桌面入口规范) |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#29392c","title":"Ssk-wh's Blog","author":"ssk-wh","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","tools":"/tools","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":true,"links":{"github":"https://github.com/ssk-wh","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"juchengshi@gmail.com"}},"scroll":{"progress_bar":false,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":false,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":3},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":true,"provider":"github","url":"https://github.com/"},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"伙计们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://xpoet.cn/images/avatar.png"},{"name":"Guo Le's Blog","link":"https://guole.fun/","description":"生命是独立是自由是爱与和平","avatar":"https://guole.fun/img/gl.jpg"},{"name":"酷小呵","link":"https://www.kuhehe.top/","description":"爱分享的酷小呵","avatar":"https://q1.qlogo.cn/g?b=qq&nk=3111349763&s=100"}],"tools":[{"category":"AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"name":"Copilot","link":"https://copilot.microsoft.com/","description":"微软家的AI助手","image":"/images/tools/copilot.svg"},{"name":"Kimi","link":"https://kimi.moonshot.cn/","description":"支持识别文件或网址的小众AI网站","image":"/images/tools/kimi.png"},{"name":"文心一言","link":"https://yiyan.baidu.com/","description":"百度旗下的AI助手","image":"/images/tools/wxyy.png"},{"name":"通义千问","link":"https://tongyi.aliyun.com/qianwen/","description":"阿里旗下","image":"/images/tools/tyqw.Default"},{"name":"讯飞星火","link":"https://xinghuo.xfyun.cn/","description":"讯飞旗下","image":"/images/tools/xfxh.svg"},{"category":"技术"},{"name":"Hexo","link":"https://hexo.io/","description":"快速、简洁且高效的博客框架","image":"https://upload.wikimedia.org/wikipedia/commons/b/b9/Hexo_blog_logo.svg"},{"name":"稀土掘金","link":"https://juejin.cn/","description":"开发者社区","image":"/images/tools/xtjj.Default"},{"category":"笔记"},{"name":"语雀","link":"https://www.yuque.com/","description":"在线记录笔记","image":"/images/tools/yuque.svg"},{"category":"图片"},{"name":"undraw","link":"https://undraw.co/illustrations","description":"免费的矢量素材下载网站","image":"https://raw.githubusercontent.com/ssk-wh/ssk-wh.github.io/master/images/undraw_shopping_bags_8l6g.svg"},{"name":"carbon","link":"https://carbon.now.sh/","description":"将代码生成图片","image":null},{"category":"作图网站"},{"name":"Draw.io","link":"https://draw.io/","description":"在线绘图网站，支持同步保存至github","image":null},{"name":"ProcessOn","link":"https://www.processon.com/","description":"在线绘图网站，画软件流程图经常用到","image":null},{"category":"博客管理"},{"name":"LeanCloud","link":"https://console.leancloud.app/apps/D0eDuK0h6X11p0z7FxTgY1CX-MdYXbMMI/storage/data/Comment","description":"评论管理","image":"https://gravatar.tapglb.com/avatar/afa8e9b8057e1877138d43f1dfdd8510?s=200&d=retro"}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                TOOLS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                ABOUT
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                            TOOLS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            ABOUT
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Desktop Entry Specification(桌面入口规范)
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">ssk-wh</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2023-05-18 10:16:43</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Wed Jul 19 2023 08:43:29 GMT+0000">2023-07-19 08:43:29</span>
+                </span>
+            
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Freedesktop/">Freedesktop</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%A0%87%E5%87%86/">标准</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/XDG/">XDG</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>5.4k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>20 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>原文链接：<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.1.html" >https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.1.html<i class="fas fa-external-link-alt"></i></a></p>
+<blockquote>
+<p>注：部分内容并未翻译，实则是感觉没（不）必（想）要（写），感兴趣的童鞋可以访问原文链接。</p>
+</blockquote>
+<h1 id="名词介绍"><a href="#名词介绍" class="headerlink" title="名词介绍"></a>名词介绍</h1><p>implementations:实现者，本文中的实现方一般指桌面环境的发行商，此规范的实现者</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>KDE和GNOME桌面环境都采用了类似的 <em>desktop entries</em> 格式或描述特定程序如何启动的配置文件。为了更好地造福社区，桌面环境各方都应达成统一标准，以便两个桌面环境之间以及任何实现规范的其他环境之间的互操作，都能变得更加简单。(鹰酱教我们的标准化)</p>
+<h1 id="基础格式"><a href="#基础格式" class="headerlink" title="基础格式"></a>基础格式</h1><p><em>Desktop entry</em> 文件应具有 <em>.desktop</em> 扩展名， <em>Directory</em> 类型的文件应具有 <em>.directory</em> 扩展名。根据扩展名确定文件类型使得确定文件类型非常容易和快速。当没有文件扩展名时，桌面系统应该 <em>fallback</em> 到通过 <em><strong>magic detection</strong></em> (指各家桌面环境独特的检测方式) 识别。</p>
+<p>对于应用程序，桌面文件名称的一部分（*.desktop* 之前）应遵循 <em><strong>reverse DNS</strong></em> （域名反向原则，其实就是把域名反过来写）约定，例如 <em>org.example.FooViewer.desktop</em>。</p>
+<p><em>Desktop entry</em> 文件以 <em>UTF-8</em> 编码。文件被解释为一系列由换行符分隔的行。且内容是<strong>大小写敏感</strong>的。</p>
+<p>为了保持兼容，规范的实现方<strong>不得</strong>从文件中<strong>删除任何字段</strong>，即使实现方不支持这些字段。这些字段必须提供一个维护列表，如果文件被“重写”，它们将被重新包含在内。这确保即使另一个系统访问和更改文件，任何特定于桌面的扩展也将被保留。</p>
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><p>以 <em>#</em> 开头的行和空行被视为注释，将被忽略，但在 <em>Desktop entry</em> 文件的读写过程中应保留它们。</p>
+<p>注释行不会被规范实现方所解释，可以包含任何字符（ <em>LF</em> 除外）。但是，鼓励使用 <em>UTF-8</em> (但不建议包含非 <em>ASCII</em> 字符)进行注释。</p>
+<h1 id="Group"><a href="#Group" class="headerlink" title="Group"></a>Group</h1><p>名为 <em>groupname</em>  的组标题的格式如下：<br><code>[groupname]</code></p>
+<p>组名可以包含除  [<em>and</em>] 和控制字符之外的所有 <em>ASCII</em> 字符</p>
+<p>多个组可能不具有相同的名称(实际上我认为是一定不会相同，但是规范写的是 <em>may not have the same name</em>, emmm…)</p>
+<p><em>Group Header</em> 之后的所有 <em>{key,value}</em> 键值对都属于该组，直到遇见一个新的 <em>Group Header</em></p>
+<p><em>Desktop entry</em> 文件的基本格式要求有一个名为 <code>[Desktop Entry]</code> 的组头。 文件中可能存在其他组，但这是明确需要支持的最重要的组。 该组还应该用作自动          <em>MIME</em> 类型检测的 <em>“magic key”</em>。 在 <em>Desktop entry</em> 文件中，该组之前不应有任何内容，但可能有一个或多个注释。</p>
+<h1 id="Entries"><a href="#Entries" class="headerlink" title="Entries"></a>Entries</h1><p>文件中的 <em>entry</em> 是 形如 <em>{key,value}</em> 的键值对 ，格式如下：<br><code>Key=Value</code><br>应忽略等号前后的空格, “&#x3D;” 符号是实际的分隔符</p>
+<p> <em>Key</em> 只能使用字符 <em>A-Za-z0-9</em></p>
+<p>由于大小写很重要， <em>Name</em> 和 <em>NAME</em> 作为 <em>Key</em>并不等同</p>
+<p>同一 <em>Group</em> 中的多个 <em>Key</em> 可能具有不同的名称( <em>emmm…</em> , 我觉得应该去掉可能两个字)。不同 <em>Group</em> 中的 <em>Key</em> 可能具有相同的名称</p>
+<h1 id="支持的值类型"><a href="#支持的值类型" class="headerlink" title="支持的值类型"></a>支持的值类型</h1><p>公认的 <em>Value</em> 的类型有：<em>string, localestring, boolean, numeric</em>.</p>
+<blockquote>
+<p><em>string</em>: 字符串类型的值可以包含除控制字符之外的所有 <em>ASCII</em> 字符。<br><em>localestring</em>: localestring 类型的值是用户可显示的，并以 <em>UTF-8</em> 编码。<br><em>boolean</em>: 布尔类型的值必须是字符串 <em>true</em> 或 <em>false</em><br><em>numeric</em>: 数字类型的值必须是 <em>C</em> 语言环境中 <em>scanf</em> 的 *%f *说明符所识别的有效浮点数。</p>
+</blockquote>
+<p><em>string</em> 和 <em>localestring</em> 类型的值支持转义序列 <em>\s、\n、\t、\r</em> 和 <em>\</em>，分别表示 <em>ASCII</em> 空格、换行符、制表符、回车符和反斜杠。</p>
+<p>一些键可以有多个值。 在这种情况下，键的值被指定为复数：例如，*string(s)*。 多个值应该用分号分隔，键的值可以选择以分号结尾。 尾随的空字符串必须始终以分号结尾。 这些值中的分号需要使用 <em>\</em>; 进行转义。</p>
+<h1 id="公认的桌面入口Key"><a href="#公认的桌面入口Key" class="headerlink" title="公认的桌面入口Key"></a>公认的桌面入口Key</h1><p><em>Key</em> 有可选和必需两种可能。如果一个 <em>Key</em> 是可选的，它可能存在于文件中也可能不存在。然而，如果不是，标准的实现者不应该视为异常情况，它必须提供一些合理的默认值(即可选的 <em>Key</em> 不存在时，由规范实现者提供合理的默认值)。</p>
+<p>有些 <em>Key</em> 只有在另一个特定 <em>Key</em> 也存在并设置为特定值时才在上下文中有意义。如果特定 <em>Key</em> 不存在或未设置为特定值，则不应使用这些 <em>Key</em> 。例如，<em>Terminal</em> 只有在 <em>Type</em> 的值为 <em>Application</em> 时才能使用。</p>
+<p>如果一个必须存在的 <em>Key</em> 仅在另一个 <em>Key</em> 设置为特定值的上下文中有效，则仅当另一个 <em>Key</em> 设置为特定值时它才必须存在。例如，当且仅当 <em>Type</em> 的值为 <em>Link</em> 时，<em>URL</em> 必须存在。</p>
+<p>一些示例的 <em>Key</em> ：<code>Name[C]、Comment[it]</code></p>
+<h2 id="标准的-Keys"><a href="#标准的-Keys" class="headerlink" title="标准的 Keys"></a>标准的 Keys</h2><table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Value Type</th>
+<th>Required?</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Type</td>
+<td>本规范定义了 3 种类型的桌面条目：应用程序（类型 1）、链接（类型 2）和目录（类型 3）。为了允许在未来添加新类型，实现应该忽略具有未知类型的桌面条目。</td>
+<td>string</td>
+<td>YES</td>
+<td></td>
+</tr>
+<tr>
+<td>Version</td>
+<td>桌面条目符合的桌面条目规范的版本。确认此版本规范的条目应使用 1.0。请注意，版本字段不一定需要存在。</td>
+<td>string</td>
+<td>NO</td>
+<td>1-3</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>应用程序的特定名称，例如 “<em>Mozilla</em>” 。</td>
+<td>localestring</td>
+<td>YES</td>
+<td>1-3</td>
+</tr>
+<tr>
+<td>GenericName</td>
+<td>应用程序的通用名称，例如 “<em>Web Browser</em>” 。</td>
+<td>localestring</td>
+<td>NO</td>
+<td>1-3</td>
+</tr>
+<tr>
+<td>NoDisplay</td>
+<td><em>NoDisplay</em> 表示“此应用程序存在，但不在菜单中显示它”。这可能对例如将此应用程序与 MIME 类型相关联，以便它可以从文件管理器（或其他应用程序）启动，而无需为其提供菜单项（有很多类似的场景，例如 <em>netscape -remote</em> 或 <em>kfmclient openURL</em> 类型的操作）。</td>
+<td>boolean</td>
+<td>NO</td>
+<td>1-3</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>条目的工具提示，例如“查看 <em>Internet</em> 上的站点”。该值不应与 <em>Name</em> 和 <em>GenericName</em> 的值重复。</td>
+<td>localestring</td>
+<td>NO</td>
+<td>1-3</td>
+</tr>
+<tr>
+<td>Icon</td>
+<td>在文件管理器、菜单等中显示的图标。如果名称是绝对路径，将使用给定的文件。如果名称不是绝对路径，则将使用图标主题规范中描述的算法来定位图标。</td>
+<td>localestring</td>
+<td>NO</td>
+<td>1-3</td>
+</tr>
+<tr>
+<td>Hidden</td>
+<td>隐藏应该被称为删除。 这意味着用户删除了（在他的级别）存在的东西（在上层，例如在系统目录中）。 就该用户而言，它等同于根本不存在的 <em>.desktop</em> 文件。 这也可以用于“卸载”现有文件（例如由于重命名） - 通过让 <em>make install</em> 安装一个 <em>Hidden&#x3D;true</em> 的文件。</td>
+<td>boolean</td>
+<td>NO</td>
+<td>1-3</td>
+</tr>
+<tr>
+<td>OnlyShowIn<code>, </code>NotShowIn</td>
+<td>标识应显示&#x2F;不显示给定桌面条目的环境的字符串列表。 这些键中只有一个，即 <em>OnlyShowIn</em> 或 <em>NotShowIn</em>，可能会出现在一个组中（有关可能的值，请参阅<a class="link"   target="_blank" rel="noopener" href="http://www.freedesktop.org/Standards/menu-spec" >Desktop Menu Specification<i class="fas fa-external-link-alt"></i></a>）。</td>
+<td>string(s)</td>
+<td>NO</td>
+<td>1-3</td>
+</tr>
+<tr>
+<td>DBusActivatable</td>
+<td>一个布尔值，指定此应用程序是否支持 <em>D-Bus</em> 激活。 如果缺少此键，则默认值为  <em>false</em>。 如果该值为真，则实现应忽略 <em>Exec</em> 键并发送 <em>D-Bus</em> 消息以启动应用程序。 有关其工作原理的更多信息，请参见 <a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.1.html#dbus" >D-Bus Activation<i class="fas fa-external-link-alt"></i></a>。 应用程序仍应在其桌面文件中包含 <em>Exec&#x3D;</em> 行，从而与不支持 <em>DBusActivatable</em> 字段的桌面环境兼容。</td>
+<td>boolean</td>
+<td>NO</td>
+<td></td>
+</tr>
+<tr>
+<td>TryExec</td>
+<td>磁盘上用于确定程序是否实际安装的可执行文件的路径。 如果路径不是绝对路径，则在 <em>$PATH</em> 环境变量中查找该文件。 如果该文件不存在或不可执行，则可以忽略该条目（例如，在菜单中隐藏）。</td>
+<td>string</td>
+<td>NO</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Exec</td>
+<td>要执行的程序，可能带有参数。 有关此键如何工作的详细信息，请参阅 <a target="_blank" rel="noopener" href="https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.1.html#exec-variables"><code>Exec</code> key</a>。 如果 <em>DBusActivatable</em> 未设置为 <em>true</em>，则需要 <em>Exec</em> 的键。 即使 <em>DBusActivatable</em> 为真，也应该指定 <em>Exec</em> ，从而与不支持 <em>DBusActivatable</em> 字段的桌面环境兼容。。</td>
+<td>string</td>
+<td>NO</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Path</td>
+<td>如果条目是应用程序类型，则为运行程序的工作目录。</td>
+<td>string</td>
+<td>NO</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Terminal</td>
+<td>程序是否在终端窗口中运行。</td>
+<td>boolean</td>
+<td>NO</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Actions</td>
+<td>应用程序操作的标识符。 这可用于告诉应用程序执行不同于默认行为的特定操作。 <a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.1.html#extra-actions" >Application actions<i class="fas fa-external-link-alt"></i></a> 部分描述了操作的工作原理。</td>
+<td>string(s)</td>
+<td>NO</td>
+<td>1</td>
+</tr>
+<tr>
+<td>MimeType</td>
+<td>此应用程序支持的 <em>MIME</em> 类型。</td>
+<td>string(s)</td>
+<td>NO</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Categories</td>
+<td>条目应显示在菜单中的类别（有关可能的值，请参阅<a class="link"   target="_blank" rel="noopener" href="http://www.freedesktop.org/Standards/menu-spec" >Desktop Menu Specification<i class="fas fa-external-link-alt"></i></a>）。</td>
+<td>string(s)</td>
+<td>NO</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Keywords</td>
+<td>除了其他元数据之外，还可以使用的字符串列表来描述此条目。这可能很有用，例如方便便于条目搜索功能。这些值不用于显示，不应与 <em>Name</em> 或 <em>GenericName</em> 的值重复。</td>
+<td>localestring(s)</td>
+<td>NO</td>
+<td>1</td>
+</tr>
+<tr>
+<td>StartupNotify</td>
+<td>如果为真，则已知应用程序在使用 <em>DESKTOP_STARTUP_ID</em> 环境变量集启动时将发送“删除”消息。 如果为 <em>false</em>，则已知该应用程序根本无法使用启动通知（不显示任何窗口，即使在使用 <em>StartupWMClass</em> 时也会中断等）。 如果不存在，则合理的处理取决于实现（假设为 <em>false</em>，使用 <em>StartupWMClass</em> 等）。 （有关详细信息，请参阅启动通知协议规范）。</td>
+<td>boolean</td>
+<td>NO</td>
+<td>1</td>
+</tr>
+<tr>
+<td>StartupWMClass</td>
+<td>如果指定，则已知应用程序将至少映射一个具有给定字符串的窗口作为其 <em>WM</em> 类或 <em>WM</em> 名称提示（有关更多详细信息，请参阅<a class="link"   target="_blank" rel="noopener" href="http://www.freedesktop.org/Standards/startup-notification-spec" >Startup Notification Protocol Specification<i class="fas fa-external-link-alt"></i></a>）。</td>
+<td>string</td>
+<td>NO</td>
+<td>1</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>如果条目是链接类型，则为要访问的 <em>URL</em>。</td>
+<td>string</td>
+<td>YES</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<h1 id="Exec"><a href="#Exec" class="headerlink" title="Exec"></a>Exec</h1><p><em>Exec Key</em> 的值中必须包含命令行。命令行由一个可执行程序组成，后跟一个或多个参数（可选地）。可执行程序可以用其指定完整路径，也可以只用可执行文件的名称指定。如果未提供完整路径，则在桌面环境使用的 <em>$PATH</em> 环境变量中查找可执行文件。可执行程序的名称或路径不能包含等号 “&#x3D;”。参数由空格分隔。</p>
+<p>参数可以完整引用。如果参数包含保留字符，则必须引用该参数。引用参数的规则也适用于提供的可执行程序名称或路径。</p>
+<p>引用必须通过将参数括在双引号和转义双引号字符、反引号字符 (“`“)、美元符号 (“$”) 和反斜杠字符 (“\“) 之间来完成，方法是在其前面加上一个额外的反斜杠字符。规范实现者必须在扩展字段代码之前和将参数传递给可执行程序之前撤消引用。保留字符有空格（” “）、制表符、换行符、双引号、单引号（*’*）、反斜杠（”\“）、大于号（”&gt;”）、小于号（”&lt;” )、波浪号 (“~”)、竖线 (“|”)、和号 (“&amp;”)、分号 (“;”)、美元符号 (“$”)、星号 (“*”)、问号 (“ ？”）、井号（“#”）、括号（“（”）和（”）”）和反引号（“&#96;”）。</p>
+<p>请注意，字符串类型值的一般转义规则规定反斜杠字符也可以转义为 (“\“)，并且此转义规则在引号规则之前应用。因此，要在桌面条目文件的引用参数中明确表示文字反斜杠字符，需要使用四个连续的反斜杠字符（“\\”）。同样，桌面条目文件中引用参数中的文字美元符号明确表示为 (“\$”)。</p>
+<p>定义了许多特殊字段代码，当在命令行中遇到这些代码时，文件管理器或程序启动器将对其进行扩展。字段代码由百分比字符 (“%”) 和后跟字母字符组成。文字百分比字符必须转义为%%. 应从命令行中删除并忽略不推荐使用的字段代码。字段代码仅展开一次，用于替换字段代码的字符串不应检查字段代码本身。</p>
+<p>包含未在本规范中列出的域代码的命令行是无效的，不得处理，特别是实现可能不会引入对本规范中未列出的域代码的支持。扩展（如果有）应通过新密钥引入。</p>
+<p>除非本规范明确指示，否则实现必须注意不要将字段代码扩展为多个参数。这意味着名称字段、文件名和其他可以包含空格的替换必须在扩展后作为单个参数传递给可执行程序。</p>
+<p>尽管 <em>Exec</em> 键被定义为具有字符串类型的值，该值仅限于 <em>ASCII</em> 字符，但字段代码扩展可能会在参数中引入非 <em>ASCII</em> 字符。实现必须注意传递给可执行程序的参数中的所有字符都根据适用的区域设置进行了正确编码。</p>
+<p>公认的字段代码如下所示：</p>
+<table>
+<thead>
+<tr>
+<th><strong>Code</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%f</td>
+<td>单个文件名，即使选择了多个文件。读取桌面条目的系统应该认识到程序可能不能处理多个文件参数，如果程序不能处理额外的文件参数，它应该可能为每个选定的文件生成并执行程序的多个副本。对于不理解 URL 语法的程序，如果文件不在本地文件系统上（即在 HTTP 或 FTP 位置上），文件将被规范实现方复制到本地文件系统并将<code>%f</code>扩展为指向临时文件。</td>
+</tr>
+<tr>
+<td>%F</td>
+<td>文件列表。用于可以一次打开多个本地文件的应用程序。每个文件都作为单独的参数传递给可执行程序。</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>单个网址。本地文件可以作为 file: URL 或文件路径传递。</td>
+</tr>
+<tr>
+<td>%U</td>
+<td>URL 列表。每个 URL 都作为单独的参数传递给可执行程序。本地文件可以作为 file: URL 或文件路径传递。</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>已弃用。</td>
+</tr>
+<tr>
+<td>%D</td>
+<td>已弃用。</td>
+</tr>
+<tr>
+<td>%n</td>
+<td>已弃用。</td>
+</tr>
+<tr>
+<td>%N</td>
+<td>已弃用。</td>
+</tr>
+<tr>
+<td>%i</td>
+<td><code>Icon</code>桌面条目的键扩展为两个参数，第一个是 键<code>--icon</code>的值，然后是键的值 <code>Icon</code>。<code>Icon</code>如果键为空或缺失， 则不应扩展为任何参数。</td>
+</tr>
+<tr>
+<td>%c</td>
+<td><code>Name</code>桌面条目中 相应键中列出的应用程序的翻译名称。</td>
+</tr>
+<tr>
+<td>%k</td>
+<td>桌面文件的位置作为 URI（例如，如果从 vfolder 系统获取）或本地文件名，如果不知道位置则为空。</td>
+</tr>
+<tr>
+<td>%v</td>
+<td>已弃用。</td>
+</tr>
+<tr>
+<td>%m</td>
+<td>已弃用。</td>
+</tr>
+</tbody></table>
+<p>命令行最多可以包含一个 <em>%f</em>、*%u<em>、</em>%F* 或 <em>%U</em> 字段代码。如果应用程序不应打开任何文件，则必须从命令行中删除并忽略 <em>%f</em>、*%u<em>、</em>%F* 和 <em>%U</em> 字段代码。</p>
+<p>字段代码不得在引用参数中使用，引用参数中字段代码扩展的结果是未定义的。 <em>%F</em> 和 <em>%U</em> 字段代码只能用作它们自己的参数。</p>
+<h1 id="通过-D-Bus-启动"><a href="#通过-D-Bus-启动" class="headerlink" title="通过 D-Bus 启动"></a>通过 D-Bus 启动</h1><p>支持由 <em>D-Bus</em> 启动的应用程序必须实现以下接口（以 <em>D-Bus</em> 自省 <em>XML</em> 格式给出）：<br><code>  &lt;interface name=&#39;org.freedesktop.Application&#39;&gt;     &lt;method name=&#39;Activate&#39;&gt;       &lt;arg type=&#39;a&#123;sv&#125;&#39; name=&#39;platform_data&#39; direction=&#39;in&#39;/&gt;     &lt;/method&gt;     &lt;method name=&#39;Open&#39;&gt;       &lt;arg type=&#39;as&#39; name=&#39;uris&#39; direction=&#39;in&#39;/&gt;       &lt;arg type=&#39;a&#123;sv&#125;&#39; name=&#39;platform_data&#39; direction=&#39;in&#39;/&gt;     &lt;/method&gt;     &lt;method name=&#39;ActivateAction&#39;&gt;       &lt;arg type=&#39;s&#39; name=&#39;action_name&#39; direction=&#39;in&#39;/&gt;       &lt;arg type=&#39;av&#39; name=&#39;parameter&#39; direction=&#39;in&#39;/&gt;       &lt;arg type=&#39;a&#123;sv&#125;&#39; name=&#39;platform_data&#39; direction=&#39;in&#39;/&gt;     &lt;/method&gt;   &lt;/interface&gt;</code></p>
+<p>应用程序必须按照介绍部分中的命名建议命名其桌面文件（例如，文件名必须类似于<code>org.example.FooViewer.desktop</code>）。应用程序必须具有可激活的 <em>D-Bus</em> 服务，其众所周知的名称等于桌面文件名删除<code>.desktop</code>部分（对于我们的示例， <code>org.example.FooViewer</code>）。上述接口必须在如下确定的对象路径中实现：以应用程序众所周知的 <em>D-Bus</em> 名称开头，将所有点更改为斜杠并在斜杠前添加前缀。对于我们的示例，这是<code>/org/example/FooViewer</code>.</p>
+<p><code>Activate</code>当应用程序启动时没有要打开的文件时调用 该方法。</p>
+<p><code>Open</code>当使用文件启动应用程序时调用该方法。字符串数组是一个 <em>URI</em> 数组，采用 <em>UTF-8</em> 格式。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.1.html#extra-actions" >当桌面操作<i class="fas fa-external-link-alt"></i></a><code>ActivateAction</code>被激活时调用 该方法。参数是动作的名称。 <code>action-name</code></p>
+<p>所有方法都采用一个<code>platform-data</code>参数，该参数的使用方式与环境变量的使用方式类似。目前，规范只定义了一个字段： <code>desktop-startup-id</code>. 这应该是一个字符串，其值与存储在环境变量中的值相同<code>DESKTOP_STARTUP_ID</code>，如<a class="link"   target="_blank" rel="noopener" href="http://www.freedesktop.org/Standards/startup-notification-spec" >启动通知协议规范<i class="fas fa-external-link-alt"></i></a>所指定。</p>
+<h1 id="注册-MIME-类型"><a href="#注册-MIME-类型" class="headerlink" title="注册 MIME 类型"></a>注册 MIME 类型</h1><p><em>MimeType Key</em> 用于告知用户应用程序可以处理哪些 <em>MIME</em> 类型.一些应用的 <em>MimeType</em> 内容可能会非常长。应用程序应该能够使用 <em>Exec</em> 键中列出的命令合理地打开这些类型的文件。</p>
+<p>此字段中的 <em>MIME</em> 类型不应有优先级，桌面文件中不应有任何形式的优先级。应用程序的优先级在 <em>.desktop</em> 文件之外处理。</p>
+<h1 id="应用的其他动作"><a href="#应用的其他动作" class="headerlink" title="应用的其他动作"></a>应用的其他动作</h1><p>应用程序类型的桌面条目可以包括一个或多个操作。动作表示调用应用程序的另一种方式。应用程序启动器应该在应用程序的上下文中向用户公开它们（例如，作为子菜单）。这用于构建所谓的 <em>“Quicklists”</em> 或 <em>“Jumplists”</em> 。</p>
+<h2 id="动作标识符"><a href="#动作标识符" class="headerlink" title="动作标识符"></a>动作标识符</h2><p>每个动作都由一个字符串标识，遵循与键名相同的格式（see the section called<a class="link"   target="_blank" rel="noopener" href="https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.1.html#entries" > “Entries”<i class="fas fa-external-link-alt"></i></a>）。每个标识符都与一个必须存在于 <em>.desktop</em> 文件中的操作组相关联。操作组是一个名为 <em>Desktop Action %s</em> 的组，其中 <em>%s</em> 是操作标识符。</p>
+<p>为 <em>Actions</em> 键中未提及的操作标识符设置操作组是无效的。规范实现者必须忽略这样的 <em>Action</em> 组。</p>
+<h2 id="Action-的-Key"><a href="#Action-的-Key" class="headerlink" title="Action 的 Key"></a>Action 的 Key</h2><p>每个操作组都支持以下键。如果 一个 <em>REQUIRED</em> 的键不存在于 <em>Action Group</em> 中，则规范实现者应忽略此操作。</p>
+<p><em>Action</em> 的特定 <em>Key</em></p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Value Type</th>
+<th>REQUIRED</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Name</td>
+<td>用于显示给用户查看的一个标签。由于该操作始终显示在特定应用程序的上下文中（即，作为启动器的子菜单），因此这只需要在一个应用程序中是明确的即可，不应包含应用程序名称。</td>
+<td>localestring</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Icon</td>
+<td>与 <em>Action</em> 一起显示的图标。如果名称是绝对路径，将使用给定的文件。如果名称不是绝对路径，则将使用图标主题规范中描述的算法来定位图标。实现可能会选择忽略它。</td>
+<td>localestring</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>Exec</td>
+<td>此操作要执行的程序命令，可能带有参数。有关此键如何工作的详细信息，请参阅 <em>Exec</em> 章节。如果 <em>desktop entry group</em> 组中的 <em>DBusActivatable</em> 未设置为 <em>true</em>，则需要 <em>Exec</em> 键。即使 <em>DBusActivatable</em> 为真，也应该指定 <em>Exec</em> 的内容，从而与未对 <em>DBusActivatable</em> 字段进行实现的桌面环境兼容。</td>
+<td>string</td>
+<td>NO</td>
+</tr>
+</tbody></table>
+<h1 id="实现提示"><a href="#实现提示" class="headerlink" title="实现提示"></a>实现提示</h1><p>应用程序操作应得到<strong>规范实现者</strong>的支持。但是，如果不支持它们，实施者可以简单地忽略操作键和相关的 <em>Desktop Action</em> 操作组，并继续使用 <em>Desktop Entry</em> 组：描述和调用应用程序的主要方式是通过名称、图标和执行键来自 <em>Desktop Entry</em> 组。</p>
+<h1 id="格式扩展"><a href="#格式扩展" class="headerlink" title="格式扩展"></a>格式扩展</h1><p>如果要增加新的字段，修改现有标准，需要进行小组讨论。 这是引入更改的首选方法。 如果某一方希望添加一个字段供个人使用，他们应该在键前加上字符串 <em>X-PRODUCT</em> (对应 <em>UOS</em> 操作系统系统，应该是 <em>X-DDE</em> )，例如 <em>X-NewDesktop-Foo</em>，遵循其他 <em>IETF</em> 和 <em>RFC</em> 标准设定的先例。</p>
+<p>或者，字段可以放在它们自己的组中，然后它们可以有任意的键名。如果是这种情况，该组应该遵循上面概述的方案，即 <code>[X-PRODUCT GROUPNAME]</code>或类似的东西。这些步骤将避免不同但相似的环境之间的命名空间冲突。</p>
+<h1 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h1><h2 id="A-Desktop-Entry-File"><a href="#A-Desktop-Entry-File" class="headerlink" title="A.Desktop Entry File"></a>A.Desktop Entry File</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Desktop Entry]</span></span><br><span class="line"><span class="attr">Version</span>=<span class="number">1.0</span></span><br><span class="line"><span class="attr">Type</span>=Application</span><br><span class="line"><span class="attr">Name</span>=Foo Viewer</span><br><span class="line"><span class="attr">Comment</span>=The best viewer for Foo objects available!</span><br><span class="line"><span class="attr">TryExec</span>=fooview</span><br><span class="line"><span class="attr">Exec</span>=fooview %F</span><br><span class="line"><span class="attr">Icon</span>=fooview</span><br><span class="line"><span class="attr">MimeType</span>=image/x-foo<span class="comment">;</span></span><br><span class="line"><span class="attr">Actions</span>=Gallery<span class="comment">;Create;</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Desktop Action Gallery]</span></span><br><span class="line"><span class="attr">Exec</span>=fooview --gallery</span><br><span class="line"><span class="attr">Name</span>=Browse Gallery</span><br><span class="line"></span><br><span class="line"><span class="section">[Desktop Action Create]</span></span><br><span class="line"><span class="attr">Exec</span>=fooview --create-new</span><br><span class="line"><span class="attr">Name</span>=Create a new Foo!</span><br><span class="line"><span class="attr">Icon</span>=fooview-new</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="B-目前保留在-KDE-中使用的字段"><a href="#B-目前保留在-KDE-中使用的字段" class="headerlink" title="B.目前保留在 KDE 中使用的字段"></a>B.目前保留在 KDE 中使用的字段</h2><p>由于历史原因，<em>KDE</em> 使用了一些 <em>KDE</em> 特定的扩展，这些扩展目前没有 <em>X-KDE-</em> 前缀。</p>
+<ul>
+<li>KDE specific keys: <code>ServiceTypes</code>, <code>DocPath</code>, <code>InitialPreference</code></li>
+<li>KDE specific types: <code>ServiceType</code>, <code>Service</code> and <code>FSDevice</code></li>
+</ul>
+<p><em>KDE</em> 在标准化之前也使用 <em>Keywords</em> 键，使用逗号而不是分号作为分隔符。在标准化时，该字段已经以 <em>X-KDE</em> 前缀为前缀，但 <em>Trinity</em> 分支仍然使用无前缀的变体。</p>
+<p>KDE 将以下附加键用于 <em>FSDevice</em> 类型的 <em>desktop entries</em></p>
+<h3 id="FSDevice-特定的-Keys"><a href="#FSDevice-特定的-Keys" class="headerlink" title="FSDevice 特定的 Keys"></a>FSDevice 特定的 Keys</h3><table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Value Type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dev</td>
+<td>要挂载的设备。</td>
+<td>string</td>
+</tr>
+<tr>
+<td>FSType</td>
+<td>尝试挂载的文件系统类型。</td>
+<td>string</td>
+</tr>
+<tr>
+<td>MountPoint</td>
+<td>相关设备的挂载点。</td>
+<td>string</td>
+</tr>
+<tr>
+<td>ReadOnly</td>
+<td>指定设备是否只读。</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>UnmountIcon</td>
+<td>未安装设备时显示的图标。已安装的设备显示来自 <em>Icon</em> 键的图标。</td>
+<td>localestring</td>
+</tr>
+</tbody></table>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%A0%87%E5%87%86/">标准</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/XDG/">XDG</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023/0647e0b1da.html"
+                                   title="文件系统层次结构"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">文件系统层次结构</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023/058916a55.html"
+                                   title="Icon Theme Specification(图标主题规范)"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Icon Theme Specification(图标主题规范)</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline-meta.css"/>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          window.KeepCommentPlugin.walineOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+          window.KeepCommentPlugin.walineOptions.el = '#waline-comment'
+          window.KeepCommentPlugin.walineOptions.comment = '.post-comments-count'
+          window.KeepCommentPlugin.walineOptions.serverURL = 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/'
+          window.KeepCommentPlugin.walineOptions.lang = 'en' || 'zh-CN'
+          window.KeepCommentPlugin.walineOptions.reaction = 'true' === 'true'
+        </script>
+
+        
+
+        
+            <script data-pjax
+                    async
+                    type="module"
+            >
+              import { init } from '//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js'
+              window.KeepCommentPlugin.initWaline = () => {
+                if (init) {
+                  init(window.KeepCommentPlugin.walineOptions)
+                  window.KeepCommentPlugin.hideLoading()
+                } else {
+                  setTimeout(() => {
+                    window.KeepCommentPlugin.initWaline()
+                  }, 1000)
+                }
+              }
+
+              if ('true' === 'true') {
+                setTimeout(() => {
+                  window.KeepCommentPlugin.initWaline()
+                }, 1200)
+              } else {
+                window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initWaline)
+              }
+            </script>
+        
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8D%E8%AF%8D%E4%BB%8B%E7%BB%8D"><span class="nav-text">名词介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%A0%BC%E5%BC%8F"><span class="nav-text">基础格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A"><span class="nav-text">注释</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Group"><span class="nav-text">Group</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Entries"><span class="nav-text">Entries</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="nav-text">支持的值类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AC%E8%AE%A4%E7%9A%84%E6%A1%8C%E9%9D%A2%E5%85%A5%E5%8F%A3Key"><span class="nav-text">公认的桌面入口Key</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E7%9A%84-Keys"><span class="nav-text">标准的 Keys</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exec"><span class="nav-text">Exec</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-D-Bus-%E5%90%AF%E5%8A%A8"><span class="nav-text">通过 D-Bus 启动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C-MIME-%E7%B1%BB%E5%9E%8B"><span class="nav-text">注册 MIME 类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E7%9A%84%E5%85%B6%E4%BB%96%E5%8A%A8%E4%BD%9C"><span class="nav-text">应用的其他动作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E4%BD%9C%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="nav-text">动作标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Action-%E7%9A%84-Key"><span class="nav-text">Action 的 Key</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%8F%90%E7%A4%BA"><span class="nav-text">实现提示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E6%89%A9%E5%B1%95"><span class="nav-text">格式扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Desktop-Entry-File"><span class="nav-text">A.Desktop Entry File</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-%E7%9B%AE%E5%89%8D%E4%BF%9D%E7%95%99%E5%9C%A8-KDE-%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%9A%84%E5%AD%97%E6%AE%B5"><span class="nav-text">B.目前保留在 KDE 中使用的字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FSDevice-%E7%89%B9%E5%AE%9A%E7%9A%84-Keys"><span class="nav-text">FSDevice 特定的 Keys</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ssk-wh</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+                <a target="_blank" rel="nofollow" href="https://github.com/">
+            
+            This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span>
+            
+                </a>
+            
+        </div>
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8D%E8%AF%8D%E4%BB%8B%E7%BB%8D"><span class="nav-text">名词介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%A0%BC%E5%BC%8F"><span class="nav-text">基础格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A"><span class="nav-text">注释</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Group"><span class="nav-text">Group</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Entries"><span class="nav-text">Entries</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="nav-text">支持的值类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AC%E8%AE%A4%E7%9A%84%E6%A1%8C%E9%9D%A2%E5%85%A5%E5%8F%A3Key"><span class="nav-text">公认的桌面入口Key</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E7%9A%84-Keys"><span class="nav-text">标准的 Keys</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exec"><span class="nav-text">Exec</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-D-Bus-%E5%90%AF%E5%8A%A8"><span class="nav-text">通过 D-Bus 启动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C-MIME-%E7%B1%BB%E5%9E%8B"><span class="nav-text">注册 MIME 类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E7%9A%84%E5%85%B6%E4%BB%96%E5%8A%A8%E4%BD%9C"><span class="nav-text">应用的其他动作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E4%BD%9C%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="nav-text">动作标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Action-%E7%9A%84-Key"><span class="nav-text">Action 的 Key</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%8F%90%E7%A4%BA"><span class="nav-text">实现提示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E6%89%A9%E5%B1%95"><span class="nav-text">格式扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Desktop-Entry-File"><span class="nav-text">A.Desktop Entry File</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-%E7%9B%AE%E5%89%8D%E4%BF%9D%E7%95%99%E5%9C%A8-KDE-%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%9A%84%E5%AD%97%E6%AE%B5"><span class="nav-text">B.目前保留在 KDE 中使用的字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FSDevice-%E7%89%B9%E5%AE%9A%E7%9A%84-Keys"><span class="nav-text">FSDevice 特定的 Keys</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

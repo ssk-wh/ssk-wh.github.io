@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            Linux常见命令的使用 |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#29392c","title":"Ssk-wh's Blog","author":"ssk-wh","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","tools":"/tools","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":true,"links":{"github":"https://github.com/ssk-wh","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"juchengshi@gmail.com"}},"scroll":{"progress_bar":false,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":false,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":3},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":true,"provider":"github","url":"https://github.com/"},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"伙计们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://xpoet.cn/images/avatar.png"},{"name":"Guo Le's Blog","link":"https://guole.fun/","description":"生命是独立是自由是爱与和平","avatar":"https://guole.fun/img/gl.jpg"},{"name":"酷小呵","link":"https://www.kuhehe.top/","description":"爱分享的酷小呵","avatar":"https://q1.qlogo.cn/g?b=qq&nk=3111349763&s=100"}],"tools":[{"category":"AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"name":"Copilot","link":"https://copilot.microsoft.com/","description":"微软家的AI助手","image":"/images/tools/copilot.svg"},{"name":"Kimi","link":"https://kimi.moonshot.cn/","description":"支持识别文件或网址的小众AI网站","image":"/images/tools/kimi.png"},{"name":"文心一言","link":"https://yiyan.baidu.com/","description":"百度旗下的AI助手","image":"/images/tools/wxyy.png"},{"name":"通义千问","link":"https://tongyi.aliyun.com/qianwen/","description":"阿里旗下","image":"/images/tools/tyqw.Default"},{"name":"讯飞星火","link":"https://xinghuo.xfyun.cn/","description":"讯飞旗下","image":"/images/tools/xfxh.svg"},{"category":"技术"},{"name":"Hexo","link":"https://hexo.io/","description":"快速、简洁且高效的博客框架","image":"https://upload.wikimedia.org/wikipedia/commons/b/b9/Hexo_blog_logo.svg"},{"name":"稀土掘金","link":"https://juejin.cn/","description":"开发者社区","image":"/images/tools/xtjj.Default"},{"category":"笔记"},{"name":"语雀","link":"https://www.yuque.com/","description":"在线记录笔记","image":"/images/tools/yuque.svg"},{"category":"图片"},{"name":"undraw","link":"https://undraw.co/illustrations","description":"免费的矢量素材下载网站","image":"https://raw.githubusercontent.com/ssk-wh/ssk-wh.github.io/master/images/undraw_shopping_bags_8l6g.svg"},{"name":"carbon","link":"https://carbon.now.sh/","description":"将代码生成图片","image":null},{"category":"作图网站"},{"name":"Draw.io","link":"https://draw.io/","description":"在线绘图网站，支持同步保存至github","image":null},{"name":"ProcessOn","link":"https://www.processon.com/","description":"在线绘图网站，画软件流程图经常用到","image":null},{"category":"博客管理"},{"name":"LeanCloud","link":"https://console.leancloud.app/apps/D0eDuK0h6X11p0z7FxTgY1CX-MdYXbMMI/storage/data/Comment","description":"评论管理","image":"https://gravatar.tapglb.com/avatar/afa8e9b8057e1877138d43f1dfdd8510?s=200&d=retro"}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                TOOLS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                ABOUT
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                            TOOLS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            ABOUT
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Linux常见命令的使用
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">ssk-wh</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2023-02-06 00:00:00</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Fri Sep 15 2023 05:17:45 GMT+0000">2023-09-15 05:17:45</span>
+                </span>
+            
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Linux/">Linux</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%91%BD%E4%BB%A4/">命令</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>8.4k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>33 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>基本涵盖了Linux下开发常用的命令，适合刚接触Linux的小伙伴。</p>
+<h1 id="fish"><a href="#fish" class="headerlink" title="fish"></a>fish</h1><p><strong>安装</strong></p>
+<p><code>sudo apt install  fish</code></p>
+<p><strong>概述</strong></p>
+<p>命令提示&amp;补全工具</p>
+<p><strong>用法</strong><code>fish</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/1.png"
+                       
+                 ></p>
+<p><em>Tips：可以使用方向键→键，直接补全提示的命令</em></p>
+<p><strong>Q&amp;A</strong></p>
+<p>使用&#x2F;usr&#x2F;bin&#x2F;fish替换现有&#x2F;bin&#x2F;bash（默认）方法：</p>
+<p><code>chsh -s /usr/bin/fish</code></p>
+<p>想改回 &#x2F;bin&#x2F;bash :</p>
+<p><code>chsh -s /bin/bash</code></p>
+<p><em>Tips：修改后需要注销才生效</em></p>
+<h1 id="qdbus"><a href="#qdbus" class="headerlink" title="qdbus"></a>qdbus</h1><p><strong>概述</strong></p>
+<p>基于qt的应用程序通信接口工具，常用于调用 dbus 方法、属性</p>
+<p><strong>用法</strong></p>
+<p><code>qdbus --session</code>                          &#x2F;&#x2F; 查看当前session所有的service信息</p>
+<p><code>qdbus</code> 等同于 <code>qdbus --session</code></p>
+<p><code>qdbus --system</code>                           &#x2F;&#x2F; 查看系统级别的所有的service信息</p>
+<p><strong>场景</strong></p>
+<p>想通过 dbus 把剪贴板打开，但记不清服务名了，依稀记得有个 Clipboard 字段</p>
+<p>方法一:安装 d-feet ,查看服务列表，通过 d-feet 进行方法的调用</p>
+<p>方法二(<strong>推荐</strong>):</p>
+<p><code>qdbus --session | grep Clipboard</code>   &#x2F;&#x2F; 匹配出剪贴板的服务名</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/2.png"
+                       
+                 ><br>根据印象找到对应的服务应该为 <code>com.deepin.dde.Clipboard</code></p>
+<p><code>qdbus com.deepin.dde.Clipboard /</code></p>
+<p>利用 qdbus 命令提供的自动补全机制(按 tab 键)得到对应的 path 列表</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/3.png"
+                       
+                 ><br><code>qdbus com.deepin.dde.Clipboard /com/deepin/dde/Clipboard</code></p>
+<p>继续利用 tab 进行命令的补全</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/4.png"
+                       
+                 ><br>得到完整的命令</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/5.png"
+                       
+                 ><br>Q&amp;A:<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/6.png"
+                       
+                 ><br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/7.png"
+                       
+                 ></p>
+<h1 id="dbus-monitor"><a href="#dbus-monitor" class="headerlink" title="dbus-monitor"></a>dbus-monitor</h1><p><strong>概述</strong></p>
+<p>监听dbus服务接口被调用</p>
+<p><strong>用法</strong></p>
+<p>&#x2F;&#x2F;监听服务情况,可得知消息触发源,但监听不到属性被调用<br><code>dbus-monitor --session interface=org.freedesktop.Notifications </code></p>
+<p>监听信号变化<br><code>dbus-monitor --session &quot;type=&#39;signal&#39;,interface=&#39;org.freedesktop.DBus.Properties&#39;,path=&#39;/com/deepin/dde/daemon/Dock&#39;&quot;</code></p>
+<h1 id="gsettings"><a href="#gsettings" class="headerlink" title="gsettings"></a>gsettings</h1><p><strong>概述</strong></p>
+<p>操作dconf的一套高级API，用于管理 dconf 配置</p>
+<p><strong>用法</strong></p>
+<p>标准用法:<code>gsettings get/set/reset  [schemas]</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/8.png"
+                       
+                 ></p>
+<h1 id="pmap"><a href="#pmap" class="headerlink" title="pmap"></a>pmap</h1><p><strong>概述</strong></p>
+<p>查询进程的内存映射信息，常用于查看进程运行时链接了哪些动态库</p>
+<p><strong>用法</strong></p>
+<p><code>pmap -p [pid]</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/8.1.png"
+                       
+                 ></p>
+<h1 id="coredumpctl"><a href="#coredumpctl" class="headerlink" title="coredumpctl"></a>coredumpctl</h1><p><strong>安装</strong></p>
+<p><code>sudo apt install systemd-coredump</code></p>
+<p><strong>概述</strong></p>
+<p>进程崩溃或卡死时的调试神器</p>
+<p><strong>介绍</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">coredumpctl [OPTIONS...]</span><br><span class="line"></span><br><span class="line">List or retrieve coredumps from the journal.</span><br><span class="line"></span><br><span class="line">Flags:</span><br><span class="line">  -h --help              Show this help</span><br><span class="line">     --version           Print version string</span><br><span class="line">     --no-pager          Do not pipe output into a pager</span><br><span class="line">     --no-legend         Do not print the column headers</span><br><span class="line">     --debugger=DEBUGGER Use the given debugger</span><br><span class="line">  -1                     Show information about most recent entry only</span><br><span class="line">  -S --since=DATE        Only print coredumps since the date</span><br><span class="line">  -U --until=DATE        Only print coredumps until the date</span><br><span class="line">  -r --reverse           Show the newest entries first</span><br><span class="line">  -F --field=FIELD       List all values a certain field takes</span><br><span class="line">  -o --output=FILE       Write output to FILE</span><br><span class="line">  -D --directory=DIR     Use journal files from directory</span><br><span class="line"></span><br><span class="line">  -q --quiet             Do not show info messages and privilege warning</span><br><span class="line">Commands:</span><br><span class="line">  list [MATCHES...]  List available coredumps (default)</span><br><span class="line">  info [MATCHES...]  Show detailed information about one or more coredumps</span><br><span class="line">  dump [MATCHES...]  Print first matching coredump to stdout</span><br><span class="line">  debug [MATCHES...] Start a debugger for the first matching coredump</span><br><span class="line"></span><br><span class="line">See the coredumpctl(1) man page for details.</span><br></pre></td></tr></table></figure>
+
+<p><strong>用法</strong></p>
+<p>常用命令组合:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">coredumpctl list                          // 查看崩溃的进程列表</span><br><span class="line">coredumpctl debug [pid]                   // 调试崩溃进程</span><br><span class="line">coredumpctl info [pid]                    // 查看崩溃进程的堆栈信息</span><br></pre></td></tr></table></figure>
+
+
+
+<p>查看崩溃进程列表</p>
+<p><code>coredumpctl list</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/9.png"
+                       
+                 ></p>
+<p>查看崩溃进程的堆栈信息</p>
+<p><code>coredumpctl debug 26625</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/10.png"
+                       
+                 ></p>
+<p>查看线程1的崩溃堆栈</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/11.png"
+                       
+                 ></p>
+<p>如果你仔细点，应该会看到有一部分的堆栈并没有显示详细的信息，那是因为我们安装调试进程对应的符号包，执行以下命令并重新使用coredumpctl命令进行调试</p>
+<p><code>sudo apt install dde-launcher-dbgsym</code></p>
+<p>你会发现线程1的第3帧发现了我们熟知的函数，此时我们就可以到代码中进行排查了</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/12.png"
+                       
+                 ><br><em>Tips：也不一定就是我们代码的问题，理论上每一处都可能出问题，不过一般开发库出问题的概率较低，我们优先从自己的代码进行排查</em></p>
+<p>查看所有的线程状态</p>
+<p><code>info threads</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/13.png"
+                       
+                 ></p>
+<p>会发现大部分的线程都处在 futex_wait_cancelable 的状态，一般就是阻塞了</p>
+<p>切换到线程2,并查看堆栈</p>
+<p><code>thread 2</code></p>
+<p><code>bt</code><br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/14.png"
+                       
+                 ></p>
+<h1 id="gdb"><a href="#gdb" class="headerlink" title="gdb"></a>gdb</h1><p><strong>概述</strong></p>
+<p>调试神器，强大地有点过分，开发必备</p>
+<p><strong>安装</strong></p>
+<p><code>sudo apt install gdb</code></p>
+<p><strong>用法</strong></p>
+<p>&#x2F;&#x2F; 调试正在运行的进程</p>
+<p><code>sudo gdb -p [pid]</code></p>
+<p><code>sudo gdb -p </code>pidof dde-dock&#96;&#96;</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/15.png"
+                       
+                 ><br>&#x2F;&#x2F; 如果此时应用卡住了(可以理解为应用执行到了某一行<strong>代码&#x2F;堆栈</strong>就停住了)</p>
+<p>在gdb页面输入bt查看堆栈信息</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/16.png"
+                       
+                 ><br>这里一般只会显示一个线程的信息，有时候我们不确定是哪个线程卡死了</p>
+<p>可以用<code>info threads</code>查看线程信息，并使用<code>thread [index]</code>切换到对应线程，再执行 bt 查看当前线程堆栈(可以用当前系统中实际运行的进程验证)。</p>
+<p>(已经在 coredumpctl 章节介绍过 gdb 的部分命令了，其余的自行了解。我们不应该假定客户的电脑允许我们安装 qtcreator 或 vscode ,甚至可能不被允许重启异常的进程)</p>
+<p><strong>用真实的卡死进程进行展示:</strong></p>
+<p>新建test.c文件，内容如下:</p>
+<blockquote>
+<p>#include “stdio.h”<br>int main () {<br>    for (int i &#x3D; 0; i &lt; 10; ++i) {<br>        if (i &#x3D;&#x3D; 5) {<br>            while(1);<br>        }<br>        printf(“%d\n”, i);<br>    }<br>}</p>
+</blockquote>
+<p>静态编译代码，保留代码信息:</p>
+<p><code>g++ -g test.c -o test</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/17.png"
+                       
+                 ></p>
+<p>执行当前进程，运行后进程卡死</p>
+<p><code>./test</code></p>
+<p>调试卡死进程，寻找卡死位置</p>
+<p><code>sudo gdb -p </code>pidof test&#96;&#96;</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/18.png"
+                       
+                 ></p>
+<h1 id="dmesg"><a href="#dmesg" class="headerlink" title="dmesg"></a>dmesg</h1><p><strong>概述</strong></p>
+<p>查看内核日志，显示开机信息</p>
+<p><strong>用法</strong></p>
+<p>显示和内存、硬盘、USB、TTY相关的信息</p>
+<p><code>sudo dmesg | grep -E &quot;memory|dma|usb|tty&quot;</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/19.png"
+                       
+                 ></p>
+<p>实时查看内核日志,方便查看系统异常进程</p>
+<p><code>sudo dmesg -w</code></p>
+<p><em>Tips：当系统碰到一些硬件或者驱动相关的问题，可以使用dmesg命令辅助定位问题</em></p>
+<h1 id="top"><a href="#top" class="headerlink" title="top"></a>top</h1><p><strong>概述</strong></p>
+<p>查看内存占用、进程id等信息</p>
+<p><strong>用法</strong></p>
+<p>普通的用法就是在终端中直接执行 top 命令，将会按照某种顺序列出系统中所有的进程信息</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/20.png"
+                       
+                 ></p>
+<p><code>top -p [PID]</code></p>
+<p>top 是一个动态显示过程,即可以通过用户按键来不断刷新当前状态.如果在前台执行该命令,它将独占前台,直到用户终止该程序为止</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/21.png"
+                       
+                 ></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/22.png"
+                       
+                 ></p>
+<h2 id="htop"><a href="#htop" class="headerlink" title="htop"></a>htop</h2><p><strong>安装</strong></p>
+<p><code>sudo apt install htop</code></p>
+<p><strong>用法</strong></p>
+<p>使用 htop 查看进程占用的资源信息，按 F4 进如筛选模式，可输入想查看的进程名进行匹配，如: dde-dock</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/23.png"
+                       
+                 ></p>
+<h1 id="pidof"><a href="#pidof" class="headerlink" title="pidof"></a>pidof</h1><p><strong>概述</strong></p>
+<p>查看进程的PID</p>
+<p><strong>用法</strong></p>
+<p>比较简单，直接看下图:</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/24.png"
+                       
+                 ><br><strong>场景</strong></p>
+<p><code>pkill dde-lock</code></p>
+<p>将尝试杀死 dde-lock 开头的所有进程，这里系统中存在一个 root 进程 dde-lockservice ，因此会被误杀(不过因为权限不足，会提示不允许)</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/25.png"
+                       
+                 ></p>
+<p>我们换一种方式，指定杀死对应的进程</p>
+<p><code>kill -9 `pidof dde-lock` </code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/26.png"
+                       
+                 ></p>
+<h1 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h1><p><strong>概述</strong></p>
+<p>默认将指定文件的最后10行打印到标准输出</p>
+<p><strong>用法</strong></p>
+<p>使用 -f 参数可实时查看日志文件内容的变化</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/27.png"
+                       
+                 ></p>
+<p>也可指定实时输出最后20行:</p>
+<p><code>sudo tail -f -n 20  /var/log/auth.log</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/28.png"
+                       
+                 ></p>
+<p>如果不加 -f 参数，则不具有实时效果</p>
+<h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><p><strong>概述</strong></p>
+<p>tail 是尾巴，head 是头，我想这个命令的作用大家应该猜出来了</p>
+<p><strong>用法</strong></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/29.png"
+                       
+                 ></p>
+<h2 id="less"><a href="#less" class="headerlink" title="less"></a>less</h2><p><strong>用法</strong></p>
+<p>使用 less 打开文件，支持高亮搜索内容</p>
+<p><code>sudo less /var/log/auth.log</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/30.png"
+                       
+                 ></p>
+<p>按&#x2F;键进入搜索模式，输入”error”</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/31.png"
+                       
+                 ></p>
+<p>v : 进入编辑模式，使用配置的编辑器编辑当前文件</p>
+<p>F:进入 tail -f 模式</p>
+<p>n : 向前查找下一个匹配的文本</p>
+<p>N : 向后查找前一个匹配的文本</p>
+<p>(是不是发现和 vim 命令类似了)</p>
+<h2 id="more"><a href="#more" class="headerlink" title="more"></a>more</h2><p><strong>概述</strong></p>
+<p>按页显示，了解 less 其实就够用了，可以不看。</p>
+<h1 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h1><p><strong>概述</strong></p>
+<p>编辑工具，但我们也经常用来查看日志，尤其是在远程定位问题的时候</p>
+<p><strong>用法</strong></p>
+<p>我们用 cat 也可以查看文件，但当文件内容太多的时候，不方便定位某一处的文件内容</p>
+<p><code>sudo vim /var/log/auth.log</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/32.png"
+                       
+                 ></p>
+<p>内容太多，我只想在其中找到”error”相关的日志</p>
+<p>1、先按 esc ，进入命令交互模式</p>
+<p>2、输入”&#x2F;“ + “error”</p>
+<p>3、回车确认所搜结果</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/33.png"
+                       
+                 ></p>
+<p>按 n 显示下一处匹配的内容</p>
+<p>shift+n 显示上一处</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/34.png"
+                       
+                 ></p>
+<p><em>Tips：在命令交互区域输入:set number可以显示文件行号</em></p>
+<h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p><strong>概述</strong></p>
+<p>查看文件内容</p>
+<p><strong>用法</strong></p>
+<p>查看文件内容</p>
+<p><code>cat 1.txt</code></p>
+<p>还可以用于文件内容的合并</p>
+<p><code>cat 1.txt 2.txt &gt;&gt; 3.txt</code></p>
+<h1 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h1><p><strong>概述</strong></p>
+<p>定时执行命令</p>
+<p><strong>场景</strong></p>
+<p>使用 rfkill 命令对无线设备上锁或解锁时，其锁定状态保存在内核文件中。</p>
+<p>例如蓝牙的 soft block 的状态保存在 &#x2F;sys&#x2F;class&#x2F;rfkill&#x2F;rfkill0&#x2F;soft 文件中，当我们用 unblock 解锁的时候，理论上可以看到这个文件变为0</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/35.png"
+                       
+                 ></p>
+<h1 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h1><p><strong>概述</strong></p>
+<p>系统定时服务</p>
+<p><strong>安装</strong></p>
+<p><code>sudo apt install cron</code></p>
+<p><strong>用法</strong></p>
+<p>可以用来帮助实现一些定时操作，比如每周一到周五的下午6点让电脑爆炸（对应命令为let it boom）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[uos@uos-PC 17:29:14 ~]<span class="variable">$crontab</span> -h</span><br><span class="line">crontab: 不适用的选项 -- h</span><br><span class="line">crontab: usage error: unrecognized option</span><br><span class="line">usage:  crontab [-u user] file</span><br><span class="line">        crontab [ -u user ] [ -i ] &#123; -e | -l | -r &#125;</span><br><span class="line">                (default operation is replace, per 1003.2)</span><br><span class="line">        -e      (edit user<span class="string">&#x27;s crontab)</span></span><br><span class="line"><span class="string">        -l      (list user&#x27;</span>s crontab)</span><br><span class="line">        -r      (delete user<span class="string">&#x27;s crontab)</span></span><br><span class="line"><span class="string">        -i      (prompt before deleting user&#x27;</span>s crontab)</span><br></pre></td></tr></table></figure>
+
+<p>编辑模式:<br><code>crontab -e</code><br>第一次进入会让你选择编辑器，挑自己熟悉的来即可</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/72.png"
+                       
+                 ></p>
+<p>查看模式<br><code>crontab -l</code><br>让我们来实现爆炸的定时功能<br>进入编辑模式<br>在文件的最后添加如下内容，保存退出即可<br><code>0 17 * * 1 &quot;let it boom&quot;</code></p>
+<p>(解释下上面的字段:<br>0:表示分钟为0的时候<br>17:下午5点<br>*:一个月的任意一天，你也可以写1<del>31的任意一个数字<br>*:任意一个月，你可以写1</del>12的任意一个数字<br>1-5:一周的1-5天，即周一到周五，也可直接写1,表示周一<br>“let it boom”: 上述时间条件满足后，要触发的命令 。<strong>要注意的是，这里的命令要写绝对路径</strong>，比如写”&#x2F;usr&#x2F;bin&#x2F;echo 123”而不是写”echo 123”)</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/73.png"
+                       
+                 ></p>
+<p>保存后使用 <code>crontab -l</code> 查看</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/74.png"
+                       
+                 ></p>
+<p>查看 crontab 服务运行情况和任务的执行情况:</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/75.png"
+                       
+                 ></p>
+<p><em>Tips: 如果服务状态为 inactive，我想你应该先看下 systemctl 命令的介绍</em></p>
+<h1 id="rsync"><a href="#rsync" class="headerlink" title="rsync"></a>rsync</h1><p><strong>概述</strong></p>
+<p>通过快速差分算法,能够高效进行文件传输的程序</p>
+<p><strong>用法</strong></p>
+<p>将dir1文件夹中的内容复制到dir2中<br><code>rsync -av dir1/ dir2/</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/76.png"
+                       
+                 ></p>
+<p>当dir1中新增一些文件中，如果我们想同步到dir2中，如果使用 <code>cp -r</code> 命令，会将之前已经同步的文件再复制一次，效率比较低。<br>此时可以再次执行 <code>rsync -av dir1/ dir2/</code>，只会进行增量拷贝，速度较快，当文件夹体积过大时，这种对比尤为明显。</p>
+<p>rsync同样支持机器之间内容的转移，用法和ssh类似</p>
+<p>讲远程机器桌面上的source.txt文件拷贝到当前目录</p>
+<p><code>rsync -av uos@10.20.43.195:~/Desktop/source.txt ./</code></p>
+<p>感兴趣的可以私下研究下下面两个练习题:<br>1、使用rsync + crond实现定时备份<br>2、使用rsync+inotify实现自动备份</p>
+<p><em>Tips:</em><br><em>1、传统的 cp，scp 工具拷贝每次均为完整拷贝，而 rsync 除了完整拷贝，还具备增量拷贝的功能，因此从此性能及效率上更胜一筹。</em><br><em>2、man 手册里有大量的使用示例</em></p>
+<h1 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h1><p><strong>概述</strong></p>
+<p>用于 Linux 之间复制文件和目录</p>
+<p><strong>用法</strong></p>
+<p>复制文件命令格式</p>
+<p><code>scp local_file remote_username@remote_ip:remote_folder </code></p>
+<p><code>scp local_file remote_username@remote_ip:remote_file </code></p>
+<p>复制目录命令格式</p>
+<p><code>scp -r local_folder remote_username@remote_ip:remote_folder </code></p>
+<p><code>scp -r local_folder remote_ip:remote_folder </code></p>
+<p>记得先打开ssh服务</p>
+<p><code>systemctl enable ssh.service  --now</code></p>
+<p>第一次使用 scp 传输内容，需要输入对应用户的密码</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/50.png"
+                       
+                 ></p>
+<p><code>scp uos@10.20.6.139:~/Desktop/1.txt ./1.txt</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/51.png"
+                       
+                 ></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h1 id="apt-file"><a href="#apt-file" class="headerlink" title="apt-file"></a>apt-file</h1><p><strong>概述</strong></p>
+<p>从apt仓库中搜索存在指定文件的的package</p>
+<p><strong>安装</strong></p>
+<p><code>sudo apt install apt-file</code></p>
+<p><strong>用法</strong></p>
+<p>更新 source 中的缓存信息:</p>
+<p><code>sudo apt-file update</code></p>
+<p>查看哪些包中的文件(或文件的安装路径)包含了 dde-dock 字段</p>
+<p><code>apt-file search dde-dock</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/36.png"
+                       
+                 ></p>
+<h2 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h2><p><strong>概述</strong></p>
+<p>定位电脑上某个文件所在位置，优点是比较快</p>
+<p><strong>安装</strong></p>
+<p><code>sudo apt install locate</code></p>
+<p><strong>用法</strong></p>
+<p>locate 与 find 不同, find 是去硬盘找，locate 只在 &#x2F;var&#x2F;lib&#x2F;slocate 资料库中找。locate 的速度比 find 快，它并不是真的查找，而是查数据库，一般文件数据库在 &#x2F;var&#x2F;lib&#x2F;slocate&#x2F;slocate.db 中，所以 locate 的查找并不是实时的，而是以数据库的更新为准，一般是系统自己维护，也可以手工升级数据库 ，命令为:</p>
+<p><code>updatedb</code></p>
+<p>默认情况下 updatedb 每天执行一次。</p>
+<p><code>locate dde-dock.log</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/37.png"
+                       
+                 ><br><code>find . -name dde-dock.log</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/38.png"
+                       
+                 ></p>
+<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><p><strong>概述</strong></p>
+<p>从指定路径查看文件</p>
+<p><strong>用法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[16:13:49] uos :: uos-PC  ➜  ~ » find /usr/bin -name &quot;dde-dock&quot;</span><br><span class="line">/usr/bin/dde-dock</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="dpkg"><a href="#dpkg" class="headerlink" title="dpkg"></a>dpkg</h1><p><strong>概述</strong></p>
+<p>Debian包管理器</p>
+<p><strong>用法</strong></p>
+<p>查询系统中某个文件所属的包</p>
+<p><code>dpkg -S /usr/lib/dde-dock/plugins/system-trays/libsound.so</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/39.png"
+                       
+                 ><br><code>dpkg -L</code> 查看已安装的某个包中包含的文件列表</p>
+<p><code>dpkg -L d-feet</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/40.png"
+                       
+                 ><br><code>dpkg-deb -c dde-session-shell_5.5.93_arm64.deb</code> &#x2F;&#x2F; 查看 deb 文件中包含的文件</p>
+<p>解压指定deb文件到当前目录下的tmp文件夹</p>
+<p><code>dpkg -X dde-session-shell_5.5.93_arm64.deb ./tmp</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[16:23:51] uos :: uos-PC  ➜  ~/Desktop » dpkg -X dde-session-shell_5.5.93_arm64.deb ./tmp</span><br><span class="line">./</span><br><span class="line">./etc/</span><br><span class="line">./etc/deepin/</span><br><span class="line">./etc/deepin/greeters.d/</span><br><span class="line">./etc/deepin/greeters.d/00-xrandr</span><br><span class="line">./etc/deepin/greeters.d/10-cursor-theme</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+
+<p>安装软件包</p>
+<p><code>dpkg -i dde-session-shell_5.5.93_arm64.deb</code> </p>
+<p>安装软件包，忽略依赖关系(及时依赖不满足仍然会安装)</p>
+<p><code>dpkg --force-depends -i debpackage</code> </p>
+<p>卸载软件包</p>
+<p><code>dpkg -r debpackage</code> </p>
+<p>彻底卸载软件包</p>
+<p><code>dpkg -p debpackage</code> </p>
+<p>查询系统中软件包的安装情况</p>
+<p><code>dpkg -l |grep dde-session-shell</code> </p>
+<p>查看平台的架构类型</p>
+<p><code>dpkg --print-architecture</code> </p>
+<h1 id="apt"><a href="#apt" class="headerlink" title="apt"></a>apt</h1><p><strong>概述</strong></p>
+<p>相比 dpkg ,更侧重于用户的交互</p>
+<p><strong>用法</strong></p>
+<p>下载软件包的源码</p>
+<p><code>apt source dde-dock </code></p>
+<p>查看软件包的信息</p>
+<p><code>apt-cache show dde-dock</code></p>
+<p>下载软件包</p>
+<p><code>apt download dde-dock </code></p>
+<h1 id="strings"><a href="#strings" class="headerlink" title="strings"></a>strings</h1><p><strong>概述</strong></p>
+<p>打印文件中可打印字符串</p>
+<p><strong>用法</strong></p>
+<p>strings 命令是二进制工具集 GNU Binutils 的一员，用于打印文件中可打印字符串， strings 命令在对象文件或二进制文件中查找可打印的字符串。字符串是4个或更多可打印字符的任意序列，以换行符或空字符结束。strings 命令对识别随机对象文件很有用。</p>
+<p><code>cat /proc/self/environ | strings </code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/41.png"
+                       
+                 ></p>
+<h1 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h1><p><strong>概述</strong></p>
+<p>查找文件里符合条件的字符串</p>
+<p>越常见的命令越是隐藏着更多的功能，这里也只介绍常用功能，具体的见 man 手册</p>
+<p><strong>用法</strong></p>
+<p><code>cat .cache/deepin/dde-launcher/dde-launcher.log | grep &quot;gsettings&quot;</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/42.png"
+                       
+                 ></p>
+<p>查找当前文件夹下中所有文件哪个文件中出现了 “dde-dock” 的字符串</p>
+<p><code>grep -rn &quot;dde-dock&quot; .cache/</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/43.png"
+                       
+                 ></p>
+<p>找是找到了，就是辣鸡信息太多，把这部分过滤掉，用到了 grep 的 -v 参数，继续往下看</p>
+<p><code>grep -rn &quot;dde-dock&quot; .cache/ | grep -v &quot;匹配&quot;</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/44.png"
+                       
+                 ></p>
+<p>常用于检索日志中某些关键字，如:<code>grep &quot;CPU&quot;  *.log  -rn</code> 遍历当前文件下文件名后缀为 .log 的文件，其中包含 “CPU” 关键字的行，并输出关键字所在的行号。见下面示例:</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/45.png"
+                       
+                 ></p>
+<p><code>grep -i </code>忽略大小写进行匹配</p>
+<p><code>grep -E [pattern]</code> 使用正则表达式进行匹配</p>
+<p><code>sudo cat /var/log/auth.log | grep -i deepin_AUTH | grep -E &quot;验证|人脸&quot;</code></p>
+<p><code>ps -eo lstart,etime,cmd | grep -E &#39;dde-dock|startdde&#39;</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/46.png"
+                       
+                 ></p>
+<p><em>Tips:fish的一个好处就是可以高亮匹配上的关键字</em></p>
+<h1 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h1><p><strong>概述</strong></p>
+<p>文本处理工具</p>
+<p><strong>用法</strong></p>
+<p>输出 dde-session-daemon 进程的 pid</p>
+<p><code>ps aux | grep dde-session-daemon | grep -v grep | awk &#39;&#123;print $2&#125;&#39;</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/47.png"
+                       
+                 ></p>
+<p><em>Tips：这个命令的命名比较有意思，感兴趣的可以查阅下，为啥叫 awk</em></p>
+<h1 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h1><p><strong>概述</strong></p>
+<p>给命令设置一个别名</p>
+<p><strong>用法</strong></p>
+<p>精简打包命令:</p>
+<p>1、编辑  ~&#x2F;.bashrc 文件，在文件最后新增一行:</p>
+<p><code>alias db=&quot;dpkg-buildpackage  -us -uc -nc -j8&quot;</code></p>
+<p>2、退出并保存</p>
+<p>3、<code>source ~/.bashrc</code>   使文件内容生效</p>
+<p>4、以后再打包，直接输入 db 即可</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/48.png"
+                       
+                 ></p>
+<p>更新shell默认的提示信息:</p>
+<p>其实就是一个终端相关的环境变量，在 ~&#x2F;.bashrc 文件中新增如下行即可</p>
+<p><code>export PS1=&quot;\[\e[37;10m\][\[\e[32;10m\]\u\[\e[37;10m\]@\h \t \[\e[36;10m\]\w\[\e[0m\]]\$&quot;</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/49.png"
+                       
+                 ></p>
+<h1 id="journalctl"><a href="#journalctl" class="headerlink" title="journalctl"></a>journalctl</h1><p><strong>概述</strong></p>
+<p>查询 systemd-journald 服务收集到的日志</p>
+<p><strong>用法</strong></p>
+<p>查询网络日志</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/52.png"
+                       
+                 ></p>
+<p>查询内核日志</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/53.png"
+                       
+                 ></p>
+<p>查看 startdde 的日志(一般用来分析 startdde 启动后按照什么顺序启动 dde-kwin,dde-session-daemon 和 dde-dock 的)</p>
+<p><code>journalctl -b /usr/bin/startdde</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/54.png"
+                       
+                 ></p>
+<p>查询指定进程的日志</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/54.1.png"
+                       
+                 ></p>
+<h1 id="systemctl"><a href="#systemctl" class="headerlink" title="systemctl"></a>systemctl</h1><p><strong>概述</strong></p>
+<p>查询或管理systemd服务的状态</p>
+<p><strong>用法</strong></p>
+<p>查询 systemd 管理的几种单元类型</p>
+<p><code>systemctl --type=help</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/55.png"
+                       
+                 ></p>
+<p>对应单元的列表</p>
+<p><code>systemctl --type=service</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/56.png"
+                       
+                 ></p>
+<p>列出所有单元及其状态</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/57.png"
+                       
+                 ></p>
+<p>筛选 ssh 服务</p>
+<p><code>systemctl --type=service | grep ssh</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/58.png"
+                       
+                 ></p>
+<p>查询 ssh 服务的状态</p>
+<p><code>systemctl status ssh.service</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/59.png"
+                       
+                 ></p>
+<p>关闭 ssh 服务</p>
+<p><code>systemctl stop ssh.service</code></p>
+<p>开启 ssh 服务</p>
+<p><code>systemctl start ssh.service</code></p>
+<p><em>Tips:</em></p>
+<p><em>系统级别单元文件路径: <code>/etc/systemd/system/</code>、<code>/usr/lib/systemd/system</code></em></p>
+<p>*用户级别单元文件路径:<code>/etc/systemd/user/</code>、<code>/usr/lib/systemd/user*</code></p>
+<h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><p><strong>概述</strong></p>
+<p>远程登录</p>
+<p><strong>用法</strong></p>
+<p>远程登录账户</p>
+<p><code>ssh root@192.168.235.22</code></p>
+<p>登录后可像操控自己的本地机器一样操控远端的机器</p>
+<p><strong>Q&amp;A</strong></p>
+<p>碰到以下情况时，可执行<code>ssh-keygen -A</code>或<code>ssh-keygen -R 10.20.43.195</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -f <span class="string">&quot;/home/uos/.ssh/known_hosts&quot;</span> -R <span class="string">&quot;10.20.43.11&quot;</span></span><br><span class="line">ECDSA host key <span class="keyword">for</span> 10.20.43.11 has changed and you have requested strict checking.</span><br><span class="line">Host key verification failed.</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="fdisk"><a href="#fdisk" class="headerlink" title="fdisk"></a>fdisk</h1><p><strong>概述</strong></p>
+<p>修改分区表</p>
+<p><strong>用法</strong></p>
+<p>列出分区信息<br><code>sudo fdisk -l</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/60.png"
+                       
+                 ></p>
+<h2 id="lsblk"><a href="#lsblk" class="headerlink" title="lsblk"></a>lsblk</h2><p><strong>概述</strong></p>
+<p>列出所有的块设备</p>
+<p><strong>用法</strong></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/61.png"
+                       
+                 ></p>
+<h2 id="mount-umount"><a href="#mount-umount" class="headerlink" title="mount&amp;umount"></a>mount&amp;umount</h2><p><strong>概述</strong></p>
+<p>挂载设备与取消挂载</p>
+<p><strong>用法</strong></p>
+<p>插上 u 盘试一下<br><code>sudo fdisk -l</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/62.png"
+                       
+                 ></p>
+<p>得到u盘对应的设备文件为 &#x2F;dev&#x2F;sda ,取消u盘的挂载<br><code>umount /dev/sda</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/63.png"
+                       
+                 ></p>
+<p>格式化 u 盘为 ext4 (关联3中还包含了其他格式的格式化命令，用法基本相同)<br><code>sudo mkfs.ext4 /dev/sda</code><br>等待命令执行完成即可</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/64.png"
+                       
+                 ></p>
+<p>此时再挂载 u 盘到对应的目录(这里是挂载到 &#x2F;media&#x2F;uos 目录中)</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/65.png"
+                       
+                 ></p>
+<h2 id="mkfs"><a href="#mkfs" class="headerlink" title="mkfs"></a>mkfs</h2><p><strong>概述</strong></p>
+<p>格式化文件系统</p>
+<p><strong>用法</strong></p>
+<p>文件系统的格式众多，对应的格式化命令也很多，我们只需要知道常用的即可，下面的命令大致了解即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkfs.bfs       mkfs.exfat     mkfs.ext4      mkfs.msdos     mkfs.reiserfs  </span><br><span class="line">mkfs.btrfs     mkfs.ext2      mkfs.fat       mkfs.nilfs2    mkfs.vfat      </span><br><span class="line">mkfs.cramfs    mkfs.ext3      mkfs.minix     mkfs.ntfs      mkfs.xfs</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="df"><a href="#df" class="headerlink" title="df"></a>df</h2><p><strong>概述</strong></p>
+<p>列出文件系统的整体磁盘使用量</p>
+<p><strong>用法</strong></p>
+<p><code>df </code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/66.png"
+                       
+                 ></p>
+<h2 id="du"><a href="#du" class="headerlink" title="du"></a>du</h2><p><strong>概述</strong></p>
+<p>查看磁盘使用量</p>
+<p><strong>用法</strong></p>
+<p><code>du .</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/67.png"
+                       
+                 ></p>
+<h1 id="pkill-killall"><a href="#pkill-killall" class="headerlink" title="pkill &amp; killall"></a>pkill &amp; killall</h1><p><strong>概述</strong></p>
+<p>杀死进程</p>
+<p><strong>用法</strong></p>
+<p><code>pkill dde-dock</code><br><code>killall dde-dock</code></p>
+<h2 id="pgrep"><a href="#pgrep" class="headerlink" title="pgrep"></a>pgrep</h2><p><strong>概述</strong></p>
+<p>按照名称返回查找的进程ID</p>
+<p><strong>用法</strong><br><code>pgrep startdde</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/68.png"
+                       
+                 ></p>
+<p>会输出以startdde开头的进程的pid</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/69.png"
+                       
+                 ></p>
+<h1 id="xprop"><a href="#xprop" class="headerlink" title="xprop"></a>xprop</h1><p><strong>概述</strong></p>
+<p>显示指定窗口的 X 属性信息</p>
+<p><strong>用法</strong></p>
+<p>直接在终端中运行该命令，鼠标会变为十字光标，此时点击你要查看的窗口，终端中会输出此窗口的信息。<br>以任务栏界面为例:</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/70.png"
+                       
+                 ></p>
+<p>问题1:为什么应用最大化时不会不会遮盖住任务栏呢<br>这里要看下上图中的 _NET_WM_STRUT_PARTIAL 属性，它描述了任务栏所在的区域，窗管会根据任务栏的这个窗口属性，将普通窗口最大化时，让其·<strong>避开</strong>·此区域。<br><code>_NET_WM_STRUT_PARTIAL(CARDINAL) = 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 1919</code><br>问题2:为什么是任务栏，窗管为什么不根据其他应用的这个属性去管理应用最大化的行为<br>将上图的内容往下翻:</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/71.png"
+                       
+                 ></p>
+<p>注意这一行:<br><code>_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_DOCK</code></p>
+<p>这里其实就表明 dde-dock 的身份，是作为一个 DOCK 类型的窗口 ，观察其他应用，会发现只有 dde-dock 的界面是有这个属性的，从而让窗管得知。(更具体的看下面的链接)</p>
+<p>通过 xprop 我们可以获取到窗口的很多信息，比如窗口标题、窗口图标、是否支持最大化等</p>
+<p>关联1—窗口属性介绍</p>
+<p>篇幅较多，有单独的文档进行介绍，见<a href="https://ssk-wh.github.io/2022/0948202.html">《Linux窗口属性介绍》</a></p>
+<h2 id="xwininfo"><a href="#xwininfo" class="headerlink" title="xwininfo"></a>xwininfo</h2><p><strong>概述</strong></p>
+<p>获取和显示指定窗口的信息，用法和功能都类似xprop</p>
+<h1 id="rfkill"><a href="#rfkill" class="headerlink" title="rfkill"></a>rfkill</h1><p><strong>概述</strong></p>
+<p>radio frequency kill的简写,用于管理无线电设备的软件状态(蓝牙、WIFI、GPS等)。可使某个设备处于可被软件重新激活的状态（ 软锁定 &#x2F;soft block ）或软件无法重新激活的状态（ 硬锁定 &#x2F;hard block）</p>
+<p>硬锁定&#x2F;硬件锁定&#x2F;硬锁：这种方式被锁定的设备，是无法通过软件手段开启的，大家对照下笔记本的F1~F12快捷键，一般都会有一个无线网的快捷键，按了之后，无线网就无法使用了(无法通过软件手段开启)，除非再按一次，这就是 hard block (有的笔记本支持通过软件方式开启，是因为其实现方式是soft block而非hard block)。</p>
+<p><strong>用法</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">[18:37:35] uos :: uos-PC  ➜  ~ » rfkill --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line">Usage:</span><br><span class="line"> rfkill [options] <span class="built_in">command</span> [identifier ...]</span><br><span class="line"></span><br><span class="line">Tool <span class="keyword">for</span> enabling and disabling wireless devices.</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"> -J, --json             use JSON output format</span><br><span class="line"> -n, --noheadings       don<span class="string">&#x27;t print headings</span></span><br><span class="line"><span class="string"> -o, --output &lt;list&gt;    define which output columns to use</span></span><br><span class="line"><span class="string">     --output-all       output all columns</span></span><br><span class="line"><span class="string"> -r, --raw              use the raw output format</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"> -h, --help             display this help</span></span><br><span class="line"><span class="string"> -V, --version          display version</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Available output columns:</span></span><br><span class="line"><span class="string"> DEVICE      kernel device name</span></span><br><span class="line"><span class="string"> ID          device identifier value</span></span><br><span class="line"><span class="string"> TYPE        device type name that can be used as identifier</span></span><br><span class="line"><span class="string"> TYPE-DESC   device type description</span></span><br><span class="line"><span class="string"> SOFT        status of software block</span></span><br><span class="line"><span class="string"> HARD        status of hardware block</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Commands:</span></span><br><span class="line"><span class="string"> help</span></span><br><span class="line"><span class="string"> event</span></span><br><span class="line"><span class="string"> list   [identifier]</span></span><br><span class="line"><span class="string"> block   identifier</span></span><br><span class="line"><span class="string"> unblock identifier</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">For more details see rfkill(8)</span></span><br></pre></td></tr></table></figure>
+
+<p>常用命令就是上面列表的后三个</p>
+<p>使用命令 <code>rfkill list</code> 获得设备列表，每个都包含与之关联的索引号 ，从 0 开始</p>
+<p><code>rfkill list</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/77.png"
+                       
+                 ></p>
+<p>这里可以看出蓝牙的索引为0,无线网卡的索引为1</p>
+<p>如果我们对蓝牙设备开启软锁定，可以使用如下命令</p>
+<p><code>rfkill block 0</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/78.png"
+                       
+                 ></p>
+<p>这个时候打开你熟悉的控制中心，会发现蓝牙打不开了</p>
+<p>如果要解锁，就执行</p>
+<p><code>rfkill unblock 0</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/79.png"
+                       
+                 ></p>
+<p>其他设备同理，只是需要你更换一下设备对应的索引号(注意，索引号并不是一成不变的，可以会随设备的变化而变化，只不过每次都是从0开始)</p>
+<p>也可以用 all 代代替索引，表示所有的设备</p>
+<p><code>rfkill block/unblock all</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/80.png"
+                       
+                 ></p>
+<p>监听 rfkill 事件<br><code>rfkill event</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/81.png"
+                       
+                 ></p>
+<p><em>Tips:</em><br><em>1、uos的飞行模式就通过 rfkill 来实现的哦</em><br><em>2、rfkill 的状态保存在对应的内核文件中，位于 &#x2F;sys&#x2F;class&#x2F;rfkill&#x2F; 目录</em></p>
+<h1 id="xdg-open"><a href="#xdg-open" class="headerlink" title="xdg-open"></a>xdg-open</h1><p><strong>概述</strong></p>
+<p>使用默认程序打开文件</p>
+<p><strong>用法</strong></p>
+<p>在终端中输入<code>xdg-open </code>‘就可以使用文管打开当前的文件夹了</p>
+<p>终端输入<code>xdg-open a.txt</code>就会在文本编辑器中打开 a.txt ，对于音频、视频以及各类文档都有效。</p>
+<p><em>Tips：是不是可以用来验证默认程序设置是否生效呀。</em></p>
+<h2 id="ldd"><a href="#ldd" class="headerlink" title="ldd"></a>ldd</h2><p><strong>概述</strong></p>
+<p>打印程序或者库文件所依赖的共享库列表</p>
+<p><strong>用法</strong></p>
+<p> ldd 不是一个可执行程序，而只是一个 shell 脚本。</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/81.1.png"
+                       
+                 ></p>
+<p>ldd能够显示可执行模块的 dependency ，其原理是通过设置一系列的环境变量，如下：LD_TRACE_LOADED_OBJECTS、LD_WARN、LD_BIND_NOW、LD_LIBRARY_VERSION、LD_VERBOSE等。当LD_TRACE_LOADED_OBJECTS环境变量不为空时，任何可执行程序在运行时，它都会只显示模块的dependency，而程序并不真正执行。要不你可以在shell终端测试一下，如下：</p>
+<p>export LD_TRACE_LOADED_OBJECTS&#x3D;1</p>
+<p>再执行任何的程序，如 ls 等，看看程序的运行结果。</p>
+<p>ldd 显示可执行模块的 dependency 的工作原理，其实质是通过 ld-linux.so（elf动态库的装载器）来实现的。我们知道，ld-linux.so 模块会先于 executable 模块程序工作，并获得控制权，因此当上述的那些环境变量被设置时，ld-linux.so 选择了显示可执行模块的 dependency 。</p>
+<p>实际上可以直接执行 ld-linux.so 模块，如：<code>/lib/ld-linux.so.2 --list program</code>（这相当于<code>ldd program</code>） </p>
+<h2 id="pstree"><a href="#pstree" class="headerlink" title="pstree"></a>pstree</h2><p><strong>概述</strong><br>Linux pstree(英文全称：display a tree of processes）) 命令将所有进程以树状图显示，树状图将会以 pid (如果有指定) 或是以 init 这个基本进程为根 ( root )，如</p>
+<p>果有指定使用者 id，则树状图会只显示该使用者所拥有的进程。</p>
+<p><strong>用法</strong></p>
+<p>使用权限：所有使用者。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">语法</span><br><span class="line">pstree [-a] [-c] [-h|-Hpid] [-l] [-n] [-p] [-u] [-G|-U] [pid|user]</span><br><span class="line">或</span><br><span class="line">pstree -V</span><br><span class="line">**参数说明**：</span><br><span class="line"></span><br><span class="line">- -a 显示该进程的完整指令及参数, 如果是被记忆体置换出去的进程则会加上括号</span><br><span class="line">- -c 如果有重覆的进程名, 则分开列出（预设值是会在前面加上 *）</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[15:28:43] uos :: uos-PC  ➜  ~ » pstree                </span><br><span class="line">systemd─┬─ECAgent───3*[&#123;ECAgent&#125;]</span><br><span class="line">        ├─EasyMonitor</span><br><span class="line">        ├─LocalPropertyRe───7*[&#123;LocalPropertyRe&#125;]</span><br><span class="line">        ....</span><br><span class="line">        ├─ipwatchd</span><br><span class="line">        ├─lightdm─┬─Xorg───57*[&#123;Xorg&#125;]</span><br><span class="line">        │         ├─lightdm─┬─startdde─┬─DeepinAIAssista───12*[&#123;DeepinAIAssista&#125;]</span><br><span class="line">        │         │         │          ├─Typora─┬─Typora───Typora───44*[&#123;Typora&#125;]</span><br><span class="line">        │         │         │          │        ├─Typora───4*[&#123;Typora&#125;]</span><br><span class="line">        │         │         │          │        ├─Typora───28*[&#123;Typora&#125;]</span><br><span class="line">        │         │         │          │        ├─chrome-sandbox───Typora───Typora</span><br><span class="line">        │         │         │          │        └─31*[&#123;Typora&#125;]</span><br><span class="line">        ....</span><br><span class="line">        │         │         │          ├─dde-clipboard───24*[&#123;dde-clipboard&#125;]</span><br><span class="line">        │         │         │          ├─dde-desktop───47*[&#123;dde-desktop&#125;]</span><br><span class="line">        │         │         │          ├─dde-launcher───41*[&#123;dde-launcher&#125;]</span><br><span class="line">        │         │         │          ├─dde-lock───26*[&#123;dde-lock&#125;]</span><br><span class="line">        │         │         │          ├─dde-osd───40*[&#123;dde-osd&#125;]</span><br><span class="line">        │         │         │          ├─dde-polkit-agen───5*[&#123;dde-polkit-agen&#125;]</span><br><span class="line">        │         │         │          ├─dde-printer-hel───9*[&#123;dde-printer-hel&#125;]</span><br><span class="line">        │         │         └─2*[&#123;lightdm&#125;]</span><br><span class="line">        │         └─2*[&#123;lightdm&#125;]</span><br><span class="line">        ├─nmbd</span><br><span class="line">        ....</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+<h2 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h2><p><strong>概述</strong></p>
+<p>用于修改文件或目录的访问权限。它可以更改文件或目录的读、写、执行权限，以及文件或目录的所有权</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/82.png"
+                       
+                 ></p>
+<p><strong>用法</strong></p>
+<p>只有文件所有者和超级用户可以修改文件或目录的权限。可以使用绝对模式(八进制数字模式)&#x2F;符号模式指定文件的权限</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/2023/024414/83.png"
+                       
+                 ></p>
+<p>使用权限 : 所有使用者<br>语法<br><code>chmod [-cfvR] [--help] [--version] mode file...</code><br>参数说明<br>mode : 权限设定字串，格式如下 :</p>
+<p><code>[ugoa...][[+-=][rwxX]...][,...]</code></p>
+<p>其中：</p>
+<ul>
+<li>u 表示该文件的拥有者，g 表示与该文件的拥有者属于同一个群体(group)者，o 表示其他以外的人，a 表示这三者皆是。</li>
+<li>+表示增加权限、- 表示取消权限、&#x3D; 表示唯一设定权限。</li>
+<li>r 表示可读取，w 表示可写入，x 表示可执行，X 表示只有当该文件是个子目录或者该文件已经被设定过为可执行。</li>
+</ul>
+<p>其他参数说明：</p>
+<ul>
+<li>-c : 若该文件权限确实已经更改，才显示其更改动作</li>
+<li>-f : 若该文件权限无法被更改也不要显示错误讯息</li>
+<li>-v : 显示权限变更的详细资料</li>
+<li>-R : 对目前目录下的所有文件与子目录进行相同的权限变更(即以递归的方式逐个变更)</li>
+<li>–help : 显示辅助说明</li>
+<li>–version : 显示版本</li>
+</ul>
+<p>符号模式</p>
+<p>使用符号模式可以设置多个项目：who（用户类型），operator（操作符）和 permission（权限），每个项目的设置可以用逗号隔开。 命令 chmod 将修改 who 指定的用户类型对文件的访问权限，用户类型由一个或者多个字母在 who 的位置来说明，如 who 的符号模式表所示:</p>
+<table>
+<thead>
+<tr>
+<th>who</th>
+<th>用户类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>u</td>
+<td>user</td>
+<td>文件所有者</td>
+</tr>
+<tr>
+<td>g</td>
+<td>group</td>
+<td>文件所有者所在组</td>
+</tr>
+<tr>
+<td>o</td>
+<td>others</td>
+<td>所有其他用户</td>
+</tr>
+<tr>
+<td>a</td>
+<td>all</td>
+<td>所用用户, 相当于 ugo</td>
+</tr>
+</tbody></table>
+<p>operator 的符号模式表:</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>为指定的用户类型增加权限</td>
+</tr>
+<tr>
+<td>-</td>
+<td>去除指定用户类型的权限</td>
+</tr>
+<tr>
+<td>&#x3D;</td>
+<td>设置指定用户权限的设置，即将用户类型的所有权限重新设置</td>
+</tr>
+</tbody></table>
+<p>permission 的符号模式表:</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>名字</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>r</td>
+<td>读</td>
+<td>设置为可读权限</td>
+</tr>
+<tr>
+<td>w</td>
+<td>写</td>
+<td>设置为可写权限</td>
+</tr>
+<tr>
+<td>x</td>
+<td>执行权限</td>
+<td>设置为可执行权限</td>
+</tr>
+<tr>
+<td>X</td>
+<td>特殊执行权限</td>
+<td>只有当文件为目录文件，或者其他类型的用户有可执行权限时，才将文件权限设置可执行</td>
+</tr>
+<tr>
+<td>s</td>
+<td>setuid&#x2F;gid</td>
+<td>当文件被执行时，根据who参数指定的用户类型设置文件的setuid或者setgid权限</td>
+</tr>
+<tr>
+<td>t</td>
+<td>粘贴位</td>
+<td>设置粘贴位，只有超级用户可以设置该位，只有文件所有者u可以使用该位</td>
+</tr>
+</tbody></table>
+<p>八进制语法</p>
+<p>chmod命令可以使用八进制数来指定权限。文件或目录的权限位是由9个权限位来控制，每三位为一组，它们分别是文件所有者（User）的读、写、执行，用户组（Group）的读、写、执行以及其它用户（Other）的读、写、执行。历史上，文件权限被放在一个比特掩码中，掩码中指定的比特位设为1，用来说明一个类具有相应的优先级。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>权限</th>
+<th>rwx</th>
+<th>二进制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>7</td>
+<td>读 + 写 + 执行</td>
+<td>rwx</td>
+<td>111</td>
+</tr>
+<tr>
+<td>6</td>
+<td>读 + 写</td>
+<td>rw-</td>
+<td>110</td>
+</tr>
+<tr>
+<td>5</td>
+<td>读 + 执行</td>
+<td>r-x</td>
+<td>101</td>
+</tr>
+<tr>
+<td>4</td>
+<td>只读</td>
+<td>r–</td>
+<td>100</td>
+</tr>
+<tr>
+<td>3</td>
+<td>写 + 执行</td>
+<td>-wx</td>
+<td>011</td>
+</tr>
+<tr>
+<td>2</td>
+<td>只写</td>
+<td>-w-</td>
+<td>010</td>
+</tr>
+<tr>
+<td>1</td>
+<td>只执行</td>
+<td>–x</td>
+<td>001</td>
+</tr>
+<tr>
+<td>0</td>
+<td>无</td>
+<td>—</td>
+<td>000</td>
+</tr>
+</tbody></table>
+<p>例如， 765 将这样解释：</p>
+<ul>
+<li>所有者的权限用数字表达：属主的那三个权限位的数字加起来的总和。如 rwx ，也就是 4+2+1 ，应该是 7。</li>
+<li>用户组的权限用数字表达：属组的那个权限位数字的相加的总和。如 rw- ，也就是 4+2+0 ，应该是 6。</li>
+<li>其它用户的权限数字表达：其它用户权限位的数字相加的总和。如 r-x ，也就是 4+0+1 ，应该是 5。</li>
+</ul>
+<p><strong>场景</strong><br>将文件 file1.txt 设为所有人皆可读取 :</p>
+<p>chmod ugo+r file1.txt</p>
+<p>将文件 file1.txt 设为所有人皆可读取 :</p>
+<p>chmod a+r file1.txt</p>
+<p>将文件 file1.txt 与 file2.txt 设为该文件拥有者，与其所属同一个群体者可写入，但其他以外的人则不可写入 :</p>
+<p>chmod ug+w,o-w file1.txt file2.txt</p>
+<p>为 ex1.py 文件拥有者增加可执行权限:</p>
+<p>chmod u+x ex1.py</p>
+<p>将目前目录下的所有文件与子目录皆设为任何人可读取 :</p>
+<p>chmod -R a+r *</p>
+<p>此外chmod也可以用数字来表示权限如 :</p>
+<p>chmod 777 file</p>
+<p>语法为：</p>
+<p>chmod abc file</p>
+<p>其中a,b,c各为一个数字，分别表示User、Group、及Other的权限。</p>
+<p><strong>r&#x3D;4，w&#x3D;2，x&#x3D;1</strong></p>
+<ul>
+<li>若要 rwx 属性则 4+2+1&#x3D;7；</li>
+<li>若要 rw- 属性则 4+2&#x3D;6；</li>
+<li>若要 r-x 属性则 4+1&#x3D;5。</li>
+</ul>
+<p>chmod a&#x3D;rwx file 和 chmod 777 file 效果相同</p>
+<p>chmod ug&#x3D;rwx,o&#x3D;x file 和 chmod 771 file 效果相同</p>
+<p>若用 <strong>chmod 4755 filename</strong> 可使此程序具有 root 的权限。</p>
+<p>更多说明</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>chmod a+r file</td>
+<td>给file的所有用户增加读权限</td>
+</tr>
+<tr>
+<td>chmod a-x file</td>
+<td>删除file的所有用户的执行权限</td>
+</tr>
+<tr>
+<td>chmod a+rw file</td>
+<td>给file的所有用户增加读写权限</td>
+</tr>
+<tr>
+<td>chmod +rwx file</td>
+<td>给file的所有用户增加读写执行权限</td>
+</tr>
+<tr>
+<td>chmod u&#x3D;rw,go&#x3D; file</td>
+<td>对file的所有者设置读写权限，清空该用户组和其他用户对file的所有权限（空格代表无权限）</td>
+</tr>
+<tr>
+<td>chmod -R u+r,go-r docs</td>
+<td>对目录docs和其子目录层次结构中的所有文件给用户增加读权限，而对用户组和其他用户删除读权限</td>
+</tr>
+<tr>
+<td>chmod 664 file</td>
+<td>对file的所有者和用户组设置读写权限, 为其其他用户设置读权限</td>
+</tr>
+<tr>
+<td>chmod 0755 file</td>
+<td>相当于u&#x3D;rwx (4+2+1),go&#x3D;rx (4+1 &amp; 4+1)。0 没有特殊模式。</td>
+</tr>
+<tr>
+<td>chmod 4755 file</td>
+<td>4设置了设置<a class="link"   target="_blank" rel="noopener" href="https://www.runoob.com/wiki/%25E7%2594%25A8%25E6%2588%25B7ID" >用户ID<i class="fas fa-external-link-alt"></i></a>位，剩下的相当于 u&#x3D;rwx (4+2+1),go&#x3D;rx (4+1 &amp; 4+1)。</td>
+</tr>
+<tr>
+<td>find path&#x2F; -type d -exec chmod a-x {} \;</td>
+<td>删除可执行权限对path&#x2F;以及其所有的目录（不包括文件）的所有用户，使用’-type f’匹配文件</td>
+</tr>
+<tr>
+<td>find path&#x2F; -type d -exec chmod a+x {} \;</td>
+<td>允许所有用户浏览或通过目录path&#x2F;</td>
+</tr>
+</tbody></table>
+<h2 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h2><p><strong>概述</strong></p>
+<p>英文全拼：<strong>change owner</strong>，命令用于设置文件所有者和文件关联组的命令。</p>
+<p>Linux&#x2F;Unix 是多人多工操作系统，所有的文件皆有拥有者。利用 chown 将指定文件的拥有者改为指定的用户或组，用户可以是用户名或者用户 ID，组可以是组名或者组 ID，文件是以空格分开的要改变权限的文件列表，支持通配符。 。</p>
+<p>chown 需要超级用户 <strong>root</strong> 的权限才能执行此命令。</p>
+<p>只有超级用户和属于组的文件所有者才能变更文件关联组。非超级用户如需要设置关联组可能需要使用 chgrp 命令。</p>
+<p>使用权限 : root</p>
+<p><strong>用法</strong><br>chown [-cfhvR] [–help] [–version] user[:group] file…</p>
+<p>参数 :</p>
+<ul>
+<li>user : 新的文件拥有者的使用者 ID</li>
+<li>group : 新的文件拥有者的使用者组(group)</li>
+<li>-c : 显示更改的部分的信息</li>
+<li>-f : 忽略错误信息</li>
+<li>-h :修复符号链接</li>
+<li>-v : 显示详细的处理信息</li>
+<li>-R : 处理指定目录以及其子目录下的所有文件</li>
+<li>–help : 显示辅助说明</li>
+<li>–version : 显示版本</li>
+</ul>
+<p><strong>场景</strong><br>把 &#x2F;var&#x2F;run&#x2F;httpd.pid 的所有者设置 root：</p>
+<p>chown root &#x2F;var&#x2F;run&#x2F;httpd.pid</p>
+<p>将文件 file1.txt 的拥有者设为 runoob，群体的使用者 runoobgroup :</p>
+<p>chown runoob:runoobgroup file1.txt</p>
+<p>将当前前目录下的所有文件与子目录的拥有者皆设为 runoob，群体的使用者 runoobgroup:</p>
+<p>chown -R runoob:runoobgroup *</p>
+<p>把 &#x2F;home&#x2F;runoob 的关联组设置为 512 （关联组ID），不改变所有者：</p>
+<p>chown :512 &#x2F;home&#x2F;runoob</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><blockquote>
+<p>本文资料为以下链接的总结，可能大量借鉴其中内容，仅做分享交流之用，如有侵权，告知必删。</p>
+</blockquote>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-chmod.html" >https://www.runoob.com/linux/linux-comm-chmod.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-chown.html" >https://www.runoob.com/linux/linux-comm-chown.html<i class="fas fa-external-link-alt"></i></a></p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%91%BD%E4%BB%A4/">命令</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023/0239366.html"
+                                   title="系统抑制锁"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">系统抑制锁</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2022/1261176.html"
+                                   title="Accessbility可访问性指导文档"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Accessbility可访问性指导文档</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline-meta.css"/>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          window.KeepCommentPlugin.walineOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+          window.KeepCommentPlugin.walineOptions.el = '#waline-comment'
+          window.KeepCommentPlugin.walineOptions.comment = '.post-comments-count'
+          window.KeepCommentPlugin.walineOptions.serverURL = 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/'
+          window.KeepCommentPlugin.walineOptions.lang = 'en' || 'zh-CN'
+          window.KeepCommentPlugin.walineOptions.reaction = 'true' === 'true'
+        </script>
+
+        
+
+        
+            <script data-pjax
+                    async
+                    type="module"
+            >
+              import { init } from '//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js'
+              window.KeepCommentPlugin.initWaline = () => {
+                if (init) {
+                  init(window.KeepCommentPlugin.walineOptions)
+                  window.KeepCommentPlugin.hideLoading()
+                } else {
+                  setTimeout(() => {
+                    window.KeepCommentPlugin.initWaline()
+                  }, 1000)
+                }
+              }
+
+              if ('true' === 'true') {
+                setTimeout(() => {
+                  window.KeepCommentPlugin.initWaline()
+                }, 1200)
+              } else {
+                window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initWaline)
+              }
+            </script>
+        
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#fish"><span class="nav-text">fish</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#qdbus"><span class="nav-text">qdbus</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dbus-monitor"><span class="nav-text">dbus-monitor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gsettings"><span class="nav-text">gsettings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pmap"><span class="nav-text">pmap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#coredumpctl"><span class="nav-text">coredumpctl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gdb"><span class="nav-text">gdb</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dmesg"><span class="nav-text">dmesg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#top"><span class="nav-text">top</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#htop"><span class="nav-text">htop</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pidof"><span class="nav-text">pidof</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tail"><span class="nav-text">tail</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#head"><span class="nav-text">head</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#less"><span class="nav-text">less</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#more"><span class="nav-text">more</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vim"><span class="nav-text">vim</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cat"><span class="nav-text">cat</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#watch"><span class="nav-text">watch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#crontab"><span class="nav-text">crontab</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rsync"><span class="nav-text">rsync</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scp"><span class="nav-text">scp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text"></span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#apt-file"><span class="nav-text">apt-file</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#locate"><span class="nav-text">locate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-text">find</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dpkg"><span class="nav-text">dpkg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#apt"><span class="nav-text">apt</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#strings"><span class="nav-text">strings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#grep"><span class="nav-text">grep</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#awk"><span class="nav-text">awk</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#alias"><span class="nav-text">alias</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#journalctl"><span class="nav-text">journalctl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#systemctl"><span class="nav-text">systemctl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh"><span class="nav-text">ssh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fdisk"><span class="nav-text">fdisk</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lsblk"><span class="nav-text">lsblk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mount-umount"><span class="nav-text">mount&amp;umount</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkfs"><span class="nav-text">mkfs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#df"><span class="nav-text">df</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#du"><span class="nav-text">du</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pkill-killall"><span class="nav-text">pkill &amp; killall</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pgrep"><span class="nav-text">pgrep</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xprop"><span class="nav-text">xprop</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#xwininfo"><span class="nav-text">xwininfo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rfkill"><span class="nav-text">rfkill</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xdg-open"><span class="nav-text">xdg-open</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ldd"><span class="nav-text">ldd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pstree"><span class="nav-text">pstree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chmod"><span class="nav-text">chmod</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chown"><span class="nav-text">chown</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ssk-wh</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+                <a target="_blank" rel="nofollow" href="https://github.com/">
+            
+            This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span>
+            
+                </a>
+            
+        </div>
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#fish"><span class="nav-text">fish</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#qdbus"><span class="nav-text">qdbus</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dbus-monitor"><span class="nav-text">dbus-monitor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gsettings"><span class="nav-text">gsettings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pmap"><span class="nav-text">pmap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#coredumpctl"><span class="nav-text">coredumpctl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gdb"><span class="nav-text">gdb</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dmesg"><span class="nav-text">dmesg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#top"><span class="nav-text">top</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#htop"><span class="nav-text">htop</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pidof"><span class="nav-text">pidof</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tail"><span class="nav-text">tail</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#head"><span class="nav-text">head</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#less"><span class="nav-text">less</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#more"><span class="nav-text">more</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vim"><span class="nav-text">vim</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cat"><span class="nav-text">cat</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#watch"><span class="nav-text">watch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#crontab"><span class="nav-text">crontab</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rsync"><span class="nav-text">rsync</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scp"><span class="nav-text">scp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text"></span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#apt-file"><span class="nav-text">apt-file</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#locate"><span class="nav-text">locate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-text">find</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dpkg"><span class="nav-text">dpkg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#apt"><span class="nav-text">apt</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#strings"><span class="nav-text">strings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#grep"><span class="nav-text">grep</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#awk"><span class="nav-text">awk</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#alias"><span class="nav-text">alias</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#journalctl"><span class="nav-text">journalctl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#systemctl"><span class="nav-text">systemctl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh"><span class="nav-text">ssh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fdisk"><span class="nav-text">fdisk</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lsblk"><span class="nav-text">lsblk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mount-umount"><span class="nav-text">mount&amp;umount</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkfs"><span class="nav-text">mkfs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#df"><span class="nav-text">df</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#du"><span class="nav-text">du</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pkill-killall"><span class="nav-text">pkill &amp; killall</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pgrep"><span class="nav-text">pgrep</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xprop"><span class="nav-text">xprop</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#xwininfo"><span class="nav-text">xwininfo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rfkill"><span class="nav-text">rfkill</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xdg-open"><span class="nav-text">xdg-open</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ldd"><span class="nav-text">ldd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pstree"><span class="nav-text">pstree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chmod"><span class="nav-text">chmod</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chown"><span class="nav-text">chown</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
