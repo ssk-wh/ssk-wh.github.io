@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Linux, C++">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ssk-wh">
+    
+    <title>
+        
+            Conan 的配置与使用 |
+        
+        Ssk-wh&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#29392c","title":"Ssk-wh's Blog","author":"ssk-wh","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":true,"links":{"github":"https://github.com/ssk-wh","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"juchengshi@gmail.com"}},"scroll":{"progress_bar":false,"percent":true,"hide_header":true},"home":{"announcement":"世界辣么大，我先去看看啦 ...","category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":false,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":3},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":true,"provider":"github","url":"https://github.com/"},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"伙计们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://xpoet.cn/images/avatar.png"},{"name":"Guo Le's Blog","link":"https://guole.fun/","description":"生命是独立是自由是爱与和平","avatar":"https://guole.fun/img/gl.jpg"},{"name":"酷小呵","link":"https://www.kuhehe.top/","description":"爱分享的酷小呵","avatar":"https://q1.qlogo.cn/g?b=qq&nk=3111349763&s=100"}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Ssk-wh&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                ABOUT
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            ABOUT
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Conan 的配置与使用
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">ssk-wh</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-08-01 00:00:00</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Tue Aug 05 2025 09:31:31 GMT+0000">2025-08-05 09:31:31</span>
+                </span>
+            
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Conan/">Conan</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/conan/">conan</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/cmake/">cmake</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/python/">python</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/python3/">python3</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>1.2k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>5 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <blockquote>
+<p>本文面向已经“听说过 Conan”的同学，帮你把“能跑起来”到“能上线”的每一步都踩实。官方文档很香，但太长；这篇博客很干，但够短。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>官网指路</strong><br>Conan 官网：<a class="link"   target="_blank" rel="noopener" href="https://conan.io/" >https://conan.io/<i class="fas fa-external-link-alt"></i></a><br>可用包速查：<a class="link"   target="_blank" rel="noopener" href="https://conan.io/center" >https://conan.io/center<i class="fas fa-external-link-alt"></i></a><br>官方完整文档（建议完整阅读一遍）：<a class="link"   target="_blank" rel="noopener" href="https://docs.conan.io/2/index.html" >https://docs.conan.io/2/index.html<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
+<hr>
+<h2 id="1-30-秒完成环境初始化"><a href="#1-30-秒完成环境初始化" class="headerlink" title="1. 30 秒完成环境初始化"></a>1. 30 秒完成环境初始化</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 装 Conan（Python3 自备）</span></span><br><span class="line">pip3 install <span class="string">&quot;conan&gt;=2.17.0&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 生成默认 profile（只跑一次）</span></span><br><span class="line">conan profile detect --force</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 拉依赖、编缺失</span></span><br><span class="line">conan install . --build=missing -s build_type=Release</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 本地打包（可跳过）</span></span><br><span class="line">conan create . --user=myname</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 推到私有仓库</span></span><br><span class="line">conan upload ffmpeg/5.0 -r myrepo</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-先把项目摆成“Conan-喜欢的样子”"><a href="#2-先把项目摆成“Conan-喜欢的样子”" class="headerlink" title="2. 先把项目摆成“Conan 喜欢的样子”"></a>2. 先把项目摆成“Conan 喜欢的样子”</h2><p>以 CMake 工程为例，推荐目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conan-fmt-demo/</span><br><span class="line">├── conanfile.txt       # 或 conanfile.py，二选一</span><br><span class="line">├── CMakeLists.txt</span><br><span class="line">└── main.cpp</span><br></pre></td></tr></table></figure>
+
+<h3 id="最小可用-conanfile-txt"><a href="#最小可用-conanfile-txt" class="headerlink" title="最小可用 conanfile.txt"></a>最小可用 conanfile.txt</h3><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">[requires]</span></span><br><span class="line"><span class="attr">fmt/10.1.1</span></span><br><span class="line"></span><br><span class="line"><span class="attr">[generators]</span></span><br><span class="line"><span class="attr">CMakeDeps</span></span><br><span class="line"><span class="attr">CMakeToolchain</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>说明  </p>
+<ul>
+<li><code>fmt/10.1.1</code>：告诉 Conan“我要这个版本”。  </li>
+<li><code>CMakeDeps + CMakeToolchain</code>：自动生成 <code>fmt-config.cmake</code> 和 toolchain 文件，CMake 一句 <code>find_package(fmt)</code> 就能用。</li>
+</ul>
+</blockquote>
+<p>想知道还有哪些版本？两条路：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conan search <span class="built_in">fmt</span>                  <span class="comment"># 本地+远端一起搜</span></span><br><span class="line"><span class="comment"># 或者打开浏览器：https://conan.io/center</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-一条命令安装全部依赖"><a href="#3-一条命令安装全部依赖" class="headerlink" title="3. 一条命令安装全部依赖"></a>3. 一条命令安装全部依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conan install . --build=missing -s build_type=Release</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>--build=missing</code>：远端没有现成二进制就本地现编。  </li>
+<li>成功后会在 <code>build/Release/generators/</code> 里吐出 <code>conan_toolchain.cmake</code>。</li>
+</ul>
+<hr>
+<h2 id="4-编译项目：两种姿势，任选"><a href="#4-编译项目：两种姿势，任选" class="headerlink" title="4. 编译项目：两种姿势，任选"></a>4. 编译项目：两种姿势，任选</h2><h3 id="姿势-A：经典手写"><a href="#姿势-A：经典手写" class="headerlink" title="姿势 A：经典手写"></a>姿势 A：经典手写</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cmake -G <span class="string">&quot;Unix Makefiles&quot;</span> \</span><br><span class="line">      -DCMAKE_TOOLCHAIN_FILE=build/Release/generators/conan_toolchain.cmake \</span><br><span class="line">      -DCMAKE_BUILD_TYPE=Release \</span><br><span class="line">      -S . -B build/Release</span><br><span class="line">cmake --build build/Release -j$(<span class="built_in">nproc</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="姿势-B：CMake-≥3-19-的-preset（真香）"><a href="#姿势-B：CMake-≥3-19-的-preset（真香）" class="headerlink" title="姿势 B：CMake ≥3.19 的 preset（真香）"></a>姿势 B：CMake ≥3.19 的 preset（真香）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmake --preset conan-default</span><br><span class="line">cmake --build --preset conan-release</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>老版本 CMake 想用 preset？官方教你曲线救国：<a class="link"   target="_blank" rel="noopener" href="https://docs.conan.io/2/tutorial/consuming_packages/use_tools_as_conan_packages.html" >https://docs.conan.io/2/tutorial/consuming_packages&#x2F;use_tools_as_conan_packages.html<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
+<hr>
+<h2 id="5-踩坑现场：缺失系统库怎么办？"><a href="#5-踩坑现场：缺失系统库怎么办？" class="headerlink" title="5. 踩坑现场：缺失系统库怎么办？"></a>5. 踩坑现场：缺失系统库怎么办？</h2><p>典型报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR: vaapi/system … No package &#x27;libva&#x27; found</span><br></pre></td></tr></table></figure>
+
+<p>原因：<code>vaapi/system</code> 这类 <code>system</code> 包<strong>不会</strong>帮你编 libva，它假设系统里已经装好。<br>解决（Ubuntu&#x2F;Debian 演示）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 装 apt-file 并更新索引</span></span><br><span class="line"><span class="built_in">sudo</span> apt update &amp;&amp; <span class="built_in">sudo</span> apt install apt-file</span><br><span class="line"><span class="built_in">sudo</span> apt-file update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 找到提供 libva.pc 的包</span></span><br><span class="line">apt-file search libva.pc</span><br><span class="line"><span class="comment"># 输出：libva-dev: /usr/lib/.../libva.pc</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 装它</span></span><br><span class="line"><span class="built_in">sudo</span> apt install libva-dev</span><br></pre></td></tr></table></figure>
+
+<p>如果缺失的不止一个，可以偷懒用脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="comment"># 暴力补齐任意 system 包缺失的 .pc 系统依赖</span></span><br><span class="line"><span class="comment"># Ubuntu/Debian 专用</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -euo pipefail</span><br><span class="line"></span><br><span class="line"><span class="comment"># ======== 用户可编辑区域 ========</span></span><br><span class="line">SYSTEM_PKGS=(</span><br><span class="line">  xorg/system</span><br><span class="line">  vaapi/system</span><br><span class="line">  vdpau/system</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 继续往这里加其他 system 包</span></span><br><span class="line">)</span><br><span class="line"><span class="comment"># ================================</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;=== 开始暴力补齐 system 包缺失依赖 ===&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 确保 apt-file 存在且索引最新</span></span><br><span class="line"><span class="keyword">if</span> ! <span class="built_in">command</span> -v apt-file &amp;&gt;/dev/null; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">sudo</span> apt-get update &amp;&amp; <span class="built_in">sudo</span> apt-get install -y apt-file</span><br><span class="line">  <span class="built_in">sudo</span> apt-file update</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">declare</span> -A SEEN  <span class="comment"># 记录已处理过的 .pc，避免死循环</span></span><br><span class="line"></span><br><span class="line">pip3 install conan&gt;=2.17.0</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;检测本地编译工具&quot;</span></span><br><span class="line">conan profile detect --force</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> sys_pkg <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;SYSTEM_PKGS[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;🔍 检查 <span class="variable">$sys_pkg</span> ...&quot;</span></span><br><span class="line">  <span class="keyword">while</span> :; <span class="keyword">do</span></span><br><span class="line">    OUTPUT=$(<span class="built_in">mktemp</span>)</span><br><span class="line">    <span class="built_in">trap</span> <span class="string">&#x27;rm -f &quot;$OUTPUT&quot;&#x27;</span> EXIT</span><br><span class="line"></span><br><span class="line">    <span class="built_in">set</span> +e</span><br><span class="line">    conan install --requires=<span class="string">&quot;<span class="variable">$sys_pkg</span>&quot;</span> \</span><br><span class="line">        -c tools.system.package_manager:mode=check \</span><br><span class="line">        -c tools.system.package_manager:<span class="built_in">sudo</span>=False \</span><br><span class="line">        &gt;<span class="string">&quot;<span class="variable">$OUTPUT</span>&quot;</span> 2&gt;&amp;1</span><br><span class="line">    RET=$?</span><br><span class="line">    <span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提取所有缺失的 .pc 名</span></span><br><span class="line">    <span class="built_in">mapfile</span> -t MISSING &lt; &lt;(grep -oP <span class="string">&quot;No package &#x27;\K[^&#x27;]+&quot;</span> <span class="string">&quot;<span class="variable">$OUTPUT</span>&quot;</span> | <span class="built_in">sort</span> -u)</span><br><span class="line"></span><br><span class="line">    [[ <span class="variable">$&#123;#MISSING[@]&#125;</span> -eq 0 ]] &amp;&amp; &#123; <span class="built_in">echo</span> <span class="string">&quot;✅ <span class="variable">$sys_pkg</span> 已满足&quot;</span>; <span class="built_in">break</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> pc <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;MISSING[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">      [[ -n <span class="string">&quot;<span class="variable">$&#123;SEEN[$pc]:-&#125;</span>&quot;</span> ]] &amp;&amp; <span class="built_in">continue</span></span><br><span class="line">      SEEN[<span class="variable">$pc</span>]=1</span><br><span class="line"></span><br><span class="line">      <span class="built_in">echo</span> <span class="string">&quot;🔍 查找缺失 .pc：<span class="variable">$pc</span>.pc&quot;</span></span><br><span class="line">      PKG=$(apt-file search <span class="string">&quot;<span class="variable">$pc</span>.pc&quot;</span> | awk -F: <span class="string">&#x27;&#123;print $1&#125;&#x27;</span> | <span class="built_in">sort</span> -u)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> $(<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$PKG</span>&quot;</span> | <span class="built_in">wc</span> -l) <span class="keyword">in</span></span><br><span class="line">        0)</span><br><span class="line">          <span class="built_in">echo</span> <span class="string">&quot;⚠️  未找到包含 <span class="variable">$pc</span>.pc 的包，跳过&quot;</span></span><br><span class="line">          <span class="built_in">continue</span></span><br><span class="line">          ;;</span><br><span class="line">        1)</span><br><span class="line">          <span class="built_in">echo</span> <span class="string">&quot;📦 安装 <span class="variable">$PKG</span>&quot;</span></span><br><span class="line">          <span class="built_in">sudo</span> apt-get install -y <span class="string">&quot;<span class="variable">$PKG</span>&quot;</span></span><br><span class="line">          ;;</span><br><span class="line">        *)</span><br><span class="line">          <span class="built_in">echo</span> <span class="string">&quot;❓ 多个候选包：<span class="variable">$PKG</span>&quot;</span></span><br><span class="line">          <span class="built_in">echo</span> <span class="string">&quot;   请手动处理：sudo apt install &lt;包名&gt;&quot;</span></span><br><span class="line">          ;;</span><br><span class="line">      <span class="keyword">esac</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;=== 所有 system 包依赖已补齐 ===&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>脚本会自动扫描 <code>xorg/system</code>、<code>vaapi/system</code>、<code>vdpau/system</code> 等常见 system 包，缺啥补啥，直到全部绿灯。</p>
+<hr>
+<h2 id="6-私有仓库：又快又稳"><a href="#6-私有仓库：又快又稳" class="headerlink" title="6. 私有仓库：又快又稳"></a>6. 私有仓库：又快又稳</h2><h3 id="6-1-添加仓库"><a href="#6-1-添加仓库" class="headerlink" title="6.1 添加仓库"></a>6.1 添加仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conan remote add myrepo https://your-private-repo.com --index=0</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>--index=0</code> 把私有仓库置顶，优先级最高。<br>登录（仅上传时需要）：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conan remote login myrepo &lt;user&gt; -p &lt;pass&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-查看-调整顺序"><a href="#6-2-查看-调整顺序" class="headerlink" title="6.2 查看 &#x2F; 调整顺序"></a>6.2 查看 &#x2F; 调整顺序</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conan remote list</span><br><span class="line">conan remote remove myrepo          <span class="comment"># 先删</span></span><br><span class="line">conan remote add myrepo &lt;url&gt; --index=0</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="7-把包推上去"><a href="#7-把包推上去" class="headerlink" title="7. 把包推上去"></a>7. 把包推上去</h2><h3 id="场景-A：官方包直接迁到私有"><a href="#场景-A：官方包直接迁到私有" class="headerlink" title="场景 A：官方包直接迁到私有"></a>场景 A：官方包直接迁到私有</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conan install --requires=ffmpeg/5.0@ --build=missing</span><br><span class="line">conan upload ffmpeg/5.0 -r myrepo --confirm</span><br></pre></td></tr></table></figure>
+
+<h3 id="场景-B：自研项目"><a href="#场景-B：自研项目" class="headerlink" title="场景 B：自研项目"></a>场景 B：自研项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conan create . --user=mychannel</span><br><span class="line">conan upload mylib/1.0@mychannel -r myrepo --confirm</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="8-命令小抄（建议收藏）"><a href="#8-命令小抄（建议收藏）" class="headerlink" title="8. 命令小抄（建议收藏）"></a>8. 命令小抄（建议收藏）</h2><table>
+<thead>
+<tr>
+<th>目的</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>查看本地缓存</td>
+<td><code>conan list &#39;*&#39;</code></td>
+</tr>
+<tr>
+<td>删除本地包</td>
+<td><code>conan remove &lt;ref&gt;</code></td>
+</tr>
+<tr>
+<td>搜索远端包</td>
+<td><code>conan search &lt;pkg&gt; -r myrepo</code></td>
+</tr>
+<tr>
+<td>查看 profile 路径</td>
+<td><code>conan profile path default</code></td>
+</tr>
+<tr>
+<td>编辑 profile</td>
+<td><code>conan profile edit default</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="9-结语"><a href="#9-结语" class="headerlink" title="9. 结语"></a>9. 结语</h2><ul>
+<li>装好 Conan → <code>profile detect</code> → <code>conan install</code>，项目就跑起来了。  </li>
+<li>缺系统库 → <code>apt-file</code> 搜 <code>-dev</code> 包，或者一键脚本。  </li>
+<li>私有仓库 → <code>remote add --index=0</code> 置顶，上传一条命令搞定。</li>
+</ul>
+<p>祝你编译愉快，一路无坑！</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/conan/">conan</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/cmake/">cmake</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/python/">python</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/python3/">python3</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2025/0772985.html"
+                                   title="FFmpeg开发指南：从核心概念到实战录制"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">FFmpeg开发指南：从核心概念到实战录制</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline-meta.css"/>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          window.KeepCommentPlugin.walineOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+          window.KeepCommentPlugin.walineOptions.el = '#waline-comment'
+          window.KeepCommentPlugin.walineOptions.comment = '.post-comments-count'
+          window.KeepCommentPlugin.walineOptions.serverURL = 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/'
+          window.KeepCommentPlugin.walineOptions.lang = 'en' || 'zh-CN'
+          window.KeepCommentPlugin.walineOptions.reaction = 'true' === 'true'
+        </script>
+
+        
+
+        
+            <script data-pjax
+                    async
+                    type="module"
+            >
+              import { init } from '//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js'
+              window.KeepCommentPlugin.initWaline = () => {
+                if (init) {
+                  init(window.KeepCommentPlugin.walineOptions)
+                  window.KeepCommentPlugin.hideLoading()
+                } else {
+                  setTimeout(() => {
+                    window.KeepCommentPlugin.initWaline()
+                  }, 1000)
+                }
+              }
+
+              if ('true' === 'true') {
+                setTimeout(() => {
+                  window.KeepCommentPlugin.initWaline()
+                }, 1200)
+              } else {
+                window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initWaline)
+              }
+            </script>
+        
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-30-%E7%A7%92%E5%AE%8C%E6%88%90%E7%8E%AF%E5%A2%83%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">1. 30 秒完成环境初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%85%88%E6%8A%8A%E9%A1%B9%E7%9B%AE%E6%91%86%E6%88%90%E2%80%9CConan-%E5%96%9C%E6%AC%A2%E7%9A%84%E6%A0%B7%E5%AD%90%E2%80%9D"><span class="nav-text">2. 先把项目摆成“Conan 喜欢的样子”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E5%8F%AF%E7%94%A8-conanfile-txt"><span class="nav-text">最小可用 conanfile.txt</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85%E5%85%A8%E9%83%A8%E4%BE%9D%E8%B5%96"><span class="nav-text">3. 一条命令安装全部依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%BC%96%E8%AF%91%E9%A1%B9%E7%9B%AE%EF%BC%9A%E4%B8%A4%E7%A7%8D%E5%A7%BF%E5%8A%BF%EF%BC%8C%E4%BB%BB%E9%80%89"><span class="nav-text">4. 编译项目：两种姿势，任选</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A7%BF%E5%8A%BF-A%EF%BC%9A%E7%BB%8F%E5%85%B8%E6%89%8B%E5%86%99"><span class="nav-text">姿势 A：经典手写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A7%BF%E5%8A%BF-B%EF%BC%9ACMake-%E2%89%A53-19-%E7%9A%84-preset%EF%BC%88%E7%9C%9F%E9%A6%99%EF%BC%89"><span class="nav-text">姿势 B：CMake ≥3.19 的 preset（真香）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E8%B8%A9%E5%9D%91%E7%8E%B0%E5%9C%BA%EF%BC%9A%E7%BC%BA%E5%A4%B1%E7%B3%BB%E7%BB%9F%E5%BA%93%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-text">5. 踩坑现场：缺失系统库怎么办？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%EF%BC%9A%E5%8F%88%E5%BF%AB%E5%8F%88%E7%A8%B3"><span class="nav-text">6. 私有仓库：又快又稳</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E6%B7%BB%E5%8A%A0%E4%BB%93%E5%BA%93"><span class="nav-text">6.1 添加仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E6%9F%A5%E7%9C%8B-%E8%B0%83%E6%95%B4%E9%A1%BA%E5%BA%8F"><span class="nav-text">6.2 查看 &#x2F; 调整顺序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%8A%8A%E5%8C%85%E6%8E%A8%E4%B8%8A%E5%8E%BB"><span class="nav-text">7. 把包推上去</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF-A%EF%BC%9A%E5%AE%98%E6%96%B9%E5%8C%85%E7%9B%B4%E6%8E%A5%E8%BF%81%E5%88%B0%E7%A7%81%E6%9C%89"><span class="nav-text">场景 A：官方包直接迁到私有</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF-B%EF%BC%9A%E8%87%AA%E7%A0%94%E9%A1%B9%E7%9B%AE"><span class="nav-text">场景 B：自研项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%91%BD%E4%BB%A4%E5%B0%8F%E6%8A%84%EF%BC%88%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F%EF%BC%89"><span class="nav-text">8. 命令小抄（建议收藏）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E7%BB%93%E8%AF%AD"><span class="nav-text">9. 结语</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ssk-wh</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+                <a target="_blank" rel="nofollow" href="https://github.com/">
+            
+            This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span>
+            
+                </a>
+            
+        </div>
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-30-%E7%A7%92%E5%AE%8C%E6%88%90%E7%8E%AF%E5%A2%83%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">1. 30 秒完成环境初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%85%88%E6%8A%8A%E9%A1%B9%E7%9B%AE%E6%91%86%E6%88%90%E2%80%9CConan-%E5%96%9C%E6%AC%A2%E7%9A%84%E6%A0%B7%E5%AD%90%E2%80%9D"><span class="nav-text">2. 先把项目摆成“Conan 喜欢的样子”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E5%8F%AF%E7%94%A8-conanfile-txt"><span class="nav-text">最小可用 conanfile.txt</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85%E5%85%A8%E9%83%A8%E4%BE%9D%E8%B5%96"><span class="nav-text">3. 一条命令安装全部依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%BC%96%E8%AF%91%E9%A1%B9%E7%9B%AE%EF%BC%9A%E4%B8%A4%E7%A7%8D%E5%A7%BF%E5%8A%BF%EF%BC%8C%E4%BB%BB%E9%80%89"><span class="nav-text">4. 编译项目：两种姿势，任选</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A7%BF%E5%8A%BF-A%EF%BC%9A%E7%BB%8F%E5%85%B8%E6%89%8B%E5%86%99"><span class="nav-text">姿势 A：经典手写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A7%BF%E5%8A%BF-B%EF%BC%9ACMake-%E2%89%A53-19-%E7%9A%84-preset%EF%BC%88%E7%9C%9F%E9%A6%99%EF%BC%89"><span class="nav-text">姿势 B：CMake ≥3.19 的 preset（真香）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E8%B8%A9%E5%9D%91%E7%8E%B0%E5%9C%BA%EF%BC%9A%E7%BC%BA%E5%A4%B1%E7%B3%BB%E7%BB%9F%E5%BA%93%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-text">5. 踩坑现场：缺失系统库怎么办？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%EF%BC%9A%E5%8F%88%E5%BF%AB%E5%8F%88%E7%A8%B3"><span class="nav-text">6. 私有仓库：又快又稳</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E6%B7%BB%E5%8A%A0%E4%BB%93%E5%BA%93"><span class="nav-text">6.1 添加仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E6%9F%A5%E7%9C%8B-%E8%B0%83%E6%95%B4%E9%A1%BA%E5%BA%8F"><span class="nav-text">6.2 查看 &#x2F; 调整顺序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%8A%8A%E5%8C%85%E6%8E%A8%E4%B8%8A%E5%8E%BB"><span class="nav-text">7. 把包推上去</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF-A%EF%BC%9A%E5%AE%98%E6%96%B9%E5%8C%85%E7%9B%B4%E6%8E%A5%E8%BF%81%E5%88%B0%E7%A7%81%E6%9C%89"><span class="nav-text">场景 A：官方包直接迁到私有</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF-B%EF%BC%9A%E8%87%AA%E7%A0%94%E9%A1%B9%E7%9B%AE"><span class="nav-text">场景 B：自研项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%91%BD%E4%BB%A4%E5%B0%8F%E6%8A%84%EF%BC%88%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F%EF%BC%89"><span class="nav-text">8. 命令小抄（建议收藏）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E7%BB%93%E8%AF%AD"><span class="nav-text">9. 结语</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
