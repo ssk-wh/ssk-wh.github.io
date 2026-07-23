@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IVRecorder 双路录音诊断</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <h1>IVRecorder 双路录音诊断</h1>
+        <p id="environmentText">正在检查浏览器环境</p>
+      </div>
+      <div id="statusBadge" class="status-badge idle">
+        <span class="status-dot"></span>
+        <span id="statusText">未开始</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="config-band" aria-label="录音配置">
+        <div class="field case-field">
+          <label for="caseIdInput">案例编号</label>
+          <input id="caseIdInput" type="text" inputmode="text" maxlength="64" placeholder="选填" autocomplete="off" />
+        </div>
+        <div class="field device-field">
+          <label for="deviceSelect">输入设备</label>
+          <div class="field-row">
+            <select id="deviceSelect">
+              <option value="">系统默认麦克风</option>
+            </select>
+            <button id="refreshDevicesBtn" class="icon-button" type="button" title="刷新设备列表" aria-label="刷新设备列表">&#8635;</button>
+          </div>
+        </div>
+
+        <div class="field route-field">
+          <label for="audioRouteSelect">录制时音频设备</label>
+          <select id="audioRouteSelect">
+            <option value="ipad-speaker">iPad 自带扬声器</option>
+            <option value="bluetooth">蓝牙耳机或音箱</option>
+            <option value="wired">有线耳机或音频设备</option>
+            <option value="other">其他</option>
+          </select>
+        </div>
+
+        <label class="toggle-field">
+          <span>
+            <strong>回声消除 AEC</strong>
+            <small>现网默认开启</small>
+          </span>
+          <input id="aecToggle" type="checkbox" checked />
+          <span class="toggle" aria-hidden="true"></span>
+        </label>
+
+        <label class="toggle-field">
+          <span>
+            <strong>浏览器降噪</strong>
+            <small>现网默认关闭</small>
+          </span>
+          <input id="noiseToggle" type="checkbox" />
+          <span class="toggle" aria-hidden="true"></span>
+        </label>
+
+        <label class="toggle-field">
+          <span>
+            <strong>自动增益 AGC</strong>
+            <small>现网默认关闭</small>
+          </span>
+          <input id="agcToggle" type="checkbox" />
+          <span class="toggle" aria-hidden="true"></span>
+        </label>
+      </section>
+
+      <section class="command-band" aria-label="录音命令">
+        <div class="command-group">
+          <button id="startBtn" class="button primary" type="button"><span class="record-icon" aria-hidden="true"></span>开始录音</button>
+          <button id="pauseBtn" class="button" type="button" disabled><span aria-hidden="true">&#8545;</span>暂停</button>
+          <button id="stopBtn" class="button danger" type="button" disabled><span aria-hidden="true">&#9632;</span>停止</button>
+          <button id="markerBtn" class="button marker" type="button" disabled><span aria-hidden="true">&#9670;</span>标记异常</button>
+        </div>
+        <div class="session-note">双路录音仅保存在当前设备，结束后主动分享诊断包</div>
+      </section>
+
+      <section class="metrics-band" aria-label="实时指标">
+        <div class="metric">
+          <span>项目时间</span>
+          <strong id="wallTimeMetric">00:00.000</strong>
+        </div>
+        <div class="metric">
+          <span>AudioContext</span>
+          <strong id="contextTimeMetric">00:00.000</strong>
+        </div>
+        <div class="metric">
+          <span>有效输入</span>
+          <strong id="inputTimeMetric">00:00.000</strong>
+        </div>
+        <div class="metric">
+          <span>32 kHz PCM</span>
+          <strong id="pcmTimeMetric">00:00.000</strong>
+        </div>
+        <div class="metric" id="driftMetricBox">
+          <span>项目 / PCM 差</span>
+          <strong id="driftMetric">+0 ms</strong>
+        </div>
+        <div class="metric">
+          <span>当前电平</span>
+          <strong id="levelMetric">-∞ dBFS</strong>
+        </div>
+        <div class="metric">
+          <span>音频上下文</span>
+          <strong id="contextMetric">--</strong>
+        </div>
+        <div class="metric">
+          <span>输入 / PCM 缓冲</span>
+          <strong id="bufferMetric">0</strong>
+        </div>
+      </section>
+
+      <section class="waveform-section" aria-labelledby="waveformTitle">
+        <div class="section-heading">
+          <div>
+            <h2 id="waveformTitle">实时 PCM 波形</h2>
+            <p id="waveformSummary">等待录音数据</p>
+          </div>
+          <div class="level-meter" aria-label="输入电平">
+            <span id="levelBar"></span>
+          </div>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="waveformCanvas"></canvas>
+          <div id="emptyWaveform" class="empty-waveform">开始录音后显示波形</div>
+        </div>
+      </section>
+
+      <section id="resultSection" class="result-section" hidden aria-labelledby="resultTitle">
+        <div class="section-heading">
+          <div>
+            <h2 id="resultTitle">录音结果</h2>
+            <p id="resultSummary"></p>
+          </div>
+          <div class="result-actions">
+            <button id="sharePackageBtn" class="button primary" type="button" disabled><span aria-hidden="true">&#8599;</span>分享诊断包</button>
+            <button id="downloadPackageBtn" class="button" type="button" disabled><span aria-hidden="true">&#8595;</span>下载 ZIP</button>
+            <button id="downloadResultJsonBtn" class="button" type="button" disabled><span aria-hidden="true">&#8595;</span>下载 JSON</button>
+          </div>
+        </div>
+        <div id="diagnosisBox" class="diagnosis-box" hidden>
+          <strong id="diagnosisTitle"></strong>
+          <span id="diagnosisText"></span>
+        </div>
+        <div class="recording-results">
+          <section class="recording-result" aria-labelledby="referenceResultTitle">
+            <div class="recording-result-heading">
+              <div>
+                <h3 id="referenceResultTitle">浏览器原生参考音频</h3>
+                <p id="referenceResultSummary">等待录制结果</p>
+              </div>
+              <div class="recording-result-actions">
+                <button id="referencePlaybackMarkerBtn" class="button marker small" type="button" disabled><span aria-hidden="true">&#9670;</span>标记此处</button>
+                <button id="downloadReferenceBtn" class="button small" type="button" disabled><span aria-hidden="true">&#8595;</span>下载</button>
+              </div>
+            </div>
+            <audio id="referenceAudioPlayer" controls></audio>
+          </section>
+
+          <section class="recording-result" aria-labelledby="ivResultTitle">
+            <div class="recording-result-heading">
+              <div>
+                <h3 id="ivResultTitle">IVRecorder 32 kHz WAV</h3>
+                <p id="ivResultSummary">等待录制结果</p>
+              </div>
+              <div class="recording-result-actions">
+                <button id="playbackMarkerBtn" class="button marker small" type="button" disabled><span aria-hidden="true">&#9670;</span>标记此处</button>
+                <button id="downloadWavBtn" class="button small" type="button" disabled><span aria-hidden="true">&#8595;</span>下载</button>
+              </div>
+            </div>
+            <audio id="audioPlayer" controls></audio>
+          </section>
+        </div>
+      </section>
+
+      <section class="log-section" aria-labelledby="logTitle">
+        <div class="section-heading">
+          <div>
+            <h2 id="logTitle">诊断日志</h2>
+            <p id="logSummary">0 条事件</p>
+          </div>
+          <div class="log-actions">
+            <button id="copyLogBtn" class="button small" type="button">复制摘要</button>
+            <button id="downloadLogBtn" class="button small" type="button">下载诊断 JSON</button>
+            <button id="clearLogBtn" class="icon-button" type="button" title="清空显示日志" aria-label="清空显示日志">&#215;</button>
+          </div>
+        </div>
+        <pre id="logOutput" tabindex="0"></pre>
+      </section>
+    </main>
+
+    <footer>
+      <span>诊断版本 3.0 · 同源双路对照模式</span>
+      <span id="secureContextText"></span>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
