@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="Linux, C++">
+  <meta name="description" content="Hexo Theme Keep">
+  <meta name="author" content="ssk-wh">
+  
+  <title>
+    
+      一款轻量的面向 Markdown 的阅读器 |
+    
+    Ssk-wh&#39;s Blog
+  </title>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    <link rel="shortcut icon" href="/images/logo.svg">
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.4.0/source/font/css/fontawesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.4.0/source/font/css/regular.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.4.0/source/font/css/solid.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.4.0/source/font/css/brands.min.css">
+  
+  <script>
+    (function () {
+      let theme = localStorage.getItem('KEEP-THEME-STATUS');
+      let classname = "";
+      if (!theme || (JSON.parse(theme).isAutoTheme)){
+        classname = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark-mode" : "light-mode";
+      }
+      else{
+        classname = JSON.parse(theme).isDark ? "dark-mode" : "light-mode";
+      }
+      document.documentElement.classList.add(classname);
+    })();
+  </script>
+  <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"ssk-wh.github.io","root":"/","language":"en"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#29392c","title":"Ssk-wh's Blog","author":"ssk-wh","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":true,"links":{"github":"https://github.com/ssk-wh","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"juchengshi@gmail.com"}},"scroll":{"progress_bar":false,"percent":true,"hide_header":true},"home":{"announcement":"世界辣么大，我先去看看啦 ...","category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":false,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"waline","valine":{"appid":"p7UzBFMhtEszl675JcK4nD8u-gzGzoHsz","appkey":"jbg4L3iFVJ2gfpME1ueGIyoA","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":"https://waline-comment-bbfehgah2-ssk-wh.vercel.app/","reaction":true,"version":3},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":true,"provider":"github","url":"https://github.com/"},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","search_db_path":"keep-search.json","source_data":{"links":[{"title":"伙计们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://xpoet.cn/images/avatar.png"},{"name":"Guo Le's Blog","link":"https://guole.fun/","description":"生命是独立是自由是爱与和平","avatar":"https://guole.fun/img/gl.jpg"},{"name":"酷小呵","link":"https://www.kuhehe.top/","description":"爱分享的酷小呵","avatar":"https://q1.qlogo.cn/g?b=qq&nk=3111349763&s=100"}]},"version":"4.4.0"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ssk-wh's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+  
+
+  
+    <span class="pjax-progress-bar"></span>
+    <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+  
+</div>
+
+
+
+<main class="page-container border-box">
+  <!-- home first screen  -->
+  
+
+  <!-- page content -->
+  <div class="page-main-content border-box">
+    <div class="page-main-content-top">
+      
+<header class="header-wrapper">
+
+  <div class="border-box header-content">
+    <div class="left flex-start border-box">
+      
+        <a class="logo-image border-box" href="/">
+          <img src="/images/logo.svg">
+        </a>
+      
+      <a class="site-name border-box" href="/">
+        Ssk-wh&#39;s Blog
+      </a>
+    </div>
+
+    <div class="right border-box">
+      <div class="pc border-box">
+        <ul class="menu-list border-box">
+          
+            
+            <li class="menu-item flex-start border-box">
+              <a class="menu-text-color border-box" href="/">
+                
+                HOME
+                
+              </a>
+              
+            </li>
+          
+            
+            <li class="menu-item flex-start border-box">
+              <a class="menu-text-color border-box" href="/archives">
+                
+                ARCHIVES
+                
+              </a>
+              
+            </li>
+          
+            
+            <li class="menu-item flex-start border-box">
+              <a class="menu-text-color border-box" href="/tags">
+                
+                TAGS
+                
+              </a>
+              
+            </li>
+          
+            
+            <li class="menu-item flex-start border-box">
+              <a class="menu-text-color border-box" href="/categories">
+                
+                CATEGORIES
+                
+              </a>
+              
+            </li>
+          
+            
+            <li class="menu-item flex-start border-box">
+              <a class="menu-text-color border-box" href="/about">
+                
+                ABOUT
+                
+              </a>
+              
+            </li>
+          
+          
+            <li class="menu-item search search-popup-trigger">
+              <i class="menu-text-color fas search fa-search"></i>
+            </li>
+          
+        </ul>
+      </div>
+      <div class="mobile border-box flex-start">
+        
+          <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+        
+        <div class="icon-item menu-bar">
+          <div class="menu-bar-middle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-drawer">
+    <ul class="drawer-menu-list border-box">
+      
+        
+        <li class="drawer-menu-item border-box not-sub-menu">
+          <label class="drawer-menu-label border-box">
+            <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+              
+              HOME
+            </a>
+            
+          </label>
+          
+        </li>
+      
+        
+        <li class="drawer-menu-item border-box not-sub-menu">
+          <label class="drawer-menu-label border-box">
+            <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+              
+              ARCHIVES
+            </a>
+            
+          </label>
+          
+        </li>
+      
+        
+        <li class="drawer-menu-item border-box not-sub-menu">
+          <label class="drawer-menu-label border-box">
+            <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+              
+              TAGS
+            </a>
+            
+          </label>
+          
+        </li>
+      
+        
+        <li class="drawer-menu-item border-box not-sub-menu">
+          <label class="drawer-menu-label border-box">
+            <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+              
+              CATEGORIES
+            </a>
+            
+          </label>
+          
+        </li>
+      
+        
+        <li class="drawer-menu-item border-box not-sub-menu">
+          <label class="drawer-menu-label border-box">
+            <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+              
+              ABOUT
+            </a>
+            
+          </label>
+          
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="window-mask"></div>
+
+</header>
+
+
+    </div>
+
+    <div class="page-main-content-middle border-box">
+
+      <div class="main-content border-box">
+        
+
+          
+<div class="fade-in-down-animation">
+  <div class="post-page-container border-box">
+    <div class="post-content-container border-box">
+      
+
+      <div class="post-content-bottom border-box">
+        
+          <div class="post-title">
+            一款轻量的面向 Markdown 的阅读器
+          </div>
+        
+
+        
+          <div class="post-header border-box">
+            
+              <div class="avatar-box border-box">
+                <img src="/images/avatar.svg">
+              </div>
+            
+            <div class="info-box">
+              <div class="author border-box">
+                <span class="name">ssk-wh</span>
+                
+                  <span class="author-badge">Lv5</span>
+                
+              </div>
+              <div class="meta-info border-box">
+                
+
+<div class="post-meta-info-container border-box post">
+  <div class="post-meta-info border-box">
+    
+
+    
+      <span class="meta-info-item post-create-date">
+        <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+        <span class="datetime">2026-11-03 00:00:00</span>
+      </span>
+
+      
+        <span class="meta-info-item post-update-date">
+          <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+          <span class="datetime" data-updated="Tue Nov 03 2026 06:10:19 GMT+0000">2026-11-03 06:10:19</span>
+        </span>
+      
+    
+
+    
+      <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+        <ul class="post-category-ul">
+          
+              <li class="category-item"><a href="/categories/MarkDown/">MarkDown</a></li>
+            
+          
+        </ul>
+      </span>
+    
+
+    
+      <span class="post-tag meta-info-item border-box">
+        <ul class="post-tag-ul">
+          
+              <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/md/">md</a></li>
+            
+          
+              <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/markdown/">markdown</a></li>
+            
+          
+              <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/tool/">tool</a></li>
+            
+          
+        </ul>
+      </span>
+    
+
+    
+    
+      <span class="meta-info-item post-word-count">
+        <i class="icon fas fa-file-word"></i>&nbsp;<span>1.1k Words</span>
+      </span>
+    
+    
+      <span class="meta-info-item post-min2read">
+        <i class="icon fas fa-clock"></i>&nbsp;<span>4 Mins</span>
+      </span>
+    
+    
+      <span class="meta-info-item post-pv">
+        <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+      </span>
+    
+  </div>
+
+  
+</div>
+
+              </div>
+            </div>
+          </div>
+        
+
+        <div class="post-content keep-markdown-body ">
+          
+
+          
+            <h1 id="SimpleMarkdown：一秒内打开所有-Markdown-文件。"><a href="#SimpleMarkdown：一秒内打开所有-Markdown-文件。" class="headerlink" title="SimpleMarkdown：一秒内打开所有 Markdown 文件。"></a>SimpleMarkdown：一秒内打开所有 Markdown 文件。</h1><blockquote>
+<p>一款轻量、跨平台、<strong>只读</strong>的 Markdown 查看器。打开大文件不卡，滚动丝滑，点目录瞬间跳转。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="为什么做它"><a href="#为什么做它" class="headerlink" title="为什么做它"></a>为什么做它</h2><p>很多 Markdown 编辑器在打开体积稍大的文档时会明显变慢：整篇解析、整篇排版、再整篇渲染，文件越大越卡。可大多数时候，我们只是想<strong>读</strong>一份文档——技术手册、日志整理、会议纪要、导出的长文——并不需要编辑。</p>
+<p>SimpleMarkdown 干脆放弃编辑功能，把全部精力放在一件事上：<strong>把 Markdown 又快又顺地读出来</strong>。</p>
+<h2 id="速度"><a href="#速度" class="headerlink" title="速度"></a>速度</h2><p>在一台普通 Windows 笔记本上的实测（Release 构建，启动到首屏内容可见）：</p>
+<table>
+<thead>
+<tr>
+<th>文件大小</th>
+<th>打开速度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>45 KB</td>
+<td>约 0.8 秒</td>
+</tr>
+<tr>
+<td>10 MB（约 28 万行）</td>
+<td>约 0.9 秒</td>
+</tr>
+<tr>
+<td>50 MB（约 143 万行）</td>
+<td>约 0.9 秒</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>点击目录跳转</strong>：50MB 文档里跳到任意章节，5~16 毫秒</li>
+<li><strong>滚动</strong>：单帧 P95 约 7~9 毫秒，滚轮、拖滚动条、PageUp&#x2F;PageDown、Home&#x2F;End 都顺滑</li>
+</ul>
+<h2 id="它是怎么做到的"><a href="#它是怎么做到的" class="headerlink" title="它是怎么做到的"></a>它是怎么做到的</h2><p>核心思路是「<strong>别处理你看不到的东西</strong>」：</p>
+<ol>
+<li><strong>后台读取、分块索引</strong>：文件在后台线程读入，按段落边界切成小块（chunk），同时扫描出目录。首屏只需要第一批数据，和文件总大小无关。</li>
+<li><strong>只排版可见的块</strong>：滚动到哪里，才解析、排版、绘制哪里。已排版的块放进有上限的缓存。</li>
+<li><strong>锚点式滚动</strong>：滚动位置记为「第几块 + 块内偏移」，而不是一个全局像素值。上方块的高度从估算变成实测，画面不会跳动；点目录跳转也不必先算完前面所有内容。</li>
+<li><strong>全自绘渲染</strong>：没有 WebView、没有 <code>QTextDocument</code>，基于 Qt 的 QPainter 自己画，内存占用小。</li>
+</ol>
+<h2 id="功能一览"><a href="#功能一览" class="headerlink" title="功能一览"></a>功能一览</h2><p><strong>阅读</strong></p>
+<ul>
+<li>标题、段落、粗体&#x2F;斜体&#x2F;删除线、行内代码、围栏代码块（带语法高亮）</li>
+<li>引用、有序&#x2F;无序&#x2F;任务列表、GFM 表格、分割线、链接</li>
+<li>本地图片与 SVG 矢量图</li>
+<li>YAML Frontmatter 卡片渲染</li>
+<li>Ctrl+点击链接打开（网页走浏览器，相对路径的 .md 文件直接在新标签页打开）</li>
+</ul>
+<p><strong>导航</strong></p>
+<ul>
+<li>右侧<strong>目录面板</strong>：支持折叠，万级标题也能即时显示；点击跳转并短暂高亮</li>
+<li><strong>全文查找</strong>（Ctrl+F）：显示命中数，Enter &#x2F; Shift+Enter &#x2F; F3 在命中间跳转，Esc 关闭</li>
+<li><strong>多标签页</strong>、文件夹面板（资源管理器式浏览一个目录）</li>
+</ul>
+<p><strong>体验</strong></p>
+<ul>
+<li><strong>内容标记</strong>（荧光笔）：选中文字右键标记，含标记的章节在目录里高亮，标记随会话保存</li>
+<li><strong>外部修改自动刷新</strong>：用你喜欢的编辑器改文件，保存后这里静默刷新并保持阅读位置</li>
+<li>会话恢复：重启后回到上次的文件与阅读位置</li>
+<li>Ctrl+滚轮缩放字号、行间距可调</li>
+<li>亮色 &#x2F; 暗色主题，可跟随系统，支持自定义主题</li>
+<li>演示模式（F11 进入，F11 或 Esc 退出）：全屏只显示内容，适合直接拿文档做演讲</li>
+<li>中文 &#x2F; English 界面</li>
+<li>导出 HTML &#x2F; PDF、打印（文件小于 8MB）</li>
+<li>自动识别 UTF-8 &#x2F; UTF-16 &#x2F; GBK 编码</li>
+</ul>
+<p><strong>稳定性</strong></p>
+<ul>
+<li>打开二进制文件、超过 1GB 的文件会给出明确提示</li>
+<li>对畸形输入做了防护：超长单行、数千层嵌套、数百万标题都不会卡死界面</li>
+</ul>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>👉 <strong><a class="link"   target="_blank" rel="noopener" href="https://github.com/ssk-wh/simple_markdown/releases/latest" >下载最新版本（始终指向最新发布）<i class="fas fa-external-link-alt"></i></a></strong></p>
+<p>打开页面后，在 <strong>Assets</strong> 里按平台选择：</p>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>文件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 安装包（推荐）</td>
+<td><code>SimpleMarkdown-&lt;版本&gt;-Setup.exe</code></td>
+</tr>
+<tr>
+<td>Windows 免安装版</td>
+<td><code>SimpleMarkdown-&lt;版本&gt;-Portable.zip</code></td>
+</tr>
+<tr>
+<td>Linux 通用</td>
+<td><code>SimpleMarkdown-&lt;版本&gt;-x86_64.AppImage</code></td>
+</tr>
+<tr>
+<td>Debian &#x2F; Ubuntu</td>
+<td><code>simplemarkdown_&lt;版本&gt;_amd64.deb</code></td>
+</tr>
+</tbody></table>
+<p>项目的 GitHub Actions 会在每次发布时自动构建并上传这些产物，所以上面的链接永远是最新版。历史版本与更新说明见 <a class="link"   target="_blank" rel="noopener" href="https://github.com/ssk-wh/simple_markdown/releases" >Releases 页面<i class="fas fa-external-link-alt"></i></a>。</p>
+<h2 id="使用小贴士"><a href="#使用小贴士" class="headerlink" title="使用小贴士"></a>使用小贴士</h2><ul>
+<li>命令行直接打开：<code>SimpleMarkdown.exe 文档.md</code>；已有窗口在运行时，会在同一窗口新开标签页</li>
+<li>把 <code>.md</code> 文件拖进窗口即可打开</li>
+<li>想编辑？「文件 → 用默认程序打开」交给你的编辑器，改完保存，查看器自动刷新</li>
+<li>软件<strong>不联网、不上传、无遥测</strong>；检查更新只在你手动点击时才会访问网络</li>
+</ul>
+<h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p>源码、问题反馈与更新日志：<a class="link"   target="_blank" rel="noopener" href="https://github.com/ssk-wh/simple_markdown" >https://github.com/ssk-wh/simple_markdown<i class="fas fa-external-link-alt"></i></a></p>
+<p>基于 C++17 &#x2F; Qt 5 与 cmark-gfm 构建，欢迎试用与反馈。</p>
+
+          
+        </div>
+
+        
+
+        <div class="post-bottom-tags-and-share border-box">
+          <div>
+            
+              <ul class="post-tags-box border-box">
+                
+                  <li class="tag-item border-box">
+                    <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/md/">md</a>
+                  </li>
+                
+                  <li class="tag-item border-box">
+                    <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/markdown/">markdown</a>
+                  </li>
+                
+                  <li class="tag-item border-box">
+                    <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/tool/">tool</a>
+                  </li>
+                
+              </ul>
+            
+          </div>
+          <div>
+            
+          </div>
+        </div>
+
+        
+
+        
+          <div class="post-nav border-box">
+            
+            
+              <div class="next-post">
+                <a class="next"
+                  rel="next"
+                  href="/2025/08297bee2f.html"
+                  title="Conan 的配置与使用"
+                >
+                  <span class="title flex-center">
+                    <span class="post-nav-title-item text-ellipsis">Conan 的配置与使用</span>
+                    <span class="post-nav-item">Next posts</span>
+                  </span>
+                  <span class="right arrow-icon flex-center">
+                    <i class="fas fa-chevron-right"></i>
+                  </span>
+                </a>
+              </div>
+            
+          </div>
+        
+
+        
+          
+
+
+  <div class="comments-container border-box">
+    <div id="comments-anchor" class="comment-area-title border-box">
+      <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    <div class="comment-plugin-fail border-box">
+  <span class="fail-tip">Comment plugin failed to load</span>
+  <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+  <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+  <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+    
+      
+
+  <div class="waline-comment-container">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline-meta.css"/>
+    <div id="waline-comment"></div>
+    <script data-pjax>
+      window.KeepCommentPlugin.walineOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+      window.KeepCommentPlugin.walineOptions.el = '#waline-comment'
+      window.KeepCommentPlugin.walineOptions.comment = '.post-comments-count'
+      window.KeepCommentPlugin.walineOptions.serverURL = 'https://waline-comment-bbfehgah2-ssk-wh.vercel.app/'
+      window.KeepCommentPlugin.walineOptions.lang = 'en' || 'zh-CN'
+      window.KeepCommentPlugin.walineOptions.reaction = 'true' === 'true'
+    </script>
+
+    
+
+    
+      <script data-pjax
+        async
+        type="module"
+      >
+        import { init } from '//cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js'
+        window.KeepCommentPlugin.initWaline = () => {
+          if (init) {
+            init(window.KeepCommentPlugin.walineOptions)
+            window.KeepCommentPlugin.hideLoading()
+          } else {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initWaline()
+            }, 1000)
+          }
+        }
+
+        if ('true' === 'true') {
+          setTimeout(() => {
+            window.KeepCommentPlugin.initWaline()
+          }, 1200)
+        } else {
+          window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initWaline)
+        }
+      </script>
+    
+  </div>
+
+
+    
+  </div>
+
+
+
+
+
+        
+      </div>
+    </div>
+
+    
+      <div class="pc-post-toc right-toc">
+        <div class="post-toc-wrap border-box">
+  <div class="post-toc border-box">
+    <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SimpleMarkdown%EF%BC%9A%E4%B8%80%E7%A7%92%E5%86%85%E6%89%93%E5%BC%80%E6%89%80%E6%9C%89-Markdown-%E6%96%87%E4%BB%B6%E3%80%82"><span class="nav-text">SimpleMarkdown：一秒内打开所有 Markdown 文件。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%81%9A%E5%AE%83"><span class="nav-text">为什么做它</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9F%E5%BA%A6"><span class="nav-text">速度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%83%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E5%88%B0%E7%9A%84"><span class="nav-text">它是怎么做到的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E4%B8%80%E8%A7%88"><span class="nav-text">功能一览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%B0%8F%E8%B4%B4%E5%A3%AB"><span class="nav-text">使用小贴士</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="nav-text">项目地址</span></a></li></ol></li></ol>
+  </div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+
+        
+      </div>
+    </div>
+
+    <div class="page-main-content-bottom border-box">
+      
+<footer class="footer border-box">
+  <div class="copyright-info info-item">
+  &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2026
+  
+      &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ssk-wh</a>
+    
+  </div>
+
+  <div class="theme-info info-item">
+    Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+  </div>
+
+  
+    
+    <div class="deploy-info info-item">
+      
+        <a target="_blank" rel="nofollow" href="https://github.com/">
+      
+      This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span>
+      
+        </a>
+      
+    </div>
+  
+
+  
+
+  
+</footer>
+
+    </div>
+  </div>
+
+  <!-- post tools -->
+  
+    <div class="post-tools right-toc">
+      <div class="post-tools-container border-box">
+  <ul class="post-tools-list border-box">
+    <!-- PC encrypt again -->
+    
+
+    <!-- PC TOC show toggle -->
+    
+      <li class="tools-item flex-center toggle-show-toc">
+        <i class="fas fa-list"></i>
+      </li>
+    
+
+    <!-- PC go comment -->
+    
+      <li class="tools-item flex-center go-to-comments">
+        <i class="fas fa-comment"></i>
+        <span class="post-comments-count"></span>
+      </li>
+    
+
+    <!-- PC full screen -->
+    <li class="tools-item flex-center full-screen">
+      <i class="fa-solid fa-expand"></i>
+    </li>
+  </ul>
+</div>
+
+    </div>
+  
+
+  <!-- side tools -->
+  <div class="side-tools">
+    <div class="side-tools-container border-box ">
+  <ul class="side-tools-list side-tools-show-handle border-box">
+    <li class="tools-item tool-font-adjust-plus flex-center">
+      <i class="fas fa-search-plus"></i>
+    </li>
+
+    <li class="tools-item tool-font-adjust-minus flex-center">
+      <i class="fas fa-search-minus"></i>
+    </li>
+
+    <!-- toggle chinese -->
+    
+
+    <!-- toggle mode -->
+    
+      <li class="tools-item tool-toggle-theme-mode flex-center">
+        <i class="fas fa-moon"></i>
+      </li>
+    
+
+    <!-- rss -->
+    
+      <li class="tools-item rss flex-center">
+        <a class="flex-center"
+          href="/atom.xml"
+          target="_blank"
+        >
+          <i class="fas fa-rss"></i>
+        </a>
+      </li>
+    
+
+    <!-- to bottom -->
+    <li class="tools-item tool-scroll-to-bottom flex-center">
+      <i class="fas fa-arrow-down"></i>
+    </li>
+  </ul>
+
+  <ul class="exposed-tools-list border-box">
+    
+      <li class="tools-item toggle-show-toc-tablet flex-center">
+        <i class="fas fa-list"></i>
+      </li>
+    
+
+    
+      <li class="tools-item go-to-comments-tablet flex-center">
+        <i class="fas fa-comment"></i>
+      </li>
+    
+
+    <li class="tools-item tool-toggle-show flex-center">
+      <i class="fas fa-cog fa-spin"></i>
+    </li>
+
+    <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+      <i class="arrow fas fa-arrow-up"></i>
+      <span class="percent"></span>
+    </li>
+  </ul>
+</div>
+
+  </div>
+
+  <!-- image mask -->
+  <div class="zoom-in-image-mask">
+  <img class="zoom-in-image">
+</div>
+
+
+  <!-- local search -->
+  
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+    <div class="search-header">
+      <span class="search-input-field-pre">
+      <i class="fas fa-keyboard"></i>
+      </span>
+      <div class="search-input-container">
+        <input autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            placeholder="Search..."
+            spellcheck="false"
+            type="search"
+            class="search-input"
+        >
+      </div>
+      <span class="close-popup-btn">
+        <i class="fas fa-times"></i>
+      </span>
+    </div>
+    <div id="search-result">
+      <div id="no-result">
+        <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+  <!-- tablet toc -->
+  
+    <div class="tablet-post-toc-mask">
+      <div class="tablet-post-toc">
+        <div class="post-toc-wrap border-box">
+  <div class="post-toc border-box">
+    <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SimpleMarkdown%EF%BC%9A%E4%B8%80%E7%A7%92%E5%86%85%E6%89%93%E5%BC%80%E6%89%80%E6%9C%89-Markdown-%E6%96%87%E4%BB%B6%E3%80%82"><span class="nav-text">SimpleMarkdown：一秒内打开所有 Markdown 文件。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%81%9A%E5%AE%83"><span class="nav-text">为什么做它</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9F%E5%BA%A6"><span class="nav-text">速度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%83%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E5%88%B0%E7%9A%84"><span class="nav-text">它是怎么做到的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E4%B8%80%E8%A7%88"><span class="nav-text">功能一览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%B0%8F%E8%B4%B4%E5%A3%AB"><span class="nav-text">使用小贴士</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="nav-text">项目地址</span></a></li></ol></li></ol>
+  </div>
+</div>
+
+      </div>
+    </div>
+  
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.4.0/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.4.0/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.4.0/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.4.0/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.4.0/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.4.0/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.4.0/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+  <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.4.0/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+  <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.4.0/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+  <!-- home page -->
+  
+
+  <!-- post page -->
+  
+    <!-- post-helper -->
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.4.0/source/js/post/post-helper.js"></script>
+
+    <!-- toc -->
+    
+      <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.4.0/source/js/post/toc.js"></script>
+    
+
+    <!-- copyright-info -->
+    
+
+    <!-- share -->
+    
+  
+
+  <!-- categories page -->
+  
+
+  <!-- links page -->
+  
+
+  <!-- photos page -->
+  
+
+  <!-- tools page -->
+  
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+  <script id="pjax-script" src="/js/libs/pjax.min.js"></script>
+<script>
+  (function () {
+    const isGoogleTranslate = location.hostname.includes('.translate.goog')
+
+    if (isGoogleTranslate) {
+      document.getElementById('pjax-script')?.remove()
+      return
+    }
+
+    function initPjax () {
+      if (window.pjax) return
+
+      window.pjax = new Pjax({
+        selectors: [
+          'head title',
+          '.page-container',
+          '.pjax'
+        ],
+        history: true,
+        debug: false,
+        cacheBust: false,
+        timeout: 0,
+        analytics: false,
+        currentUrlFullReload: false,
+        scrollRestoration: false
+      })
+
+      document.addEventListener('pjax:send', onPjaxSend)
+      document.addEventListener('pjax:complete', onPjaxComplete)
+    }
+
+    function onPjaxSend () {
+      KEEP?.utils?.pjaxProgressBarStart()
+    }
+
+    function onPjaxComplete () {
+      KEEP?.utils?.pjaxProgressBarEnd()
+
+      window?.pjax?.executeScripts(
+        document.querySelectorAll('script[data-pjax], .pjax script')
+      )
+
+      KEEP?.initExecute()
+    }
+
+    // DOM Ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPjax)
+    } else {
+      initPjax()
+    }
+  })()
+</script>
+
+
+
+
+</body>
+</html>
